@@ -15,6 +15,10 @@ export const config: Config = {
     },
     {
       type: 'www',
+      copy: [
+        { src: 'public', dest: './' },
+        { src: 'pages' }
+      ],
       serviceWorker: null, // disable service workers
     },
   ],
