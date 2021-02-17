@@ -60,6 +60,7 @@
   </style>
 </div>
 
+{% render 'grapesjs/my-plugin.liquid' %}
 
 <script type="text/javascript">
   var editor = grapesjs.init({
@@ -70,7 +71,9 @@
     container: '#gjs',
     fromElement: true,
 
-    plugins: ['gjs-preset-webpage'],
+    plugins: ['gjs-preset-webpage', azPlugin({
+      withCategory: true
+    })],
     pluginsOpts: {
       'gjs-preset-webpage': {}
     }

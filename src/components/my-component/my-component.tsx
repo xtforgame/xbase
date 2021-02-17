@@ -39,14 +39,14 @@ export class MyComponent {
 
   @Element() host: HTMLElement;
   componentWillLoad() {
-    console.log('this :', this);
-    console.log('this.togglePadding :', this.togglePadding);
-    let slotted = this.host.querySelector('slot') as HTMLSlotElement;
-    console.log('slotted :', slotted);
+    // console.log('this :', this);
+    // console.log('this.togglePadding :', this.togglePadding);
+    // let slotted = this.host.querySelector('slot') as HTMLSlotElement;
+    // console.log('slotted :', slotted);
   }
 
   componentDidLoad() {
-    console.log('this.host.togglePadding :', (this.host as any).togglePadding);
+    // console.log('this.host.togglePadding :', (this.host as any).togglePadding);
     setInterval(() => {
       this.switchY = !this.switchY
     }, 1000);
@@ -62,7 +62,7 @@ export class MyComponent {
     if (this.first === 'Rick') {
       padding = '12px';
     }
-    console.log('this.switchX :', this.switchX);
+    // console.log('this.switchX :', this.switchX);
     if (this.switchX) {
       padding = '0px';
     }

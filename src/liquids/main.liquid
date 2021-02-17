@@ -11,9 +11,9 @@
   {% render 'grapesjs/head3.liquid' %}
 </head>
   <body>
+    {% render 'grapesjs/body3.liquid' %}
     {{ schemasMetadata.xx }}
     <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
     {%- render 'parts/ex.liquid', schemasMetadata: schemasMetadata -%}
-    {% render 'grapesjs/body3.liquid' %}
   </body>
 </html>

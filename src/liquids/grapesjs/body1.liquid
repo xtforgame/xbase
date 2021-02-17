@@ -3,54 +3,39 @@
 </div>
 <div id="blocks"></div>
 
+{% render 'grapesjs/my-plugin.liquid' %}
+
 <script>
-  const myNewComponentTypes = editor => {
-    editor.DomComponents.addType('test-component', {
-      model: {
-        defaults: {
-          testprop: 1,
-        },
-        init() {
-          console.log('Local hook: model.init');
-          this.listenTo(this, 'change:testprop', this.handlePropChange);
-          // Here we can listen global hooks with editor.on('...')
-        },
-        updated(property, value, prevValue) {
-          console.log('Local hook: model.updated',
-            'property', property, 'value', value, 'prevValue', prevValue);
-        },
-        removed() {
-          console.log('Local hook: model.removed');
-        },
-        handlePropChange() {
-          console.log('The value of testprop', this.get('testprop'));
-        }
-      },
-      view: {
-        init() {
-          console.log('Local hook: view.init');
-        },
-        onRender({ el }) {
-          customElements.whenDefined('my-component')
-          .then((x) => {
-            var c = el.querySelector('my-component');
-            console.log('c :', c);
-            c.componentOnReady()
-            .then(() => {
-              setInterval(() => {
-                c.togglePadding()
-              }, 10000);
-              c.setAttribute("first", "Rick");
-              c.setAttribute("middle", "X");
-              c.setAttribute("last", "Chen");
-            });
-          });
-          console.log('el :', el.childNodes[0].togglePadding);
-          console.log('Local hook: view.onRender');
-        },
-      },
+  var basicComp = editor => {
+    var bm = editor.BlockManager;
+    bm.add('section', {
+      id: 'section', // id is mandatory
+      label: '<b>Section</b>', // You can use HTML/SVG inside labels
+      attributes: { class:'gjs-block-section' },
+      content: `<section>
+        <h1>This is a simple title</h1>
+        <div>This is just a Lorem text: Lorem ipsum dolor sit amet</div>
+      </section>`,
+    });
+    bm.add('text', {
+      id: 'text',
+      label: 'Text',
+      content: '<div data-gjs-type="text">Insert your text here</div>',
+    });
+    bm.add('image', {
+      id: 'image',
+      label: 'Image',
+      // Select the component once it's dropped
+      select: true,
+      // You can pass components as a JSON instead of a simple HTML string,
+      // in this case we also use a defined component type `image`
+      content: { type: 'image' },
+      // This triggers `active` event on dropped components and the `image`
+      // reacts by opening the AssetManager
+      activate: true,
     });
   };
+
   const editor = grapesjs.init({
     // Indicate where to init the editor. You can also pass an HTMLElement
     container: '#gjs',
@@ -66,7 +51,7 @@
     panels: { defaults: [] },
 
 
-    plugins: [ 'gjs-preset-webpage', myNewComponentTypes ],
+    plugins: [ 'gjs-preset-webpage', basicComp, azPlugin() ],
 
     blockManager: {
       appendTo: '#blocks',
@@ -97,30 +82,5 @@
         }
       ]
     },
-  });
-
-  editor.BlockManager.add('test-component', {
-    label: 'Test Component',
-    // content: '<div data-gjs-type="test-component">Test Component</div>',
-    content: `<div data-gjs-droppable=".nothing" data-gjs-type="test-component" id="app1">
-      <my-component data-gjs-droppable=".nothing">
-        <div data-gjs-draggable=".nothing" style="padding: 2px; background-color: rgba(0, 128, 128, 0.3);" slot="top">
-          <div data-gjs-draggable=".nothing" style="height: 1px;"></div>
-        </div>
-        <div data-gjs-draggable=".nothing" style="padding: 2px; background-color: rgba(128, 0, 128, 0.3);" slot="body">
-          <div data-gjs-draggable=".nothing" style="height: 1px;"></div>
-        </div>
-      </my-component>
-    </div>`,
-    // content: `<my-component data-gjs-droppable=".nothing" data-gjs-type="test-component">
-    //   <div slot="body">
-    //     <div>Body01</div>
-    //     <div>Body02</div>
-    //   </div>
-    //   <div slot="top">
-    //     <div>Top01</div>
-    //     <div>Top02</div>
-    //   </div>
-    // </my-component>`,
   });
 </script>
