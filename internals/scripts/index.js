@@ -32,7 +32,7 @@ const delay = 1000;
 const mainFunc = (cb) => {
   const nodemonConfig = {
     script: 'server-dist/index.js',
-    watch: ['server/'],
+    watch: ['server/', 'src/**/*.ts', 'src/**/*.js', 'src/**/*.tsx'],
     ignore: [
       'gulpfile.babel.js',
       'node_modules/',

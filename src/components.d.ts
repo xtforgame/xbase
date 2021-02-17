@@ -19,6 +19,7 @@ export namespace Components {
           * The middle name
          */
         "middle": string;
+        "togglePadding": () => Promise<void>;
     }
 }
 declare global {

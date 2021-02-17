@@ -14,6 +14,19 @@
 | `middle` | `middle`  | The middle name | `string` | `undefined` |
 
 
+## Methods
+
+### `togglePadding() => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

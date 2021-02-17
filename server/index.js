@@ -31,14 +31,21 @@ app.use((req, res, next) => {
   }
   const results = engine.parse(`{% render 'main.liquid', schemasMetadata: schemasMetadata, schemas: schemas %}`)
   results.forEach((t) => {
-    console.log('t.token :', t);
+    // console.log('t.token :', t);
+  });
+  let indexJsFileName = ''; 
+
+  fs.readdirSync('www/build').forEach(file => {
+    if (file.startsWith('index-')) {
+      indexJsFileName = file;
+    }
   });
   const content = fs.readFileSync('src/liquids/main.liquid', 'utf8');
   const results2 = engine.parse(content)
   results2.forEach((t) => {
-    console.log('t.token :', t);
+    // console.log('t.token :', t);
   });
-  const x = engine.render(results2, { schemasMetadata: {}, schemas: {} });
+  const x = engine.render(results2, { jsName: { index: indexJsFileName }, schemasMetadata: {}, schemas: {} });
   // console.log('x :', x.then(console.log));
   x.then((data) => {
     // res.status(404);
