@@ -4,6 +4,7 @@ import { format } from '../../utils/utils';
 @Component({
   tag: 'my-component',
   styleUrl: 'my-component.css',
+  scoped: true,
   // shadow: true,
 })
 export class MyComponent {
@@ -39,6 +40,9 @@ export class MyComponent {
     // alert("xxxx");
     this.switchX = !this.switchX;
     // console.log('this.switchX :', this.switchX);
+    console.log('this.host :', this.host);
+    // let slotted = this.host.querySelector('slot') as HTMLSlotElement;
+    // console.log('slotted :', slotted);
   }
 
   @Element() host: HTMLElement;

@@ -21,6 +21,8 @@ export namespace Components {
         "middle": string;
         "togglePadding": () => Promise<void>;
     }
+    interface MySecComp {
+    }
 }
 declare global {
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
@@ -29,8 +31,15 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
+    interface HTMLMySecCompElement extends Components.MySecComp, HTMLStencilElement {
+    }
+    var HTMLMySecCompElement: {
+        prototype: HTMLMySecCompElement;
+        new (): HTMLMySecCompElement;
+    };
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
+        "my-sec-comp": HTMLMySecCompElement;
     }
 }
 declare namespace LocalJSX {
@@ -48,8 +57,11 @@ declare namespace LocalJSX {
          */
         "middle"?: string;
     }
+    interface MySecComp {
+    }
     interface IntrinsicElements {
         "my-component": MyComponent;
+        "my-sec-comp": MySecComp;
     }
 }
 export { LocalJSX as JSX };
@@ -57,6 +69,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "my-sec-comp": LocalJSX.MySecComp & JSXBase.HTMLAttributes<HTMLMySecCompElement>;
         }
     }
 }
