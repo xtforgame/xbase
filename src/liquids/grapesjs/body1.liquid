@@ -4,6 +4,7 @@
 <div id="blocks"></div>
 
 {% render 'grapesjs/my-plugin.liquid' %}
+{% render 'grapesjs/edit-html-plugin.liquid' %}
 
 <script>
   var basicComp = editor => {
@@ -51,7 +52,7 @@
     panels: { defaults: [] },
 
 
-    plugins: [ 'gjs-preset-webpage', basicComp, azPlugin() ],
+    plugins: [ 'gjs-preset-webpage', basicComp, editHtml(), azPlugin() ],
 
     blockManager: {
       appendTo: '#blocks',

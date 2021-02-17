@@ -1,0 +1,92 @@
+<script type="text/javascript">
+  // https://github.com/artf/grapesjs/issues/324
+  var editHtml = (config = {}) => editor => {
+    var pfx = editor.getConfig().stylePrefix
+    var modal = editor.Modal
+    var cmdm = editor.Commands
+    var htmlCodeViewer = editor.CodeManager.getViewer('CodeMirror').clone()
+    var cssCodeViewer = editor.CodeManager.getViewer('CodeMirror').clone()
+    var pnm = editor.Panels
+    var container = document.createElement('div')
+    var btnEdit = document.createElement('button')
+
+    htmlCodeViewer.set({
+      codeName: 'htmlmixed',
+      readOnly: 0,
+      theme: 'hopscotch',
+      autoBeautify: true,
+      autoCloseTags: true,
+      autoCloseBrackets: true,
+      lineWrapping: true,
+      styleActiveLine: true,
+      smartIndent: true,
+      indentWithTabs: true
+    })
+
+    cssCodeViewer.set({
+      codeName: 'css',
+      readOnly: 0,
+      theme: 'hopscotch',
+      autoBeautify: true,
+      autoCloseTags: true,
+      autoCloseBrackets: true,
+      lineWrapping: true,
+      styleActiveLine: true,
+      smartIndent: true,
+      indentWithTabs: true
+    })
+
+    btnEdit.innerHTML = 'Save'
+    btnEdit.className = pfx + 'btn-prim ' + pfx + 'btn-import'
+    btnEdit.onclick = function () {
+      var html = htmlCodeViewer.editor.getValue()
+      var css = cssCodeViewer.editor.getValue()
+      editor.DomComponents.getWrapper().set('content', '')
+      editor.setComponents(html.trim())
+      editor.setStyle(css)
+      modal.close()
+    }
+
+    cmdm.add('edit-code', {
+      run: function (editor, sender) {
+        sender && sender.set('active', 0)
+        var htmlViewer = htmlCodeViewer.editor
+        var cssViewer = cssCodeViewer.editor
+        modal.setTitle('Edit code')
+        if (!htmlViewer && !cssViewer) {
+          var txtarea = document.createElement('textarea')
+          var cssarea = document.createElement('textarea')
+          container.appendChild(txtarea)
+          container.appendChild(cssarea)
+          container.appendChild(btnEdit)
+          htmlCodeViewer.init(txtarea)
+          cssCodeViewer.init(cssarea)
+          htmlViewer = htmlCodeViewer.editor
+          cssViewer = cssCodeViewer.editor
+        }
+        var InnerHtml = editor.getHtml()
+        var Css = editor.getCss()
+        modal.setContent('')
+        modal.setContent(container)
+        htmlCodeViewer.setContent(InnerHtml)
+        cssCodeViewer.setContent(Css)
+        modal.open()
+        htmlViewer.refresh()
+        cssViewer.refresh()
+      }
+    })
+
+    pnm.addButton('options',
+      [
+        {
+          id: 'edit',
+          className: 'fa fa-edit',
+          command: 'edit-code',
+          attributes: {
+            title: 'Edit Code'
+          }
+        }
+      ]
+    )
+  };
+</script>

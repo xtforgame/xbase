@@ -26,6 +26,10 @@ export class MyComponent {
 
   @State() switchY: boolean = true;
 
+  static X() {
+    console.log('ssss');
+  }
+
   private getText(): string {
     return format(this.first, this.middle, this.last);
   }
@@ -53,7 +57,6 @@ export class MyComponent {
   }
 
   disconnectedCallback() {
-    (this.host as any).togglePadding = this.togglePadding.bind(this);
   }
 
   render() {

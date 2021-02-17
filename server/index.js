@@ -12,19 +12,13 @@ app.use((req, res, next) => {
     root: 'src/liquids',
   });
   engine.plugin(function (Liquid) {
-    // this.registerFilter('toTsTypeExpression', (column : JsonModelAttributeInOptionsForm) => {
-    //   return typeConfigs[column.type[0]].getTsTypeExpression(column);
-    // });
-    // this.registerFilter('toTsTypeExpressionForCreation', (column : JsonModelAttributeInOptionsForm) => {
-    //   return typeConfigs[column.type[0]].getTsTypeExpressionForCreation(column);
-    // });
-    // this.registerFilter('getOptionalMark', (column : JsonModelAttributeInOptionsForm, optionalMark = '?') => {
-    //   return column.extraOptions!.requiredOnCreation ? '' : optionalMark;
-    // });
-    // this.registerFilter('debugPrint', (value : any) => {
-    //   console.log('value :', value);
-    //   return value;
-    // });
+    this.registerFilter('toCamel', str => str.replace(/_([a-z])/g, g => g[1].toUpperCase()));
+    this.registerFilter('toUnderscore', str => str.replace(/([-])/g, '_').replace(/([A-Z])/g, g => `_${g.toLowerCase()}`));
+    this.registerFilter('capitalizeFirstLetter', str => (str.charAt(0).toUpperCase() + str.slice(1)));
+    this.registerFilter('debugPrint', (value) => {
+      console.log('value :', value);
+      return value;
+    });
   });
   if (req.url !== '/') {
     return next();
@@ -35,9 +29,14 @@ app.use((req, res, next) => {
   });
   let indexJsFileName = ''; 
 
+  const componentMap = {};
   fs.readdirSync('www/build').forEach(file => {
     if (file.startsWith('index-')) {
       indexJsFileName = file;
+    }
+    if (file.endsWith('.entry.js')) {
+      const componentName = file.substr(0, file.length - '.entry.js'.length);
+      componentMap[componentName] = file;
     }
   });
   const content = fs.readFileSync('src/liquids/main.liquid', 'utf8');
@@ -45,7 +44,7 @@ app.use((req, res, next) => {
   results2.forEach((t) => {
     // console.log('t.token :', t);
   });
-  const x = engine.render(results2, { jsName: { index: indexJsFileName }, schemasMetadata: {}, schemas: {} });
+  const x = engine.render(results2, { jsName: { index: indexJsFileName }, componentMap, schemasMetadata: {}, schemas: {} });
   // console.log('x :', x.then(console.log));
   x.then((data) => {
     // res.status(404);

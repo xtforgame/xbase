@@ -62,6 +62,7 @@
         onRender({ el }) {
           customElements.whenDefined('my-component')
           .then((x) => {
+            console.log('x :', x);
             var c = el.querySelector('my-component');
             console.log('c :', c);
             c.componentOnReady()

@@ -6,14 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
   <title>Stencil Component Starter</title>
   <!-- <script type="module" data-stencil data-resources-url="/build/" data-stencil-namespace="xbase"></script> -->
+  <script type="module" data-stencil data-resources-url="/build/" data-stencil-namespace="xbase">
+    window.__component_map = {};
+    {% for pair in componentMap %}
+    import { {{ pair[0] | toUnderscore }} } from '/build/{{ pair[1] }}';
+    window.__component_map['{{ pair[0] }}'] = {{ pair[0] | toUnderscore }};
+    {% endfor %}
+  </script>
   <script type="module" src="/build/xbase.esm.js"></script>
   <script nomodule="" src="/build/xbase.js" data-stencil></script>
   {% render 'grapesjs/head3.liquid' %}
 </head>
   <body>
     {% render 'grapesjs/body3.liquid' %}
-    {{ schemasMetadata.xx }}
     <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
-    {%- render 'parts/ex.liquid', schemasMetadata: schemasMetadata -%}
+    {%- render 'parts/ex.liquid', componentMap: componentMap -%}
   </body>
 </html>
