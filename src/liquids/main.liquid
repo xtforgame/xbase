@@ -8,12 +8,12 @@
   <!-- <script type="module" data-stencil data-resources-url="/build/" data-stencil-namespace="xbase"></script> -->
   <script type="module" src="/build/xbase.esm.js"></script>
   <script nomodule="" src="/build/xbase.js" data-stencil></script>
-  {% render 'grapesjs/head1.liquid' %}
+  {% render 'grapesjs/head3.liquid' %}
 </head>
   <body>
     {{ schemasMetadata.xx }}
     <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
     {%- render 'parts/ex.liquid', schemasMetadata: schemasMetadata -%}
-    {% render 'grapesjs/body1.liquid' %}
+    {% render 'grapesjs/body3.liquid' %}
   </body>
 </html>
