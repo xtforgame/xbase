@@ -66,17 +66,105 @@
 <script type="text/javascript">
   var editor = grapesjs.init({
     height: '100%',
+    forceClass: true,
     showOffsets: 1,
     noticeOnUnload: 0,
-    storageManager: { autoload: 0 },
+    storageManager: { type: 'simple-storage', autoload: false, autosave: false },
     container: '#gjs',
     fromElement: true,
 
-    plugins: ['gjs-preset-webpage', editHtml(), azPlugin({
+    canvas: {
+      scripts: ['https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'],
+      styles: ['https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css']
+    },
+
+    plugins: ['gjs-preset-webpage', /* editHtml(), */ azPlugin({
       withCategory: true
     })],
     pluginsOpts: {
-      'gjs-preset-webpage': {}
+      'gjs-preset-webpage': {
+        customStyleManager: [{
+          name: 'X',
+          open: false,
+          buildProps: ['float', 'display', 'position', 'top', 'right', 'left', 'bottom'],
+        }]
+      }
     }
   });
+
+  // Here our `simple-storage` implementation
+  const SimpleStorage = {};
+  editor.StorageManager.add('simple-storage', {
+    /**
+     * Load the data
+     * @param  {Array} keys Array containing values to load, eg, ['gjs-components', 'gjs-styles', ...]
+     * @param  {Function} clb Callback function to call when the load is ended
+     * @param  {Function} clbErr Callback function to call in case of errors
+     */
+    load(keys, clb, clbErr) {
+      const result = {};
+
+      keys.forEach(key => {
+        // const value = SimpleStorage[key];
+        const value = localStorage.getItem(key);
+        if (value) {
+          result[key] = JSON.parse(value);
+        }
+      });
+
+      // Might be called inside some async method
+      clb(result);
+    },
+
+    /**
+     * Store the data
+     * @param  {Object} data Data object to store
+     * @param  {Function} clb Callback function to call when the load is ended
+     * @param  {Function} clbErr Callback function to call in case of errors
+     */
+    store(data, clb, clbErr) {
+      for (let key in data) {
+        // SimpleStorage[key] = data[key];
+
+        localStorage.setItem(key, JSON.stringify(data[key]));
+      }
+      // Might be called inside some async method
+      clb();
+    }
+  });
+
+  // Add the button
+  editor.Panels.addButton('options', [{ 
+    id: 'save-db', 
+    className: 'fa fa-save', 
+    command: 'save-db',
+    attributes: {title: 'Save'} 
+  }]);
+
+  // Add the command
+  editor.Commands.add('save-db', {
+    run: function(editor, sender) {
+      sender && sender.set('active', 0); // turn off the button
+      editor.store();
+    }
+  });
+
+  // Add the button
+  editor.Panels.addButton('options', [{ 
+    id: 'load-db', 
+    className: 'fa fa-folder-open', 
+    command: 'load-db',
+    attributes: {title: 'Load'} 
+  }]);
+
+  // Add the command
+  editor.Commands.add('load-db', {
+    run: function(editor, sender) {
+      sender && sender.set('active', 0); // turn off the button
+      editor.load();
+    }
+  });
+
+  editor.Panels.removeButton('options', 'gjs-open-import-webpage');
+  // editor.Panels.removeButton('options', cmdClear);
 </script>
