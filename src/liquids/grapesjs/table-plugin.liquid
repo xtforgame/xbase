@@ -7,11 +7,12 @@
       label: 'Table',
       category: 'Basic',
       attributes: { class: 'fa fa-table' },
+      // https://github.com/artf/grapesjs/issues/1841
       content: `
-          <table class="table  table-bordered table-resizable">
-              <tr><td></td><td></td><td></td></tr>
-              <tr><td></td><td></td><td></td></tr>
-              <tr><td></td><td></td><td></td></tr>
+          <table class="table table-bordered table-resizable">
+            <tr data-gjs-name="Xtr" data-gjs-icon='<i class="fa fa-paint-brush"></i>'><td></td><td></td><td></td></tr>
+            <tr data-gjs-name="Xtr" data-gjs-icon='<i class="fa fa-paint-brush"></i>'><td></td><td></td><td></td></tr>
+            <tr data-gjs-name="Xtr" data-gjs-icon='<i class="fa fa-paint-brush"></i>'><td></td><td></td><td></td></tr>
           </table>
         `,
     });
@@ -84,13 +85,16 @@
       const selected = editor.getSelected();
 
       if (selected.is('cell')) {
+        // selected.set('name', 'Xxxxx');
+        console.log('selected.get("icon") :', selected.get('icon'));
+        selected.set('icon', '<i class="fa fa-paint-brush"></i>');
         const rowComponent = selected.parent();
         const rowIndex = rowComponent.collection.indexOf(rowComponent);
         const cells = rowComponent.components().length;
         const rowContainer = rowComponent.parent();
 
         rowContainer.components().add({
-          type: 'box',
+          type: 'row',
           components: [...Array(cells).keys()].map(i => ({
             type: 'cell',
             content: 'New Cell',
