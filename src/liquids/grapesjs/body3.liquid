@@ -61,6 +61,7 @@
 </div>
 
 {% render 'grapesjs/my-plugin.liquid' %}
+{% render 'grapesjs/table-plugin.liquid' %}
 {% render 'grapesjs/edit-html-plugin.liquid' %}
 
 <script type="text/javascript">
@@ -78,7 +79,7 @@
       styles: ['https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css']
     },
 
-    plugins: ['gjs-preset-webpage', /* editHtml(), */ azPlugin({
+    plugins: ['gjs-preset-webpage', /* editHtml(), */, tablePlugin(), azPlugin({
       withCategory: true
     })],
     pluginsOpts: {
