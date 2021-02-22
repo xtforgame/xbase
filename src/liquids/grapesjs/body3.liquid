@@ -62,9 +62,10 @@
 
 {% render 'grapesjs/my-plugin.liquid' %}
 {% render 'grapesjs/table-plugin.liquid' %}
-{% render 'grapesjs/edit-html-plugin.liquid' %}
+{% render 'grapesjs/edit-css-plugin.liquid' %}
 
 <script type="text/javascript">
+{% render 'grapesjs/styleManagerCfg.js.liquid' %}
   var editor = grapesjs.init({
     height: '100%',
     forceClass: true,
@@ -72,62 +73,17 @@
     noticeOnUnload: 0,
     storageManager: { type: 'simple-storage', autoload: false, autosave: false },
     // https://github.com/artf/grapesjs/blob/master/src/editor/config/config.js
-    styleManager: {
-      sectors: [{
-        name: 'General',
-        open: false,
-        buildProps: ['float', 'display', 'position', 'top', 'right', 'left', 'bottom']
-      },{
-        name: 'Flex',
-        open: false,
-        buildProps: [
-          'flex-direction',
-          'flex-wrap',
-          'justify-content',
-          'align-items',
-          'align-content',
-          'order',
-          'flex-basis',
-          'flex-grow',
-          'flex-shrink',
-          'align-self'
-        ]
-      },{
-        name: 'Dimension',
-        open: false,
-        buildProps: [ 'width', 'height', 'max-width', 'min-height', 'margin', 'padding']
-      },{
-        name: 'Typography',
-        open: false,
-        buildProps: ['font-family', 'font-size', 'font-weight', 'letter-spacing', 'color', 'line-height', 'text-align', 'text-shadow']
-      },{
-        name: 'Decorations',
-        open: false,
-        buildProps: ['border-radius-c', 'background-color', 'border-radius', 'border', 'box-shadow', 'background'],
-      },{
-        name: 'Extra',
-        open: false,
-        buildProps: ['opacity', 'transition', 'perspective', 'transform'],
-        properties: [{
-          type: 'slider',
-          property: 'opacity',
-          defaults: 1,
-          step: 0.01,
-          max: 1,
-          min:0,
-        }]
-      }],
-    },
+    styleManager: styleManagerCfg,
     container: '#gjs',
     fromElement: true,
 
     canvas: {
       scripts: ['https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'],
-      styles: ['https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css']
+      styles: ['https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'],
     },
 
-    plugins: ['gjs-preset-webpage', editHtml(), tablePlugin(), azPlugin({
-      withCategory: true
+    plugins: ['gjs-preset-webpage', editCss(), tablePlugin(), azPlugin({
+      withCategory: true,
     })],
     pluginsOpts: {
       'gjs-preset-webpage': {
@@ -135,9 +91,9 @@
           name: 'X',
           open: false,
           buildProps: ['my-custom-prop'],
-        }]
-      }
-    }
+        }],
+      },
+    },
   });
 
   // Here our `simple-storage` implementation
