@@ -57,7 +57,7 @@ app.use((req, res, next) => {
     // return next();
   });
 })
-app.use('/static', express.static(__dirname + '/public'));
+app.use('/static', express.static('public'));
 app.use(express.static('www'));
 
 app.listen(port, () => {

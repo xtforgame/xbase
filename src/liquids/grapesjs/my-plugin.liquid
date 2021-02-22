@@ -185,6 +185,15 @@
       // </my-component>`,
     });
 
+    editor.on('component:update', (component) => {
+      const style = component.getStyle();
+      console.log('style :', style);
+      if (style.display === 'flex') {
+        console.log('style.display');
+        component.set('icon', '<i class="fa fa-paint-brush"></i>');
+      }
+    });
+
     const domComponents = editor.DomComponents;
     domComponents.getTypes().map(type => {
       domComponents.addType(type.id, {
@@ -200,7 +209,6 @@
             ]
           }
         }
-
       })
     });
   };
