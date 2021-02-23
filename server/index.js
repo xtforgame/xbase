@@ -4,6 +4,11 @@ import { Liquid } from 'liquidjs';
 const app = express()
 const port = 3000
 
+
+const toCamel = str => str.replace(/_([a-z])/g, g => g[1].toUpperCase());
+const toUnderscore = str => str.replace(/([-])/g, '_').replace(/([A-Z])/g, g => `_${g.toLowerCase()}`);
+const capitalizeFirstLetter = str => (str.charAt(0).toUpperCase() + str.slice(1));
+
 // app.get('/', (req, res) => {
 //   res.send('Hello World!')
 // })
@@ -12,13 +17,16 @@ app.use((req, res, next) => {
     root: 'src/liquids',
   });
   engine.plugin(function (Liquid) {
-    this.registerFilter('toCamel', str => str.replace(/_([a-z])/g, g => g[1].toUpperCase()));
-    this.registerFilter('toUnderscore', str => str.replace(/([-])/g, '_').replace(/([A-Z])/g, g => `_${g.toLowerCase()}`));
-    this.registerFilter('capitalizeFirstLetter', str => (str.charAt(0).toUpperCase() + str.slice(1)));
+    this.registerFilter('toCamel', toCamel);
+    this.registerFilter('toUnderscore', toUnderscore);
+    this.registerFilter('capitalizeFirstLetter', capitalizeFirstLetter);
     this.registerFilter('debugPrint', (value) => {
       console.log('value :', value);
       return value;
     });
+
+    this.registerFilter('toUnderscoredWcName', str => toUnderscore(str.split('_')[0]));
+    this.registerFilter('toWcName', str => str.split('_')[0]);
   });
   if (req.url !== '/') {
     return next();

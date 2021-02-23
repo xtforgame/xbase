@@ -2,7 +2,7 @@ import { Component, State, Event, Element, EventEmitter, Host, h } from '@stenci
 
 @Component({
   tag: 'azwc-dialog',
-  styleUrl: 'azwc-dialog.css',
+  styleUrl: 'azwc-dialog.scss',
   // shadow: true,
 })
 export class AzwcDialog {

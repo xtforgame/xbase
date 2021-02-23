@@ -9,8 +9,8 @@
   <script type="module" data-stencil data-resources-url="/build/" data-stencil-namespace="xbase">
     window.__component_map = {};
     {% for pair in componentMap %}
-    import { {{ pair[0] | toUnderscore }} } from '/build/{{ pair[1] }}';
-    window.__component_map['{{ pair[0] }}'] = {{ pair[0] | toUnderscore }};
+    import { {{ pair[0] | toUnderscoredWcName }} } from '/build/{{ pair[1] }}';
+    window.__component_map['{{ pair[0] | toWcName }}'] = {{ pair[0] | toUnderscoredWcName }};
     {% endfor %}
   </script>
   <script type="module" src="/build/xbase.esm.js"></script>

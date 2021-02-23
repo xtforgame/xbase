@@ -3,8 +3,8 @@ import { format } from '../../utils/utils';
 
 @Component({
   tag: 'my-component',
-  styleUrl: 'my-component.css',
-  scoped: true,
+  styleUrl: 'my-component.scss',
+  // scoped: true,
   // shadow: true,
 })
 export class MyComponent {
@@ -78,7 +78,7 @@ export class MyComponent {
     }
     return (
       <Host>
-        <div style={{ padding, borderWidth: '1px', borderStyle: 'solid' }}>
+        <div class="mc-container" style={{ padding }}>
           <slot name="top"></slot>
           {text}
           Hello, World! I'm {this.getText()}

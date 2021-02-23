@@ -21,9 +21,13 @@ gulp.task('build:stencil', function() {
   return run('npm run build').exec();
 })
 
+gulp.task('build:css', function() {
+  return run('npm run build-css').exec();
+})
+
 gulp.task('build', gulp.series(
   ['clean'],
-  ['build:server', 'build:stencil']
+  ['build:server', 'build:stencil', 'build:css']
 ))
 
 const reloadTasks = ['build'];

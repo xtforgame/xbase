@@ -20,10 +20,13 @@
     "startx": "gulp server:watch:dev",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
-    "generate": "stencil generate"
+    "generate": "stencil generate",
+    "build-css": "sass src/scss/main.scss public/css/style.css",
+    "build-css-prod": "sass src/scss/main.scss public/css/style.css --style compressed"
   },
   "dependencies": {
-    "@stencil/core": "^2.0.1"
+    "@stencil/core": "^2.0.1",
+    "@stencil/sass": "^1.4.1"
   },
   "license": "MIT",
   "devDependencies": {
@@ -42,6 +45,7 @@
     "gulp-nodemon": "git+https://github.com/xtforgame/gulp-nodemon#master",
     "gulp-run": "^1.7.1",
     "liquidjs": "^9.16.1",
+    "sass": "^1.32.8",
     "yargs": "^16.0.3"
   }
 }
