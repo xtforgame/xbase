@@ -10,5 +10,13 @@
   </head>
   <body>
     <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
+    <azwc-dialog>
+      Content
+    </azwc-dialog>
   </body>
+  <script>
+    document.addEventListener('customStateChange', function handleChange(e) {
+      console.log('Event Recieved:', e);
+    });
+  </script>
 </html>

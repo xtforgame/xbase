@@ -6,6 +6,8 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface AzwcDialog {
+    }
     interface MyComponent {
         /**
           * The first name
@@ -25,6 +27,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLAzwcDialogElement extends Components.AzwcDialog, HTMLStencilElement {
+    }
+    var HTMLAzwcDialogElement: {
+        prototype: HTMLAzwcDialogElement;
+        new (): HTMLAzwcDialogElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -38,11 +46,15 @@ declare global {
         new (): HTMLMySecCompElement;
     };
     interface HTMLElementTagNameMap {
+        "azwc-dialog": HTMLAzwcDialogElement;
         "my-component": HTMLMyComponentElement;
         "my-sec-comp": HTMLMySecCompElement;
     }
 }
 declare namespace LocalJSX {
+    interface AzwcDialog {
+        "onCustomStateChange"?: (event: CustomEvent<any>) => void;
+    }
     interface MyComponent {
         /**
           * The first name
@@ -60,6 +72,7 @@ declare namespace LocalJSX {
     interface MySecComp {
     }
     interface IntrinsicElements {
+        "azwc-dialog": AzwcDialog;
         "my-component": MyComponent;
         "my-sec-comp": MySecComp;
     }
@@ -68,6 +81,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "azwc-dialog": LocalJSX.AzwcDialog & JSXBase.HTMLAttributes<HTMLAzwcDialogElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
             "my-sec-comp": LocalJSX.MySecComp & JSXBase.HTMLAttributes<HTMLMySecCompElement>;
         }

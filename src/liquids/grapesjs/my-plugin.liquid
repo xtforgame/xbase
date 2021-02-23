@@ -29,7 +29,7 @@
           const cp = comps.models[0]
           const comps2 = cp.get('components');
           // comps2.models.splice(0, 1);
-          return cp.toHTML(opt).replace(/[\n\s]*<div class="dummy[^"]*"[^<]*<\/div>[\n\s]*/g, '');
+          return cp.toHTML(opt).replace(/[\n\s]*<agjc-placeholder class="dummy[^"]*"[^<]*<\/agjc-placeholder>[\n\s]*/g, '');
           // console.log('comps, content :', comps, content);
           // console.log('this.get("tagName") :', this.get('tagName'));
           // console.log('this.get("components") :', this.get('components')[0]);
@@ -166,10 +166,11 @@
       content: `<div data-gjs-droppable=".nothing" data-gjs-type="test-component">
         <my-component data-gjs-droppable=".nothing">
           <div data-gjs-draggable="false" data-gjs-removable="false" data-gjs-copyable="false" style="padding: 2px; background-color: rgba(0, 128, 128, 0.3);" slot="top">
-            <div class="dummy" data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false" style="height: 1px;"></div>
+            <azwc-dialog>Xxxxxxx</azwc-dialog>
+            <agjc-placeholder class="dummy" data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
           </div>
           <div data-gjs-draggable="false" data-gjs-removable="false" data-gjs-copyable="false" style="padding: 2px; background-color: rgba(128, 0, 128, 0.3);" slot="body">
-            <div class="dummy" data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false" style="height: 1px;"></div>
+            <agjc-placeholder class="dummy" data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
           </div>
         </my-component>
       </div>`,
