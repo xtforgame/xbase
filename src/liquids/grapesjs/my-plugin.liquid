@@ -1,85 +1,7 @@
+{% render 'grapesjs/my-components.liquid' %}
 <script type="text/javascript">
   var azPlugin = (config = {}) => editor => {
-    let exCfg = {};
-    if (config.withCategory) {
-      exCfg = {
-        category: 'Basic',
-        attributes: { class: 'fa fa-link' },
-      };
-    }
-    var script = function() {
-      // alert('Hi');
-      // `this` is bound to the component element
-      console.log('the element', this);
-    };
-    var bm = editor.BlockManager;
-    console.log('bm :', bm);
-    var defaultType = editor.DomComponents.getType("default");
-    editor.DomComponents.addType('test-component', {
-      model: {
-        defaults: {
-          script,
-          testprop: 1,
-        },
-        toHTML: function(opt = {}) {
-          const model = this;
-          console.log('model :', model);
-          const comps = model.get('components');
-          const content = !comps.length ? model.get('content') : '';
-          const cp = comps.models[0]
-          const comps2 = cp.get('components');
-          // comps2.models.splice(0, 1);
-          return cp.toHTML(opt).replace(/[\n\s]*<agjc-placeholder class="dummy[^"]*"[^<]*<\/agjc-placeholder>[\n\s]*/g, '');
-          // console.log('comps, content :', comps, content);
-          // console.log('this.get("tagName") :', this.get('tagName'));
-          // console.log('this.get("components") :', this.get('components')[0]);
-          // return defaultType.model.prototype.toHTML.call(this, opt);
-        },
-        toJSON: function(opt = {}) {
-          console.log('toJSON');
-          return defaultType.model.prototype.toJSON.call(this, opt);
-        },
-        init() {
-          console.log('Local hook: model.init');
-          this.listenTo(this, 'change:testprop', this.handlePropChange);
-          // Here we can listen global hooks with editor.on('...')
-        },
-        updated(property, value, prevValue) {
-          console.log('Local hook: model.updated',
-            'property', property, 'value', value, 'prevValue', prevValue);
-        },
-        removed() {
-          console.log('Local hook: model.removed');
-        },
-        handlePropChange() {
-          console.log('The value of testprop', this.get('testprop'));
-        }
-      },
-      view: {
-        init() {
-          console.log('Local hook: view.init');
-        },
-        onRender({ el }) {
-          customElements.whenDefined('my-component')
-          .then((x) => {
-            console.log('x :', x);
-            var c = el.querySelector('my-component');
-            console.log('c :', c);
-            c.componentOnReady()
-            .then(() => {
-              setInterval(() => {
-                c.togglePadding()
-              }, 10000);
-              c.setAttribute("first", "Rick");
-              c.setAttribute("middle", "X");
-              c.setAttribute("last", "Chen");
-            });
-          });
-          console.log('el :', el.childNodes[0].togglePadding);
-          console.log('Local hook: view.onRender');
-        },
-      },
-    });
+    azPluginComponents(config, editor);
 
     editor.TraitManager.addType('href-next', {
       // Expects as return a simple HTML string or an HTML element
@@ -157,33 +79,6 @@
         // delete attr.href;
         // component.setAttributes(attr);
       },
-    });
-
-    bm.add('test-component', {
-      ...exCfg,
-      label: 'Test Component',
-      // content: '<div data-gjs-type="test-component">Test Component</div>',
-      content: `<div data-gjs-droppable=".nothing" data-gjs-type="test-component">
-        <my-component data-gjs-droppable=".nothing">
-          <div data-gjs-draggable="false" data-gjs-removable="false" data-gjs-copyable="false" style="padding: 2px; background-color: rgba(0, 128, 128, 0.3);" slot="top">
-            <azwc-dialog>Xxxxxxx</azwc-dialog>
-            <agjc-placeholder class="dummy" data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
-          </div>
-          <div data-gjs-draggable="false" data-gjs-removable="false" data-gjs-copyable="false" style="padding: 2px; background-color: rgba(128, 0, 128, 0.3);" slot="body">
-            <agjc-placeholder class="dummy" data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
-          </div>
-        </my-component>
-      </div>`,
-      // content: `<my-component data-gjs-droppable=".nothing" data-gjs-type="test-component">
-      //   <div slot="body">
-      //     <div>Body01</div>
-      //     <div>Body02</div>
-      //   </div>
-      //   <div slot="top">
-      //     <div>Top01</div>
-      //     <div>Top02</div>
-      //   </div>
-      // </my-component>`,
     });
 
     editor.on('component:update', (component) => {

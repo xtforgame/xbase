@@ -79,6 +79,7 @@ export class MyComponent {
     return (
       <Host>
         <div class="mc-container" style={{ padding }}>
+          <button>XXXXX</button>
           <slot name="top"></slot>
           {text}
           Hello, World! I'm {this.getText()}
