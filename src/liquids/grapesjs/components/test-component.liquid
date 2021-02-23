@@ -21,21 +21,27 @@
           script,
           testprop: 1,
         },
-        toHTML: function(opt = {}) {
-          const model = this;
-          console.log('model :', model);
-          const comps = model.get('components');
-          const content = !comps.length ? model.get('content') : '';
-          const cp = comps.models[0]
-          const comps2 = cp.get('components');
-          // comps2.models.splice(0, 1);
-          return cp.toHTML(opt).replace(/[\n\s]*<agjc-placeholder class="dummy[^"]*"[^<]*<\/agjc-placeholder>[\n\s]*/g, '');
-          // console.log('comps, content :', comps, content);
-          // console.log('this.get("tagName") :', this.get('tagName'));
-          // console.log('this.get("components") :', this.get('components')[0]);
-          // return defaultType.model.prototype.toHTML.call(this, opt);
+        toHTML(opt = {}) {
+          var model = this;
+          var result = defaultType.model.prototype.toHTML.call(this, opt);
+          console.log('result :', result);
+          return result.replace(/[\n\s]*<agjc-placeholder[^<]*<\/agjc-placeholder>[\n\s]*/g, '');
         },
-        toJSON: function(opt = {}) {
+        // toHTML(opt = {}) {
+        //   const model = this;
+        //   console.log('model :', model);
+        //   const comps = model.get('components');
+        //   const content = !comps.length ? model.get('content') : '';
+        //   const cp = comps.models[0]
+        //   const comps2 = cp.get('components');
+        //   // comps2.models.splice(0, 1);
+        //   return cp.toHTML(opt).replace(/[\n\s]*<agjc-placeholder class="dummy[^"]*"[^<]*<\/agjc-placeholder>[\n\s]*/g, '');
+        //   // console.log('comps, content :', comps, content);
+        //   // console.log('this.get("tagName") :', this.get('tagName'));
+        //   // console.log('this.get("components") :', this.get('components')[0]);
+        //   // return defaultType.model.prototype.toHTML.call(this, opt);
+        // },
+        toJSON(opt = {}) {
           console.log('toJSON');
           return defaultType.model.prototype.toJSON.call(this, opt);
         },
@@ -84,27 +90,24 @@
     bm.add('test-component', {
       ...exCfg,
       label: 'Test Component',
-      // content: '<div data-gjs-type="test-component">Test Component</div>',
-      content: `<div data-gjs-droppable=".nothing" data-gjs-type="test-component">
-        <my-component data-gjs-droppable=".nothing">
-          <div data-gjs-draggable="false" data-gjs-removable="false" data-gjs-copyable="false" style="padding: 2px; background-color: rgba(0, 128, 128, 0.3);" slot="top">
-            <agjc-placeholder class="dummy" data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
-          </div>
-          <div data-gjs-draggable="false" data-gjs-removable="false" data-gjs-copyable="false" style="padding: 2px; background-color: rgba(128, 0, 128, 0.3);" slot="body">
-            <agjc-placeholder class="dummy" data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
-          </div>
-        </my-component>
-      </div>`,
-      // content: `<my-component data-gjs-droppable=".nothing" data-gjs-type="test-component">
-      //   <div slot="body">
-      //     <div>Body01</div>
-      //     <div>Body02</div>
-      //   </div>
-      //   <div slot="top">
-      //     <div>Top01</div>
-      //     <div>Top02</div>
-      //   </div>
-      // </my-component>`,
+      // content: `<div data-gjs-droppable=".nothing" data-gjs-type="test-component">
+      //   <my-component data-gjs-droppable=".nothing">
+      //     <div data-gjs-draggable="false" data-gjs-removable="false" data-gjs-copyable="false" style="padding: 2px; background-color: rgba(0, 128, 128, 0.3);" slot="top">
+      //       <agjc-placeholder class="dummy" data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
+      //     </div>
+      //     <div data-gjs-draggable="false" data-gjs-removable="false" data-gjs-copyable="false" style="padding: 2px; background-color: rgba(128, 0, 128, 0.3);" slot="body">
+      //       <agjc-placeholder class="dummy" data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
+      //     </div>
+      //   </my-component>
+      // </div>`,
+      content: `<my-component data-gjs-droppable=".nothing">
+        <div data-gjs-draggable="false" data-gjs-removable="false" data-gjs-copyable="false" style="padding: 2px; background-color: rgba(0, 128, 128, 0.3);" slot="top">
+          <agjc-placeholder class="dummy" data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
+        </div>
+        <div data-gjs-draggable="false" data-gjs-removable="false" data-gjs-copyable="false" style="padding: 2px; background-color: rgba(128, 0, 128, 0.3);" slot="body">
+          <agjc-placeholder class="dummy" data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
+        </div>
+      </my-component>`,
     });
 
   };

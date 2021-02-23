@@ -22,18 +22,9 @@
           testprop: 1,
         },
         toHTML: function(opt = {}) {
-          const model = this;
-          console.log('model :', model);
-          const comps = model.get('components');
-          const content = !comps.length ? model.get('content') : '';
-          const cp = comps.models[0]
-          const comps2 = cp.get('components');
-          // comps2.models.splice(0, 1);
-          return cp.toHTML(opt).replace(/[\n\s]*<agjc-placeholder class="dummy[^"]*"[^<]*<\/agjc-placeholder>[\n\s]*/g, '');
-          // console.log('comps, content :', comps, content);
-          // console.log('this.get("tagName") :', this.get('tagName'));
-          // console.log('this.get("components") :', this.get('components')[0]);
-          // return defaultType.model.prototype.toHTML.call(this, opt);
+          var model = this;
+          var result = defaultType.model.prototype.toHTML.call(this, opt);
+          return result.replace(/[\n\s]*<agjc-placeholder[^<]*<\/agjc-placeholder>[\n\s]*/g, '');
         },
         toJSON: function(opt = {}) {
           console.log('toJSON');
@@ -60,22 +51,22 @@
           console.log('Local hook: view.init');
         },
         onRender({ el }) {
-          customElements.whenDefined('my-component')
+          customElements.whenDefined('azwc-dialog')
           .then((x) => {
             console.log('x :', x);
-            var c = el.querySelector('my-component');
+            var c = el.querySelector('azwc-dialog');
             console.log('c :', c);
             c.componentOnReady()
             .then(() => {
-              setInterval(() => {
-                c.togglePadding()
-              }, 10000);
+              // setInterval(() => {
+              //   c.togglePadding()
+              // }, 10000);
               c.setAttribute("first", "Rick");
               c.setAttribute("middle", "X");
               c.setAttribute("last", "Chen");
             });
           });
-          console.log('el :', el.childNodes[0].togglePadding);
+          // console.log('el :', el.childNodes[0].togglePadding);
           console.log('Local hook: view.onRender');
         },
       },
@@ -84,16 +75,14 @@
     bm.add('xazwc-dialog', {
       ...exCfg,
       label: 'Azwc Dialog',
-      content: `<div data-gjs-droppable=".nothing" data-gjs-type="test-component">
-        <azwc-dialog data-gjs-droppable=".nothing">
-          <div data-gjs-draggable="false" data-gjs-removable="false" data-gjs-copyable="false" style="padding: 2px; background-color: rgba(0, 128, 128, 0.3);" slot="top">
-            <agjc-placeholder class="dummy" data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
-          </div>
-          <div data-gjs-draggable="false" data-gjs-removable="false" data-gjs-copyable="false" style="padding: 2px; background-color: rgba(128, 0, 128, 0.3);" slot="body">
-            <agjc-placeholder class="dummy" data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
-          </div>
-        </azwc-dialog>
-      </div>`,
+      content: `<azwc-dialog data-gjs-droppable=".nothing" data-gjs-type="xazwc-dialog">
+        <div data-gjs-draggable="false" data-gjs-removable="false" data-gjs-copyable="false" style="padding: 2px; background-color: rgba(0, 128, 128, 0.3);" slot="top">
+          <agjc-placeholder class="dummy" data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
+        </div>
+        <div data-gjs-draggable="false" data-gjs-removable="false" data-gjs-copyable="false" style="padding: 2px; background-color: rgba(128, 0, 128, 0.3);" slot="body">
+          <agjc-placeholder class="dummy" data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
+        </div>
+      </azwc-dialog>`,
     });
   };
 </script>
