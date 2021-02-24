@@ -13,7 +13,6 @@
       console.log('the element', this);
     };
     var bm = editor.BlockManager;
-    console.log('bm :', bm);
     var defaultType = editor.DomComponents.getType("default");
     editor.DomComponents.addType('test-component', {
       model: {
@@ -22,10 +21,9 @@
           testprop: 1,
         },
         toHTML(opt = {}) {
-          var model = this;
-          var result = defaultType.model.prototype.toHTML.call(this, opt);
-          console.log('result :', result);
-          return result.replace(/[\n\s]*<agjc-placeholder[^<]*<\/agjc-placeholder>[\n\s]*/g, '');
+          return defaultType.model.prototype.toHTML
+          .call(this, opt)
+          .replace(/[\n\s]*<agjc-placeholder[^<]*<\/agjc-placeholder>[\n\s]*/g, '');
         },
         // toHTML(opt = {}) {
         //   const model = this;
@@ -70,6 +68,7 @@
           .then((x) => {
             console.log('x :', x);
             var c = el.querySelector('my-component');
+            c = el;
             console.log('c :', c);
             c.componentOnReady()
             .then(() => {
@@ -93,19 +92,19 @@
       // content: `<div data-gjs-droppable=".nothing" data-gjs-type="test-component">
       //   <my-component data-gjs-droppable=".nothing">
       //     <div data-gjs-draggable="false" data-gjs-removable="false" data-gjs-copyable="false" style="padding: 2px; background-color: rgba(0, 128, 128, 0.3);" slot="top">
-      //       <agjc-placeholder class="dummy" data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
+      //       <agjc-placeholder data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
       //     </div>
       //     <div data-gjs-draggable="false" data-gjs-removable="false" data-gjs-copyable="false" style="padding: 2px; background-color: rgba(128, 0, 128, 0.3);" slot="body">
-      //       <agjc-placeholder class="dummy" data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
+      //       <agjc-placeholder data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
       //     </div>
       //   </my-component>
       // </div>`,
-      content: `<my-component data-gjs-droppable=".nothing">
+      content: `<my-component data-gjs-droppable=".nothing" data-gjs-type="test-component">
         <div data-gjs-draggable="false" data-gjs-removable="false" data-gjs-copyable="false" style="padding: 2px; background-color: rgba(0, 128, 128, 0.3);" slot="top">
-          <agjc-placeholder class="dummy" data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
+          <agjc-placeholder data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
         </div>
         <div data-gjs-draggable="false" data-gjs-removable="false" data-gjs-copyable="false" style="padding: 2px; background-color: rgba(128, 0, 128, 0.3);" slot="body">
-          <agjc-placeholder class="dummy" data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
+          <agjc-placeholder data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
         </div>
       </my-component>`,
     });
