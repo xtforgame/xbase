@@ -14,10 +14,10 @@
     };
     var bm = editor.BlockManager;
     var defaultType = editor.DomComponents.getType("default");
-    editor.DomComponents.addType('xazwc-dialog', {
+    editor.DomComponents.addType('azwc-dialog-gjc', {
       model: {
         defaults: {
-          script,
+          // script,
           testprop: 1,
         },
         toHTML(opt = {}) {
@@ -54,6 +54,7 @@
           .then((x) => {
             console.log('x :', x);
             var c = el.querySelector('azwc-dialog');
+            c = el;
             console.log('c :', c);
             c.componentOnReady()
             .then(() => {
@@ -71,16 +72,16 @@
       },
     });
 
-    bm.add('xazwc-dialog', {
+    bm.add('azwc-dialog-gjc', {
       ...exCfg,
       label: 'Azwc Dialog',
-      content: `<azwc-dialog data-gjs-droppable=".nothing" data-gjs-type="xazwc-dialog">
-        <div data-gjs-draggable="false" data-gjs-removable="false" data-gjs-copyable="false" style="padding: 2px; background-color: rgba(0, 128, 128, 0.3);" slot="top">
-          <agjc-placeholder data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
-        </div>
-        <div data-gjs-draggable="false" data-gjs-removable="false" data-gjs-copyable="false" style="padding: 2px; background-color: rgba(128, 0, 128, 0.3);" slot="body">
-          <agjc-placeholder data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
-        </div>
+      content: `<azwc-dialog class="az-dialog" data-gjs-droppable=".nothing" data-gjs-type="azwc-dialog-gjc">
+        <agjc-slot data-gjs-draggable="false" data-gjs-removable="false" data-gjs-copyable="false" class="az-slot-bg1" slot="top">
+          <agjc-placeholder class="dummy" data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
+        </agjc-slot>
+        <agjc-slot data-gjs-draggable="false" data-gjs-removable="false" data-gjs-copyable="false" class="az-slot-bg2" slot="body">
+          <agjc-placeholder class="dummy" data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
+        </agjc-slot>
       </azwc-dialog>`,
     });
   };

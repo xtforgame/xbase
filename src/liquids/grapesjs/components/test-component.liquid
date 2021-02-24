@@ -17,7 +17,7 @@
     editor.DomComponents.addType('test-component', {
       model: {
         defaults: {
-          script,
+          // script,
           testprop: 1,
         },
         toHTML(opt = {}) {
@@ -91,21 +91,21 @@
       label: 'Test Component',
       // content: `<div data-gjs-droppable=".nothing" data-gjs-type="test-component">
       //   <my-component data-gjs-droppable=".nothing">
-      //     <div data-gjs-draggable="false" data-gjs-removable="false" data-gjs-copyable="false" style="padding: 2px; background-color: rgba(0, 128, 128, 0.3);" slot="top">
-      //       <agjc-placeholder data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
-      //     </div>
-      //     <div data-gjs-draggable="false" data-gjs-removable="false" data-gjs-copyable="false" style="padding: 2px; background-color: rgba(128, 0, 128, 0.3);" slot="body">
-      //       <agjc-placeholder data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
-      //     </div>
+      //     <agjc-slot data-gjs-draggable="false" data-gjs-removable="false" data-gjs-copyable="false" class="az-slot-bg1" slot="top">
+      //       <agjc-placeholder class="dummy" data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
+      //     </agjc-slot>
+      //     <agjc-slot data-gjs-draggable="false" data-gjs-removable="false" data-gjs-copyable="false" class="az-slot-bg2" slot="body">
+      //       <agjc-placeholder class="dummy" data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
+      //     </agjc-slot>
       //   </my-component>
       // </div>`,
-      content: `<my-component data-gjs-droppable=".nothing" data-gjs-type="test-component">
-        <div data-gjs-draggable="false" data-gjs-removable="false" data-gjs-copyable="false" style="padding: 2px; background-color: rgba(0, 128, 128, 0.3);" slot="top">
-          <agjc-placeholder data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
-        </div>
-        <div data-gjs-draggable="false" data-gjs-removable="false" data-gjs-copyable="false" style="padding: 2px; background-color: rgba(128, 0, 128, 0.3);" slot="body">
-          <agjc-placeholder data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
-        </div>
+      content: `<my-component class="az-card" data-gjs-droppable=".nothing" data-gjs-type="test-component">
+        <agjc-slot data-gjs-draggable="false" data-gjs-removable="false" data-gjs-copyable="false" class="az-slot-bg1" slot="top">
+          <agjc-placeholder class="dummy" data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
+        </agjc-slot>
+        <agjc-slot data-gjs-draggable="false" data-gjs-removable="false" data-gjs-copyable="false" class="az-slot-bg2" slot="body">
+          <agjc-placeholder class="dummy" data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
+        </agjc-slot>
       </my-component>`,
     });
 
