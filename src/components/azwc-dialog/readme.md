@@ -12,6 +12,16 @@
 | `customStateChange` |             | `CustomEvent<any>` |
 
 
+## Shadow Parts
+
+| Part                       | Description |
+| -------------------------- | ----------- |
+| `"centered-modal-content"` |             |
+| `"close"`                  |             |
+| `"modal"`                  |             |
+| `"modal-content"`          |             |
+
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

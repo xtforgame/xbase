@@ -23,8 +23,6 @@ export namespace Components {
         "middle": string;
         "togglePadding": () => Promise<void>;
     }
-    interface MySecComp {
-    }
 }
 declare global {
     interface HTMLAzwcDialogElement extends Components.AzwcDialog, HTMLStencilElement {
@@ -39,16 +37,9 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
-    interface HTMLMySecCompElement extends Components.MySecComp, HTMLStencilElement {
-    }
-    var HTMLMySecCompElement: {
-        prototype: HTMLMySecCompElement;
-        new (): HTMLMySecCompElement;
-    };
     interface HTMLElementTagNameMap {
         "azwc-dialog": HTMLAzwcDialogElement;
         "my-component": HTMLMyComponentElement;
-        "my-sec-comp": HTMLMySecCompElement;
     }
 }
 declare namespace LocalJSX {
@@ -69,12 +60,9 @@ declare namespace LocalJSX {
          */
         "middle"?: string;
     }
-    interface MySecComp {
-    }
     interface IntrinsicElements {
         "azwc-dialog": AzwcDialog;
         "my-component": MyComponent;
-        "my-sec-comp": MySecComp;
     }
 }
 export { LocalJSX as JSX };
@@ -83,7 +71,6 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "azwc-dialog": LocalJSX.AzwcDialog & JSXBase.HTMLAttributes<HTMLAzwcDialogElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
-            "my-sec-comp": LocalJSX.MySecComp & JSXBase.HTMLAttributes<HTMLMySecCompElement>;
         }
     }
 }

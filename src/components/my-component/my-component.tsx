@@ -1,11 +1,11 @@
 import { Component, Host, Element, Prop, State, Method, h } from '@stencil/core';
 import { format } from '../../utils/utils';
+import { useShadow } from '../../utils/env';
 
 @Component({
   tag: 'my-component',
-  styleUrl: 'my-component.scss',
-  // scoped: true,
-  // shadow: true,
+  // styleUrl: 'my-component.scss',
+  shadow: useShadow,
 })
 export class MyComponent {
   /**
@@ -78,7 +78,7 @@ export class MyComponent {
     }
     return (
       <Host>
-        <div class="mc-container" style={{ padding }}>
+        <div part="mc-container" class="mc-container" style={{ padding }}>
           <button>XXXXX</button>
           <slot name="top"></slot>
           {text}

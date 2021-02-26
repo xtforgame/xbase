@@ -1,7 +1,9 @@
 my-component {
   display: block;
 }
-.mc-container {
+
+.mc-container,
+my-component::part(mc-container) {
   border-width: 1px;
   border-style: solid;
 }

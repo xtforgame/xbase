@@ -3,9 +3,8 @@ azwc-dialog {
 }
 
 /* The Modal (background) */
-.modal {
-  display: none;
-  /* Hidden by default */
+.modal,
+azwc-dialog::part(modal) {
   position: fixed;
   /* Stay in place */
   z-index: 1;
@@ -26,7 +25,8 @@ azwc-dialog {
 }
 
 /* Modal Content/Box */
-.modal-content {
+.modal-content,
+azwc-dialog::part(modal-content) {
   background-color: #fefefe;
   padding: 20px;
   border: 1px solid #888;
@@ -36,12 +36,14 @@ azwc-dialog {
   min-width: 300px;
 }
 
-.top-modal-content {
+.top-modal-content,
+azwc-dialog::part(top-modal-content) {
   margin: 15% auto;
   /* 15% from the top and centered */
 }
 
-.centered-modal-content {
+.centered-modal-content,
+azwc-dialog::part(centered-modal-content) {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -49,7 +51,8 @@ azwc-dialog {
 }
 
 /* The Close Button */
-.close {
+.close,
+azwc-dialog::part(close) {
   color: #aaa;
   float: right;
   font-size: 28px;
@@ -57,7 +60,8 @@ azwc-dialog {
 }
 
 .close:hover,
-.close:focus {
+.close:focus,
+azwc-dialog::part(close):hove azwc-dialog::part(close):focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
@@ -67,7 +71,8 @@ my-component {
   display: block;
 }
 
-.mc-container {
+.mc-container,
+my-component::part(mc-container) {
   border-width: 1px;
   border-style: solid;
 }
