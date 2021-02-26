@@ -1,23 +1,17 @@
 import { Component, Host, h } from '@stencil/core';
-import { useShadow } from '../../utils/env';
 
 @Component({
   tag: 'azwc-file-manager',
   // styleUrl: 'azwc-file-manager.scss',
-  shadow: useShadow,
+  shadow: false,
 })
 export class AzwcFileManager {
-
   render() {
     return (
       <Host>
-        <azwc-dialog></azwc-dialog>
-        <azwc-dialog></azwc-dialog>
-        <azwc-dialog></azwc-dialog>
-        <azwc-dialog></azwc-dialog>
-        <azwc-dialog></azwc-dialog>
-        <azwc-dialog></azwc-dialog>
-        <azwc-dialog></azwc-dialog>
+        {Array.from({ length: 18 }).map(
+          (_, i) => <azwc-dialog key={i}></azwc-dialog>
+        )}
         <slot></slot>
       </Host>
     );

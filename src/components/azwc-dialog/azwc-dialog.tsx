@@ -1,10 +1,9 @@
 import { Component, State, Event, Element, EventEmitter, Host, h } from '@stencil/core';
-import { useShadow } from '../../utils/env';
 
 @Component({
   tag: 'azwc-dialog',
   // styleUrl: 'azwc-dialog.scss',
-  shadow: useShadow,
+  shadow: false,
 })
 export class AzwcDialog {
 

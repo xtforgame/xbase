@@ -1,11 +1,10 @@
 import { Component, Host, Element, Prop, State, Method, h } from '@stencil/core';
 import { format } from '../../utils/utils';
-import { useShadow } from '../../utils/env';
 
 @Component({
   tag: 'my-component',
   // styleUrl: 'my-component.scss',
-  shadow: useShadow,
+  shadow: false,
 })
 export class MyComponent {
   /**
