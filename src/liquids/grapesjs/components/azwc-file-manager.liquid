@@ -7,20 +7,20 @@
         attributes: { class: 'fa fa-link' },
       };
     }
-    editor.DomComponents.addType('azwc-file-manager', getDefaultCompTypeOptions(editor, config));
+    editor.DomComponents.addType('azwc-file-manager-gjc', getDefaultCompTypeOptions(editor, config));
 
     var bm = editor.BlockManager;
-    bm.add('azwc-file-manager', {
+    bm.add('azwc-file-manager-gjc', {
       ...exCfg,
       label: 'Azwc File Manager',
-      content: `<azwc-dialog class="az-dialog" data-gjs-droppable=".nothing" data-gjs-type="azwc-file-manager">
+      content: `<azwc-file-manager class="az-dialog" data-gjs-droppable=".nothing" data-gjs-type="azwc-file-manager-gjc">
         <agjc-slot data-gjs-draggable="false" data-gjs-removable="false" data-gjs-copyable="false" class="az-slot-bg1" slot="top">
           <agjc-placeholder class="dummy" data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
         </agjc-slot>
         <agjc-slot data-gjs-draggable="false" data-gjs-removable="false" data-gjs-copyable="false" class="az-slot-bg2" slot="body">
           <agjc-placeholder class="dummy" data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
         </agjc-slot>
-      </azwc-dialog>`,
+      </azwc-file-manager>`,
     });
   };
 </script>
