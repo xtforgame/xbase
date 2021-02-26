@@ -1,10 +1,12 @@
 {% render 'grapesjs/components/utils.liquid' %}
 {% render 'grapesjs/components/azwc-dialog.liquid' %}
+{% render 'grapesjs/components/azwc-file-manager.liquid' %}
 {% render 'grapesjs/components/test-component.liquid' %}
 
 <script type="text/javascript">
   var azPluginComponents = (config = {}, editor) => {
-    azwcTestComponent(editor, config);
     azwcDialog(editor, config);
+    azwcFileManager(editor, config);
+    azwcTestComponent(editor, config);
   };
 </script>

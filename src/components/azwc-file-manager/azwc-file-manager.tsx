@@ -12,6 +12,12 @@ export class AzwcFileManager {
     return (
       <Host>
         <azwc-dialog></azwc-dialog>
+        <azwc-dialog></azwc-dialog>
+        <azwc-dialog></azwc-dialog>
+        <azwc-dialog></azwc-dialog>
+        <azwc-dialog></azwc-dialog>
+        <azwc-dialog></azwc-dialog>
+        <azwc-dialog></azwc-dialog>
         <slot></slot>
       </Host>
     );
