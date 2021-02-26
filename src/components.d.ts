@@ -8,6 +8,8 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface AzwcDialog {
     }
+    interface AzwcFileManager {
+    }
     interface MyComponent {
         /**
           * The first name
@@ -31,6 +33,12 @@ declare global {
         prototype: HTMLAzwcDialogElement;
         new (): HTMLAzwcDialogElement;
     };
+    interface HTMLAzwcFileManagerElement extends Components.AzwcFileManager, HTMLStencilElement {
+    }
+    var HTMLAzwcFileManagerElement: {
+        prototype: HTMLAzwcFileManagerElement;
+        new (): HTMLAzwcFileManagerElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -39,12 +47,15 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "azwc-dialog": HTMLAzwcDialogElement;
+        "azwc-file-manager": HTMLAzwcFileManagerElement;
         "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
     interface AzwcDialog {
         "onCustomStateChange"?: (event: CustomEvent<any>) => void;
+    }
+    interface AzwcFileManager {
     }
     interface MyComponent {
         /**
@@ -62,6 +73,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "azwc-dialog": AzwcDialog;
+        "azwc-file-manager": AzwcFileManager;
         "my-component": MyComponent;
     }
 }
@@ -70,6 +82,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "azwc-dialog": LocalJSX.AzwcDialog & JSXBase.HTMLAttributes<HTMLAzwcDialogElement>;
+            "azwc-file-manager": LocalJSX.AzwcFileManager & JSXBase.HTMLAttributes<HTMLAzwcFileManagerElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }

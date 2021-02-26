@@ -1,0 +1,9 @@
+azwc-file-manager {
+  display: block;
+}
+
+.mc-container,
+azwc-file-manager::part(mc-container) {
+  border-width: 1px;
+  border-style: solid;
+}
