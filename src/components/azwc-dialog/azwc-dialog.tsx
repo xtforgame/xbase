@@ -48,20 +48,17 @@ export class AzwcDialog {
   render() {
     return (
       <Host>
-        <div>
-          <button onClick={() => this.doOpen()}>Open Modal</button>
-          <div
-            class="modal"
-            onClick={(e) => this.doBackgroundClose(e)}
-            style={{ display: this.isOpen ? 'block' : 'none' }}
-          >
-            <slot name="top"></slot>
-            <div class="modal-content centered-modal-content">
-              <slot name="body"></slot>
-              <slot></slot>
-              <span class="close" onClick={(e) => this.doClose(e)}>&times;</span>
-              <p>Some text in the Modal..</p>
-            </div>
+        <button onClick={() => this.doOpen()}>Open Modal</button>
+        <div
+          class="modal"
+          onClick={(e) => this.doBackgroundClose(e)}
+          style={{ display: this.isOpen ? 'block' : 'none' }}
+        >
+          <slot name="top"></slot>
+          <div class="modal-content centered-modal-content">
+            <slot></slot>
+            <span class="close" onClick={(e) => this.doClose(e)}>&times;</span>
+            <slot name="body">Some text in the Modal..</slot>
           </div>
         </div>
       </Host>
