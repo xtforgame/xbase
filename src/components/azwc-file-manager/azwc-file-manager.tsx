@@ -1,5 +1,9 @@
 import { Component, Method, Prop, State, Watch, Host, h } from '@stencil/core';
 
+type FileApi = {
+  listDir() : Promise<any>;
+}
+
 @Component({
   tag: 'azwc-file-manager',
   // styleUrl: 'azwc-file-manager.scss',
@@ -15,6 +19,20 @@ export class AzwcFileManager {
   }
 
   @State() loading: boolean = false;
+  @State() fileApi?: FileApi = null;
+
+  @Method()
+  async setApi(fileApi : any) {
+    const f = fileApi as FileApi;
+    this.fileApi = f;
+    this.loading = true;
+    return new Promise((resolve) => {
+      setTimeout(resolve, 1000);
+    })
+    .then(() => {
+      this.loading = false;
+    });
+  }
 
   @Method()
   async reload() {
@@ -29,7 +47,7 @@ export class AzwcFileManager {
 
   render() {
     let enableMask = 'false';
-    if (this.loading) {
+    if (!this.fileApi || this.loading) {
       enableMask = 'true';
     }
     return (

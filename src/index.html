@@ -24,17 +24,27 @@
     </div>
   </body>
   <script>
-    var c = document.querySelector('azwc-file-manager');
-    var ct = 1;
-    setInterval(() => {
-      if (ct) {
-        ct = 0;
-        c.setAttribute('base-path', '/wwwww')
-      } else {
-        ct = 1;
-        c.setAttribute('base-path', '/ooooo')
-      }
-    }, 3000);
+    customElements.whenDefined('azwc-file-manager')
+    .then((x) => {
+      console.log('x :', x);
+      var afm = document.querySelector('azwc-file-manager');
+      afm.componentOnReady()
+      .then(() => {
+        setTimeout(() => {
+          var ct = 1;
+          afm.setApi({});
+          setInterval(() => {
+            if (ct) {
+              ct = 0;
+              afm.setAttribute('base-path', '/wwwww')
+            } else {
+              ct = 1;
+              afm.setAttribute('base-path', '/ooooo')
+            }
+          }, 3000);
+        }, 3000);
+      });
+    });
     document.addEventListener('customStateChange', function handleChange(e) {
       console.log('Event Recieved:', e);
     });

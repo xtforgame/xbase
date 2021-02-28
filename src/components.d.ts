@@ -11,6 +11,7 @@ export namespace Components {
     interface AzwcFileManager {
         "basePath": string;
         "reload": () => Promise<void>;
+        "setApi": (fileApi: any) => Promise<void>;
     }
     interface AzwcSpinner {
         "containerSize": string;
