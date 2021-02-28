@@ -1,7 +1,31 @@
 import { Component, Method, Prop, State, Watch, Host, h } from '@stencil/core';
 
+type FilePathType = 'file' | 'folder';
+
+type ApiArgBase = {
+  filename: string;
+  params?: {
+    options?: {
+      paths?: string[];
+    };
+  };
+}
+
+type ApiExArg = ApiArgBase & {
+  type: FilePathType;
+}
+
+type FileListItem = {
+  type: FilePathType;
+  name: string;
+  relPath: string;
+}
+
 type FileApi = {
-  listDir() : Promise<any>;
+  getFileList(paths : string[]) : Promise<FileListItem[]>;
+  createFileOrFolder(arg : ApiArgBase) : Promise<any>;
+  canCreate(arg : ApiExArg) : Promise<string>;
+  isFileExists(arg : ApiExArg) : Promise<boolean>;
 }
 
 @Component({
@@ -19,28 +43,36 @@ export class AzwcFileManager {
   }
 
   @State() loading: boolean = false;
+
+  @State() currentFileList: FileListItem[] = [];
+
+  @State() currentPaths: string[] = [];
+
   @State() fileApi?: FileApi = null;
 
   @Method()
   async setApi(fileApi : any) {
     const f = fileApi as FileApi;
+    console.log('f :', f);
+    if (!f) {
+      return;
+    }
     this.fileApi = f;
-    this.loading = true;
-    return new Promise((resolve) => {
-      setTimeout(resolve, 1000);
-    })
-    .then(() => {
-      this.loading = false;
-    });
+    this.reload();
   }
 
   @Method()
-  async reload() {
+  async reload(newPaths? : string[]) {
+    if (!this.fileApi) {
+      return;
+    }
+    if (newPaths) {
+      this.currentPaths = newPaths;
+    }
     this.loading = true;
-    return new Promise((resolve) => {
-      setTimeout(resolve, 1000);
-    })
-    .then(() => {
+    return this.fileApi.getFileList(this.currentPaths)
+    .then((list) => {
+      this.currentFileList = list;
       this.loading = false;
     });
   }
@@ -50,15 +82,40 @@ export class AzwcFileManager {
     if (!this.fileApi || this.loading) {
       enableMask = 'true';
     }
+    const currentPath = this.currentPaths.join('/');
+    const paths = ['Root'].concat(this.currentPaths);
     return (
       <Host>
         <azwc-spinner-mask enabled={enableMask}></azwc-spinner-mask>
-        {Array.from({ length: 18 }).map((_, i) => {
+        {paths.map((p, i) => {
           return (
-            <div key={i}>
+            <div key={`${currentPath}/${p}`} style={{ display: 'inline-block' }}>
+              <button onClick={() => { this.reload(this.currentPaths.slice(0, i)) }}>
+                {p}
+              </button>
+              {i !== paths.length - 1 && '/'}
+            </div>
+          );
+        })}
+        <div style={{ width: '100%', height: '1px', backgroundColor: 'black', margin: '20px' }}></div>
+        {this.currentFileList.map((v) => {
+          if (v.type === 'folder') {
+            return (
+              <div key={`${currentPath}/${v.name}`}>
+                Name:
+                <button onClick={() => { this.reload(this.currentPaths.concat([v.name])) }}>
+                  {v.name}({v.type})
+                </button><br />
+                {v.relPath}
+              </div>
+            );
+          }
+          return (
+            <div key={`${currentPath}/${v.name}`}>
               Name:
-              {i}
-              : wvewve
+              {v.name}({v.type})<br />
+              {v.relPath}
+              <div innerHTML="<img height='20px' src='https://shoelace.style/assets/images/wordmark.svg' />" /> 
             </div>
           );
         })}

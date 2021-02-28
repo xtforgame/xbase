@@ -24,6 +24,142 @@
     </div>
   </body>
   <script>
+    function promiseWait(waitMillisec) {
+      return new Promise((resolve, reject) => {
+        setTimeout(resolve, waitMillisec);
+      });
+    }
+
+    var caches = {};
+    var createFileList = preFix => [
+      {
+        name: `${preFix}-1`,
+        relPath: `${preFix}-1`,
+        type: 'folder',
+      },
+      {
+        name: `${preFix}-2`,
+        relPath: `${preFix}-2`,
+        type: 'folder',
+      },
+      {
+        name: `${preFix}-3`,
+        relPath: `${preFix}-3`,
+        type: 'folder',
+      },
+      {
+        name: `${preFix}-4.js`,
+        relPath: `${preFix}-4.js`,
+        type: 'file',
+      },
+      {
+        name: `${preFix}-5.js`,
+        relPath: `${preFix}-5.js`,
+        type: 'file',
+      },
+      {
+        name: `${preFix}-6.js`,
+        relPath: `${preFix}-6.js`,
+        type: 'file',
+      },
+      {
+        name: `${preFix}-7.js`,
+        relPath: `${preFix}-7.js`,
+        type: 'file',
+      },
+      {
+        name: `${preFix}-8.js`,
+        relPath: `${preFix}-8.js`,
+        type: 'file',
+      },
+      {
+        name: `${preFix}-9.js`,
+        relPath: `${preFix}-9.js`,
+        type: 'file',
+      },
+      {
+        name: `${preFix}-10.js`,
+        relPath: `${preFix}-10.js`,
+        type: 'file',
+      },
+    ];
+
+    const canCreate = async ({
+      filename,
+      type,
+      params: {
+        options: {
+          paths,
+        },
+      },
+    }) => {
+      if (!filename) {
+        return 'Filename or folder name is empty!!'
+      }
+      const path = paths.join('/');
+      caches[path] = caches[path] || createFileList(preFix);
+      const found = caches[path].find(info => info.relPath === filename);
+      if (found && found.type === 'folder') {
+        return 'Folder with the same name exists!!'
+      }
+    };
+
+    const isFileExists = async ({
+      filename,
+      type,
+      params: {
+        options: {
+          paths,
+        },
+      },
+    }) => {
+      const path = paths.join('/');
+      caches[path] = caches[path] || createFileList(preFix);
+      const found = caches[path].find(info => info.relPath === filename);
+      if (found && found.type === 'file') {
+        return true;
+      }
+      return false;
+    };
+
+    const createFileOrFolder = async ({
+      filename,
+      params: {
+        options: {
+          paths,
+        },
+      },
+    }) => {
+      const path = paths.join('/');
+      caches[path] = caches[path] || createFileList(preFix);
+      const found = caches[path].find(info => info.relPath === filename);
+      if (!found) {
+        caches[path].push({
+          name: filename,
+          relPath: filename,
+          type: 'folder',
+        });
+      }
+    };
+
+    const getFileList = async (paths) => {
+      await promiseWait(1000);
+      const path = paths.join('/');
+      const preFix = paths.length ? paths[paths.length - 1] : 'save-data';
+      caches[path] = caches[path] || createFileList(preFix);
+      // console.log('preFix :', preFix);
+      // await promiseWait(500);
+      return caches[path];
+    };
+
+    var fileApi = {
+      canCreate,
+      isFileExists,
+      createFileOrFolder,
+      getFileList,
+    };
+  </script>
+  <script>
     customElements.whenDefined('azwc-file-manager')
     .then((x) => {
       console.log('x :', x);
@@ -32,16 +168,16 @@
       .then(() => {
         setTimeout(() => {
           var ct = 1;
-          afm.setApi({});
-          setInterval(() => {
-            if (ct) {
-              ct = 0;
-              afm.setAttribute('base-path', '/wwwww')
-            } else {
-              ct = 1;
-              afm.setAttribute('base-path', '/ooooo')
-            }
-          }, 3000);
+          afm.setApi(fileApi);
+          // setInterval(() => {
+          //   if (ct) {
+          //     ct = 0;
+          //     afm.setAttribute('base-path', '/wwwww')
+          //   } else {
+          //     ct = 1;
+          //     afm.setAttribute('base-path', '/ooooo')
+          //   }
+          // }, 3000);
         }, 3000);
       });
     });
