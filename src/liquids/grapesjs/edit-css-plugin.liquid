@@ -31,11 +31,11 @@
       modal.close()
     }
 
-    cmdm.add('edit-code', {
+    cmdm.add('edit-css', {
       run: function (editor, sender) {
         sender && sender.set('active', 0)
         var cssViewer = cssCodeViewer.editor
-        modal.setTitle('Edit code')
+        modal.setTitle('Edit css')
         if (!cssViewer) {
           var cssarea = document.createElement('textarea')
           container.appendChild(cssarea)
@@ -55,11 +55,11 @@
     pnm.addButton('options',
       [
         {
-          id: 'edit',
+          id: 'edit-css',
           className: 'fa fa-edit',
-          command: 'edit-code',
+          command: 'edit-css',
           attributes: {
-            title: 'Edit Code'
+            title: 'Edit Css'
           }
         }
       ]
