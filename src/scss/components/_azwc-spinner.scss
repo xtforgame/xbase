@@ -1,0 +1,26 @@
+// https://github.com/shoelace-style/shoelace/blob/next/src/components/spinner/spinner.scss
+azwc-spinner {
+  display: inline-flex;
+}
+
+azwc-spinner .spinner {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #0d131e20;
+  border-top-color: #ff0000;
+  border-right-color: #ff0000;
+  animation: 1s linear infinite spin;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

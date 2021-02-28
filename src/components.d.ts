@@ -9,6 +9,18 @@ export namespace Components {
     interface AzwcDialog {
     }
     interface AzwcFileManager {
+        "basePath": string;
+        "reload": () => Promise<void>;
+    }
+    interface AzwcSpinner {
+        "containerSize": string;
+        "size": string;
+        "strokeWidth": string;
+    }
+    interface AzwcSpinnerMask {
+        "enabled": string;
+        "size": string;
+        "strokeWidth": string;
     }
     interface MyComponent {
         /**
@@ -39,6 +51,18 @@ declare global {
         prototype: HTMLAzwcFileManagerElement;
         new (): HTMLAzwcFileManagerElement;
     };
+    interface HTMLAzwcSpinnerElement extends Components.AzwcSpinner, HTMLStencilElement {
+    }
+    var HTMLAzwcSpinnerElement: {
+        prototype: HTMLAzwcSpinnerElement;
+        new (): HTMLAzwcSpinnerElement;
+    };
+    interface HTMLAzwcSpinnerMaskElement extends Components.AzwcSpinnerMask, HTMLStencilElement {
+    }
+    var HTMLAzwcSpinnerMaskElement: {
+        prototype: HTMLAzwcSpinnerMaskElement;
+        new (): HTMLAzwcSpinnerMaskElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -48,6 +72,8 @@ declare global {
     interface HTMLElementTagNameMap {
         "azwc-dialog": HTMLAzwcDialogElement;
         "azwc-file-manager": HTMLAzwcFileManagerElement;
+        "azwc-spinner": HTMLAzwcSpinnerElement;
+        "azwc-spinner-mask": HTMLAzwcSpinnerMaskElement;
         "my-component": HTMLMyComponentElement;
     }
 }
@@ -56,6 +82,17 @@ declare namespace LocalJSX {
         "onCustomStateChange"?: (event: CustomEvent<any>) => void;
     }
     interface AzwcFileManager {
+        "basePath"?: string;
+    }
+    interface AzwcSpinner {
+        "containerSize"?: string;
+        "size"?: string;
+        "strokeWidth"?: string;
+    }
+    interface AzwcSpinnerMask {
+        "enabled"?: string;
+        "size"?: string;
+        "strokeWidth"?: string;
     }
     interface MyComponent {
         /**
@@ -74,6 +111,8 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "azwc-dialog": AzwcDialog;
         "azwc-file-manager": AzwcFileManager;
+        "azwc-spinner": AzwcSpinner;
+        "azwc-spinner-mask": AzwcSpinnerMask;
         "my-component": MyComponent;
     }
 }
@@ -83,6 +122,8 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "azwc-dialog": LocalJSX.AzwcDialog & JSXBase.HTMLAttributes<HTMLAzwcDialogElement>;
             "azwc-file-manager": LocalJSX.AzwcFileManager & JSXBase.HTMLAttributes<HTMLAzwcFileManagerElement>;
+            "azwc-spinner": LocalJSX.AzwcSpinner & JSXBase.HTMLAttributes<HTMLAzwcSpinnerElement>;
+            "azwc-spinner-mask": LocalJSX.AzwcSpinnerMask & JSXBase.HTMLAttributes<HTMLAzwcSpinnerMaskElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }

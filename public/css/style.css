@@ -67,6 +67,53 @@ azwc-dialog::part(close):hove azwc-dialog::part(close):focus {
   cursor: pointer;
 }
 
+azwc-file-manager {
+  display: block;
+  position: relative;
+}
+
+.mc-container,
+azwc-file-manager::part(mc-container) {
+  border-width: 1px;
+  border-style: solid;
+}
+
+azwc-spinner {
+  display: inline-flex;
+}
+
+azwc-spinner .spinner {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #0d131e20;
+  border-top-color: #ff0000;
+  border-right-color: #ff0000;
+  animation: 1s linear infinite spin;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+azwc-spinner-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
 my-component {
   display: block;
 }

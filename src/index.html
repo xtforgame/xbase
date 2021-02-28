@@ -16,8 +16,25 @@
     <azwc-file-manager>
       Content
     </azwc-file-manager>
+    <azwc-spinner></azwc-spinner>
+    <div style="width: 400px; height: 400px; position: relative;">
+      <azwc-spinner-mask enabled="true"></azwc-spinner-mask>
+      SVSVRSV
+      <button>WRVREV</button>
+    </div>
   </body>
   <script>
+    var c = document.querySelector('azwc-file-manager');
+    var ct = 1;
+    setInterval(() => {
+      if (ct) {
+        ct = 0;
+        c.setAttribute('base-path', '/wwwww')
+      } else {
+        ct = 1;
+        c.setAttribute('base-path', '/ooooo')
+      }
+    }, 3000);
     document.addEventListener('customStateChange', function handleChange(e) {
       console.log('Event Recieved:', e);
     });
