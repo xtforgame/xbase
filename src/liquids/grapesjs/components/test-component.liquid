@@ -7,28 +7,32 @@
         attributes: { class: 'fa fa-link' },
       };
     }
-    editor.DomComponents.addType('test-component', getDefaultCompTypeOptions(editor, config));
+    editor.DomComponents.addType('test-component', getDefaultCompTypeOptions(editor, {
+      defaults: {
+        droppable: '.nothing',
+      },
+    }));
 
     var bm = editor.BlockManager;
     bm.add('test-component', {
       ...exCfg,
       label: 'Test Component',
-      // content: `<div data-gjs-droppable=".nothing" data-gjs-type="test-component">
-      //   <my-component data-gjs-droppable=".nothing">
-      //     <agjc-slot data-gjs-draggable="false" data-gjs-removable="false" data-gjs-copyable="false" class="az-slot-bg1" slot="top">
-      //       <agjc-placeholder class="dummy" data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
+      // content: `<div data-gjs-type="test-component">
+      //   <my-component>
+      //     <agjc-slot class="az-slot-bg1" slot="top">
+      //       <agjc-placeholder></agjc-placeholder>
       //     </agjc-slot>
-      //     <agjc-slot data-gjs-draggable="false" data-gjs-removable="false" data-gjs-copyable="false" class="az-slot-bg2" slot="body">
-      //       <agjc-placeholder class="dummy" data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
+      //     <agjc-slot class="az-slot-bg2" slot="body">
+      //       <agjc-placeholder></agjc-placeholder>
       //     </agjc-slot>
       //   </my-component>
       // </div>`,
-      content: `<my-component class="az-card" data-gjs-droppable=".nothing" data-gjs-type="test-component">
-        <agjc-slot data-gjs-draggable="false" data-gjs-removable="false" data-gjs-copyable="false" class="az-slot-bg1" slot="top">
-          <agjc-placeholder class="dummy" data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
+      content: `<my-component class="az-card" data-gjs-type="test-component">
+        <agjc-slot class="az-slot-bg1" slot="top">
+          <agjc-placeholder></agjc-placeholder>
         </agjc-slot>
-        <agjc-slot data-gjs-draggable="false" data-gjs-removable="false" data-gjs-copyable="false" class="az-slot-bg2" slot="body">
-          <agjc-placeholder class="dummy" data-gjs-selectable="false" data-gjs-layerable="false" data-gjs-draggable="false" data-gjs-removable="false"></agjc-placeholder>
+        <agjc-slot class="az-slot-bg2" slot="body">
+          <agjc-placeholder></agjc-placeholder>
         </agjc-slot>
       </my-component>`,
     });

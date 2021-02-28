@@ -63,6 +63,7 @@
 {% render 'grapesjs/my-plugin.liquid' %}
 {% render 'grapesjs/table-plugin.liquid' %}
 {% render 'grapesjs/edit-css-plugin.liquid' %}
+{% render 'grapesjs/edit-html-plugin.liquid' %}
 
 <script type="text/javascript">
 {% render 'grapesjs/styleManagerCfg.js.liquid' %}
@@ -87,7 +88,7 @@
       ],
     },
 
-    plugins: ['gjs-preset-webpage', editCss(), tablePlugin(), azPlugin({
+    plugins: ['gjs-preset-webpage', editCss(), editHtml(), tablePlugin(), azPlugin({
       withCategory: true,
     })],
     pluginsOpts: {

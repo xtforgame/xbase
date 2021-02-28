@@ -1,0 +1,41 @@
+<script type="text/javascript">
+  var azwcCommon = (editor, config = {}) => {
+    var getDefaultCompTypeOptionsX = (editor, name, config = {}) => {
+      var defaults = config.defaults || {};
+      var tagName = name.toUpperCase();
+      var defaultType = editor.DomComponents.getType("default");
+      return {
+        isComponent: function (el) {
+          if (el.tagName === tagName) {
+            console.log('el.tagName :', el.tagName);
+            return {type: name};
+          }
+        },
+        model: {
+          defaults: defaults,
+        },
+        view: {
+        },
+      }
+    };
+    editor.DomComponents.addType('agjc-slot', getDefaultCompTypeOptionsX(editor, 'agjc-slot', {
+      defaults: {
+        draggable: false,
+        removable: false,
+        copyable: false,
+        // selectable: false,
+        // hoverable: false,
+      }
+    }));
+
+    editor.DomComponents.addType('agjc-placeholder', getDefaultCompTypeOptionsX(editor, 'agjc-placeholder', {
+      defaults: {
+        selectable: false,
+        hoverable: false,
+        layerable: false,
+        draggable: false,
+        removable: false,
+      }
+    }));
+  };
+</script>
