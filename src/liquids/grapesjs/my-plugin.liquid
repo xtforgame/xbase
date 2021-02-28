@@ -83,6 +83,9 @@
 
     editor.on('component:update', (component) => {
       const style = component.getStyle();
+      // const rule = editor.CssComposer.getRule('.panel');
+      // editor.CssComposer.getAll().remove(rule);
+      // console.log('rule :', rule);
       console.log('style :', style);
       if (style.display === 'flex') {
         console.log('style.display');
