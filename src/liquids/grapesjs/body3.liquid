@@ -99,11 +99,13 @@
     })],
     pluginsOpts: {
       'gjs-preset-webpage': {
-        customStyleManager: [{
-          name: 'X',
-          open: false,
-          buildProps: ['my-custom-prop'],
-        }],
+        customStyleManager: [
+          {
+            name: 'General',
+            open: false,
+            buildProps: ['float', 'display', 'position', 'top', 'right', 'left', 'bottom'],
+          }
+        ],
       },
     },
   });
