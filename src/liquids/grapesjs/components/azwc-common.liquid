@@ -1,14 +1,14 @@
 <script type="text/javascript">
   var azwcCommon = (editor, config = {}) => {
-    var getDefaultCompTypeOptionsX = (editor, name, config = {}) => {
+    var defaultType = editor.DomComponents.getType("default");
+    var createCommonCompTypeOptions = (editor, name, config = {}) => {
       var defaults = config.defaults || {};
+      var typeName = config.typeName || name;
       var tagName = name.toUpperCase();
-      var defaultType = editor.DomComponents.getType("default");
       return {
         isComponent: function (el) {
           if (el.tagName === tagName) {
-            console.log('el.tagName :', el.tagName);
-            return {type: name};
+            return {type: typeName};
           }
         },
         model: {
@@ -18,18 +18,35 @@
         },
       }
     };
-    editor.DomComponents.addType('agjc-slot', getDefaultCompTypeOptionsX(editor, 'agjc-slot', {
+
+    editor.DomComponents.addType('agjc-box', {
+      model: {
+        defaults: Object.assign({}, defaultType.model.prototype.defaults, {
+          type: 'agjc-box',
+          tagName: 'div',
+        }),
+      },
+      isComponent: function (el) {
+        if (el.tagName === 'DIV' && !el.hasAttribute("data-aztext")) {
+          return {type: 'agjc-box'};
+        }
+      },
+      view: defaultType.view,
+    });
+
+    editor.DomComponents.addType('agjc-slot', createCommonCompTypeOptions(editor, 'agjc-slot', {
       defaults: {
         droppable: true,
         draggable: false,
         removable: false,
         copyable: false,
+        editable: false,
         // selectable: false,
         // hoverable: false,
       }
     }));
 
-    editor.DomComponents.addType('agjc-placeholder', getDefaultCompTypeOptionsX(editor, 'agjc-placeholder', {
+    editor.DomComponents.addType('agjc-placeholder', createCommonCompTypeOptions(editor, 'agjc-placeholder', {
       defaults: {
         selectable: false,
         hoverable: false,

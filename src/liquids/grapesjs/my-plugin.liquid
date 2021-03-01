@@ -209,6 +209,29 @@
       },
     });
 
+    
+    editor.on('component:mount', (component) => {
+      // const style = component.getStyle();
+      // if (style.display === 'flex') {
+      //   console.log('style.display');
+      //   component.set('icon', '<i class="fa fa-paint-brush"></i>');
+      // }
+
+      const domElement = component.getEl();
+      if (domElement && typeof domElement !== 'strinf') {
+        try {
+          const display = window.getComputedStyle(domElement).getPropertyValue('display');
+          console.log('display :', display);
+          if (display === 'flex') {
+            component.set('icon', '<i class="fa fa-paint-brush"></i>');
+          }
+        } catch (error) {
+          
+        }
+      }
+
+    });
+
     editor.on('component:update', (component) => {
       const style = component.getStyle();
       // const rule = editor.CssComposer.getRule('.panel');
@@ -217,10 +240,23 @@
       console.log('xxxx :', xxxx);
       // editor.CssComposer.getAll().remove(rule);
       // console.log('rule :', rule);
-      console.log('style :', style);
-      if (style.display === 'flex') {
-        console.log('style.display');
-        component.set('icon', '<i class="fa fa-paint-brush"></i>');
+      // console.log('style :', style);
+      // if (style.display === 'flex') {
+      //   console.log('style.display');
+      //   component.set('icon', '<i class="fa fa-paint-brush"></i>');
+      // }
+
+      const domElement = component.getEl();
+      if (domElement && typeof domElement !== 'strinf') {
+        try {
+          const display = window.getComputedStyle(domElement).getPropertyValue('display');
+          console.log('display :', display);
+          if (display === 'flex') {
+            component.set('icon', '<i class="fa fa-paint-brush"></i>');
+          }
+        } catch (error) {
+          
+        }
       }
     });
 
