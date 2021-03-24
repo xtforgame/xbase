@@ -36,6 +36,7 @@ export class AzwcDialog {
       open: this.isOpen,
       azwcref: this,
     });
+    // console.log('document.querySelector(".panel") :', document.querySelector('.panel'));
   }
 
   doBackgroundClose(e: MouseEvent) {

@@ -23,6 +23,12 @@ export namespace Components {
         "size": string;
         "strokeWidth": string;
     }
+    interface AzwcSwiper {
+        "getSwiper": () => Promise<any>;
+        "loop": boolean;
+        "slideTo": (index: Number, speed?: Number) => Promise<void>;
+        "speed": number;
+    }
     interface MyComponent {
         /**
           * The first name
@@ -64,6 +70,12 @@ declare global {
         prototype: HTMLAzwcSpinnerMaskElement;
         new (): HTMLAzwcSpinnerMaskElement;
     };
+    interface HTMLAzwcSwiperElement extends Components.AzwcSwiper, HTMLStencilElement {
+    }
+    var HTMLAzwcSwiperElement: {
+        prototype: HTMLAzwcSwiperElement;
+        new (): HTMLAzwcSwiperElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -75,6 +87,7 @@ declare global {
         "azwc-file-manager": HTMLAzwcFileManagerElement;
         "azwc-spinner": HTMLAzwcSpinnerElement;
         "azwc-spinner-mask": HTMLAzwcSpinnerMaskElement;
+        "azwc-swiper": HTMLAzwcSwiperElement;
         "my-component": HTMLMyComponentElement;
     }
 }
@@ -95,6 +108,11 @@ declare namespace LocalJSX {
         "size"?: string;
         "strokeWidth"?: string;
     }
+    interface AzwcSwiper {
+        "loop"?: boolean;
+        "onSlideChanged"?: (event: CustomEvent<any>) => void;
+        "speed"?: number;
+    }
     interface MyComponent {
         /**
           * The first name
@@ -114,6 +132,7 @@ declare namespace LocalJSX {
         "azwc-file-manager": AzwcFileManager;
         "azwc-spinner": AzwcSpinner;
         "azwc-spinner-mask": AzwcSpinnerMask;
+        "azwc-swiper": AzwcSwiper;
         "my-component": MyComponent;
     }
 }
@@ -125,6 +144,7 @@ declare module "@stencil/core" {
             "azwc-file-manager": LocalJSX.AzwcFileManager & JSXBase.HTMLAttributes<HTMLAzwcFileManagerElement>;
             "azwc-spinner": LocalJSX.AzwcSpinner & JSXBase.HTMLAttributes<HTMLAzwcSpinnerElement>;
             "azwc-spinner-mask": LocalJSX.AzwcSpinnerMask & JSXBase.HTMLAttributes<HTMLAzwcSpinnerMaskElement>;
+            "azwc-swiper": LocalJSX.AzwcSwiper & JSXBase.HTMLAttributes<HTMLAzwcSwiperElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }

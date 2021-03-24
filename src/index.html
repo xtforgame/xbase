@@ -7,6 +7,22 @@
     <link rel="stylesheet" href="/build/xbase.css">
     <script type="module" src="/build/xbase.esm.js"></script>
     <script nomodule src="/build/xbase.js"></script>
+    <style>
+      body {
+        margin: 0;
+      }
+      .my-slider__slide {
+        height: 300px;
+        background: #aaa;
+        background-image: url('https://picsum.photos/600/400?');
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+        font-weight: bold;
+      }
+    </style>
   </head>
   <body>
     <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
@@ -22,6 +38,14 @@
       SVSVRSV
       <button>WRVREV</button>
     </div>
+    <azwc-swiper
+      class="my-slider"
+      loop="true"
+      speed="500">
+      <div class="swiper-slide my-slider__slide">Slide 1</div>
+      <div class="swiper-slide my-slider__slide">Slide 2</div>
+      <div class="swiper-slide my-slider__slide">Slide 3</div>
+    </azwc-swiper>
   </body>
   <script>
     function promiseWait(waitMillisec) {
@@ -160,24 +184,46 @@
     };
   </script>
   <script>
-    customElements.whenDefined('azwc-file-manager')
+    // customElements.whenDefined('azwc-file-manager')
+    // .then((x) => {
+    //   console.log('x :', x);
+    //   var afm = document.querySelector('azwc-file-manager');
+    //   afm.componentOnReady()
+    //   .then(() => {
+    //     setTimeout(() => {
+    //       var ct = 1;
+    //       afm.setApi(fileApi);
+    //       // setInterval(() => {
+    //       //   if (ct) {
+    //       //     ct = 0;
+    //       //     afm.setAttribute('base-path', '/wwwww')
+    //       //   } else {
+    //       //     ct = 1;
+    //       //     afm.setAttribute('base-path', '/ooooo')
+    //       //   }
+    //       // }, 3000);
+    //     }, 3000);
+    //   });
+
+    //   var as = document.querySelector('azwc-swiper');
+    //   as.componentOnReady()
+    //   .then(() => {
+    //     setTimeout(() => {
+    //       as.slideTo(3);
+    //     }, 3000);
+    //   });
+    // });
+    customElements.whenDefined('azwc-swiper')
     .then((x) => {
-      console.log('x :', x);
-      var afm = document.querySelector('azwc-file-manager');
-      afm.componentOnReady()
+      var as = document.querySelector('azwc-swiper');
+      as.componentOnReady()
       .then(() => {
         setTimeout(() => {
-          var ct = 1;
-          afm.setApi(fileApi);
-          // setInterval(() => {
-          //   if (ct) {
-          //     ct = 0;
-          //     afm.setAttribute('base-path', '/wwwww')
-          //   } else {
-          //     ct = 1;
-          //     afm.setAttribute('base-path', '/ooooo')
-          //   }
-          // }, 3000);
+          // as.slideTo(3, 300);
+          as.getSwiper()
+          .then((swiper) => {
+            console.log('swiper.activeIndex :', swiper.activeIndex);
+          });
         }, 3000);
       });
     });
