@@ -25,19 +25,28 @@ azwc-accordion {
     .title, .icons {
       pointer-events: none;
     }
+  }
 
+  .collapse {
     // icons transform active
-    &.active .icons {
-      span {
-        &:first-of-type {
-          transform: rotate(180deg);
+    &.active {
+      .icons {
+        span {
+          &:first-of-type {
+            transform: rotate(180deg);
+          }
+          &:last-of-type {
+            transform: rotate(0) translateY(-2px);
+          }
         }
-        &:last-of-type {
-          transform: rotate(0) translateY(-2px);
-        }
+      }
+      .contents-box {
+        max-height: 1000px;
+        transition: max-height 0.35s ease-in;
       }
     }
   }
+
   .icons {
     position: absolute;
     right: 12px;
@@ -58,9 +67,10 @@ azwc-accordion {
     overflow: hidden;
     border-top: none;
     border-bottom: none;
-    transition: height .3s ease;
+    max-height: 0;
+    transition: max-height 0.28s ease-out;
   }
-    
+
   .collapse {
     &:last-of-type .contents-box {
       border-bottom: 1px solid #CCC;

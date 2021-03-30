@@ -9,6 +9,9 @@ export const config: Config = {
   plugins: [
     sass(),
   ],
+  devServer: {
+    openBrowser: false,
+  },
   outputTargets: [
     {
       type: 'dist',

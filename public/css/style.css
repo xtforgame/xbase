@@ -22,11 +22,15 @@ azwc-accordion {
 .augurio-collapse .title-box .title, .augurio-collapse .title-box .icons {
   pointer-events: none;
 }
-.augurio-collapse .title-box.active .icons span:first-of-type {
+.augurio-collapse .collapse.active .icons span:first-of-type {
   transform: rotate(180deg);
 }
-.augurio-collapse .title-box.active .icons span:last-of-type {
+.augurio-collapse .collapse.active .icons span:last-of-type {
   transform: rotate(0) translateY(-2px);
+}
+.augurio-collapse .collapse.active .contents-box {
+  max-height: 1000px;
+  transition: max-height 0.35s ease-in;
 }
 .augurio-collapse .icons {
   position: absolute;
@@ -46,7 +50,8 @@ azwc-accordion {
   overflow: hidden;
   border-top: none;
   border-bottom: none;
-  transition: height 0.3s ease;
+  max-height: 0;
+  transition: max-height 0.28s ease-out;
 }
 .augurio-collapse .collapse:last-of-type .contents-box {
   border-bottom: 1px solid #CCC;
