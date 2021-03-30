@@ -27,7 +27,7 @@
 .nav-menu > li > .nav-active { background-color: rgba(0,0,0,0.05); }
 
 /* root: hover/persistence */
-.nav-menu li:hover a {
+.nav-menu a:hover,.nav-menu a:focus,.nav-menu li:hover a {
   background: #555;
   color: #FFF;
 }
@@ -42,7 +42,7 @@
 }
 
 /* 2: hover/persistence */
-.nav-menu li:hover li a:hover,.nav-menu li:hover li:hover a {
+.nav-menu li:hover li a:hover,.nav-menu li:hover li a:focus,.nav-menu li:hover li:hover a {
   background: #444;
 }
 
@@ -52,7 +52,7 @@
 }
 
 /* 3: hover/persistence */
-.nav-menu li:hover li:hover li a:hover,.nav-menu li:hover li:hover li:hover a {
+.nav-menu li:hover li:hover li a:hover,.nav-menu li:hover li:hover li a:focus,.nav-menu li:hover li:hover li:hover a {
   background: #333;
 }
 
@@ -62,7 +62,7 @@
 }
 
 /* 4: hover */
-.nav-menu li:hover li:hover li:hover li a:hover {
+.nav-menu li:hover li:hover li:hover li a:hover,.nav-menu li:hover li:hover li:hover li a:focus {
   background: #222;
 }
 
