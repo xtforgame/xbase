@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Canvi.js: Off-canvas Navigation Example</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" rel="stylesheet"
+    type="text/css">
+  <link href="dist/canvi.css" rel="stylesheet" type="text/css">
+  <style>
+    main {
+      min-height: 200vh;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <aside class="myCanvasNav canvi-navbar">
+    <div class="canvi-user-info">
+      <div class="canvi-user-info__image">
+        <img src="logo.jpg">
+      </div>
+      <div class="canvi-user-info__data">
+        <span class="canvi-user-info__title">Title</span>
+        <a href="#" class="canvi-user-info__meta">View site</a>
+        <div class="canvi-user-info__close" onclick="t.close();"></div>
+      </div>
+    </div>
+
+    <ul class="canvi-navigation">
+      <li>
+        <a href="#" class="canvi-navigation__item">
+          <span class="canvi-navigation__icon-wrapper" style="background: #00adff;">
+            <span class="canvi-navigation__icon icon-iconmonstr-code-2"></span>
+          </span>
+          <span class="canvi-navigation__text">Laravel</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="#" class="canvi-navigation__item">
+          <span class="canvi-navigation__icon-wrapper" style="background: #0082BF;">
+            <span class="canvi-navigation__icon icon-iconmonstr-code-5"></span>
+          </span>
+          <span class="canvi-navigation__text">CSS</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="#" class="canvi-navigation__item">
+          <span class="canvi-navigation__icon-wrapper" style="background: #00567F;">
+            <span class="canvi-navigation__icon icon-iconmonstr-code-9"></span>
+          </span>
+          <span class="canvi-navigation__text">HTML</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="#" class="canvi-navigation__item">
+          <span class="canvi-navigation__icon-wrapper" style="background: #002B40;">
+            <span class="canvi-navigation__icon icon-iconmonstr-code-11"></span>
+          </span>
+          <span class="canvi-navigation__text">JavaScript</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="#" class="canvi-navigation__item">
+          <span class="canvi-navigation__icon-wrapper" style="background: #009CE5;">
+            <span class="canvi-navigation__icon icon-iconmonstr-code-13"></span>
+          </span>
+          <span class="canvi-navigation__text">Vue.js</span>
+        </a>
+      </li>
+    </ul>
+  </aside>
+  <main class="js-canvi-content canvi-content">
+    <h1>Canvi.js: Off-canvas Navigation Example</h1>
+    <div class="css-script-ads" align="center" style="margin:30px auto;">
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- CSSScript Demo Page -->
+      <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px"
+        data-ad-client="ca-pub-2783044520727903" data-ad-slot="3025259193"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+    <button class="js-canvi-open-button--left btn">Open Left Navbar</button>
+  </main>
+  <script src="dist/canvi.js"></script>
+  <script>
+    var t = new Canvi({
+      content: ".js-canvi-content",
+      isDebug: !1,
+      navbar: ".myCanvasNav",
+      openButton: ".js-canvi-open-button--left",
+      position: "left",
+      pushContent: !1,
+      speed: "0.2s",
+      width: "100vw",
+      responsiveWidths: [{
+        breakpoint: "600px",
+        width: "280px"
+      }, {
+        breakpoint: "1280px",
+        width: "320px"
+      }, {
+        breakpoint: "1600px",
+        width: "380px"
+      }]
+    })
+  </script>
+  <script>
+      (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+          (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-46156385-1', 'cssscript.com');
+    ga('send', 'pageview');
+
+  </script>
+</body>
+
+</html>
