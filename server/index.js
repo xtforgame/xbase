@@ -36,11 +36,15 @@ app.use((req, res, next) => {
     // console.log('t.token :', t);
   });
   let indexJsFileName = ''; 
+  let appGlobalFileName = ''; 
 
   const componentMap = {};
   fs.readdirSync('www/build').forEach(file => {
     if (file.startsWith('index-')) {
       indexJsFileName = file;
+    }
+    if (file.startsWith('app-globals-')) {
+      appGlobalFileName = file;
     }
     if (file.endsWith('.entry.js')) {
       const componentName = file.substr(0, file.length - '.entry.js'.length);
@@ -52,7 +56,7 @@ app.use((req, res, next) => {
   results2.forEach((t) => {
     // console.log('t.token :', t);
   });
-  const x = engine.render(results2, { jsName: { index: indexJsFileName }, componentMap, schemasMetadata: {}, schemas: {} });
+  const x = engine.render(results2, { jsName: { index: indexJsFileName, appGlobal: appGlobalFileName }, componentMap, schemasMetadata: {}, schemas: {} });
   // console.log('x :', x.then(console.log));
   x.then((data) => {
     // res.status(404);

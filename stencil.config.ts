@@ -3,6 +3,7 @@ import { sass } from '@stencil/sass';
 
 export const config: Config = {
   namespace: 'xbase',
+  globalScript: 'src/global.ts',
   globalStyle: 'public/css/style.css',
   hashFileNames: false,
   plugins: [

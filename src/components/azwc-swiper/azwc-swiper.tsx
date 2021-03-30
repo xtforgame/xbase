@@ -1,6 +1,7 @@
-import { Component, Event, EventEmitter, Prop, Method, h } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, Prop, Method, h } from '@stencil/core';
 import Swiper, {
   Virtual, Keyboard, Mousewheel, Navigation, Pagination, Scrollbar, Parallax, Zoom, Lazy, Controller, A11y, History, HashNavigation, Autoplay, EffectFade, EffectCube, EffectFlip, EffectCoverflow, Thumbs,
+  SwiperOptions,
 } from 'swiper';
 
 Swiper.use([Virtual, Keyboard, Mousewheel, Navigation, Pagination, Scrollbar, Parallax, Zoom, Lazy, Controller, A11y, History, HashNavigation, Autoplay, EffectFade, EffectCube, EffectFlip, EffectCoverflow, Thumbs]);
@@ -9,7 +10,54 @@ Swiper.use([Virtual, Keyboard, Mousewheel, Navigation, Pagination, Scrollbar, Pa
   // styleUrl: 'azwc-swiper.scss',
   shadow: false
 })
+
 export class AzwcSwiper {
+  static componentDidLoad = (inst: AzwcSwiper) => {
+
+  }
+
+  static getDefaultOptions : (inst: AzwcSwiper) => SwiperOptions = (inst: AzwcSwiper) => {
+    return {
+      loop: inst.loop || false,
+      speed: inst.speed || 300,
+      navigation: {
+        nextEl: inst.next,
+        prevEl: inst.prev,
+      },
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: true,
+      },
+      pagination: {
+        el: inst.pagination,
+        clickable: true,
+      },
+      on: {
+        init: (swiper) => {
+          // console.log('swiper initialized');
+          setTimeout(() => {
+            if (1 + 1 === 9) {
+              swiper.destroy(true, true);
+              inst.swiper = new Swiper (inst.container, {});
+            }
+          }, 1000);
+          
+        },
+        slideChange: (swiper) => {
+          inst.slideChanged.emit({
+            azwcref: inst,
+            swiper,
+            activeIndex: swiper.activeIndex,
+          });
+        },
+      },
+    };
+  }
+
+  static createSwiper = (inst: AzwcSwiper) => {
+    return new Swiper(inst.container, AzwcSwiper.getDefaultOptions(inst));
+  }
+
   @Event({
     eventName: 'slideChanged',
     composed: true,
@@ -21,21 +69,19 @@ export class AzwcSwiper {
   @Prop() loop: boolean;
   @Prop() speed: number;
 
-  private container?: HTMLDivElement;
-  private wrapper?: HTMLDivElement;
-  private next?: HTMLDivElement;
-  private prev?: HTMLDivElement;
-  private pagination?: HTMLDivElement;
+  @Element() host: HTMLElement;
 
-  private swiper: any;
-  private options: any;
+  /* private */container?: HTMLDivElement;
+  /* private */wrapper?: HTMLDivElement;
+  /* private */next?: HTMLDivElement;
+  /* private */prev?: HTMLDivElement;
+  /* private */pagination?: HTMLDivElement;
+
+  /* private */swiper: any;
 
   componentDidLoad() {
-    this.options = {
-      loop: this.loop || false,
-      speed: this.speed || 300,
-    }
     this.initSwiper()
+    AzwcSwiper.componentDidLoad(this);
   }
 
   initSwiper() {
@@ -45,45 +91,11 @@ export class AzwcSwiper {
       }
     }
 
-    this.swiper = new Swiper (this.container, {
-      ...this.options,
-      navigation: {
-        nextEl: this.next,
-        prevEl: this.prev,
-      },
-      autoplay: {
-        delay: 2500,
-        disableOnInteraction: true,
-      },
-      effect: 'fade',
-      pagination: {
-        el: this.pagination,
-        clickable: true,
-      },
-      on: {
-        init: (swiper) => {
-          // console.log('swiper initialized');
-          setTimeout(() => {
-            if (1 + 1 === 9) {
-              swiper.destroy(true, true);
-              this.swiper = new Swiper (this.container, {});
-            }
-          }, 1000);
-          
-        },
-        slideChange: (swiper) => {
-          this.slideChanged.emit({
-            azwcref: this,
-            swiper,
-            activeIndex: swiper.activeIndex,
-          });
-        },
-      },
-    });
+    this.swiper = AzwcSwiper.createSwiper(this);
   }
 
   update() {
-    console.log('update()');
+    // console.log('update()');
     this.swiper.update();
   }
 

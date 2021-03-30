@@ -22,6 +22,14 @@
         font-size: 30px;
         font-weight: bold;
       }
+      azwc-swiper {
+        height: 100%;
+        overflow-y: hidden;
+      }
+      .swiper-container {
+        height: 100%;
+        overflow-y: hidden;
+      }
     </style>
   </head>
   <body>
@@ -33,19 +41,22 @@
       Content
     </azwc-file-manager>
     <azwc-spinner></azwc-spinner>
-    <div style="width: 400px; height: 400px; position: relative;">
+    <div style="width: 400px; height: 400px; position: relative; overflow-y: hidden;">
       <azwc-spinner-mask enabled="true"></azwc-spinner-mask>
       SVSVRSV
       <button>WRVREV</button>
     </div>
-    <azwc-swiper
-      class="my-slider"
-      loop="true"
-      speed="500">
-      <div class="swiper-slide my-slider__slide">Slide 1</div>
-      <div class="swiper-slide my-slider__slide">Slide 2</div>
-      <div class="swiper-slide my-slider__slide">Slide 3</div>
-    </azwc-swiper>
+    <div style="height: 300px; position: relative;">
+      <azwc-swiper
+        id="swr"
+        class="my-slider"
+        loop="false"
+        speed="500">
+        <div class="swiper-slide my-slider__slide">Slide 1</div>
+        <div class="swiper-slide my-slider__slide">Slide 2</div>
+        <div class="swiper-slide my-slider__slide">Slide 3</div>
+      </azwc-swiper>
+    </div>
   </body>
   <script>
     function promiseWait(waitMillisec) {
@@ -184,6 +195,24 @@
     };
   </script>
   <script>
+    window.__on_azwc_init = (azwc_classes, options) => {
+      console.log('azwc_classes :', azwc_classes);
+      var AzwcSwiper = azwc_classes.AzwcSwiper;
+      var Swiper = azwc_classes.thirdParty.Swiper;
+      AzwcSwiper.componentDidLoad = (inst) => {
+        console.log('inst :', inst);
+        console.log('inst.host.id :', inst.host.id);
+      }
+      AzwcSwiper.createSwiper = (inst) => {
+        return new Swiper(inst.container, {
+          ...AzwcSwiper.getDefaultOptions(inst),
+          effect: 'fade',
+          // direction: 'vertical',
+          mousewheel: true,
+        });
+      }
+    }
+
     // customElements.whenDefined('azwc-file-manager')
     // .then((x) => {
     //   console.log('x :', x);
