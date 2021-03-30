@@ -2,13 +2,13 @@ azwc-accordion {
   display: block;
 }
 
-*, *::before, *::after {
-  box-sizing: border-box;
-}
+azwc-accordion {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
 
-.augurio-collapse {
   .title-box, .contents-box {
-    border: 1px solid #CCC;
+    // border: 1px solid #CCC;
   }
   .title-box, .contents {
     padding: 12px;
@@ -28,6 +28,10 @@ azwc-accordion {
   }
 
   .collapse {
+    &:last-of-type .contents-box {
+      // border-bottom: 1px solid #CCC;
+    }
+
     // icons transform active
     &.active {
       .icons {
@@ -65,15 +69,9 @@ azwc-accordion {
   // collapse contents
   .contents-box {
     overflow: hidden;
-    border-top: none;
-    border-bottom: none;
+    // border-top: none;
+    // border-bottom: none;
     max-height: 0;
     transition: max-height 0.28s ease-out;
-  }
-
-  .collapse {
-    &:last-of-type .contents-box {
-      border-bottom: 1px solid #CCC;
-    }
   }
 }

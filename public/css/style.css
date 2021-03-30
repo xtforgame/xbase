@@ -2,59 +2,50 @@ azwc-accordion {
   display: block;
 }
 
-*, *::before, *::after {
+azwc-accordion *, azwc-accordion *::before, azwc-accordion *::after {
   box-sizing: border-box;
 }
-
-.augurio-collapse .title-box, .augurio-collapse .contents-box {
-  border: 1px solid #CCC;
-}
-.augurio-collapse .title-box, .augurio-collapse .contents {
+azwc-accordion .title-box, azwc-accordion .contents {
   padding: 12px;
 }
-.augurio-collapse .title-box {
+azwc-accordion .title-box {
   position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
 }
-.augurio-collapse .title-box .title, .augurio-collapse .title-box .icons {
+azwc-accordion .title-box .title, azwc-accordion .title-box .icons {
   pointer-events: none;
 }
-.augurio-collapse .collapse.active .icons span:first-of-type {
+azwc-accordion .collapse.active .icons span:first-of-type {
   transform: rotate(180deg);
 }
-.augurio-collapse .collapse.active .icons span:last-of-type {
+azwc-accordion .collapse.active .icons span:last-of-type {
   transform: rotate(0) translateY(-2px);
 }
-.augurio-collapse .collapse.active .contents-box {
+azwc-accordion .collapse.active .contents-box {
   max-height: 1000px;
   transition: max-height 0.35s ease-in;
 }
-.augurio-collapse .icons {
+azwc-accordion .icons {
   position: absolute;
   right: 12px;
 }
-.augurio-collapse .icons span {
+azwc-accordion .icons span {
   display: block;
   width: 12px;
   height: 2px;
   background-color: #000;
   transition: transform 0.2s ease;
 }
-.augurio-collapse .icons span:last-of-type {
+azwc-accordion .icons span:last-of-type {
   transform: rotate(90deg) translateX(-2px);
 }
-.augurio-collapse .contents-box {
+azwc-accordion .contents-box {
   overflow: hidden;
-  border-top: none;
-  border-bottom: none;
   max-height: 0;
   transition: max-height 0.28s ease-out;
-}
-.augurio-collapse .collapse:last-of-type .contents-box {
-  border-bottom: 1px solid #CCC;
 }
 
 @keyframes canvi-animate-in {
