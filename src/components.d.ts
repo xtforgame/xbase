@@ -6,6 +6,8 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface AzwcAccordion {
+    }
     interface AzwcCanviDrawer {
     }
     interface AzwcDialog {
@@ -49,6 +51,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLAzwcAccordionElement extends Components.AzwcAccordion, HTMLStencilElement {
+    }
+    var HTMLAzwcAccordionElement: {
+        prototype: HTMLAzwcAccordionElement;
+        new (): HTMLAzwcAccordionElement;
+    };
     interface HTMLAzwcCanviDrawerElement extends Components.AzwcCanviDrawer, HTMLStencilElement {
     }
     var HTMLAzwcCanviDrawerElement: {
@@ -92,6 +100,7 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "azwc-accordion": HTMLAzwcAccordionElement;
         "azwc-canvi-drawer": HTMLAzwcCanviDrawerElement;
         "azwc-dialog": HTMLAzwcDialogElement;
         "azwc-file-manager": HTMLAzwcFileManagerElement;
@@ -102,6 +111,8 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface AzwcAccordion {
+    }
     interface AzwcCanviDrawer {
     }
     interface AzwcDialog {
@@ -141,6 +152,7 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface IntrinsicElements {
+        "azwc-accordion": AzwcAccordion;
         "azwc-canvi-drawer": AzwcCanviDrawer;
         "azwc-dialog": AzwcDialog;
         "azwc-file-manager": AzwcFileManager;
@@ -154,6 +166,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "azwc-accordion": LocalJSX.AzwcAccordion & JSXBase.HTMLAttributes<HTMLAzwcAccordionElement>;
             "azwc-canvi-drawer": LocalJSX.AzwcCanviDrawer & JSXBase.HTMLAttributes<HTMLAzwcCanviDrawerElement>;
             "azwc-dialog": LocalJSX.AzwcDialog & JSXBase.HTMLAttributes<HTMLAzwcDialogElement>;
             "azwc-file-manager": LocalJSX.AzwcFileManager & JSXBase.HTMLAttributes<HTMLAzwcFileManagerElement>;

@@ -1,3 +1,4 @@
+import { AzwcAccordion } from './components/azwc-accordion/azwc-accordion';
 import { AzwcDialog } from './components/azwc-dialog/azwc-dialog';
 import { AzwcFileManager } from './components/azwc-file-manager/azwc-file-manager';
 import { AzwcSpinner } from './components/azwc-spinner/azwc-spinner';
@@ -10,6 +11,7 @@ import Canvi from './components/azwc-canvi-drawer/Canvi';
 
 export default async function () {
   (<any>window).__azwc_classes = {
+    AzwcAccordion,
     AzwcDialog,
     AzwcFileManager,
     AzwcSpinner,
