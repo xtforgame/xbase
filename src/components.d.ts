@@ -6,6 +6,8 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface AzwcCanviDrawer {
+    }
     interface AzwcDialog {
         "dialogid": string;
     }
@@ -47,6 +49,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLAzwcCanviDrawerElement extends Components.AzwcCanviDrawer, HTMLStencilElement {
+    }
+    var HTMLAzwcCanviDrawerElement: {
+        prototype: HTMLAzwcCanviDrawerElement;
+        new (): HTMLAzwcCanviDrawerElement;
+    };
     interface HTMLAzwcDialogElement extends Components.AzwcDialog, HTMLStencilElement {
     }
     var HTMLAzwcDialogElement: {
@@ -84,6 +92,7 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "azwc-canvi-drawer": HTMLAzwcCanviDrawerElement;
         "azwc-dialog": HTMLAzwcDialogElement;
         "azwc-file-manager": HTMLAzwcFileManagerElement;
         "azwc-spinner": HTMLAzwcSpinnerElement;
@@ -93,6 +102,8 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface AzwcCanviDrawer {
+    }
     interface AzwcDialog {
         "dialogid"?: string;
         "onCustomStateChange"?: (event: CustomEvent<any>) => void;
@@ -130,6 +141,7 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface IntrinsicElements {
+        "azwc-canvi-drawer": AzwcCanviDrawer;
         "azwc-dialog": AzwcDialog;
         "azwc-file-manager": AzwcFileManager;
         "azwc-spinner": AzwcSpinner;
@@ -142,6 +154,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "azwc-canvi-drawer": LocalJSX.AzwcCanviDrawer & JSXBase.HTMLAttributes<HTMLAzwcCanviDrawerElement>;
             "azwc-dialog": LocalJSX.AzwcDialog & JSXBase.HTMLAttributes<HTMLAzwcDialogElement>;
             "azwc-file-manager": LocalJSX.AzwcFileManager & JSXBase.HTMLAttributes<HTMLAzwcFileManagerElement>;
             "azwc-spinner": LocalJSX.AzwcSpinner & JSXBase.HTMLAttributes<HTMLAzwcSpinnerElement>;

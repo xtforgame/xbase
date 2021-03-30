@@ -5,6 +5,8 @@ import { AzwcSpinnerMask } from './components/azwc-spinner-mask/azwc-spinner-mas
 import { AzwcSwiper } from './components/azwc-swiper/azwc-swiper';
 import * as swiperlib from 'swiper';
 import Swiper from 'swiper';
+import { AzwcCanviDrawer } from './components/azwc-canvi-drawer/azwc-canvi-drawer';
+import Canvi from './components/azwc-canvi-drawer/Canvi';
 
 export default async function () {
   (<any>window).__azwc_classes = {
@@ -13,9 +15,11 @@ export default async function () {
     AzwcSpinner,
     AzwcSpinnerMask,
     AzwcSwiper,
+    AzwcCanviDrawer,
     thirdParty: {
       swiperlib,
       Swiper,
+      Canvi,
     },
   };
   if ((<any>window).__on_azwc_init) {
