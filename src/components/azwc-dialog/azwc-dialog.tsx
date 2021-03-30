@@ -57,7 +57,7 @@ export class AzwcDialog {
           class="modal"
           part="modal"
           onClick={(e) => this.doBackgroundClose(e)}
-          style={{ display: this.isOpen ? 'block' : 'none' }}
+          style={{ overflowY: 'scroll', display: this.isOpen ? 'block' : 'none' }}
         >
           <slot name="top"></slot>
           <div part="modal-content centered-modal-content" class="modal-content centered-modal-content">

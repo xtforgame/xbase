@@ -12,8 +12,7 @@ Swiper.use([Virtual, Keyboard, Mousewheel, Navigation, Pagination, Scrollbar, Pa
 })
 
 export class AzwcSwiper {
-  static componentDidLoad = (inst: AzwcSwiper) => {
-
+  static componentDidLoad : (inst: AzwcSwiper) => void = () => {
   }
 
   static getDefaultOptions : (inst: AzwcSwiper) => SwiperOptions = (inst: AzwcSwiper) => {

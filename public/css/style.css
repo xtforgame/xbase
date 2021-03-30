@@ -34,6 +34,8 @@ azwc-dialog::part(modal-content) {
   width: 80%;
   /* Could be more or less, depending on screen size */
   min-width: 300px;
+  max-height: 90%;
+  overflow-y: scroll;
 }
 
 .top-modal-content,
