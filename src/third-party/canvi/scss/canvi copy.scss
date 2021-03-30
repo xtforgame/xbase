@@ -108,7 +108,7 @@ body.is-canvi-ready .canvi-navbar {
     z-index: 1031;
 }
 
-.is-canvi-open .canvi-overlay {
+.canvi-content.is-canvi-open .canvi-overlay {
     visibility: visible;
     animation-name: canvi-animate-in;
 	animation-duration: $canvi-transition-time;
@@ -117,7 +117,7 @@ body.is-canvi-ready .canvi-navbar {
     backface-visibility: hidden;
 }
 
-.is-canvi-open .canvi-overlay.canvi-animate-out {
+.canvi-content.is-canvi-open .canvi-overlay.canvi-animate-out {
     animation-name: canvi-animate-out;
 	animation-duration: $canvi-transition-time;
 	animation-fill-mode: forwards;

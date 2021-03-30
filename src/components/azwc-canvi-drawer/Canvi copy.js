@@ -231,7 +231,7 @@ export default class Canvi {
   }
 
   _setZindex() {
-    this.navbar.style.zIndex = this.options.pushContent ? 20 : 1032;
+    this.navbar.style.zIndex = this.options.pushContent ? 20 : 10;
     this.content.style.zIndex = this.options.pushContent ? 40 : 5;
   }
 
