@@ -92,8 +92,8 @@ export class AzwcDialog {
           <slot name="top"></slot>
           <div part="modal-content centered-modal-content" class="modal-content centered-modal-content">
             <slot></slot>
-            <span part="close" class="close" onClick={(e) => this.close(e)}>&times;</span>
-            <slot name="body">Some text in the Modal..</slot>
+            {/* <span part="close" class="close" onClick={(e) => this.close(e)}>&times;</span> */}
+            <slot name="body"></slot>
           </div>
         </div>
       </Host>

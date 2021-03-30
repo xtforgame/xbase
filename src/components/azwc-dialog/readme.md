@@ -5,6 +5,13 @@
 <!-- Auto Generated Below -->
 
 
+## Properties
+
+| Property   | Attribute  | Description | Type     | Default     |
+| ---------- | ---------- | ----------- | -------- | ----------- |
+| `dialogid` | `dialogid` |             | `string` | `undefined` |
+
+
 ## Events
 
 | Event               | Description | Type               |
@@ -17,7 +24,6 @@
 | Part                       | Description |
 | -------------------------- | ----------- |
 | `"centered-modal-content"` |             |
-| `"close"`                  |             |
 | `"modal"`                  |             |
 | `"modal-content"`          |             |
 
