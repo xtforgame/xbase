@@ -34,7 +34,8 @@
   </head>
   <body>
     <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
-    <azwc-dialog>
+    <button id="open-dialog-btn">Open Modal</button>
+    <azwc-dialog dialogid="d1">
       Content<br />
       Content<br />
       Content<br />
@@ -86,6 +87,7 @@
         <div class="swiper-slide my-slider__slide">Slide 1</div>
         <div class="swiper-slide my-slider__slide">Slide 2</div>
         <div class="swiper-slide my-slider__slide">Slide 3</div>
+        <!-- <div slot="ui"></div> -->
       </azwc-swiper>
     </div>
   </body>
@@ -242,6 +244,12 @@
           mousewheel: true,
         });
       }
+
+      var AzwcDialog = azwc_classes.AzwcDialog;
+      var btn = document.querySelector('#open-dialog-btn');
+      btn.addEventListener("click", function () {
+        AzwcDialog.open('d1');
+      });
     }
 
     // customElements.whenDefined('azwc-file-manager')

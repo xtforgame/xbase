@@ -1,4 +1,4 @@
-import { Component, State, Event, Element, EventEmitter, Host, h } from '@stencil/core';
+import { Component, State, Event, Element, EventEmitter, Host, Prop, h } from '@stencil/core';
 
 @Component({
   tag: 'azwc-dialog',
@@ -6,6 +6,24 @@ import { Component, State, Event, Element, EventEmitter, Host, h } from '@stenci
   shadow: false,
 })
 export class AzwcDialog {
+  static allInstances: { [s : string]: AzwcDialog } = {};
+
+  static open = (id: string) => {
+    const inst = AzwcDialog.allInstances[id];
+    if (inst) {
+      inst.open();
+    }
+  }
+
+  static close = (id: string) => {
+    const inst = AzwcDialog.allInstances[id];
+    if (inst) {
+      inst.close(null);
+    }
+  }
+
+  @Prop() dialogid: string;
+  registeredId?: string;
 
   @State() isOpen: boolean = false;
 
@@ -19,7 +37,20 @@ export class AzwcDialog {
 
   @Element() host: HTMLElement;
 
-  doOpen() {
+  componentDidLoad() {
+    if (this.dialogid && !AzwcDialog.allInstances[this.dialogid]) {
+      this.registeredId = this.dialogid;
+      AzwcDialog.allInstances[this.dialogid] = this;
+    }
+  }
+
+  disconnectedCallback() {
+    if (this.registeredId) {
+      delete AzwcDialog.allInstances[this.registeredId];
+    }
+  }
+
+  open() {
     this.isOpen = true;
     this.customStateChange.emit({
       open: this.isOpen,
@@ -27,7 +58,7 @@ export class AzwcDialog {
     });
   }
 
-  doClose(e: MouseEvent) {
+  close(e: MouseEvent) {
     if (!e) {
       console.log('e :', e);
     }
@@ -45,14 +76,13 @@ export class AzwcDialog {
       back = this.host.shadowRoot.querySelector('div');
     }
     if (back === e.target) {
-      this.doClose(e);
+      this.close(e);
     }
   }
 
   render() {
     return (
       <Host>
-        <button onClick={() => this.doOpen()}>Open Modal</button>
         <div
           class="modal"
           part="modal"
@@ -62,7 +92,7 @@ export class AzwcDialog {
           <slot name="top"></slot>
           <div part="modal-content centered-modal-content" class="modal-content centered-modal-content">
             <slot></slot>
-            <span part="close" class="close" onClick={(e) => this.doClose(e)}>&times;</span>
+            <span part="close" class="close" onClick={(e) => this.close(e)}>&times;</span>
             <slot name="body">Some text in the Modal..</slot>
           </div>
         </div>

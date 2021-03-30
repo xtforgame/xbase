@@ -7,6 +7,7 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface AzwcDialog {
+        "dialogid": string;
     }
     interface AzwcFileManager {
         "basePath": string;
@@ -93,6 +94,7 @@ declare global {
 }
 declare namespace LocalJSX {
     interface AzwcDialog {
+        "dialogid"?: string;
         "onCustomStateChange"?: (event: CustomEvent<any>) => void;
     }
     interface AzwcFileManager {
