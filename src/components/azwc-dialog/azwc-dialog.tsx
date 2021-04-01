@@ -38,7 +38,11 @@ export class AzwcDialog {
   @Element() host: HTMLElement;
 
   componentDidLoad() {
-    if (this.dialogid && !AzwcDialog.allInstances[this.dialogid]) {
+    // if (this.dialogid && !AzwcDialog.allInstances[this.dialogid]) {
+    if (this.dialogid) {
+      if (AzwcDialog.allInstances[this.dialogid]) {
+        AzwcDialog.allInstances[this.dialogid].registeredId = undefined;
+      }
       this.registeredId = this.dialogid;
       AzwcDialog.allInstances[this.dialogid] = this;
     }
