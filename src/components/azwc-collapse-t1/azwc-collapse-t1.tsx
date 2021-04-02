@@ -25,7 +25,16 @@ export class AzwcCollapseT1 {
   render() {
     return (
       <Host>
-        <slot></slot>
+        <div class="azac-title-box">
+          <slot name="title"></slot>
+          <div class="azac-icons"><span></span><span></span></div>
+        </div>
+        <div class="azac-contents-box">
+          <div class="azac-contents">
+            <slot name="contents"></slot>
+            <slot></slot>
+          </div>
+        </div>
       </Host>
     );
   }
