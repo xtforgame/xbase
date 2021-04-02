@@ -10,6 +10,8 @@ export namespace Components {
     }
     interface AzwcCanviDrawer {
     }
+    interface AzwcCollapseT1 {
+    }
     interface AzwcDialog {
         "dialogid": string;
     }
@@ -63,6 +65,12 @@ declare global {
         prototype: HTMLAzwcCanviDrawerElement;
         new (): HTMLAzwcCanviDrawerElement;
     };
+    interface HTMLAzwcCollapseT1Element extends Components.AzwcCollapseT1, HTMLStencilElement {
+    }
+    var HTMLAzwcCollapseT1Element: {
+        prototype: HTMLAzwcCollapseT1Element;
+        new (): HTMLAzwcCollapseT1Element;
+    };
     interface HTMLAzwcDialogElement extends Components.AzwcDialog, HTMLStencilElement {
     }
     var HTMLAzwcDialogElement: {
@@ -102,6 +110,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "azwc-accordion": HTMLAzwcAccordionElement;
         "azwc-canvi-drawer": HTMLAzwcCanviDrawerElement;
+        "azwc-collapse-t1": HTMLAzwcCollapseT1Element;
         "azwc-dialog": HTMLAzwcDialogElement;
         "azwc-file-manager": HTMLAzwcFileManagerElement;
         "azwc-spinner": HTMLAzwcSpinnerElement;
@@ -114,6 +123,8 @@ declare namespace LocalJSX {
     interface AzwcAccordion {
     }
     interface AzwcCanviDrawer {
+    }
+    interface AzwcCollapseT1 {
     }
     interface AzwcDialog {
         "dialogid"?: string;
@@ -154,6 +165,7 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "azwc-accordion": AzwcAccordion;
         "azwc-canvi-drawer": AzwcCanviDrawer;
+        "azwc-collapse-t1": AzwcCollapseT1;
         "azwc-dialog": AzwcDialog;
         "azwc-file-manager": AzwcFileManager;
         "azwc-spinner": AzwcSpinner;
@@ -168,6 +180,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "azwc-accordion": LocalJSX.AzwcAccordion & JSXBase.HTMLAttributes<HTMLAzwcAccordionElement>;
             "azwc-canvi-drawer": LocalJSX.AzwcCanviDrawer & JSXBase.HTMLAttributes<HTMLAzwcCanviDrawerElement>;
+            "azwc-collapse-t1": LocalJSX.AzwcCollapseT1 & JSXBase.HTMLAttributes<HTMLAzwcCollapseT1Element>;
             "azwc-dialog": LocalJSX.AzwcDialog & JSXBase.HTMLAttributes<HTMLAzwcDialogElement>;
             "azwc-file-manager": LocalJSX.AzwcFileManager & JSXBase.HTMLAttributes<HTMLAzwcFileManagerElement>;
             "azwc-spinner": LocalJSX.AzwcSpinner & JSXBase.HTMLAttributes<HTMLAzwcSpinnerElement>;

@@ -4,6 +4,7 @@ import { AzwcFileManager } from './components/azwc-file-manager/azwc-file-manage
 import { AzwcSpinner } from './components/azwc-spinner/azwc-spinner';
 import { AzwcSpinnerMask } from './components/azwc-spinner-mask/azwc-spinner-mask';
 import { AzwcSwiper } from './components/azwc-swiper/azwc-swiper';
+import { AzwcCollapseT1 } from './components/azwc-collapse-t1/azwc-collapse-t1';
 import * as swiperlib from 'swiper';
 import Swiper from 'swiper';
 import { AzwcCanviDrawer } from './components/azwc-canvi-drawer/azwc-canvi-drawer';
@@ -17,6 +18,7 @@ export default async function () {
     AzwcSpinner,
     AzwcSpinnerMask,
     AzwcSwiper,
+    AzwcCollapseT1,
     AzwcCanviDrawer,
     thirdParty: {
       swiperlib,
