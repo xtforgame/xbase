@@ -12,7 +12,7 @@ import Canvi from './components/azwc-canvi-drawer/Canvi';
 import * as utils from './utils';
 
 export default async function () {
-  (<any>window).__azwc_classes = {
+  const exportData = {
     AzwcAccordion,
     AzwcDialog,
     AzwcFileManager,
@@ -28,7 +28,9 @@ export default async function () {
     },
     utils,
   };
+  (<any>window).__azwc_classes = exportData;
+  (<any>window).__azwc_export = exportData;
   if ((<any>window).__on_azwc_init) {
-    (<any>window).__on_azwc_init((<any>window).__azwc_classes, {})
+    (<any>window).__on_azwc_init(exportData, {})
   }
 }
