@@ -7,34 +7,34 @@ azwc-accordion {
     box-sizing: border-box;
   }
 
-  .title-box, .contents-box {
+  .azac-title-box, .azac-contents-box {
     // border: 1px solid #CCC;
   }
-  .title-box, .contents {
+  .azac-title-box, .azac-contents {
     padding: 12px;
   }
   
   // collapse title
-  .title-box {
+  .azac-title-box {
     position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
 
-    .title, .icons {
+    .azac-title, .azac-icons {
       pointer-events: none;
     }
   }
 
-  .collapse {
-    &:last-of-type .contents-box {
+  .azac-collapse {
+    &:last-of-type .azac-contents-box {
       // border-bottom: 1px solid #CCC;
     }
 
     // icons transform active
     &.active {
-      .icons {
+      .azac-icons {
         span {
           &:first-of-type {
             transform: rotate(180deg);
@@ -44,14 +44,14 @@ azwc-accordion {
           }
         }
       }
-      .contents-box {
+      .azac-contents-box {
         max-height: 1000px;
         transition: max-height 0.35s ease-in;
       }
     }
   }
 
-  .icons {
+  .azac-icons {
     position: absolute;
     right: 12px;
     span {
@@ -59,7 +59,7 @@ azwc-accordion {
       width: 12px;
       height: 2px;
       background-color: #000;
-      transition: transform .2s ease;
+      transition: transform 0.2s ease;
       &:last-of-type {
         transform: rotate(90deg) translateX(-2px);
       }
@@ -67,7 +67,7 @@ azwc-accordion {
   }
 
   // collapse contents
-  .contents-box {
+  .azac-contents-box {
     overflow: hidden;
     // border-top: none;
     // border-bottom: none;
