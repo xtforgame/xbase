@@ -3,11 +3,21 @@ azwc-collapse-t1 {
   box-sizing: border-box;
 }
 
+// :root {
+//   --azwc-collapse-t1-stroke-width: 2px;
+//   --azwc-collapse-t1-stroke-length: 10px;
+// }
+
 .azac-title-box, .azac-contents-box {
   // border: 1px solid #CCC;
 }
 .azac-title-box, .azac-contents {
   padding: 12px;
+}
+
+.azac-title-input {
+  position: absolute;
+  opacity: 0;
 }
 
 // collapse title
@@ -25,15 +35,15 @@ azwc-collapse-t1 {
 
 .azac-icons {
   position: absolute;
-  right: 12px;
+  right: calc(var(--azwc-collapse-t1-stroke-width, 2px) + var(--azwc-collapse-t1-stroke-length, 10px));
   span {
     display: block;
-    width: 12px;
-    height: 2px;
+    width: calc(var(--azwc-collapse-t1-stroke-width, 2px) + var(--azwc-collapse-t1-stroke-length, 10px));
+    height: var(--azwc-collapse-t1-stroke-width, 2px);
     background-color: #000;
     transition: transform 0.2s ease;
     &:last-of-type {
-      transform: rotate(90deg) translateX(-2px);
+      transform: rotate(90deg) translateX(calc(-1 * var(--azwc-collapse-t1-stroke-width, 2px)));
     }
   }
 }
@@ -56,21 +66,40 @@ azwc-collapse-t1 {
     // border-bottom: 1px solid #CCC;
   }
 
-  // icons transform active
-  &.active {
+  .azac-title-input:checked + .azac-title-box {
     .azac-icons {
       span {
         &:first-of-type {
           transform: rotate(180deg);
         }
         &:last-of-type {
-          transform: rotate(0) translateY(-2px);
+          transform: rotate(0) translateY(calc(-1 * var(--azwc-collapse-t1-stroke-width, 2px)));
         }
       }
     }
-    .azac-contents-box {
-      max-height: 1000px;
-      transition: max-height 0.35s ease-in;
-    }
   }
+
+  .azac-title-input:checked + .azac-title-box + .azac-contents-box {
+    max-height: 1000px;
+    transition: max-height 0.35s ease-in;
+  }
+
+
+  // // icons transform active
+  // &.active {
+  //   .azac-icons {
+  //     span {
+  //       &:first-of-type {
+  //         transform: rotate(180deg);
+  //       }
+  //       &:last-of-type {
+  //         transform: rotate(0) translateY(-2px);
+  //       }
+  //     }
+  //   }
+  //   .azac-contents-box {
+  //     max-height: 1000px;
+  //     transition: max-height 0.35s ease-in;
+  //   }
+  // }
 }

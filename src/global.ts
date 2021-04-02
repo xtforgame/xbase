@@ -9,6 +9,7 @@ import * as swiperlib from 'swiper';
 import Swiper from 'swiper';
 import { AzwcCanviDrawer } from './components/azwc-canvi-drawer/azwc-canvi-drawer';
 import Canvi from './components/azwc-canvi-drawer/Canvi';
+import * as utils from './utils';
 
 export default async function () {
   (<any>window).__azwc_classes = {
@@ -25,6 +26,7 @@ export default async function () {
       Swiper,
       Canvi,
     },
+    utils,
   };
   if ((<any>window).__on_azwc_init) {
     (<any>window).__on_azwc_init((<any>window).__azwc_classes, {})

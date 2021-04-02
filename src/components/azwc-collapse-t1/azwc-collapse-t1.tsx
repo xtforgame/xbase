@@ -1,4 +1,5 @@
-import { Component, Element, Host, h } from '@stencil/core';
+import { Component, Element, Host, Prop, h } from '@stencil/core';
+import { createRamdomUniqueIdForElement } from '../../utils';
 
 @Component({
   tag: 'azwc-collapse-t1',
@@ -7,15 +8,20 @@ import { Component, Element, Host, h } from '@stencil/core';
 })
 export class AzwcCollapseT1 {
 
+  @Prop() collapseid: string;
+  titleId?: string;
+
+  @Prop() active: boolean;
+
   @Element() host: HTMLElement;
   componentDidLoad() {
-    const titles = this.host.querySelectorAll('.azac-title-box');
-    titles.forEach(t => {
-      t.addEventListener('click', () => {
-        this.host.classList.toggle('active');
-        // ((e.target as HTMLElement).parentNode as HTMLElement).classList.toggle('active');
-      });
-    });
+    // const titles = this.host.querySelectorAll('.azac-title-box');
+    // titles.forEach(t => {
+    //   t.addEventListener('click', () => {
+    //     this.host.classList.toggle('active');
+    //     // ((e.target as HTMLElement).parentNode as HTMLElement).classList.toggle('active');
+    //   });
+    // });
   }
 
   disconnectedCallback() {
@@ -23,12 +29,19 @@ export class AzwcCollapseT1 {
   }
 
   render() {
+    this.titleId = this.titleId || this.collapseid || createRamdomUniqueIdForElement();
+    const checked = this.active;
     return (
       <Host>
-        <div class="azac-title-box">
+        <input checked={checked} name="collapse" type="checkbox" id={this.titleId} class="azac-title-input">
+        </input>
+        <label htmlFor={this.titleId} class="azac-title-box">
           <slot name="title"></slot>
-          <div class="azac-icons"><span></span><span></span></div>
-        </div>
+          <div class="azac-icons">
+            <span></span>
+            <span></span>
+          </div>
+        </label>
         <div class="azac-contents-box">
           <div class="azac-contents">
             <slot name="contents"></slot>

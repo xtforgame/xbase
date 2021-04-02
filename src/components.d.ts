@@ -11,6 +11,8 @@ export namespace Components {
     interface AzwcCanviDrawer {
     }
     interface AzwcCollapseT1 {
+        "active": boolean;
+        "collapseid": string;
     }
     interface AzwcDialog {
         "dialogid": string;
@@ -125,6 +127,8 @@ declare namespace LocalJSX {
     interface AzwcCanviDrawer {
     }
     interface AzwcCollapseT1 {
+        "active"?: boolean;
+        "collapseid"?: string;
     }
     interface AzwcDialog {
         "dialogid"?: string;
