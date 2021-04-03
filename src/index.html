@@ -8,6 +8,19 @@
     <script type="module" src="/build/xbase.esm.js"></script>
     <script nomodule src="/build/xbase.js"></script>
     <style>
+      :root{
+        --azwc-nav-button-line-width: 1.5rem;
+        --azwc-nav-button-border-radius: 2rem;
+        --azwc-nav-button-duration: .5s;
+        --azwc-nav-button-toggled-size: 1;
+        --azwc-nav-button-toggled-btn-bg: #274380;
+        --azwc-nav-button-toggled-content-bg: #FFF;
+
+        --azwc-nav-button-size: calc(var(--azwc-nav-button-line-width) * 1.8);
+        --azwc-nav-button-line-height: calc(var(--azwc-nav-button-line-width) / 8);
+        --azwc-nav-button-padding-left: calc((var(--azwc-nav-button-size) - var(--azwc-nav-button-line-width)) / 2);
+        --azwc-nav-button-padding-top: calc((var(--azwc-nav-button-size) - var(--azwc-nav-button-line-height)) / 2);
+      }
       body {
         margin: 0;
       }

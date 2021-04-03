@@ -1,63 +1,78 @@
 @charset "UTF-8";
+:root {
+  --azwc-nav-button-line-width: 2rem;
+  --azwc-nav-button-border-radius: 2rem;
+  --azwc-nav-button-duration: .5s;
+  --azwc-nav-button-toggled-size: 1;
+  --azwc-nav-button-toggled-btn-bg: #274380;
+  --azwc-nav-button-toggled-content-bg: #FFF;
+  --azwc-nav-button-size: calc(var(--azwc-nav-button-line-width) * 1.8);
+  --azwc-nav-button-line-height: calc(var(--azwc-nav-button-line-width) / 8);
+  --azwc-nav-button-padding-left: calc((var(--azwc-nav-button-size) - var(--azwc-nav-button-line-width)) / 2);
+  --azwc-nav-button-padding-top: calc((var(--azwc-nav-button-size) - var(--azwc-nav-button-line-height)) / 2);
+}
+
 azwc-nav-button {
   /* Smoother animations */
+  width: var(--azwc-nav-button-size);
+  height: var(--azwc-nav-button-size);
+  display: inline-block;
+  background-color: var(--azwc-nav-button-toggled-btn-bg);
 }
 azwc-nav-button *, azwc-nav-button *:before, azwc-nav-button *:after {
   transform: translate3d(0, 0, 0);
 }
 
 .navicon-button {
-  background-color: #274380;
-  border-radius: 50%;
   display: inline-block;
   position: relative;
-  padding: 1.675rem 0.8rem;
-  transition: 0.25s;
+  padding: var(--azwc-nav-button-padding-top) var(--azwc-nav-button-padding-left);
+  transition: calc(var(--azwc-nav-button-duration) / 2);
   cursor: pointer;
   user-select: none;
   opacity: 0.8;
 }
 .navicon-button .navicon:before, .navicon-button .navicon:after {
-  transition: 0.25s;
+  transition: calc(var(--azwc-nav-button-duration) / 2);
 }
 .navicon-button:hover {
-  transition: 0.5s;
+  transition: var(--azwc-nav-button-duration);
   opacity: 1;
 }
 .navicon-button:hover .navicon:before, .navicon-button:hover .navicon:after {
-  transition: 0.25s;
+  transition: calc(var(--azwc-nav-button-duration) / 2);
 }
 .navicon-button:hover .navicon:before {
-  top: 0.66rem;
+  top: calc(var(--azwc-nav-button-line-height) * 2.64);
 }
 .navicon-button:hover .navicon:after {
-  top: -0.66rem;
+  top: calc(var(--azwc-nav-button-line-height) * -2.64);
 }
 
 .navicon {
   position: relative;
-  width: 2rem;
-  height: 0.25rem;
-  background: #FFF;
-  transition: 0.5s;
-  border-radius: 0.125rem;
+  width: var(--azwc-nav-button-line-width);
+  height: var(--azwc-nav-button-line-height);
+  background: var(--azwc-nav-button-toggled-content-bg);
+  transition: var(--azwc-nav-button-duration);
+  border-radius: var(--azwc-nav-button-border-radius);
 }
 .navicon:before, .navicon:after {
   display: block;
   content: "";
-  width: 2rem;
-  height: 0.25rem;
-  background: #FFF;
+  width: var(--azwc-nav-button-line-width);
+  height: var(--azwc-nav-button-line-height);
+  background: var(--azwc-nav-button-toggled-content-bg);
   position: absolute;
   z-index: -1;
-  transition: 0.5s 0.25s;
-  border-radius: 0.125rem;
+  transition: var(--azwc-nav-button-duration) calc(var(--azwc-nav-button-duration) / 2);
+  border-radius: var(--azwc-nav-button-border-radius);
 }
 .navicon:before {
-  top: 0.5rem;
+  top: calc(var(--azwc-nav-button-line-height) * 2);
 }
 .navicon:after {
-  top: -0.5rem;
+  top: calc(var(--azwc-nav-button-line-height) * -2);
 }
 
 .open:not(.steps) .navicon:before,
@@ -67,12 +82,12 @@ azwc-nav-button *, azwc-nav-button *:before, azwc-nav-button *:after {
 
 .open .navicon:before,
 .open .navicon:after {
-  transition: 0.5s;
+  transition: var(--azwc-nav-button-duration);
 }
 
 /* Minus */
 .open {
-  transform: scale(1);
+  transform: scale(var(--azwc-nav-button-toggled-size));
 }
 
 /* Arrows */
@@ -81,7 +96,7 @@ azwc-nav-button *, azwc-nav-button *:before, azwc-nav-button *:after {
 .open.rarr .navicon:after,
 .open.uarr .navicon:before,
 .open.uarr .navicon:after {
-  width: 1.2rem;
+  width: calc(var(--azwc-nav-button-line-width) * 0.6);
 }
 .open.larr .navicon:before,
 .open.rarr .navicon:before,
@@ -97,11 +112,11 @@ azwc-nav-button *, azwc-nav-button *:before, azwc-nav-button *:after {
 }
 
 .open.uarr {
-  transform: scale(1) rotate(90deg);
+  transform: scale(var(--azwc-nav-button-toggled-size)) rotate(90deg);
 }
 
 .open.darr .navicon:before, .open.darr .navicon:after {
-  width: 1.2rem;
+  width: calc(var(--azwc-nav-button-line-width) * 0.6);
 }
 .open.darr .navicon:before {
   transform: rotate(35deg);
@@ -113,16 +128,16 @@ azwc-nav-button *, azwc-nav-button *:before, azwc-nav-button *:after {
 }
 
 .open.darr {
-  transform: scale(1) rotate(-90deg);
+  transform: scale(var(--azwc-nav-button-toggled-size)) rotate(-90deg);
 }
 
 /* Arrows */
 .open.rarr .navicon:before {
-  transform: translate3d(0.8rem, 0, 0) rotate(-35deg);
+  transform: translate3d(calc(var(--azwc-nav-button-line-width) * 0.4), 0, 0) rotate(-35deg);
   transform-origin: right top;
 }
 .open.rarr .navicon:after {
-  transform: translate3d(0.8rem, 0, 0) rotate(35deg);
+  transform: translate3d(calc(var(--azwc-nav-button-line-width) * 0.4), 0, 0) rotate(35deg);
   transform-origin: right bottom;
 }
 
@@ -141,7 +156,7 @@ azwc-nav-button *, azwc-nav-button *:before, azwc-nav-button *:after {
 }
 
 .open.plus {
-  transform: scale(1) rotate(45deg);
+  transform: scale(var(--azwc-nav-button-toggled-size)) rotate(45deg);
 }
 
 azwc-accordion {

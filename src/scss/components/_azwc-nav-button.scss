@@ -1,3 +1,18 @@
+:root{
+  --azwc-nav-button-line-width: 2rem;
+  --azwc-nav-button-border-radius: 2rem;
+  --azwc-nav-button-duration: .5s;
+  --azwc-nav-button-toggled-size: 1; // .75;
+  --azwc-nav-button-toggled-btn-bg: #274380;
+  --azwc-nav-button-toggled-content-bg: #FFF;
+
+  --azwc-nav-button-size: calc(var(--azwc-nav-button-line-width) * 1.8);
+  --azwc-nav-button-line-height: calc(var(--azwc-nav-button-line-width) / 8);
+  --azwc-nav-button-padding-left: calc((var(--azwc-nav-button-size) - var(--azwc-nav-button-line-width)) / 2);
+  --azwc-nav-button-padding-top: calc((var(--azwc-nav-button-size) - var(--azwc-nav-button-line-height)) / 2);
+}
+
+
 azwc-nav-button {
   /* Smoother animations */
   & *,
@@ -5,76 +20,64 @@ azwc-nav-button {
   & *:after {
    transform: translate3d(0,0,0);
   }
+
+  width: var(--azwc-nav-button-size);
+  height: var(--azwc-nav-button-size);
+  display: inline-block;
+  background-color: var(--azwc-nav-button-toggled-btn-bg);
+  // border-radius: 50%;
 }
-
-$width: 2rem;
-$border-radius: $width/16; // = $height/2;
-$duration: .5s;
-$toggled-size: 1; // .75;
-
-$btn-bg: #274380;
-$nav-bg: #000;
-$content-bg: #FFF;
-
 
 // ===================
 
-$size: $width*1.8;
-$height: $width/8;
-
-$padding-left: ($size - $width) / 2;
-$padding-top: ($size - $height) / 2;
-
 .navicon-button {
-	background-color: $btn-bg;
-	border-radius: 50%;
   display: inline-block;
   position: relative;
-  padding: $padding-top $padding-left;
-  transition: $duration/2;
+  padding: var(--azwc-nav-button-padding-top) var(--azwc-nav-button-padding-left);
+  transition: calc(var(--azwc-nav-button-duration) / 2);
   cursor: pointer;
   user-select: none;
   opacity: .8;
 
   .navicon:before, .navicon:after {
-    transition: $duration/2;
+    transition: calc(var(--azwc-nav-button-duration) / 2);
   }
 
   &:hover {
-    transition: $duration;
+    transition: var(--azwc-nav-button-duration);
     opacity: 1;
 
     .navicon:before, .navicon:after {
-      transition: $duration/2;
+      transition: calc(var(--azwc-nav-button-duration) / 2);
     }
 
-    .navicon:before { top: $height*2.64; }
-    .navicon:after { top: -1 * ($height*2.64); }
+    .navicon:before { top: calc(var(--azwc-nav-button-line-height) * 2.64); }
+    .navicon:after { top: calc(var(--azwc-nav-button-line-height) * -2.64); }
   }
 }
 
 .navicon {
   position: relative;
-  width: $width;
-  height: $height;
-  background: $content-bg;
-  transition: $duration;
-  border-radius: $border-radius;
+  width: var(--azwc-nav-button-line-width);
+  height: var(--azwc-nav-button-line-height);
+  background: var(--azwc-nav-button-toggled-content-bg);
+  transition: var(--azwc-nav-button-duration);
+  border-radius: var(--azwc-nav-button-border-radius);
 
   &:before, &:after {
     display: block;
     content: "";
-    width: $width;
-    height: $height;
-    background: $content-bg;
+    width: var(--azwc-nav-button-line-width);
+    height: var(--azwc-nav-button-line-height);
+    background: var(--azwc-nav-button-toggled-content-bg);
     position: absolute;
     z-index: -1;
-    transition: $duration $duration/2;
-    border-radius: $border-radius;
+    transition: var(--azwc-nav-button-duration) calc(var(--azwc-nav-button-duration) / 2);
+    border-radius: var(--azwc-nav-button-border-radius);
   }
 
-  &:before { top: $height*2; }
-  &:after { top: -1 * ($height*2); }
+  &:before { top: calc(var(--azwc-nav-button-line-height) * 2); }
+  &:after { top: calc(var(--azwc-nav-button-line-height) * -2); }
 }
 
 .open:not(.steps) .navicon:before,
@@ -84,40 +87,40 @@ $padding-top: ($size - $height) / 2;
 
 .open .navicon:before,
 .open .navicon:after {
-  transition: $duration;
+  transition: var(--azwc-nav-button-duration);
 }
 
 /* Minus */
-.open { transform: scale($toggled-size); }
+.open { transform: scale(var(--azwc-nav-button-toggled-size)); }
 
 /* Arrows */
 .open.larr .navicon,
 .open.rarr .navicon,
 .open.uarr .navicon {
     &:before, &:after {
-      width: $width*0.6;
+      width: calc(var(--azwc-nav-button-line-width) * 0.6);
     }
 
     &:before { transform: rotate(35deg); transform-origin: left top; }
     &:after { transform: rotate(-35deg); transform-origin: left bottom; }
 }
-.open.uarr { transform: scale($toggled-size) rotate(90deg); }
+.open.uarr { transform: scale(var(--azwc-nav-button-toggled-size)) rotate(90deg); }
 .open.darr .navicon {
   &:before, &:after {
-    width: $width*0.6;
+    width: calc(var(--azwc-nav-button-line-width) * 0.6);
   }
 
   &:before { transform: rotate(35deg); transform-origin: left top; }
   &:after { transform: rotate(-35deg); transform-origin: left bottom; }
 }
-.open.darr { transform: scale($toggled-size) rotate(-90deg); }
+.open.darr { transform: scale(var(--azwc-nav-button-toggled-size)) rotate(-90deg); }
 
 
 
 /* Arrows */
 .open.rarr .navicon {
-  &:before { transform: translate3d($width*0.4,0,0) rotate(-35deg); transform-origin: right top; }
-  &:after { transform: translate3d($width*0.4,0,0) rotate(35deg); transform-origin: right bottom; }
+  &:before { transform: translate3d(calc(var(--azwc-nav-button-line-width) * 0.4),0,0) rotate(-35deg); transform-origin: right top; }
+  &:after { transform: translate3d(calc(var(--azwc-nav-button-line-width) * 0.4),0,0) rotate(35deg); transform-origin: right bottom; }
 }
 
 /* × and + */
@@ -131,5 +134,5 @@ $padding-top: ($size - $height) / 2;
   }
 }
 .open.plus { 
-  transform: scale($toggled-size) rotate(45deg) 
+  transform: scale(var(--azwc-nav-button-toggled-size)) rotate(45deg) 
 }
