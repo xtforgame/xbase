@@ -23,6 +23,7 @@ export namespace Components {
         "setApi": (fileApi: any) => Promise<void>;
     }
     interface AzwcNavButton {
+        "type": 'larr' | 'rarr' | 'uarr' | 'darr' | 'x' | 'plus' | '';
     }
     interface AzwcSpinner {
         "containerSize": string;
@@ -147,6 +148,8 @@ declare namespace LocalJSX {
         "basePath"?: string;
     }
     interface AzwcNavButton {
+        "onCustomStateChange"?: (event: CustomEvent<any>) => void;
+        "type"?: 'larr' | 'rarr' | 'uarr' | 'darr' | 'x' | 'plus' | '';
     }
     interface AzwcSpinner {
         "containerSize"?: string;

@@ -1,4 +1,4 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Event, EventEmitter, Prop, State, Host, h } from '@stencil/core';
 
 @Component({
   tag: 'azwc-nav-button',
@@ -6,29 +6,33 @@ import { Component, Host, h } from '@stencil/core';
   shadow: false,
 })
 export class AzwcNavButton {
+  @Prop() type: 'larr' | 'rarr' | 'uarr' | 'darr' | 'x' | 'plus' | '';
+  @State() isOpen: boolean = false;
+
+  @Event({
+    eventName: 'customStateChange',
+    composed: true,
+    cancelable: true,
+    bubbles: true,
+  }) customStateChange: EventEmitter;
+
+  handleClick(e: MouseEvent) {
+    this.isOpen = !this.isOpen;
+    this.customStateChange.emit({
+      open: this.isOpen,
+      azwcref: this,
+    });
+  }
 
   render() {
+    const cls = ['navicon-button', this.type || ''];
+    if (this.isOpen) {
+      cls.push('open');
+    }
+    const classes = cls.join(' ');
     return (
       <Host>
-        <a class="navicon-button larr">
-          <div class="navicon"></div>
-        </a>
-        <a class="navicon-button rarr">
-          <div class="navicon"></div>
-        </a>
-        <a class="navicon-button uarr">
-          <div class="navicon"></div>
-        </a>
-        <a class="navicon-button darr">
-          <div class="navicon"></div>
-        </a>
-        <a class="navicon-button x">
-          <div class="navicon"></div>
-        </a>
-        <a class="navicon-button plus">
-          <div class="navicon"></div>
-        </a>
-        <a class="navicon-button">
+        <a class={classes} onClick={(e) => this.handleClick(e)}>
           <div class="navicon"></div>
         </a>
       </Host>
