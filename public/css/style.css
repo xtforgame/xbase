@@ -1,3 +1,147 @@
+@charset "UTF-8";
+azwc-nav-button {
+  /* Smoother animations */
+}
+azwc-nav-button *, azwc-nav-button *:before, azwc-nav-button *:after {
+  transform: translate3d(0, 0, 0);
+}
+
+.navicon-button {
+  background-color: brown;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  padding: 2.09375rem 1rem;
+  transition: 0.25s;
+  cursor: pointer;
+  user-select: none;
+  opacity: 0.8;
+}
+.navicon-button .navicon:before, .navicon-button .navicon:after {
+  transition: 0.25s;
+}
+.navicon-button:hover {
+  transition: 0.5s;
+  opacity: 1;
+}
+.navicon-button:hover .navicon:before, .navicon-button:hover .navicon:after {
+  transition: 0.25s;
+}
+.navicon-button:hover .navicon:before {
+  top: 0.825rem;
+}
+.navicon-button:hover .navicon:after {
+  top: -0.825rem;
+}
+
+.navicon {
+  position: relative;
+  width: 2.5rem;
+  height: 0.3125rem;
+  background: #FFF;
+  transition: 0.5s;
+}
+.navicon:before, .navicon:after {
+  display: block;
+  content: "";
+  height: 0.3125rem;
+  width: 2.5rem;
+  background: #FFF;
+  position: absolute;
+  z-index: -1;
+  transition: 0.5s 0.25s;
+}
+.navicon:before {
+  top: 0.625rem;
+}
+.navicon:after {
+  top: -0.625rem;
+}
+
+.open:not(.steps) .navicon:before,
+.open:not(.steps) .navicon:after {
+  top: 0 !important;
+}
+
+.open .navicon:before,
+.open .navicon:after {
+  transition: 0.5s;
+}
+
+/* Minus */
+.open {
+  transform: scale(1);
+}
+
+/* Arrows */
+.open.larr .navicon:before, .open.larr .navicon:after,
+.open.rarr .navicon:before,
+.open.rarr .navicon:after,
+.open.uarr .navicon:before,
+.open.uarr .navicon:after {
+  width: 1.5rem;
+}
+.open.larr .navicon:before,
+.open.rarr .navicon:before,
+.open.uarr .navicon:before {
+  transform: rotate(35deg);
+  transform-origin: left top;
+}
+.open.larr .navicon:after,
+.open.rarr .navicon:after,
+.open.uarr .navicon:after {
+  transform: rotate(-35deg);
+  transform-origin: left bottom;
+}
+
+.open.uarr {
+  transform: scale(1) rotate(90deg);
+}
+
+.open.darr .navicon:before, .open.darr .navicon:after {
+  width: 1.5rem;
+}
+.open.darr .navicon:before {
+  transform: rotate(35deg);
+  transform-origin: left top;
+}
+.open.darr .navicon:after {
+  transform: rotate(-35deg);
+  transform-origin: left bottom;
+}
+
+.open.darr {
+  transform: scale(1) rotate(-90deg);
+}
+
+/* Arrows */
+.open.rarr .navicon:before {
+  transform: translate3d(1em, 0, 0) rotate(-35deg);
+  transform-origin: right top;
+}
+.open.rarr .navicon:after {
+  transform: translate3d(1em, 0, 0) rotate(35deg);
+  transform-origin: right bottom;
+}
+
+/* × and + */
+.open.plus .navicon,
+.open.x .navicon {
+  background: transparent;
+}
+.open.plus .navicon:before,
+.open.x .navicon:before {
+  transform: rotate(-45deg);
+}
+.open.plus .navicon:after,
+.open.x .navicon:after {
+  transform: rotate(45deg);
+}
+
+.open.plus {
+  transform: scale(1) rotate(45deg);
+}
+
 azwc-accordion {
   display: block;
 }

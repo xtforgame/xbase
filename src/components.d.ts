@@ -22,6 +22,8 @@ export namespace Components {
         "reload": (newPaths?: string[]) => Promise<void>;
         "setApi": (fileApi: any) => Promise<void>;
     }
+    interface AzwcNavButton {
+    }
     interface AzwcSpinner {
         "containerSize": string;
         "size": string;
@@ -85,6 +87,12 @@ declare global {
         prototype: HTMLAzwcFileManagerElement;
         new (): HTMLAzwcFileManagerElement;
     };
+    interface HTMLAzwcNavButtonElement extends Components.AzwcNavButton, HTMLStencilElement {
+    }
+    var HTMLAzwcNavButtonElement: {
+        prototype: HTMLAzwcNavButtonElement;
+        new (): HTMLAzwcNavButtonElement;
+    };
     interface HTMLAzwcSpinnerElement extends Components.AzwcSpinner, HTMLStencilElement {
     }
     var HTMLAzwcSpinnerElement: {
@@ -115,6 +123,7 @@ declare global {
         "azwc-collapse-t1": HTMLAzwcCollapseT1Element;
         "azwc-dialog": HTMLAzwcDialogElement;
         "azwc-file-manager": HTMLAzwcFileManagerElement;
+        "azwc-nav-button": HTMLAzwcNavButtonElement;
         "azwc-spinner": HTMLAzwcSpinnerElement;
         "azwc-spinner-mask": HTMLAzwcSpinnerMaskElement;
         "azwc-swiper": HTMLAzwcSwiperElement;
@@ -136,6 +145,8 @@ declare namespace LocalJSX {
     }
     interface AzwcFileManager {
         "basePath"?: string;
+    }
+    interface AzwcNavButton {
     }
     interface AzwcSpinner {
         "containerSize"?: string;
@@ -172,6 +183,7 @@ declare namespace LocalJSX {
         "azwc-collapse-t1": AzwcCollapseT1;
         "azwc-dialog": AzwcDialog;
         "azwc-file-manager": AzwcFileManager;
+        "azwc-nav-button": AzwcNavButton;
         "azwc-spinner": AzwcSpinner;
         "azwc-spinner-mask": AzwcSpinnerMask;
         "azwc-swiper": AzwcSwiper;
@@ -187,6 +199,7 @@ declare module "@stencil/core" {
             "azwc-collapse-t1": LocalJSX.AzwcCollapseT1 & JSXBase.HTMLAttributes<HTMLAzwcCollapseT1Element>;
             "azwc-dialog": LocalJSX.AzwcDialog & JSXBase.HTMLAttributes<HTMLAzwcDialogElement>;
             "azwc-file-manager": LocalJSX.AzwcFileManager & JSXBase.HTMLAttributes<HTMLAzwcFileManagerElement>;
+            "azwc-nav-button": LocalJSX.AzwcNavButton & JSXBase.HTMLAttributes<HTMLAzwcNavButtonElement>;
             "azwc-spinner": LocalJSX.AzwcSpinner & JSXBase.HTMLAttributes<HTMLAzwcSpinnerElement>;
             "azwc-spinner-mask": LocalJSX.AzwcSpinnerMask & JSXBase.HTMLAttributes<HTMLAzwcSpinnerMaskElement>;
             "azwc-swiper": LocalJSX.AzwcSwiper & JSXBase.HTMLAttributes<HTMLAzwcSwiperElement>;

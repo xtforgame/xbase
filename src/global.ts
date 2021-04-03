@@ -1,3 +1,4 @@
+import { AzwcNavButton } from './components/azwc-nav-button/azwc-nav-button';
 import { AzwcAccordion } from './components/azwc-accordion/azwc-accordion';
 import { AzwcDialog } from './components/azwc-dialog/azwc-dialog';
 import { AzwcFileManager } from './components/azwc-file-manager/azwc-file-manager';
@@ -13,6 +14,7 @@ import * as utils from './utils';
 
 export default async function () {
   const exportData = {
+    AzwcNavButton,
     AzwcAccordion,
     AzwcDialog,
     AzwcFileManager,
