@@ -38,7 +38,7 @@ azwc-nav-button {
   transition: calc(var(--azwc-nav-button-duration) / 2);
   cursor: pointer;
   user-select: none;
-  opacity: .8;
+  opacity: 1; // .8;
 
   .navicon:before, .navicon:after {
     transition: calc(var(--azwc-nav-button-duration) / 2);
