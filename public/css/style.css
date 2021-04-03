@@ -1,7 +1,8 @@
 @charset "UTF-8";
 :root {
   --azwc-nav-button-line-width: 2rem;
-  --azwc-nav-button-border-radius: 2rem;
+  --azwc-nav-button-line-border-radius: calc(var(--azwc-nav-button-line-width) / 16);
+  --azwc-nav-button-border-radius: 50%;
   --azwc-nav-button-duration: .5s;
   --azwc-nav-button-toggled-size: 1;
   --azwc-nav-button-toggled-btn-bg: #274380;
@@ -18,6 +19,7 @@ azwc-nav-button {
   height: var(--azwc-nav-button-size);
   display: inline-block;
   background-color: var(--azwc-nav-button-toggled-btn-bg);
+  border-radius: var(--azwc-nav-button-border-radius);
 }
 azwc-nav-button *, azwc-nav-button *:before, azwc-nav-button *:after {
   transform: translate3d(0, 0, 0);
@@ -55,7 +57,7 @@ azwc-nav-button *, azwc-nav-button *:before, azwc-nav-button *:after {
   height: var(--azwc-nav-button-line-height);
   background: var(--azwc-nav-button-toggled-content-bg);
   transition: var(--azwc-nav-button-duration);
-  border-radius: var(--azwc-nav-button-border-radius);
+  border-radius: var(--azwc-nav-button-line-border-radius);
 }
 .navicon:before, .navicon:after {
   display: block;
@@ -66,7 +68,7 @@ azwc-nav-button *, azwc-nav-button *:before, azwc-nav-button *:after {
   position: absolute;
   z-index: -1;
   transition: var(--azwc-nav-button-duration) calc(var(--azwc-nav-button-duration) / 2);
-  border-radius: var(--azwc-nav-button-border-radius);
+  border-radius: var(--azwc-nav-button-line-border-radius);
 }
 .navicon:before {
   top: calc(var(--azwc-nav-button-line-height) * 2);
