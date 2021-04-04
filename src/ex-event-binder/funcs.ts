@@ -34,6 +34,13 @@ export class FakeClickSource {
   getSender = <SenderType>(type: string) => {
     return (<any>this.sender) as SenderType;
   }
+
+  addListener = (cb: (e : Event) => any) => {
+
+  }
+  removeListener = (cb: (e : Event) => any) => {
+
+  }
 }
 
 

@@ -5,6 +5,8 @@ export type EbEventSource = {
   getEventElement: () => HTMLElement;
   syncValue: <EventValue>(valueType: string, v: EventValue) => void;
   getSender: <SenderType>(valueType: string) => SenderType;
+  addListener: (cb: (e : Event) => any) => any;
+  removeListener: (cb: (e : Event) => any) => any;
 };
 
 export type EbEventDestination = {

@@ -17,7 +17,10 @@ export class EbEventBinder {
 
   senderEventLinksMap: {
     [senderId: string]: {
-      [eventType: string]: EbEventLink[],
+      [eventType: string]: {
+        callback: (e: Event) => any,
+        links: EbEventLink[],
+      },
     },
   };
 
@@ -54,8 +57,25 @@ export class EbEventBinder {
 
   addLinkCore(link: EbEventLink) {
     const senderEventLinks = this.senderEventLinksMap[link.senderId] = this.senderEventLinksMap[link.senderId] || {};
-    const sourceLinks = senderEventLinks[link.sourceEventName] = senderEventLinks[link.sourceEventName] || [];
-    sourceLinks.push(link);
+    const sourceLinks = senderEventLinks[link.sourceEventName] = senderEventLinks[link.sourceEventName] || {
+      callback: null,
+      links: [],
+    };
+    if (!sourceLinks.callback) {
+      sourceLinks.callback = (e: Event) => {
+        sourceLinks.links.forEach(({ source, valueType, callback }) => {
+          console.log('sourceLinks.links.forEach');
+          callback({
+            nativeEvent: e,
+            valueType: valueType,
+            value: source.getValue(valueType),
+            target: source,
+          });
+        });
+      }
+      link.source.addListener(sourceLinks.callback);
+    }
+    sourceLinks.links.push(link);
 
     const receiverEventLinks = this.receiverEventLinksMap[link.receiverId] = this.receiverEventLinksMap[link.receiverId] || {};
     const destinationLinks = receiverEventLinks[link.destinationEventName] = receiverEventLinks[link.destinationEventName] || [];

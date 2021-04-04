@@ -1,4 +1,4 @@
-import { Component, Method, Event, EventEmitter, Prop, State, Host, h } from '@stencil/core';
+import { Component, Element, Method, Event, EventEmitter, Prop, State, Host, h } from '@stencil/core';
 import { ClickSource } from './eb';
 import {
   EbEventSenderWrapper,
@@ -33,6 +33,8 @@ export class AzwcNavButton {
   async getInst() {
     return this;
   }
+
+  @Element() host: HTMLElement;
 
   handleClick(e: MouseEvent) {
     this.isOpen = !this.isOpen;
