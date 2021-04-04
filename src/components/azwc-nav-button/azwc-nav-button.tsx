@@ -13,6 +13,7 @@ export class AzwcNavButton {
   static ClickSource = ClickSource;
 
   @Prop() type: 'larr' | 'rarr' | 'uarr' | 'darr' | 'x' | 'plus' | '';
+  @Prop() stayclosed: boolean;
   @State() isOpen: boolean = false;
 
   @Event({
@@ -47,7 +48,7 @@ export class AzwcNavButton {
 
   render() {
     const cls = ['navicon-button', this.type || ''];
-    if (this.isOpen) {
+    if (this.isOpen && !this.stayclosed) {
       cls.push('open');
     }
     const classes = cls.join(' ');

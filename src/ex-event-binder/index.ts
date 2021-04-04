@@ -126,18 +126,15 @@ export class EbEventBinder {
       return null;
     }
     const receiver = this.receiverMap[receiverId];
-    console.log('receiver :', receiver);
     if (!receiver) {
       return null;
     }
     const destination = receiver.destinations[destinationEventName];
-    console.log('destination :', destination);
     if (!destination) {
       return null;
     }
 
     const callback = (exEvent: EbEventType) => {
-      console.log('exEvent :', exEvent);
       destination.changeValue(exEvent.valueType, exEvent.value);
       cb(exEvent);
     }

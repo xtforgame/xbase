@@ -85,6 +85,7 @@ export class OnOffSource {
   syncValue = <EventValue>(type: string, v: EventValue) => {
     this.component.isOpen = v;
   }
+
   getSender = <SenderType>(type: string) => {
     return (<any>this.sender) as SenderType;
   }

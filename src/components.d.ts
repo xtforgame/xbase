@@ -25,6 +25,7 @@ export namespace Components {
     }
     interface AzwcNavButton {
         "getInst": () => Promise<this>;
+        "stayclosed": boolean;
         "type": 'larr' | 'rarr' | 'uarr' | 'darr' | 'x' | 'plus' | '';
     }
     interface AzwcSpinner {
@@ -151,6 +152,7 @@ declare namespace LocalJSX {
     }
     interface AzwcNavButton {
         "onCustomStateChange"?: (event: CustomEvent<any>) => void;
+        "stayclosed"?: boolean;
         "type"?: 'larr' | 'rarr' | 'uarr' | 'darr' | 'x' | 'plus' | '';
     }
     interface AzwcSpinner {

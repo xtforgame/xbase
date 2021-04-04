@@ -121,7 +121,7 @@
       </ul>
     </aside>
     <section style="font-size: 10px;">
-      <azwc-nav-button id="btn1" type="larr"></azwc-nav-button>
+      <azwc-nav-button id="btn1" type="larr" stayclosed></azwc-nav-button>
       <azwc-nav-button id="btn2" type="rarr"></azwc-nav-button>
       <azwc-nav-button type="uarr"></azwc-nav-button>
       <azwc-nav-button type="darr"></azwc-nav-button>
@@ -403,7 +403,7 @@
         customElements.whenDefined('azwc-nav-button'),
         customElements.whenDefined('azwc-dialog'),
       ])
-      .then((x) => {
+      .then(() => {
         var anb1 = document.querySelector('#btn1');
         var anb2 = document.querySelector('#btn2');
         var ad = document.querySelector('#dialog1');
@@ -425,12 +425,13 @@
           eventBinder.addSender('btn1', anb1Inst.senderWrapper);
           eventBinder.addSender('btn2', anb2Inst.senderWrapper);
           eventBinder.addReceiver('dialog1', adInst.receiverWrapper);
-          eventBinder.addLink('btn1', 'onoff', 'dialog1', 'dialog-state', 'boolean', ({ target, valueType, value }) => {
-            console.log('value :', value);
+
+          eventBinder.addLink('btn1', 'click', 'dialog1', 'toggle-dialog', 'null', ({ target, valueType, value }) => {
+            console.log('btn1 value :', value);
           }, {});
 
           eventBinder.addLink('btn2', 'onoff', 'dialog1', 'dialog-state', 'boolean', ({ target, valueType, value }) => {
-            console.log('value :', value);
+            console.log('btn2 value :', value);
           }, {});
         });
       });

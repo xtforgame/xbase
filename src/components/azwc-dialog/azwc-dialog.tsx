@@ -1,5 +1,5 @@
 import { Component, Method, State, Event, Element, EventEmitter, Host, Prop, h } from '@stencil/core';
-import { BoolDestination } from './eb';
+import { NullDestination, BoolDestination } from './eb';
 import {
   EbEventReceiverWrapper,
 } from '../../ex-event-binder';
@@ -49,6 +49,7 @@ export class AzwcDialog {
 
   constructor() {
     this.receiverWrapper = new EbEventReceiverWrapper();
+    this.receiverWrapper.addDestination('toggle-dialog', new NullDestination(this.receiverWrapper, this, null));
     this.receiverWrapper.addDestination('dialog-state', new BoolDestination(this.receiverWrapper, this, null));
   }
 
