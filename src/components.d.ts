@@ -23,6 +23,7 @@ export namespace Components {
         "setApi": (fileApi: any) => Promise<void>;
     }
     interface AzwcNavButton {
+        "getInst": () => Promise<this>;
         "type": 'larr' | 'rarr' | 'uarr' | 'darr' | 'x' | 'plus' | '';
     }
     interface AzwcSpinner {

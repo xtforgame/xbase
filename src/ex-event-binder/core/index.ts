@@ -1,20 +1,18 @@
-export type EbComponentWrapper = {
-  getComponent: () => any;
-  getEventElement: (type: string) => HTMLElement;
-}
-
 export type EbEventSource = {
-  getValue: <EventValue>(type: string) => EventValue;
-  getWrapper: () => EbComponentWrapper;
-  syncValue: <EventValue>(type: string, v: EventValue) => void;
-  getSender: <SenderType>(type: string) => SenderType;
+  getRawValueType: () => string;
+  getValue: <EventValue>(valueType: string) => EventValue;
+  getComponent: () => any;
+  getEventElement: () => HTMLElement;
+  syncValue: <EventValue>(valueType: string, v: EventValue) => void;
+  getSender: <SenderType>(valueType: string) => SenderType;
 };
 
 export type EbEventDestination = {
-  getValue: <EventValue>(type: string) => EventValue;
-  getWrapper: () => EbComponentWrapper;
-  watch: <EventValue>(cb : (type: string, v: EventValue) => void) => void;
-  getReceiver: <ReceiverType>(type: string) => ReceiverType;
+  getValue: <EventValue>(valueType: string) => EventValue;
+  getComponent: () => any;
+  getEventElement: () => HTMLElement;
+  watch: <EventValue>(cb : (valueType: string, v: EventValue) => void) => void;
+  getReceiver: <ReceiverType>(valueType: string) => ReceiverType;
 };
 
 export type EbEvent<
@@ -22,6 +20,7 @@ export type EbEvent<
   EventValue = any,
 > = {
   nativeEvent: NativeEventType;
+  valueType: string;
   value: EventValue;
   target: EbEventSource;
 };
@@ -37,11 +36,11 @@ export class EbEventLink<
   EventValue = any,
   EbEventType extends EbEvent<NativeEventType, EventValue> = EbEvent<NativeEventType, EventValue>,
 > {
-
   sourceEventName: string;
   source: EbEventSource;
   destinationEventName: string;
   destination: EbEventDestination;
+  valueType: string;
   callback : EbEventSenderCallback<NativeEventType, EventValue, EbEventType>;
   options: any;
 
@@ -50,6 +49,7 @@ export class EbEventLink<
     source: EbEventSource,
     destinationEventName: string,
     destination: EbEventDestination,
+    valueType: string,
     callback : EbEventSenderCallback<NativeEventType, EventValue, EbEventType>,
     options: any,
   ) {
@@ -57,6 +57,7 @@ export class EbEventLink<
     this.source = source;
     this.destinationEventName = destinationEventName;
     this.destination = destination;
+    this.valueType = valueType;
     this.callback = callback;
     this.options = options;
   }
@@ -71,6 +72,14 @@ export class EbEventSenderWrapper {
     this.eventLinksMap = {};
   }
 
+  addSource(id: string, source: EbEventSource) {
+    this.sources[id] = source;
+  }
+
+  removeSource(id: string) {
+    delete this.sources[id];
+  }
+
   addLink<
     NativeEventType extends Event = Event,
     EventValue = any,
@@ -79,6 +88,7 @@ export class EbEventSenderWrapper {
     sourceEventName: string,
     destinationEventName: string,
     destination: EbEventDestination,
+    valueType: string,
     cb : EbEventSenderCallback<NativeEventType, EventValue, EbEventType>,
     options: any,
   ) : EbEventLink<NativeEventType, EventValue, EbEventType> {
@@ -87,7 +97,7 @@ export class EbEventSenderWrapper {
     }
     const links = this.eventLinksMap[sourceEventName] = this.eventLinksMap[sourceEventName] || [];
     const link = new EbEventLink<NativeEventType, EventValue>(
-      sourceEventName, this.sources[sourceEventName], destinationEventName, destination, cb, options
+      sourceEventName, this.sources[sourceEventName], destinationEventName, destination, valueType, cb, options
     );
     links.push(link);
     return link;
@@ -115,6 +125,14 @@ export class EbEventReceiverWrapper {
     this.eventLinksMap = {};
   }
 
+  addDestination(id: string, destination: EbEventDestination) {
+    this.destinations[id] = destination;
+  }
+
+  removeDestination(id: string) {
+    delete this.destinations[id];
+  }
+
   addLink<
     NativeEventType extends Event = Event,
     EventValue = any,
@@ -123,6 +141,7 @@ export class EbEventReceiverWrapper {
     sourceEventName: string,
     source: EbEventSource,
     destinationEventName: string,
+    valueType: string,
     cb : EbEventSenderCallback<NativeEventType, EventValue, EbEventType>,
     options: any,
   ) : EbEventLink<NativeEventType, EventValue, EbEventType> {
@@ -131,7 +150,7 @@ export class EbEventReceiverWrapper {
     }
     const links = this.eventLinksMap[destinationEventName] = this.eventLinksMap[destinationEventName] || {};
     const link = new EbEventLink<NativeEventType, EventValue, EbEventType>(
-      sourceEventName, source, destinationEventName, this.destinations[destinationEventName], cb, options
+      sourceEventName, source, destinationEventName, this.destinations[destinationEventName], valueType, cb, options
     );
     links[sourceEventName] = link;
     return link;

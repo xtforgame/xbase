@@ -121,7 +121,7 @@
       </ul>
     </aside>
     <section style="font-size: 10px;">
-      <azwc-nav-button type="larr"></azwc-nav-button>
+      <azwc-nav-button id="btn1" type="larr"></azwc-nav-button>
       <azwc-nav-button type="rarr"></azwc-nav-button>
       <azwc-nav-button type="uarr"></azwc-nav-button>
       <azwc-nav-button type="darr"></azwc-nav-button>
@@ -391,6 +391,28 @@
       var canviCloseBtn = document.querySelector('.canvi-user-info__close');
       canviCloseBtn.addEventListener("click", function () {
         t.close();
+      });
+
+      var EbEventBinder = azwc_classes.eventBinder.EbEventBinder;
+      console.log('EbEventBinder :', EbEventBinder);
+
+      var eventBinder = new EbEventBinder();
+
+
+
+      customElements.whenDefined('azwc-nav-button')
+      .then((x) => {
+        var anb = document.querySelector('#btn1');
+        anb.componentOnReady()
+        .then(() => anb.getInst())
+        .then((x) => {
+          eventBinder.addSender('x', x.senderWrapper);
+        });
+      });
+
+      var btn1 = document.querySelector('#btn1');
+      btn1.addEventListener('customStateChange', function handleChange(e) {
+        console.log('btn1 Event Recieved:', e);
       });
     }
 

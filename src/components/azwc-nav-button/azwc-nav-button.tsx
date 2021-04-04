@@ -1,4 +1,8 @@
-import { Component, Event, EventEmitter, Prop, State, Host, h } from '@stencil/core';
+import { Component, Method, Event, EventEmitter, Prop, State, Host, h } from '@stencil/core';
+import { ClickSource } from './eb';
+import {
+  EbEventSenderWrapper,
+} from '../../ex-event-binder';
 
 @Component({
   tag: 'azwc-nav-button',
@@ -6,6 +10,8 @@ import { Component, Event, EventEmitter, Prop, State, Host, h } from '@stencil/c
   shadow: false,
 })
 export class AzwcNavButton {
+  static ClickSource = ClickSource;
+
   @Prop() type: 'larr' | 'rarr' | 'uarr' | 'darr' | 'x' | 'plus' | '';
   @State() isOpen: boolean = false;
 
@@ -15,6 +21,18 @@ export class AzwcNavButton {
     cancelable: true,
     bubbles: true,
   }) customStateChange: EventEmitter;
+
+  senderWrapper: EbEventSenderWrapper;
+
+  constructor() {
+    this.senderWrapper = new EbEventSenderWrapper();
+    this.senderWrapper.addSource('click', new ClickSource(this.senderWrapper, this, null));
+  }
+
+  @Method()
+  async getInst() {
+    return this;
+  }
 
   handleClick(e: MouseEvent) {
     this.isOpen = !this.isOpen;

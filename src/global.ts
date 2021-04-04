@@ -11,6 +11,7 @@ import Swiper from 'swiper';
 import { AzwcCanviDrawer } from './components/azwc-canvi-drawer/azwc-canvi-drawer';
 import Canvi from './components/azwc-canvi-drawer/Canvi';
 import * as utils from './utils';
+import * as eventBinder from './ex-event-binder';
 
 export default async function () {
   const exportData = {
@@ -29,6 +30,7 @@ export default async function () {
       Canvi,
     },
     utils,
+    eventBinder,
   };
   (<any>window).__azwc_classes = exportData;
   (<any>window).__azwc_export = exportData;
