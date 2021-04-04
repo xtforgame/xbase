@@ -122,7 +122,7 @@
     </aside>
     <section style="font-size: 10px;">
       <azwc-nav-button id="btn1" type="larr"></azwc-nav-button>
-      <azwc-nav-button type="rarr"></azwc-nav-button>
+      <azwc-nav-button id="btn2" type="rarr"></azwc-nav-button>
       <azwc-nav-button type="uarr"></azwc-nav-button>
       <azwc-nav-button type="darr"></azwc-nav-button>
       <azwc-nav-button type="x"></azwc-nav-button>
@@ -149,7 +149,7 @@
       <button class="js-canvi-open-button--left btn">Open Left Navbar</button>
       <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
       <button id="open-dialog-btn">Open Modal</button>
-      <azwc-dialog dialogid="d1">
+      <azwc-dialog id="dialog1" dialogid="d1">
         Content<br />
         Content<br />
         Content<br />
@@ -399,17 +399,37 @@
 
       var eventBinder = new EbEventBinder();
 
-      customElements.whenDefined('azwc-nav-button')
+      Promise.all([
+        customElements.whenDefined('azwc-nav-button'),
+        customElements.whenDefined('azwc-dialog'),
+      ])
       .then((x) => {
-        var anb = document.querySelector('#btn1');
-        anb.componentOnReady()
-        .then(() => anb.getInst())
-        .then((x) => {
-          receiverWrapper = new EbEventReceiverWrapper();
-          receiverWrapper.addDestination('dialog-state', new FakeNullDestination(this.receiverWrapper, this, null));
-          eventBinder.addSender('btn1', x.senderWrapper);
-          eventBinder.addReceiver('fake1', receiverWrapper);
-          eventBinder.addLink('btn1', 'onoff', 'fake1', 'dialog-state', 'null', ({ target, valueType, value }) => {
+        var anb1 = document.querySelector('#btn1');
+        var anb2 = document.querySelector('#btn2');
+        var ad = document.querySelector('#dialog1');
+        Promise.all([
+          anb1.componentOnReady(),
+          anb2.componentOnReady(),
+          ad.componentOnReady(),
+        ])
+        .then(() => Promise.all([
+          anb1.getInst(),
+          anb2.getInst(),
+          ad.getInst(),
+        ]))
+        .then(([anb1Inst, anb2Inst, adInst]) => {
+          // receiverWrapper = new EbEventReceiverWrapper();
+          // receiverWrapper.addDestination('dialog-state', new FakeNullDestination(this.receiverWrapper, this, null));
+          // eventBinder.addReceiver('fake1', receiverWrapper);
+          
+          eventBinder.addSender('btn1', anb1Inst.senderWrapper);
+          eventBinder.addSender('btn2', anb2Inst.senderWrapper);
+          eventBinder.addReceiver('dialog1', adInst.receiverWrapper);
+          eventBinder.addLink('btn1', 'onoff', 'dialog1', 'dialog-state', 'boolean', ({ target, valueType, value }) => {
+            console.log('value :', value);
+          }, {});
+
+          eventBinder.addLink('btn2', 'onoff', 'dialog1', 'dialog-state', 'boolean', ({ target, valueType, value }) => {
             console.log('value :', value);
           }, {});
         });

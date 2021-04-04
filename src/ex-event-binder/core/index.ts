@@ -15,7 +15,8 @@ export type EbEventDestination = {
   changeValue: <EventValue>(valueType: string, value: EventValue) => any;
   getComponent: () => any;
   getEventElement: () => HTMLElement;
-  watch: <EventValue>(valueType: string, cb : (valueType: string, v: EventValue) => void) => void;
+  watch: <EventValue>(cb : (valueType: string, v: EventValue) => void) => void;
+  unwatch: <EventValue>(cb : (valueType: string, v: EventValue) => void) => void;
   getReceiver: <ReceiverType>(valueType: string) => ReceiverType;
 };
 

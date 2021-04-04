@@ -26,7 +26,10 @@ export class EbEventBinder {
 
   receiverEventLinksMap: {
     [receiverId: string]: {
-      [eventType: string]: EbEventLink[],
+      [eventType: string]: {
+        callback: (valueType : string, v: any) => any,
+        links: EbEventLink[],
+      },
     },
   };
 
@@ -77,8 +80,21 @@ export class EbEventBinder {
     sourceLinks.links.push(link);
 
     const receiverEventLinks = this.receiverEventLinksMap[link.receiverId] = this.receiverEventLinksMap[link.receiverId] || {};
-    const destinationLinks = receiverEventLinks[link.destinationEventName] = receiverEventLinks[link.destinationEventName] || [];
-    destinationLinks.push(link);
+    const destinationLinks = receiverEventLinks[link.destinationEventName] = receiverEventLinks[link.destinationEventName] || {
+      callback: null,
+      links: [],
+    };
+    if (!destinationLinks.callback) {
+      destinationLinks.callback = (valueType : string, v: any) => {
+        destinationLinks.links.forEach(({ source }) => {
+          if (source.getValue(valueType) !== v) {
+            source.syncValue(valueType, v);
+          }
+        });
+      }
+      link.destination.watch(destinationLinks.callback);
+    }
+    destinationLinks.links.push(link);
   }
 
   addLink<
@@ -103,15 +119,18 @@ export class EbEventBinder {
       return null;
     }
     const receiver = this.receiverMap[receiverId];
+    console.log('receiver :', receiver);
     if (!receiver) {
       return null;
     }
     const destination = receiver.destinations[destinationEventName];
+    console.log('destination :', destination);
     if (!destination) {
       return null;
     }
 
     const callback = (exEvent: EbEventType) => {
+      console.log('exEvent :', exEvent);
       destination.changeValue(exEvent.valueType, exEvent.value);
       cb(exEvent);
     }

@@ -1,5 +1,8 @@
-import { Component, State, Event, Element, EventEmitter, Host, Prop, h } from '@stencil/core';
-
+import { Component, Method, State, Event, Element, EventEmitter, Host, Prop, h } from '@stencil/core';
+import { BoolDestination } from './eb';
+import {
+  EbEventReceiverWrapper,
+} from '../../ex-event-binder';
 @Component({
   tag: 'azwc-dialog',
   // styleUrl: 'azwc-dialog.scss',
@@ -36,6 +39,18 @@ export class AzwcDialog {
   }) customStateChange: EventEmitter;
 
   @Element() host: HTMLElement;
+
+  @Method()
+  async getInst() {
+    return this;
+  }
+
+  receiverWrapper: EbEventReceiverWrapper;
+
+  constructor() {
+    this.receiverWrapper = new EbEventReceiverWrapper();
+    this.receiverWrapper.addDestination('dialog-state', new BoolDestination(this.receiverWrapper, this, null));
+  }
 
   componentDidLoad() {
     // if (this.dialogid && !AzwcDialog.allInstances[this.dialogid]) {

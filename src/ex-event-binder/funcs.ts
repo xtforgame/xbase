@@ -77,8 +77,10 @@ export class FakeNullDestination {
     return this.elem;
   }
 
-  // watch: <EventValue>(cb : (valueType: string, v: EventValue) => void) => void;
-  syncValue = <EventValue>(valueType: string, cb : (valueType: string, v: EventValue) => void) => {
+  watch = <EventValue>(cb : (valueType: string, v: EventValue) => void) => {
+
+  }
+  unwatch = <EventValue>(cb : (valueType: string, v: EventValue) => void) => {
 
   }
 

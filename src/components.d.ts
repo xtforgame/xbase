@@ -16,6 +16,7 @@ export namespace Components {
     }
     interface AzwcDialog {
         "dialogid": string;
+        "getInst": () => Promise<this>;
     }
     interface AzwcFileManager {
         "basePath": string;
