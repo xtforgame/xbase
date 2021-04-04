@@ -394,11 +394,10 @@
       });
 
       var EbEventBinder = azwc_classes.eventBinder.EbEventBinder;
-      console.log('EbEventBinder :', EbEventBinder);
+      var EbEventReceiverWrapper = azwc_classes.eventBinder.EbEventReceiverWrapper;
+      var FakeNullDestination = azwc_classes.eventBinder.FakeNullDestination;
 
       var eventBinder = new EbEventBinder();
-
-
 
       customElements.whenDefined('azwc-nav-button')
       .then((x) => {
@@ -406,7 +405,13 @@
         anb.componentOnReady()
         .then(() => anb.getInst())
         .then((x) => {
-          eventBinder.addSender('x', x.senderWrapper);
+          receiverWrapper = new EbEventReceiverWrapper();
+          receiverWrapper.addDestination('dialog-state', new FakeNullDestination(this.receiverWrapper, this, null));
+          eventBinder.addSender('btn1', x.senderWrapper);
+          eventBinder.addReceiver('fake1', receiverWrapper);
+          eventBinder.addLink('btn1', 'click', 'fake1', 'dialog-state', 'null', (...args) => {
+            console.log('...args :', ...args);
+          }, {});
         });
       });
 

@@ -21,9 +21,17 @@ export class EbEventBinder {
     },
   };
 
+  receiverEventLinksMap: {
+    [receiverId: string]: {
+      [eventType: string]: EbEventLink[],
+    },
+  };
+
   constructor() {
     this.senderMap = {};
     this.receiverMap = {};
+    this.senderEventLinksMap = {};
+    this.receiverEventLinksMap = {};
   }
 
   addSender(id: string, sender: EbEventSenderWrapper) {
@@ -44,29 +52,53 @@ export class EbEventBinder {
 
   // =====================
 
+  addLinkCore(link: EbEventLink) {
+    const senderEventLinks = this.senderEventLinksMap[link.senderId] = this.senderEventLinksMap[link.senderId] || {};
+    const sourceLinks = senderEventLinks[link.sourceEventName] = senderEventLinks[link.sourceEventName] || [];
+    sourceLinks.push(link);
+
+    const receiverEventLinks = this.receiverEventLinksMap[link.receiverId] = this.receiverEventLinksMap[link.receiverId] || {};
+    const destinationLinks = receiverEventLinks[link.destinationEventName] = receiverEventLinks[link.destinationEventName] || [];
+    destinationLinks.push(link);
+  }
+
   addLink<
     NativeEventType extends Event = Event,
     EventValue = any,
     EbEventType extends EbEvent<NativeEventType, EventValue> = EbEvent<NativeEventType, EventValue>,
   >(
     senderId: string,
-    receiverId: string,
     sourceEventName: string,
-    source: EbEventDestination,
+    receiverId: string,
     destinationEventName: string,
-    destination: EbEventDestination,
     valueType: string,
     cb : EbEventSenderCallback<NativeEventType, EventValue, EbEventType>,
     options: any,
   ) : EbEventLink<NativeEventType, EventValue, EbEventType> {
-    if (!this.senderMap[sourceEventName]) {
+    const sender = this.senderMap[senderId];
+    if (!sender) {
       return null;
     }
-    // const links = this.eventLinksMap[sourceEventName] = this.eventLinksMap[sourceEventName] || [];
-    // const link = new EbEventLink<NativeEventType, EventValue>(
-    //   sourceEventName, this.sources[sourceEventName], destinationEventName, destination, valueType, cb, options
-    // );
-    // links.push(link);
-    // return link;
+    const source = sender.sources[sourceEventName];
+    if (!source) {
+      return null;
+    }
+    const receiver = this.receiverMap[receiverId];
+    if (!receiver) {
+      return null;
+    }
+    const destination = receiver.destinations[destinationEventName];
+    if (!destination) {
+      return null;
+    }
+    const link = new EbEventLink<NativeEventType, EventValue>(
+      senderId,
+      sourceEventName,
+      source,
+      receiverId,
+      destinationEventName,
+      destination, valueType, cb, options
+    );
+    this.addLinkCore(link);
   }
 }

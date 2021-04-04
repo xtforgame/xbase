@@ -8,10 +8,11 @@ export type EbEventSource = {
 };
 
 export type EbEventDestination = {
+  getRawValueType: () => string;
   getValue: <EventValue>(valueType: string) => EventValue;
   getComponent: () => any;
   getEventElement: () => HTMLElement;
-  watch: <EventValue>(cb : (valueType: string, v: EventValue) => void) => void;
+  watch: <EventValue>(valueType: string, cb : (valueType: string, v: EventValue) => void) => void;
   getReceiver: <ReceiverType>(valueType: string) => ReceiverType;
 };
 
@@ -36,8 +37,10 @@ export class EbEventLink<
   EventValue = any,
   EbEventType extends EbEvent<NativeEventType, EventValue> = EbEvent<NativeEventType, EventValue>,
 > {
+  senderId: string;
   sourceEventName: string;
   source: EbEventSource;
+  receiverId: string;
   destinationEventName: string;
   destination: EbEventDestination;
   valueType: string;
@@ -45,16 +48,20 @@ export class EbEventLink<
   options: any;
 
   constructor(
+    senderId: string,
     sourceEventName: string,
     source: EbEventSource,
+    receiverId: string,
     destinationEventName: string,
     destination: EbEventDestination,
     valueType: string,
     callback : EbEventSenderCallback<NativeEventType, EventValue, EbEventType>,
     options: any,
   ) {
+    this.senderId = senderId;
     this.sourceEventName = sourceEventName;
     this.source = source;
+    this.receiverId = receiverId;
     this.destinationEventName = destinationEventName;
     this.destination = destination;
     this.valueType = valueType;
@@ -79,41 +86,6 @@ export class EbEventSenderWrapper {
   removeSource(id: string) {
     delete this.sources[id];
   }
-
-  addLink<
-    NativeEventType extends Event = Event,
-    EventValue = any,
-    EbEventType extends EbEvent<NativeEventType, EventValue> = EbEvent<NativeEventType, EventValue>,
-  >(
-    sourceEventName: string,
-    destinationEventName: string,
-    destination: EbEventDestination,
-    valueType: string,
-    cb : EbEventSenderCallback<NativeEventType, EventValue, EbEventType>,
-    options: any,
-  ) : EbEventLink<NativeEventType, EventValue, EbEventType> {
-    if (!this.sources[sourceEventName]) {
-      return null;
-    }
-    const links = this.eventLinksMap[sourceEventName] = this.eventLinksMap[sourceEventName] || [];
-    const link = new EbEventLink<NativeEventType, EventValue>(
-      sourceEventName, this.sources[sourceEventName], destinationEventName, destination, valueType, cb, options
-    );
-    links.push(link);
-    return link;
-  }
-
-  removeLink<
-    NativeEventType extends Event = Event,
-    EventValue = any,
-    EbEventType extends EbEvent<NativeEventType, EventValue> = EbEvent<NativeEventType, EventValue>,
-  >(sourceEventName: string, link : EbEventLink<NativeEventType, EventValue, EbEventType>) {
-    const links = this.eventLinksMap[sourceEventName] = this.eventLinksMap[sourceEventName] || [];
-    const l = links.indexOf(link);
-    if (l !== -1) {
-      links.splice(l, 1);
-    }
-  }
 }
 
 export class EbEventReceiverWrapper {
@@ -131,34 +103,6 @@ export class EbEventReceiverWrapper {
 
   removeDestination(id: string) {
     delete this.destinations[id];
-  }
-
-  addLink<
-    NativeEventType extends Event = Event,
-    EventValue = any,
-    EbEventType extends EbEvent<NativeEventType, EventValue> = EbEvent<NativeEventType, EventValue>,
-  >(
-    sourceEventName: string,
-    source: EbEventSource,
-    destinationEventName: string,
-    valueType: string,
-    cb : EbEventSenderCallback<NativeEventType, EventValue, EbEventType>,
-    options: any,
-  ) : EbEventLink<NativeEventType, EventValue, EbEventType> {
-    if (!this.destinations[destinationEventName]) {
-      return null;
-    }
-    const links = this.eventLinksMap[destinationEventName] = this.eventLinksMap[destinationEventName] || {};
-    const link = new EbEventLink<NativeEventType, EventValue, EbEventType>(
-      sourceEventName, source, destinationEventName, this.destinations[destinationEventName], valueType, cb, options
-    );
-    links[sourceEventName] = link;
-    return link;
-  }
-
-  removeLink(sourceEventName: string, destinationEventName: string) {
-    const links = this.eventLinksMap[destinationEventName] = this.eventLinksMap[destinationEventName] || {};
-    delete links[sourceEventName];
   }
 }
 
