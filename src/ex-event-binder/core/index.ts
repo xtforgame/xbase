@@ -12,6 +12,7 @@ export type EbEventSource = {
 export type EbEventDestination = {
   getRawValueType: () => string;
   getValue: <EventValue>(valueType: string) => EventValue;
+  changeValue: <EventValue>(valueType: string, value: EventValue) => any;
   getComponent: () => any;
   getEventElement: () => HTMLElement;
   watch: <EventValue>(valueType: string, cb : (valueType: string, v: EventValue) => void) => void;

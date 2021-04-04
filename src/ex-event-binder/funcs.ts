@@ -49,16 +49,24 @@ export class FakeNullDestination {
   component : any;
   elem: HTMLElement;
 
+  value: boolean;
+
   constructor(receiver: EbEventReceiverWrapper, component: any, elem: HTMLElement) {
     this.receiver = receiver;
     this.component = component;
     this.elem = elem;
+    this.value = false;
   }
 
   getRawValueType = () => 'null';
 
   getValue = <EventValue>(type: string) => {
-    return null;
+    return (<any>this.value) as EventValue;
+  }
+
+  changeValue = <EventValue>(valueType: string, value: EventValue) => {
+    console.log('changeValue :', valueType, value);
+    this.value = <any>value;
   }
 
   getComponent = () => {

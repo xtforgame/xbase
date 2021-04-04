@@ -110,13 +110,18 @@ export class EbEventBinder {
     if (!destination) {
       return null;
     }
+
+    const callback = (exEvent: EbEventType) => {
+      destination.changeValue(exEvent.valueType, exEvent.value);
+      cb(exEvent);
+    }
     const link = new EbEventLink<NativeEventType, EventValue>(
       senderId,
       sourceEventName,
       source,
       receiverId,
       destinationEventName,
-      destination, valueType, cb, options
+      destination, valueType, callback, options
     );
     this.addLinkCore(link);
   }
