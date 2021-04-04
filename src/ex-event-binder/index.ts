@@ -64,7 +64,6 @@ export class EbEventBinder {
     if (!sourceLinks.callback) {
       sourceLinks.callback = (e: Event) => {
         sourceLinks.links.forEach(({ source, valueType, callback }) => {
-          console.log('sourceLinks.links.forEach');
           callback({
             nativeEvent: e,
             valueType: valueType,

@@ -409,8 +409,8 @@
           receiverWrapper.addDestination('dialog-state', new FakeNullDestination(this.receiverWrapper, this, null));
           eventBinder.addSender('btn1', x.senderWrapper);
           eventBinder.addReceiver('fake1', receiverWrapper);
-          eventBinder.addLink('btn1', 'click', 'fake1', 'dialog-state', 'null', (...args) => {
-            console.log('...args :', ...args);
+          eventBinder.addLink('btn1', 'onoff', 'fake1', 'dialog-state', 'null', ({ target, valueType, value }) => {
+            console.log('value :', value);
           }, {});
         });
       });
@@ -464,8 +464,8 @@
         }, 3000);
       });
     });
-    document.addEventListener('customStateChange', function handleChange(e) {
-      console.log('Event Recieved:', e);
-    });
+    // document.addEventListener('customStateChange', function handleChange(e) {
+    //   console.log('Event Recieved:', e);
+    // });
   </script>
 </html>

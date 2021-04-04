@@ -1,5 +1,5 @@
 import { Component, Element, Method, Event, EventEmitter, Prop, State, Host, h } from '@stencil/core';
-import { ClickSource } from './eb';
+import { ClickSource, OnOffSource } from './eb';
 import {
   EbEventSenderWrapper,
 } from '../../ex-event-binder';
@@ -27,6 +27,7 @@ export class AzwcNavButton {
   constructor() {
     this.senderWrapper = new EbEventSenderWrapper();
     this.senderWrapper.addSource('click', new ClickSource(this.senderWrapper, this, null));
+    this.senderWrapper.addSource('onoff', new OnOffSource(this.senderWrapper, this, null));
   }
 
   @Method()
