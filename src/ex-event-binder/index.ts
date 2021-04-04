@@ -14,6 +14,7 @@ export * from './core';
 export class EbEventBinder {
   senderMap: { [id : string]: EbEventSenderWrapper };
   receiverMap: { [id : string]: EbEventReceiverWrapper };
+  stopReceiveSenderEvent: boolean;
 
   senderEventLinksMap: {
     [senderId: string]: {
@@ -38,6 +39,7 @@ export class EbEventBinder {
     this.receiverMap = {};
     this.senderEventLinksMap = {};
     this.receiverEventLinksMap = {};
+    this.stopReceiveSenderEvent = false;
   }
 
   addSender(id: string, sender: EbEventSenderWrapper) {
@@ -66,6 +68,9 @@ export class EbEventBinder {
     };
     if (!sourceLinks.callback) {
       sourceLinks.callback = (e: Event) => {
+        if (this.stopReceiveSenderEvent) {
+          return;
+        }
         sourceLinks.links.forEach(({ source, valueType, callback }) => {
           callback({
             nativeEvent: e,
@@ -86,11 +91,13 @@ export class EbEventBinder {
     };
     if (!destinationLinks.callback) {
       destinationLinks.callback = (valueType : string, v: any) => {
+        this.stopReceiveSenderEvent = true;
         destinationLinks.links.forEach(({ source }) => {
           if (source.getValue(valueType) !== v) {
             source.syncValue(valueType, v);
           }
         });
+        this.stopReceiveSenderEvent = false;
       }
       link.destination.watch(destinationLinks.callback);
     }

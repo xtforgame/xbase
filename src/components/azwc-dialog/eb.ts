@@ -22,14 +22,14 @@ export class BoolDestination {
   }
 
   changeValue = <EventValue>(valueType: string, value: EventValue) => {
-    // if (this.component.isOpen !== <any>value) {
-    //   if (this.component.isOpen) {
-    //     this.component.close();
-    //   } else {
-    //     this.component.open();
-    //   }
-    // }
-    this.component.isOpen = <any>value;
+    if (this.component.isOpen !== <any>value) {
+      if (value) {
+        this.component.open();
+      } else {
+        this.component.close();
+      }
+    }
+    // this.component.isOpen = <any>value;
   }
 
   getComponent = () => {
@@ -56,8 +56,9 @@ export class BoolDestination {
   // ================
 
   callback = (e : Event) => {
+    const valueType = this.getRawValueType();
     if (this.cb) {
-      this.cb(e);
+      this.cb(valueType, this.getValue(valueType));
     }
   }
 }
