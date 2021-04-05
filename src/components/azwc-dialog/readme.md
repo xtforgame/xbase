@@ -19,6 +19,19 @@
 | `customStateChange` |             | `CustomEvent<any>` |
 
 
+## Methods
+
+### `getInst() => Promise<this>`
+
+
+
+#### Returns
+
+Type: `Promise<this>`
+
+
+
+
 ## Shadow Parts
 
 | Part                       | Description |

@@ -1,0 +1,22 @@
+{
+  "entries": [
+    "./components/azwc-nav-button/azwc-nav-button.js",
+    "./components/azwc-accordion/azwc-accordion.js",
+    "./components/azwc-dialog/azwc-dialog.js",
+    "./components/azwc-file-manager/azwc-file-manager.js",
+    "./components/azwc-spinner/azwc-spinner.js",
+    "./components/azwc-spinner-mask/azwc-spinner-mask.js",
+    "./components/azwc-swiper/azwc-swiper.js",
+    "./components/azwc-collapse-t1/azwc-collapse-t1.js",
+    "./components/azwc-canvi-drawer/azwc-canvi-drawer.js",
+    "./components/my-component/my-component.js"
+  ],
+  "compiler": {
+    "name": "@stencil/core",
+    "version": "2.4.0",
+    "typescriptVersion": "4.1.3"
+  },
+  "collections": [],
+  "bundles": [],
+  "global": "global.js"
+}

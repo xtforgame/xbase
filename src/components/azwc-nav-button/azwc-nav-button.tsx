@@ -38,7 +38,7 @@ export class AzwcNavButton {
 
   @Element() host: HTMLElement;
 
-  handleClick(e: MouseEvent) {
+  handleClick(_: MouseEvent) {
     this.isOpen = !this.isOpen;
     this.customStateChange.emit({
       open: this.isOpen,

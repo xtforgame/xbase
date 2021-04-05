@@ -16,8 +16,8 @@ export class FakeClickSource {
 
   getRawValueType = () => 'null';
 
-  getValue = <EventValue>(type: string) => {
-    return null;
+  getValue = <EventValue>(_: string) => {
+    return (null as EventValue);
   }
 
   getComponent = () => {
@@ -28,17 +28,17 @@ export class FakeClickSource {
     return this.elem;
   }
 
-  syncValue = <EventValue>(type: string, v: EventValue) => {
+  syncValue = <EventValue>(_: string, __: EventValue) => {
 
   }
-  getSender = <SenderType>(type: string) => {
+  getSender = <SenderType>(_: string) => {
     return (<any>this.sender) as SenderType;
   }
 
-  addListener = (cb: (e : Event) => any) => {
+  addListener = (_: (e : Event) => any) => {
 
   }
-  removeListener = (cb: (e : Event) => any) => {
+  removeListener = (_: (e : Event) => any) => {
 
   }
 }
@@ -60,7 +60,7 @@ export class FakeNullDestination {
 
   getRawValueType = () => 'null';
 
-  getValue = <EventValue>(type: string) => {
+  getValue = <EventValue>(_: string) => {
     return (<any>this.value) as EventValue;
   }
 
@@ -77,14 +77,14 @@ export class FakeNullDestination {
     return this.elem;
   }
 
-  watch = <EventValue>(cb : (valueType: string, v: EventValue) => void) => {
+  watch = <EventValue>(_ : (valueType: string, v: EventValue) => void) => {
 
   }
-  unwatch = <EventValue>(cb : (valueType: string, v: EventValue) => void) => {
+  unwatch = <EventValue>(_ : (valueType: string, v: EventValue) => void) => {
 
   }
 
-  getReceiver = <ReceiverType>(type: string) => {
+  getReceiver = <ReceiverType>(_: string) => {
     return (<any>this.receiver) as ReceiverType;
   }
 }

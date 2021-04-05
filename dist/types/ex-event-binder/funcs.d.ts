@@ -5,13 +5,13 @@ export declare class FakeClickSource {
   elem: HTMLElement;
   constructor(sender: EbEventSenderWrapper, component: any, elem: HTMLElement);
   getRawValueType: () => string;
-  getValue: <EventValue>(type: string) => any;
+  getValue: <EventValue>(_: string) => EventValue;
   getComponent: () => any;
   getEventElement: () => HTMLElement;
-  syncValue: <EventValue>(type: string, v: EventValue) => void;
-  getSender: <SenderType>(type: string) => SenderType;
-  addListener: (cb: (e: Event) => any) => void;
-  removeListener: (cb: (e: Event) => any) => void;
+  syncValue: <EventValue>(_: string, __: EventValue) => void;
+  getSender: <SenderType>(_: string) => SenderType;
+  addListener: (_: (e: Event) => any) => void;
+  removeListener: (_: (e: Event) => any) => void;
 }
 export declare class FakeNullDestination {
   receiver: EbEventReceiverWrapper;
@@ -20,11 +20,11 @@ export declare class FakeNullDestination {
   value: boolean;
   constructor(receiver: EbEventReceiverWrapper, component: any, elem: HTMLElement);
   getRawValueType: () => string;
-  getValue: <EventValue>(type: string) => EventValue;
+  getValue: <EventValue>(_: string) => EventValue;
   changeValue: <EventValue>(valueType: string, value: EventValue) => void;
   getComponent: () => any;
   getEventElement: () => HTMLElement;
-  watch: <EventValue>(cb: (valueType: string, v: EventValue) => void) => void;
-  unwatch: <EventValue>(cb: (valueType: string, v: EventValue) => void) => void;
-  getReceiver: <ReceiverType>(type: string) => ReceiverType;
+  watch: <EventValue>(_: (valueType: string, v: EventValue) => void) => void;
+  unwatch: <EventValue>(_: (valueType: string, v: EventValue) => void) => void;
+  getReceiver: <ReceiverType>(_: string) => ReceiverType;
 }

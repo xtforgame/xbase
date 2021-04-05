@@ -1,4 +1,3 @@
-import { Component, Method, Event, EventEmitter, Prop, State, Host, h } from '@stencil/core';
 import {
   EbEventSenderWrapper,
 } from '../../ex-event-binder';
@@ -17,8 +16,8 @@ export class ClickSource {
 
   getRawValueType = () => 'null';
 
-  getValue = <EventValue>(type: string) => {
-    return null;
+  getValue = <EventValue>(_: string) => {
+    return (null as EventValue);
   }
 
   getComponent = () => {
@@ -29,10 +28,10 @@ export class ClickSource {
     return this.elem;
   }
 
-  syncValue = <EventValue>(type: string, v: EventValue) => {
+  syncValue = <EventValue>(_: string, __: EventValue) => {
 
   }
-  getSender = <SenderType>(type: string) => {
+  getSender = <SenderType>(_: string) => {
     return (<any>this.sender) as SenderType;
   }
 
@@ -41,7 +40,7 @@ export class ClickSource {
     this.component.host.addEventListener('customStateChange', this.callback);
   }
 
-  removeListener = (cb: (e : Event) => any) => {
+  removeListener = (_: (e : Event) => any) => {
     this.cb = null;
     this.component.host.removeEventListener('customStateChange', this.callback);
   }
@@ -70,8 +69,8 @@ export class OnOffSource {
 
   getRawValueType = () => 'boolean';
 
-  getValue = <EventValue>(type: string) => {
-    return this.component.isOpen;
+  getValue = <EventValue>(_: string) => {
+    return (<any>this.component.isOpen) as EventValue;
   }
 
   getComponent = () => {
@@ -82,11 +81,11 @@ export class OnOffSource {
     return this.elem;
   }
 
-  syncValue = <EventValue>(type: string, v: EventValue) => {
+  syncValue = <EventValue>(_: string, v: EventValue) => {
     this.component.isOpen = v;
   }
 
-  getSender = <SenderType>(type: string) => {
+  getSender = <SenderType>(_: string) => {
     return (<any>this.sender) as SenderType;
   }
 
@@ -95,7 +94,7 @@ export class OnOffSource {
     this.component.host.addEventListener('customStateChange', this.callback);
   }
 
-  removeListener = (cb: (e : Event) => any) => {
+  removeListener = (_: (e : Event) => any) => {
     this.cb = null;
     this.component.host.removeEventListener('customStateChange', this.callback);
   }

@@ -1,4 +1,3 @@
-import { Component, Method, Event, EventEmitter, Prop, State, Host, h } from '@stencil/core';
 import {
   EbEventReceiverWrapper,
 } from '../../ex-event-binder';
@@ -17,11 +16,11 @@ export class NullDestination {
 
   getRawValueType = () => 'null';
 
-  getValue = <EventValue>(type: string) => {
+  getValue = <EventValue>(_: string) => {
     return (null as EventValue);
   }
 
-  changeValue = <EventValue>(valueType: string, value: EventValue) => {
+  changeValue = <EventValue>(_: string, __: EventValue) => {
     if (!this.component.isOpen) {
       this.component.open();
     } else {
@@ -41,18 +40,18 @@ export class NullDestination {
     this.cb = cb;
     this.component.host.addEventListener('customStateChange', this.callback);
   }
-  unwatch = <EventValue>(cb : (valueType: string, v: EventValue) => void) => {
+  unwatch = <EventValue>(_: (valueType: string, v: EventValue) => void) => {
     this.cb = null;
     this.component.host.removeEventListener('customStateChange', this.callback);
   }
 
-  getReceiver = <ReceiverType>(type: string) => {
+  getReceiver = <ReceiverType>(_: string) => {
     return (<any>this.receiver) as ReceiverType;
   }
 
   // ================
 
-  callback = (e : Event) => {
+  callback = (_: Event) => {
     const valueType = this.getRawValueType();
     if (this.cb) {
       this.cb(valueType, this.getValue(valueType));
@@ -73,11 +72,11 @@ export class BoolDestination {
 
   getRawValueType = () => 'boolean';
 
-  getValue = <EventValue>(type: string) => {
+  getValue = <EventValue>(_: string) => {
     return (<any>this.component.isOpen) as EventValue;
   }
 
-  changeValue = <EventValue>(valueType: string, value: EventValue) => {
+  changeValue = <EventValue>(_: string, value: EventValue) => {
     if (this.component.isOpen !== <any>value) {
       if (value) {
         this.component.open();
@@ -100,18 +99,18 @@ export class BoolDestination {
     this.cb = cb;
     this.component.host.addEventListener('customStateChange', this.callback);
   }
-  unwatch = <EventValue>(cb : (valueType: string, v: EventValue) => void) => {
+  unwatch = <EventValue>(_ : (valueType: string, v: EventValue) => void) => {
     this.cb = null;
     this.component.host.removeEventListener('customStateChange', this.callback);
   }
 
-  getReceiver = <ReceiverType>(type: string) => {
+  getReceiver = <ReceiverType>(_: string) => {
     return (<any>this.receiver) as ReceiverType;
   }
 
   // ================
 
-  callback = (e : Event) => {
+  callback = (_ : Event) => {
     const valueType = this.getRawValueType();
     if (this.cb) {
       this.cb(valueType, this.getValue(valueType));

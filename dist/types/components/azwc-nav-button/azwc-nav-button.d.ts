@@ -11,6 +11,6 @@ export declare class AzwcNavButton {
   constructor();
   getInst(): Promise<this>;
   host: HTMLElement;
-  handleClick(e: MouseEvent): void;
+  handleClick(_: MouseEvent): void;
   render(): any;
 }
