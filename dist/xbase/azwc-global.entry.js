@@ -1,0 +1,1 @@
+import{r as a,h as r,H as s}from"./index-54a7a200.js";import"./azwc-collapse-t1-96faef5d.js";import{e as o}from"./global-e4fb6697.js";import"./azwc-canvi-drawer-f7c49426.js";const t=class{constructor(r){a(this,r)}render(){return r(s,null)}};t.exports=o;export{t as azwc_global}

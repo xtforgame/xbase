@@ -32,6 +32,12 @@ export const AzwcFileManager: {
   new (): AzwcFileManager;
 };
 
+interface AzwcGlobal extends Components.AzwcGlobal, HTMLElement {}
+export const AzwcGlobal: {
+  prototype: AzwcGlobal;
+  new (): AzwcGlobal;
+};
+
 interface AzwcNavButton extends Components.AzwcNavButton, HTMLElement {}
 export const AzwcNavButton: {
   prototype: AzwcNavButton;

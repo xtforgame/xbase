@@ -10565,6 +10565,7 @@ const getExportData = () => ({
   utils,
   eventBinder,
 });
+const exportData = getExportData();
 async function appGlobalScript () {
   const exportData = getExportData();
   window.__azwc_classes = exportData;
@@ -10574,7 +10575,25 @@ async function appGlobalScript () {
   }
 }
 
+const exports = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  getExportData: getExportData,
+  exportData: exportData,
+  'default': appGlobalScript
+});
+
 const globalScripts = appGlobalScript;
+
+const AzwcGlobal = class extends HTMLElement {
+  constructor() {
+    super();
+    this.__registerHost();
+  }
+  render() {
+    return (h(Host, null));
+  }
+};
+AzwcGlobal.exports = exports;
 
 const MyComponent = class extends HTMLElement {
   constructor() {
@@ -10635,6 +10654,7 @@ const AzwcCanviDrawer$1 = /*@__PURE__*/proxyCustomElement(AzwcCanviDrawer, [4,"a
 const AzwcCollapseT1$1 = /*@__PURE__*/proxyCustomElement(AzwcCollapseT1, [4,"azwc-collapse-t1",{"collapseid":[1],"active":[4]}]);
 const AzwcDialog$1 = /*@__PURE__*/proxyCustomElement(AzwcDialog, [4,"azwc-dialog",{"dialogid":[1],"isOpen":[32]}]);
 const AzwcFileManager$1 = /*@__PURE__*/proxyCustomElement(AzwcFileManager, [4,"azwc-file-manager",{"basePath":[1,"base-path"],"loading":[32],"currentFileList":[32],"currentPaths":[32],"fileApi":[32]}]);
+const AzwcGlobal$1 = /*@__PURE__*/proxyCustomElement(AzwcGlobal, [0,"azwc-global"]);
 const AzwcNavButton$1 = /*@__PURE__*/proxyCustomElement(AzwcNavButton, [0,"azwc-nav-button",{"type":[1],"stayclosed":[4],"isOpen":[32]}]);
 const AzwcSpinner$1 = /*@__PURE__*/proxyCustomElement(AzwcSpinner, [0,"azwc-spinner",{"size":[1],"containerSize":[1,"container-size"],"strokeWidth":[1,"stroke-width"]}]);
 const AzwcSpinnerMask$1 = /*@__PURE__*/proxyCustomElement(AzwcSpinnerMask, [0,"azwc-spinner-mask",{"enabled":[1],"size":[1],"strokeWidth":[1,"stroke-width"]}]);
@@ -10648,6 +10668,7 @@ const defineCustomElements = (opts) => {
   AzwcCollapseT1$1,
   AzwcDialog$1,
   AzwcFileManager$1,
+  AzwcGlobal$1,
   AzwcNavButton$1,
   AzwcSpinner$1,
   AzwcSpinnerMask$1,
@@ -10661,4 +10682,4 @@ const defineCustomElements = (opts) => {
   }
 };
 
-export { AzwcAccordion$1 as AzwcAccordion, AzwcCanviDrawer$1 as AzwcCanviDrawer, AzwcCollapseT1$1 as AzwcCollapseT1, AzwcDialog$1 as AzwcDialog, AzwcFileManager$1 as AzwcFileManager, AzwcNavButton$1 as AzwcNavButton, AzwcSpinner$1 as AzwcSpinner, AzwcSpinnerMask$1 as AzwcSpinnerMask, AzwcSwiper$1 as AzwcSwiper, MyComponent$1 as MyComponent, defineCustomElements };
+export { AzwcAccordion$1 as AzwcAccordion, AzwcCanviDrawer$1 as AzwcCanviDrawer, AzwcCollapseT1$1 as AzwcCollapseT1, AzwcDialog$1 as AzwcDialog, AzwcFileManager$1 as AzwcFileManager, AzwcGlobal$1 as AzwcGlobal, AzwcNavButton$1 as AzwcNavButton, AzwcSpinner$1 as AzwcSpinner, AzwcSpinnerMask$1 as AzwcSpinnerMask, AzwcSwiper$1 as AzwcSwiper, MyComponent$1 as MyComponent, defineCustomElements };
