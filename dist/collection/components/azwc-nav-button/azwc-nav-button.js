@@ -105,3 +105,8 @@ export class AzwcNavButton {
   static get elementRef() { return "host"; }
 }
 AzwcNavButton.ClickSource = ClickSource;
+AzwcNavButton.OnOffSource = OnOffSource;
+AzwcNavButton.EventMap = {
+  click: ClickSource,
+  onoff: OnOffSource,
+};

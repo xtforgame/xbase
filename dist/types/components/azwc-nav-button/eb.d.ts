@@ -1,6 +1,5 @@
-import { EbEventSenderWrapper } from '../../ex-event-binder';
-export declare class ClickSource {
-  sender: EbEventSenderWrapper;
+import { EbEventSenderWrapper, SourceBase } from '../../ex-event-binder';
+export declare class ClickSource extends SourceBase {
   component: any;
   elem: HTMLElement;
   cb: Function;

@@ -1,5 +1,7 @@
-export class NullDestination {
+import { DestinationBase, } from '../../ex-event-binder';
+export class NullDestination extends DestinationBase {
   constructor(receiver, component, elem) {
+    super(receiver);
     this.getRawValueType = () => 'null';
     this.getValue = (_) => {
       return null;
@@ -36,13 +38,13 @@ export class NullDestination {
         this.cb(valueType, this.getValue(valueType));
       }
     };
-    this.receiver = receiver;
     this.component = component;
     this.elem = elem;
   }
 }
-export class BoolDestination {
+export class BoolDestination extends DestinationBase {
   constructor(receiver, component, elem) {
+    super(receiver);
     this.getRawValueType = () => 'boolean';
     this.getValue = (_) => {
       return this.component.isOpen;
@@ -82,7 +84,6 @@ export class BoolDestination {
         this.cb(valueType, this.getValue(valueType));
       }
     };
-    this.receiver = receiver;
     this.component = component;
     this.elem = elem;
   }

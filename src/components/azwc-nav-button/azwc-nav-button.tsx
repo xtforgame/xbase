@@ -11,6 +11,11 @@ import {
 })
 export class AzwcNavButton {
   static ClickSource = ClickSource;
+  static OnOffSource = OnOffSource;
+  static EventMap = {
+    click: ClickSource,
+    onoff: OnOffSource,
+  };
 
   @Prop() type: 'larr' | 'rarr' | 'uarr' | 'darr' | 'x' | 'plus' | '';
   @Prop() stayclosed: boolean;

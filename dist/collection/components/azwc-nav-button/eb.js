@@ -1,5 +1,7 @@
-export class ClickSource {
+import { SourceBase, } from '../../ex-event-binder';
+export class ClickSource extends SourceBase {
   constructor(sender, component, elem) {
+    super(sender);
     this.getRawValueType = () => 'null';
     this.getValue = (_) => {
       return null;
@@ -29,7 +31,6 @@ export class ClickSource {
         this.cb(e);
       }
     };
-    this.sender = sender;
     this.component = component;
     this.elem = elem;
   }

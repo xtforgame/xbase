@@ -1,6 +1,5 @@
-import { EbEventReceiverWrapper } from '../../ex-event-binder';
-export declare class NullDestination {
-  receiver: EbEventReceiverWrapper;
+import { EbEventReceiverWrapper, DestinationBase } from '../../ex-event-binder';
+export declare class NullDestination extends DestinationBase {
   component: any;
   elem: HTMLElement;
   cb: Function;
@@ -15,8 +14,7 @@ export declare class NullDestination {
   getReceiver: <ReceiverType>(_: string) => ReceiverType;
   callback: (_: Event) => void;
 }
-export declare class BoolDestination {
-  receiver: EbEventReceiverWrapper;
+export declare class BoolDestination extends DestinationBase {
   component: any;
   elem: HTMLElement;
   cb: Function;

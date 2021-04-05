@@ -1,80 +1,6 @@
 import { createEvent, h, Host, proxyCustomElement } from '@stencil/core/internal/client';
 export { setAssetPath, setPlatformOptions } from '@stencil/core/internal/client';
 
-class ClickSource {
-  constructor(sender, component, elem) {
-    this.getRawValueType = () => 'null';
-    this.getValue = (_) => {
-      return null;
-    };
-    this.getComponent = () => {
-      return this.component;
-    };
-    this.getEventElement = () => {
-      return this.elem;
-    };
-    this.syncValue = (_, __) => {
-    };
-    this.getSender = (_) => {
-      return this.sender;
-    };
-    this.addListener = (cb) => {
-      this.cb = cb;
-      this.component.host.addEventListener('customStateChange', this.callback);
-    };
-    this.removeListener = (_) => {
-      this.cb = null;
-      this.component.host.removeEventListener('customStateChange', this.callback);
-    };
-    // ================
-    this.callback = (e) => {
-      if (this.cb) {
-        this.cb(e);
-      }
-    };
-    this.sender = sender;
-    this.component = component;
-    this.elem = elem;
-  }
-}
-class OnOffSource {
-  constructor(sender, component, elem) {
-    this.getRawValueType = () => 'boolean';
-    this.getValue = (_) => {
-      return this.component.isOpen;
-    };
-    this.getComponent = () => {
-      return this.component;
-    };
-    this.getEventElement = () => {
-      return this.elem;
-    };
-    this.syncValue = (_, v) => {
-      this.component.isOpen = v;
-    };
-    this.getSender = (_) => {
-      return this.sender;
-    };
-    this.addListener = (cb) => {
-      this.cb = cb;
-      this.component.host.addEventListener('customStateChange', this.callback);
-    };
-    this.removeListener = (_) => {
-      this.cb = null;
-      this.component.host.removeEventListener('customStateChange', this.callback);
-    };
-    // ================
-    this.callback = (e) => {
-      if (this.cb) {
-        this.cb(e);
-      }
-    };
-    this.sender = sender;
-    this.component = component;
-    this.elem = elem;
-  }
-}
-
 class EbEventLink {
   constructor(senderId, sourceEventName, source, receiverId, destinationEventName, destination, valueType, callback, options) {
     this.senderId = senderId;
@@ -112,9 +38,21 @@ class EbEventReceiverWrapper {
     delete this.destinations[id];
   }
 }
+// =======================
+class SourceBase {
+  constructor(sender) {
+    this.sender = sender;
+  }
+}
+class DestinationBase {
+  constructor(receiver) {
+    this.receiver = receiver;
+  }
+}
 
-class FakeClickSource {
+class FakeClickSource extends SourceBase {
   constructor(sender, component, elem) {
+    super(sender);
     this.getRawValueType = () => 'null';
     this.getValue = (_) => {
       return null;
@@ -134,13 +72,13 @@ class FakeClickSource {
     };
     this.removeListener = (_) => {
     };
-    this.sender = sender;
     this.component = component;
     this.elem = elem;
   }
 }
-class FakeNullDestination {
+class FakeNullDestination extends DestinationBase {
   constructor(receiver, component, elem) {
+    super(receiver);
     this.getRawValueType = () => 'null';
     this.getValue = (_) => {
       return this.value;
@@ -162,7 +100,6 @@ class FakeNullDestination {
     this.getReceiver = (_) => {
       return this.receiver;
     };
-    this.receiver = receiver;
     this.component = component;
     this.elem = elem;
     this.value = false;
@@ -265,8 +202,84 @@ const eventBinder = /*#__PURE__*/Object.freeze({
   FakeNullDestination: FakeNullDestination,
   EbEventLink: EbEventLink,
   EbEventSenderWrapper: EbEventSenderWrapper,
-  EbEventReceiverWrapper: EbEventReceiverWrapper
+  EbEventReceiverWrapper: EbEventReceiverWrapper,
+  SourceBase: SourceBase,
+  DestinationBase: DestinationBase
 });
+
+class ClickSource extends SourceBase {
+  constructor(sender, component, elem) {
+    super(sender);
+    this.getRawValueType = () => 'null';
+    this.getValue = (_) => {
+      return null;
+    };
+    this.getComponent = () => {
+      return this.component;
+    };
+    this.getEventElement = () => {
+      return this.elem;
+    };
+    this.syncValue = (_, __) => {
+    };
+    this.getSender = (_) => {
+      return this.sender;
+    };
+    this.addListener = (cb) => {
+      this.cb = cb;
+      this.component.host.addEventListener('customStateChange', this.callback);
+    };
+    this.removeListener = (_) => {
+      this.cb = null;
+      this.component.host.removeEventListener('customStateChange', this.callback);
+    };
+    // ================
+    this.callback = (e) => {
+      if (this.cb) {
+        this.cb(e);
+      }
+    };
+    this.component = component;
+    this.elem = elem;
+  }
+}
+class OnOffSource {
+  constructor(sender, component, elem) {
+    this.getRawValueType = () => 'boolean';
+    this.getValue = (_) => {
+      return this.component.isOpen;
+    };
+    this.getComponent = () => {
+      return this.component;
+    };
+    this.getEventElement = () => {
+      return this.elem;
+    };
+    this.syncValue = (_, v) => {
+      this.component.isOpen = v;
+    };
+    this.getSender = (_) => {
+      return this.sender;
+    };
+    this.addListener = (cb) => {
+      this.cb = cb;
+      this.component.host.addEventListener('customStateChange', this.callback);
+    };
+    this.removeListener = (_) => {
+      this.cb = null;
+      this.component.host.removeEventListener('customStateChange', this.callback);
+    };
+    // ================
+    this.callback = (e) => {
+      if (this.cb) {
+        this.cb(e);
+      }
+    };
+    this.sender = sender;
+    this.component = component;
+    this.elem = elem;
+  }
+}
 
 const AzwcNavButton = class extends HTMLElement {
   constructor() {
@@ -299,6 +312,11 @@ const AzwcNavButton = class extends HTMLElement {
   get host() { return this; }
 };
 AzwcNavButton.ClickSource = ClickSource;
+AzwcNavButton.OnOffSource = OnOffSource;
+AzwcNavButton.EventMap = {
+  click: ClickSource,
+  onoff: OnOffSource,
+};
 
 const AzwcAccordion = class extends HTMLElement {
   constructor() {
@@ -315,8 +333,9 @@ const AzwcAccordion = class extends HTMLElement {
   get host() { return this; }
 };
 
-class NullDestination {
+class NullDestination extends DestinationBase {
   constructor(receiver, component, elem) {
+    super(receiver);
     this.getRawValueType = () => 'null';
     this.getValue = (_) => {
       return null;
@@ -353,13 +372,13 @@ class NullDestination {
         this.cb(valueType, this.getValue(valueType));
       }
     };
-    this.receiver = receiver;
     this.component = component;
     this.elem = elem;
   }
 }
-class BoolDestination {
+class BoolDestination extends DestinationBase {
   constructor(receiver, component, elem) {
+    super(receiver);
     this.getRawValueType = () => 'boolean';
     this.getValue = (_) => {
       return this.component.isOpen;
@@ -399,7 +418,6 @@ class BoolDestination {
         this.cb(valueType, this.getValue(valueType));
       }
     };
-    this.receiver = receiver;
     this.component = component;
     this.elem = elem;
   }

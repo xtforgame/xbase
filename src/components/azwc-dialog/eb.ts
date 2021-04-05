@@ -1,15 +1,15 @@
 import {
   EbEventReceiverWrapper,
+  DestinationBase,
 } from '../../ex-event-binder';
 
-export class NullDestination {
-  receiver : EbEventReceiverWrapper;
+export class NullDestination extends DestinationBase {
   component : any;
   elem: HTMLElement;
   cb: Function;
 
   constructor(receiver: EbEventReceiverWrapper, component: any, elem: HTMLElement) {
-    this.receiver = receiver;
+    super(receiver);
     this.component = component;
     this.elem = elem;
   }
@@ -58,14 +58,13 @@ export class NullDestination {
     }
   }
 }
-export class BoolDestination {
-  receiver : EbEventReceiverWrapper;
+export class BoolDestination extends DestinationBase {
   component : any;
   elem: HTMLElement;
   cb: Function;
 
   constructor(receiver: EbEventReceiverWrapper, component: any, elem: HTMLElement) {
-    this.receiver = receiver;
+    super(receiver);
     this.component = component;
     this.elem = elem;
   }

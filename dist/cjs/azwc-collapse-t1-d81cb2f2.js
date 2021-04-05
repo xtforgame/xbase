@@ -1,7 +1,59 @@
-import { r as registerInstance, c as createEvent, h, H as Host, g as getElement } from './index-54a7a200.js';
+'use strict';
 
-class ClickSource {
+const index$1 = require('./index-cbad13bb.js');
+
+class EbEventLink {
+  constructor(senderId, sourceEventName, source, receiverId, destinationEventName, destination, valueType, callback, options) {
+    this.senderId = senderId;
+    this.sourceEventName = sourceEventName;
+    this.source = source;
+    this.receiverId = receiverId;
+    this.destinationEventName = destinationEventName;
+    this.destination = destination;
+    this.valueType = valueType;
+    this.callback = callback;
+    this.options = options;
+  }
+}
+class EbEventSenderWrapper {
+  constructor() {
+    this.sources = {};
+    this.eventLinksMap = {};
+  }
+  addSource(id, source) {
+    this.sources[id] = source;
+  }
+  removeSource(id) {
+    delete this.sources[id];
+  }
+}
+class EbEventReceiverWrapper {
+  constructor() {
+    this.destinations = {};
+    this.eventLinksMap = {};
+  }
+  addDestination(id, destination) {
+    this.destinations[id] = destination;
+  }
+  removeDestination(id) {
+    delete this.destinations[id];
+  }
+}
+// =======================
+class SourceBase {
+  constructor(sender) {
+    this.sender = sender;
+  }
+}
+class DestinationBase {
+  constructor(receiver) {
+    this.receiver = receiver;
+  }
+}
+
+class ClickSource extends SourceBase {
   constructor(sender, component, elem) {
+    super(sender);
     this.getRawValueType = () => 'null';
     this.getValue = (_) => {
       return null;
@@ -31,7 +83,6 @@ class ClickSource {
         this.cb(e);
       }
     };
-    this.sender = sender;
     this.component = component;
     this.elem = elem;
   }
@@ -74,48 +125,10 @@ class OnOffSource {
   }
 }
 
-class EbEventLink {
-  constructor(senderId, sourceEventName, source, receiverId, destinationEventName, destination, valueType, callback, options) {
-    this.senderId = senderId;
-    this.sourceEventName = sourceEventName;
-    this.source = source;
-    this.receiverId = receiverId;
-    this.destinationEventName = destinationEventName;
-    this.destination = destination;
-    this.valueType = valueType;
-    this.callback = callback;
-    this.options = options;
-  }
-}
-class EbEventSenderWrapper {
-  constructor() {
-    this.sources = {};
-    this.eventLinksMap = {};
-  }
-  addSource(id, source) {
-    this.sources[id] = source;
-  }
-  removeSource(id) {
-    delete this.sources[id];
-  }
-}
-class EbEventReceiverWrapper {
-  constructor() {
-    this.destinations = {};
-    this.eventLinksMap = {};
-  }
-  addDestination(id, destination) {
-    this.destinations[id] = destination;
-  }
-  removeDestination(id) {
-    delete this.destinations[id];
-  }
-}
-
 const AzwcNavButton = class {
   constructor(hostRef) {
-    registerInstance(this, hostRef);
-    this.customStateChange = createEvent(this, "customStateChange", 7);
+    index$1.registerInstance(this, hostRef);
+    this.customStateChange = index$1.createEvent(this, "customStateChange", 7);
     this.isOpen = false;
     this.senderWrapper = new EbEventSenderWrapper();
     this.senderWrapper.addSource('click', new ClickSource(this.senderWrapper, this, null));
@@ -137,28 +150,34 @@ const AzwcNavButton = class {
       cls.push('open');
     }
     const classes = cls.join(' ');
-    return (h(Host, null, h("a", { class: classes, onClick: (e) => this.handleClick(e) }, h("div", { class: "navicon" }))));
+    return (index$1.h(index$1.Host, null, index$1.h("a", { class: classes, onClick: (e) => this.handleClick(e) }, index$1.h("div", { class: "navicon" }))));
   }
-  get host() { return getElement(this); }
+  get host() { return index$1.getElement(this); }
 };
 AzwcNavButton.ClickSource = ClickSource;
+AzwcNavButton.OnOffSource = OnOffSource;
+AzwcNavButton.EventMap = {
+  click: ClickSource,
+  onoff: OnOffSource,
+};
 
 const AzwcAccordion = class {
   constructor(hostRef) {
-    registerInstance(this, hostRef);
+    index$1.registerInstance(this, hostRef);
   }
   componentDidLoad() {
   }
   disconnectedCallback() {
   }
   render() {
-    return (h(Host, null, h("slot", null)));
+    return (index$1.h(index$1.Host, null, index$1.h("slot", null)));
   }
-  get host() { return getElement(this); }
+  get host() { return index$1.getElement(this); }
 };
 
-class NullDestination {
+class NullDestination extends DestinationBase {
   constructor(receiver, component, elem) {
+    super(receiver);
     this.getRawValueType = () => 'null';
     this.getValue = (_) => {
       return null;
@@ -195,13 +214,13 @@ class NullDestination {
         this.cb(valueType, this.getValue(valueType));
       }
     };
-    this.receiver = receiver;
     this.component = component;
     this.elem = elem;
   }
 }
-class BoolDestination {
+class BoolDestination extends DestinationBase {
   constructor(receiver, component, elem) {
+    super(receiver);
     this.getRawValueType = () => 'boolean';
     this.getValue = (_) => {
       return this.component.isOpen;
@@ -241,7 +260,6 @@ class BoolDestination {
         this.cb(valueType, this.getValue(valueType));
       }
     };
-    this.receiver = receiver;
     this.component = component;
     this.elem = elem;
   }
@@ -249,8 +267,8 @@ class BoolDestination {
 
 const AzwcDialog = class {
   constructor(hostRef) {
-    registerInstance(this, hostRef);
-    this.customStateChange = createEvent(this, "customStateChange", 7);
+    index$1.registerInstance(this, hostRef);
+    this.customStateChange = index$1.createEvent(this, "customStateChange", 7);
     this.isOpen = false;
     this.receiverWrapper = new EbEventReceiverWrapper();
     this.receiverWrapper.addDestination('toggle-dialog', new NullDestination(this.receiverWrapper, this, null));
@@ -302,9 +320,9 @@ const AzwcDialog = class {
     }
   }
   render() {
-    return (h(Host, null, h("div", { class: "modal", part: "modal", onClick: (e) => this.doBackgroundClose(e), style: { overflowY: 'scroll', display: this.isOpen ? 'block' : 'none' } }, h("slot", { name: "top" }), h("div", { part: "modal-content centered-modal-content", class: "modal-content centered-modal-content" }, h("slot", null), h("slot", { name: "body" })))));
+    return (index$1.h(index$1.Host, null, index$1.h("div", { class: "modal", part: "modal", onClick: (e) => this.doBackgroundClose(e), style: { overflowY: 'scroll', display: this.isOpen ? 'block' : 'none' } }, index$1.h("slot", { name: "top" }), index$1.h("div", { part: "modal-content centered-modal-content", class: "modal-content centered-modal-content" }, index$1.h("slot", null), index$1.h("slot", { name: "body" })))));
   }
-  get host() { return getElement(this); }
+  get host() { return index$1.getElement(this); }
 };
 AzwcDialog.allInstances = {};
 AzwcDialog.open = (id) => {
@@ -322,7 +340,7 @@ AzwcDialog.close = (id) => {
 
 const AzwcFileManager = class {
   constructor(hostRef) {
-    registerInstance(this, hostRef);
+    index$1.registerInstance(this, hostRef);
     this.basePath = '';
     this.loading = false;
     this.currentFileList = [];
@@ -363,14 +381,14 @@ const AzwcFileManager = class {
     }
     const currentPath = this.currentPaths.join('/');
     const paths = ['Root'].concat(this.currentPaths);
-    return (h(Host, null, h("azwc-spinner-mask", { enabled: enableMask }), paths.map((p, i) => {
-      return (h("div", { key: `${currentPath}/${p}`, style: { display: 'inline-block' } }, h("button", { onClick: () => { this.reload(this.currentPaths.slice(0, i)); } }, p), i !== paths.length - 1 && '/'));
-    }), h("div", { style: { width: '100%', height: '1px', backgroundColor: 'black', margin: '20px' } }), this.currentFileList.map((v) => {
+    return (index$1.h(index$1.Host, null, index$1.h("azwc-spinner-mask", { enabled: enableMask }), paths.map((p, i) => {
+      return (index$1.h("div", { key: `${currentPath}/${p}`, style: { display: 'inline-block' } }, index$1.h("button", { onClick: () => { this.reload(this.currentPaths.slice(0, i)); } }, p), i !== paths.length - 1 && '/'));
+    }), index$1.h("div", { style: { width: '100%', height: '1px', backgroundColor: 'black', margin: '20px' } }), this.currentFileList.map((v) => {
       if (v.type === 'folder') {
-        return (h("div", { key: `${currentPath}/${v.name}` }, "Name:", h("button", { onClick: () => { this.reload(this.currentPaths.concat([v.name])); } }, v.name, "(", v.type, ")"), h("br", null), v.relPath));
+        return (index$1.h("div", { key: `${currentPath}/${v.name}` }, "Name:", index$1.h("button", { onClick: () => { this.reload(this.currentPaths.concat([v.name])); } }, v.name, "(", v.type, ")"), index$1.h("br", null), v.relPath));
       }
-      return (h("div", { key: `${currentPath}/${v.name}` }, "Name:", v.name, "(", v.type, ")", h("br", null), v.relPath, h("div", { innerHTML: "<img height='20px' src='https://shoelace.style/assets/images/wordmark.svg' />" })));
-    }), h("slot", null)));
+      return (index$1.h("div", { key: `${currentPath}/${v.name}` }, "Name:", v.name, "(", v.type, ")", index$1.h("br", null), v.relPath, index$1.h("div", { innerHTML: "<img height='20px' src='https://shoelace.style/assets/images/wordmark.svg' />" })));
+    }), index$1.h("slot", null)));
   }
   static get watchers() { return {
     "basePath": ["onNameChanged"]
@@ -379,7 +397,7 @@ const AzwcFileManager = class {
 
 const AzwcSpinner = class {
   constructor(hostRef) {
-    registerInstance(this, hostRef);
+    index$1.registerInstance(this, hostRef);
     this.size = '1em';
     this.containerSize = '';
     this.strokeWidth = '2px';
@@ -390,7 +408,7 @@ const AzwcSpinner = class {
       containerStyle.width = this.containerSize;
       containerStyle.height = this.containerSize;
     }
-    return (h(Host, { style: containerStyle }, h("span", { part: "base", class: "spinner", "aria-busy": "true", "aria-live": "polite", style: {
+    return (index$1.h(index$1.Host, { style: containerStyle }, index$1.h("span", { part: "base", class: "spinner", "aria-busy": "true", "aria-live": "polite", style: {
         width: this.size,
         height: this.size,
         borderWidth: this.strokeWidth,
@@ -400,7 +418,7 @@ const AzwcSpinner = class {
 
 const AzwcSpinnerMask = class {
   constructor(hostRef) {
-    registerInstance(this, hostRef);
+    index$1.registerInstance(this, hostRef);
     this.enabled = 'false';
     this.size = '20px';
     this.strokeWidth = '4px';
@@ -412,7 +430,7 @@ const AzwcSpinnerMask = class {
     if (this.enabled === 'false') {
       hostStyle.display = "none";
     }
-    return (h(Host, { style: hostStyle }, h("azwc-spinner", { size: this.size,
+    return (index$1.h(index$1.Host, { style: hostStyle }, index$1.h("azwc-spinner", { size: this.size,
       // containerSize={this.size}
       strokeWidth: this.strokeWidth })));
   }
@@ -9947,8 +9965,8 @@ const Thumbs$1 = {
 Swiper.use([Virtual$1, Keyboard$1, Mousewheel$1, Navigation$1, Pagination$1, Scrollbar$1, Parallax$1, Zoom$1, Lazy$1, Controller$1, A11y$1, History$1, HashNavigation$1, Autoplay$1, EffectFade, EffectCube, EffectFlip, EffectCoverflow, Thumbs$1]);
 const AzwcSwiper = class {
   constructor(hostRef) {
-    registerInstance(this, hostRef);
-    this.slideChanged = createEvent(this, "slideChanged", 7);
+    index$1.registerInstance(this, hostRef);
+    this.slideChanged = index$1.createEvent(this, "slideChanged", 7);
   }
   componentDidLoad() {
     this.initSwiper();
@@ -9970,9 +9988,9 @@ const AzwcSwiper = class {
     return this.swiper;
   }
   render() {
-    return (h("div", { class: "swiper-container", ref: el => this.container = el }, h("div", { class: "swiper-wrapper", ref: el => this.wrapper = el }, h("slot", null)), h("slot", { name: "ui" }, h("div", { class: "swiper-button-next", ref: el => this.next = el }), h("div", { class: "swiper-button-prev", ref: el => this.prev = el }), h("div", { class: "swiper-pagination", ref: el => this.pagination = el }))));
+    return (index$1.h("div", { class: "swiper-container", ref: el => this.container = el }, index$1.h("div", { class: "swiper-wrapper", ref: el => this.wrapper = el }, index$1.h("slot", null)), index$1.h("slot", { name: "ui" }, index$1.h("div", { class: "swiper-button-next", ref: el => this.next = el }), index$1.h("div", { class: "swiper-button-prev", ref: el => this.prev = el }), index$1.h("div", { class: "swiper-pagination", ref: el => this.pagination = el }))));
   }
-  get host() { return getElement(this); }
+  get host() { return index$1.getElement(this); }
 };
 AzwcSwiper.componentDidLoad = () => {
 };
@@ -10031,7 +10049,7 @@ function createRamdomUniqueIdForElement() {
 
 const AzwcCollapseT1 = class {
   constructor(hostRef) {
-    registerInstance(this, hostRef);
+    index$1.registerInstance(this, hostRef);
   }
   componentDidLoad() {
     // const titles = this.host.querySelectorAll('.azac-title-box');
@@ -10047,9 +10065,44 @@ const AzwcCollapseT1 = class {
   render() {
     this.titleId = this.titleId || this.collapseid || createRamdomUniqueIdForElement();
     const checked = this.active;
-    return (h(Host, null, h("input", { checked: checked, name: "collapse", type: "checkbox", id: this.titleId, class: "azac-title-input" }), h("label", { htmlFor: this.titleId, class: "azac-title-box" }, h("slot", { name: "title" }), h("div", { class: "azac-icons" }, h("span", null), h("span", null))), h("div", { class: "azac-contents-box" }, h("div", { class: "azac-contents" }, h("slot", { name: "contents" }), h("slot", null)))));
+    return (index$1.h(index$1.Host, null, index$1.h("input", { checked: checked, name: "collapse", type: "checkbox", id: this.titleId, class: "azac-title-input" }), index$1.h("label", { htmlFor: this.titleId, class: "azac-title-box" }, index$1.h("slot", { name: "title" }), index$1.h("div", { class: "azac-icons" }, index$1.h("span", null), index$1.h("span", null))), index$1.h("div", { class: "azac-contents-box" }, index$1.h("div", { class: "azac-contents" }, index$1.h("slot", { name: "contents" }), index$1.h("slot", null)))));
   }
-  get host() { return getElement(this); }
+  get host() { return index$1.getElement(this); }
 };
 
-export { A11y$1 as A, Controller$1 as C, EbEventLink as E, History$1 as H, Keyboard$1 as K, Lazy$1 as L, Mousewheel$1 as M, Navigation$1 as N, Pagination$1 as P, Swiper as S, Thumbs$1 as T, Virtual$1 as V, Zoom$1 as Z, EbEventSenderWrapper as a, EbEventReceiverWrapper as b, Scrollbar$1 as c, Parallax$1 as d, HashNavigation$1 as e, Autoplay$1 as f, EffectFade as g, EffectCube as h, EffectFlip as i, EffectCoverflow as j, format as k, createRamdomUniqueId as l, createRamdomUniqueIdForElement as m, AzwcNavButton as n, AzwcAccordion as o, AzwcDialog as p, AzwcFileManager as q, AzwcSpinner as r, AzwcSpinnerMask as s, AzwcSwiper as t, AzwcCollapseT1 as u };
+exports.A11y = A11y$1;
+exports.Autoplay = Autoplay$1;
+exports.AzwcAccordion = AzwcAccordion;
+exports.AzwcCollapseT1 = AzwcCollapseT1;
+exports.AzwcDialog = AzwcDialog;
+exports.AzwcFileManager = AzwcFileManager;
+exports.AzwcNavButton = AzwcNavButton;
+exports.AzwcSpinner = AzwcSpinner;
+exports.AzwcSpinnerMask = AzwcSpinnerMask;
+exports.AzwcSwiper = AzwcSwiper;
+exports.Controller = Controller$1;
+exports.DestinationBase = DestinationBase;
+exports.EbEventLink = EbEventLink;
+exports.EbEventReceiverWrapper = EbEventReceiverWrapper;
+exports.EbEventSenderWrapper = EbEventSenderWrapper;
+exports.EffectCoverflow = EffectCoverflow;
+exports.EffectCube = EffectCube;
+exports.EffectFade = EffectFade;
+exports.EffectFlip = EffectFlip;
+exports.HashNavigation = HashNavigation$1;
+exports.History = History$1;
+exports.Keyboard = Keyboard$1;
+exports.Lazy = Lazy$1;
+exports.Mousewheel = Mousewheel$1;
+exports.Navigation = Navigation$1;
+exports.Pagination = Pagination$1;
+exports.Parallax = Parallax$1;
+exports.Scrollbar = Scrollbar$1;
+exports.SourceBase = SourceBase;
+exports.Swiper = Swiper;
+exports.Thumbs = Thumbs$1;
+exports.Virtual = Virtual$1;
+exports.Zoom = Zoom$1;
+exports.createRamdomUniqueId = createRamdomUniqueId;
+exports.createRamdomUniqueIdForElement = createRamdomUniqueIdForElement;
+exports.format = format;

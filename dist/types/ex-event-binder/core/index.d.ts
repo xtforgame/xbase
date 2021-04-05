@@ -61,3 +61,11 @@ export declare class EbEventReceiverWrapper {
   addDestination(id: string, destination: EbEventDestination): void;
   removeDestination(id: string): void;
 }
+export declare class SourceBase {
+  sender: EbEventSenderWrapper;
+  constructor(sender: EbEventSenderWrapper);
+}
+export declare class DestinationBase {
+  receiver: EbEventReceiverWrapper;
+  constructor(receiver: EbEventReceiverWrapper);
+}

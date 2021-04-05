@@ -1,6 +1,5 @@
-import { EbEventSenderWrapper, EbEventReceiverWrapper } from './core';
-export declare class FakeClickSource {
-  sender: EbEventSenderWrapper;
+import { SourceBase, DestinationBase, EbEventSenderWrapper, EbEventReceiverWrapper } from './core';
+export declare class FakeClickSource extends SourceBase {
   component: any;
   elem: HTMLElement;
   constructor(sender: EbEventSenderWrapper, component: any, elem: HTMLElement);
@@ -13,8 +12,7 @@ export declare class FakeClickSource {
   addListener: (_: (e: Event) => any) => void;
   removeListener: (_: (e: Event) => any) => void;
 }
-export declare class FakeNullDestination {
-  receiver: EbEventReceiverWrapper;
+export declare class FakeNullDestination extends DestinationBase {
   component: any;
   elem: HTMLElement;
   value: boolean;

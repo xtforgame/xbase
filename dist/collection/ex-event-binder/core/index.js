@@ -35,3 +35,14 @@ export class EbEventReceiverWrapper {
     delete this.destinations[id];
   }
 }
+// =======================
+export class SourceBase {
+  constructor(sender) {
+    this.sender = sender;
+  }
+}
+export class DestinationBase {
+  constructor(receiver) {
+    this.receiver = receiver;
+  }
+}

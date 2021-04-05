@@ -110,3 +110,20 @@ export class EbEventReceiverWrapper {
   }
 }
 
+// =======================
+
+export class SourceBase {
+  sender : EbEventSenderWrapper;
+
+  constructor(sender: EbEventSenderWrapper) {
+    this.sender = sender;
+  }
+}
+
+export class DestinationBase {
+  receiver : EbEventReceiverWrapper;
+
+  constructor(receiver: EbEventReceiverWrapper) {
+    this.receiver = receiver;
+  }
+}

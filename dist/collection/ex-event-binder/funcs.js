@@ -1,5 +1,7 @@
-export class FakeClickSource {
+import { SourceBase, DestinationBase, } from './core';
+export class FakeClickSource extends SourceBase {
   constructor(sender, component, elem) {
+    super(sender);
     this.getRawValueType = () => 'null';
     this.getValue = (_) => {
       return null;
@@ -19,13 +21,13 @@ export class FakeClickSource {
     };
     this.removeListener = (_) => {
     };
-    this.sender = sender;
     this.component = component;
     this.elem = elem;
   }
 }
-export class FakeNullDestination {
+export class FakeNullDestination extends DestinationBase {
   constructor(receiver, component, elem) {
+    super(receiver);
     this.getRawValueType = () => 'null';
     this.getValue = (_) => {
       return this.value;
@@ -47,7 +49,6 @@ export class FakeNullDestination {
     this.getReceiver = (_) => {
       return this.receiver;
     };
-    this.receiver = receiver;
     this.component = component;
     this.elem = elem;
     this.value = false;
