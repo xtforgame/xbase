@@ -3,8 +3,8 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-cbad13bb.js');
-require('./azwc-collapse-t1-5f7f3760.js');
-const global = require('./global-a2d62f78.js');
+require('./azwc-collapse-t1-32739bb6.js');
+const global = require('./global-d6685f58.js');
 require('./azwc-canvi-drawer-c9fe5477.js');
 
 const AzwcGlobal = class {

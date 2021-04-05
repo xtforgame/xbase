@@ -112,7 +112,11 @@ export class AzwcNavButton {
 }
 AzwcNavButton.ClickSource = ClickSource;
 AzwcNavButton.OnOffSource = OnOffSource;
-AzwcNavButton.SenderEventMap = {
-  click: ClickSource,
-  onoff: OnOffSource,
+AzwcNavButton.SourceEventInfoMap = {
+  click: {
+    Class: ClickSource,
+  },
+  onoff: {
+    Class: OnOffSource,
+  },
 };

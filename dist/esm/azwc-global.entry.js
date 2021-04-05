@@ -1,6 +1,6 @@
 import { r as registerInstance, h, H as Host } from './index-54a7a200.js';
-import './azwc-collapse-t1-a4f0f29f.js';
-import { e as exports } from './global-8097918b.js';
+import './azwc-collapse-t1-edf51d62.js';
+import { e as exports } from './global-80f9b48c.js';
 import './azwc-canvi-drawer-f7c49426.js';
 
 const AzwcGlobal = class {

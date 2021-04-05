@@ -137,6 +137,12 @@ export class SourceBase {
   }
 }
 
+export type SourceEventInfoMapType = {
+  [s : string]: {
+    Class: { new(sender: EbEventSenderWrapper, options: SourceDestinationOptions): SourceBase },
+  }
+};
+
 export class DestinationBase {
   receiver : EbEventReceiverWrapper;
   options: SourceDestinationOptions
@@ -156,3 +162,9 @@ export class DestinationBase {
     return this.options.getElement!();
   }
 }
+
+export type DestinationInfoMapType = {
+  [s : string]: {
+    Class: { new(receiver: EbEventReceiverWrapper, options: SourceDestinationOptions): DestinationBase },
+  }
+};

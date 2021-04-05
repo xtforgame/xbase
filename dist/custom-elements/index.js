@@ -304,9 +304,13 @@ const AzwcNavButton = class extends HTMLElement {
 };
 AzwcNavButton.ClickSource = ClickSource;
 AzwcNavButton.OnOffSource = OnOffSource;
-AzwcNavButton.SenderEventMap = {
-  click: ClickSource,
-  onoff: OnOffSource,
+AzwcNavButton.SourceEventInfoMap = {
+  click: {
+    Class: ClickSource,
+  },
+  onoff: {
+    Class: OnOffSource,
+  },
 };
 
 const AzwcAccordion = class extends HTMLElement {
@@ -465,6 +469,14 @@ const AzwcDialog = class extends HTMLElement {
   get host() { return this; }
 };
 AzwcDialog.allInstances = {};
+AzwcDialog.DestinationInfoMap = {
+  'toggle-dialog': {
+    Class: NullDestination,
+  },
+  'dialog-state': {
+    Class: BoolDestination,
+  },
+};
 AzwcDialog.open = (id) => {
   const inst = AzwcDialog.allInstances[id];
   if (inst) {

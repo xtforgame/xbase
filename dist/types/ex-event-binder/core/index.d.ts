@@ -72,6 +72,13 @@ export declare class SourceBase {
   getComponent: () => any;
   getEventElement: () => any;
 }
+export declare type SourceEventInfoMapType = {
+  [s: string]: {
+    Class: {
+      new (sender: EbEventSenderWrapper, options: SourceDestinationOptions): SourceBase;
+    };
+  };
+};
 export declare class DestinationBase {
   receiver: EbEventReceiverWrapper;
   options: SourceDestinationOptions;
@@ -79,3 +86,10 @@ export declare class DestinationBase {
   getComponent: () => any;
   getEventElement: () => any;
 }
+export declare type DestinationInfoMapType = {
+  [s: string]: {
+    Class: {
+      new (receiver: EbEventReceiverWrapper, options: SourceDestinationOptions): DestinationBase;
+    };
+  };
+};

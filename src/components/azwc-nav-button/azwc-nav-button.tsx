@@ -2,7 +2,7 @@ import { Component, Element, Method, Event, EventEmitter, Prop, State, Host, h }
 import { ClickSource, OnOffSource } from './eb';
 import {
   EbEventSenderWrapper,
-  SourceBase,
+  SourceEventInfoMapType,
 } from '../../ex-event-binder';
 
 @Component({
@@ -13,9 +13,13 @@ import {
 export class AzwcNavButton {
   static ClickSource = ClickSource;
   static OnOffSource = OnOffSource;
-  static SenderEventMap : { [s : string]: { new(sender: EbEventSenderWrapper, component: any, elem: HTMLElement): SourceBase } } = {
-    click: ClickSource,
-    onoff: OnOffSource,
+  static SourceEventInfoMap : SourceEventInfoMapType = {
+    click: {
+      Class: ClickSource,
+    },
+    onoff: {
+      Class: OnOffSource,
+    },
   };
 
   @Prop() type: 'larr' | 'rarr' | 'uarr' | 'darr' | 'x' | 'plus' | '';

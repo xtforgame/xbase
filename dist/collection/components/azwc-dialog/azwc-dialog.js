@@ -127,6 +127,14 @@ export class AzwcDialog {
   static get elementRef() { return "host"; }
 }
 AzwcDialog.allInstances = {};
+AzwcDialog.DestinationInfoMap = {
+  'toggle-dialog': {
+    Class: NullDestination,
+  },
+  'dialog-state': {
+    Class: BoolDestination,
+  },
+};
 AzwcDialog.open = (id) => {
   const inst = AzwcDialog.allInstances[id];
   if (inst) {

@@ -1,8 +1,8 @@
 import { p as promiseResolve, b as bootstrapLazy } from './index-54a7a200.js';
-import './azwc-collapse-t1-a4f0f29f.js';
-import './global-8097918b.js';
+import './azwc-collapse-t1-edf51d62.js';
+import './global-80f9b48c.js';
 import './azwc-canvi-drawer-f7c49426.js';
-import { g as globalScripts } from './app-globals-ac45502d.js';
+import { g as globalScripts } from './app-globals-47f633b1.js';
 
 /*
  Stencil Client Patch Browser v2.4.0 | MIT Licensed | https://stenciljs.com

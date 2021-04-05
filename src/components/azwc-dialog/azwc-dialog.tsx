@@ -2,6 +2,7 @@ import { Component, Method, State, Event, Element, EventEmitter, Host, Prop, h }
 import { NullDestination, BoolDestination } from './eb';
 import {
   EbEventReceiverWrapper,
+  DestinationInfoMapType,
 } from '../../ex-event-binder';
 @Component({
   tag: 'azwc-dialog',
@@ -10,6 +11,15 @@ import {
 })
 export class AzwcDialog {
   static allInstances: { [s : string]: AzwcDialog } = {};
+
+  static DestinationInfoMap : DestinationInfoMapType = {
+    'toggle-dialog': {
+      Class: NullDestination,
+    },
+    'dialog-state': {
+      Class: BoolDestination,
+    },
+  };
 
   static open = (id: string) => {
     const inst = AzwcDialog.allInstances[id];

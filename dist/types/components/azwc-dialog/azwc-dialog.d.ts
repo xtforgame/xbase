@@ -1,9 +1,10 @@
 import { EventEmitter } from '../../stencil-public-runtime';
-import { EbEventReceiverWrapper } from '../../ex-event-binder';
+import { EbEventReceiverWrapper, DestinationInfoMapType } from '../../ex-event-binder';
 export declare class AzwcDialog {
   static allInstances: {
     [s: string]: AzwcDialog;
   };
+  static DestinationInfoMap: DestinationInfoMapType;
   static open: (id: string) => void;
   static close: (id: string) => void;
   dialogid: string;
