@@ -1,20 +1,14 @@
 'use strict';
 
-const azwcCollapseT1 = require('./azwc-collapse-t1-d81cb2f2.js');
+const azwcCollapseT1 = require('./azwc-collapse-t1-5f7f3760.js');
 const azwcCanviDrawer = require('./azwc-canvi-drawer-c9fe5477.js');
 
 class FakeClickSource extends azwcCollapseT1.SourceBase {
-  constructor(sender, component, elem) {
-    super(sender);
+  constructor(sender, options) {
+    super(sender, options);
     this.getRawValueType = () => 'null';
     this.getValue = (_) => {
       return null;
-    };
-    this.getComponent = () => {
-      return this.component;
-    };
-    this.getEventElement = () => {
-      return this.elem;
     };
     this.syncValue = (_, __) => {
     };
@@ -25,13 +19,11 @@ class FakeClickSource extends azwcCollapseT1.SourceBase {
     };
     this.removeListener = (_) => {
     };
-    this.component = component;
-    this.elem = elem;
   }
 }
 class FakeNullDestination extends azwcCollapseT1.DestinationBase {
-  constructor(receiver, component, elem) {
-    super(receiver);
+  constructor(receiver, options) {
+    super(receiver, options);
     this.getRawValueType = () => 'null';
     this.getValue = (_) => {
       return this.value;
@@ -40,12 +32,6 @@ class FakeNullDestination extends azwcCollapseT1.DestinationBase {
       console.log('changeValue :', valueType, value);
       this.value = value;
     };
-    this.getComponent = () => {
-      return this.component;
-    };
-    this.getEventElement = () => {
-      return this.elem;
-    };
     this.watch = (_) => {
     };
     this.unwatch = (_) => {
@@ -53,8 +39,6 @@ class FakeNullDestination extends azwcCollapseT1.DestinationBase {
     this.getReceiver = (_) => {
       return this.receiver;
     };
-    this.component = component;
-    this.elem = elem;
     this.value = false;
   }
 }

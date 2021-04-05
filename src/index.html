@@ -419,7 +419,7 @@
         ]))
         .then(([anb1Inst, anb2Inst, adInst]) => {
           // receiverWrapper = new EbEventReceiverWrapper();
-          // receiverWrapper.addDestination('dialog-state', new FakeNullDestination(this.receiverWrapper, this, null));
+          // receiverWrapper.addDestination('dialog-state', new FakeNullDestination(this.receiverWrapper, {}));
           // eventBinder.addReceiver('fake1', receiverWrapper);
           
           eventBinder.addSender('btn1', anb1Inst.senderWrapper);

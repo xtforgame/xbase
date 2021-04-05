@@ -1,27 +1,19 @@
-import { SourceBase, DestinationBase, EbEventSenderWrapper, EbEventReceiverWrapper } from './core';
+import { SourceBase, DestinationBase, EbEventSenderWrapper, EbEventReceiverWrapper, SourceDestinationOptions } from './core';
 export declare class FakeClickSource extends SourceBase {
-  component: any;
-  elem: HTMLElement;
-  constructor(sender: EbEventSenderWrapper, component: any, elem: HTMLElement);
+  constructor(sender: EbEventSenderWrapper, options: SourceDestinationOptions);
   getRawValueType: () => string;
   getValue: <EventValue>(_: string) => EventValue;
-  getComponent: () => any;
-  getEventElement: () => HTMLElement;
   syncValue: <EventValue>(_: string, __: EventValue) => void;
   getSender: <SenderType>(_: string) => SenderType;
   addListener: (_: (e: Event) => any) => void;
   removeListener: (_: (e: Event) => any) => void;
 }
 export declare class FakeNullDestination extends DestinationBase {
-  component: any;
-  elem: HTMLElement;
   value: boolean;
-  constructor(receiver: EbEventReceiverWrapper, component: any, elem: HTMLElement);
+  constructor(receiver: EbEventReceiverWrapper, options: SourceDestinationOptions);
   getRawValueType: () => string;
   getValue: <EventValue>(_: string) => EventValue;
   changeValue: <EventValue>(valueType: string, value: EventValue) => void;
-  getComponent: () => any;
-  getEventElement: () => HTMLElement;
   watch: <EventValue>(_: (valueType: string, v: EventValue) => void) => void;
   unwatch: <EventValue>(_: (valueType: string, v: EventValue) => void) => void;
   getReceiver: <ReceiverType>(_: string) => ReceiverType;

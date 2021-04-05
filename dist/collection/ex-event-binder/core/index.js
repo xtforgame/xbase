@@ -35,14 +35,31 @@ export class EbEventReceiverWrapper {
     delete this.destinations[id];
   }
 }
-// =======================
 export class SourceBase {
-  constructor(sender) {
+  constructor(sender, options) {
+    this.getComponent = () => {
+      return this.options.getComponent();
+    };
+    this.getEventElement = () => {
+      return this.options.getElement();
+    };
     this.sender = sender;
+    this.options = options || {};
+    this.options.getComponent = this.options.getComponent || (() => null);
+    this.options.getElement = this.options.getElement || (() => null);
   }
 }
 export class DestinationBase {
-  constructor(receiver) {
+  constructor(receiver, options) {
+    this.getComponent = () => {
+      return this.options.getComponent();
+    };
+    this.getEventElement = () => {
+      return this.options.getElement();
+    };
     this.receiver = receiver;
+    this.options = options || {};
+    this.options.getComponent = this.options.getComponent || (() => null);
+    this.options.getElement = this.options.getElement || (() => null);
   }
 }

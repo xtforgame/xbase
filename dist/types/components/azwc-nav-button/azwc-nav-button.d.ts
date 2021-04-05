@@ -1,12 +1,13 @@
 import { EventEmitter } from '../../stencil-public-runtime';
 import { ClickSource, OnOffSource } from './eb';
-import { EbEventSenderWrapper } from '../../ex-event-binder';
+import { EbEventSenderWrapper, SourceBase } from '../../ex-event-binder';
 export declare class AzwcNavButton {
   static ClickSource: typeof ClickSource;
   static OnOffSource: typeof OnOffSource;
-  static EventMap: {
-    click: typeof ClickSource;
-    onoff: typeof OnOffSource;
+  static SenderEventMap: {
+    [s: string]: {
+      new (sender: EbEventSenderWrapper, component: any, elem: HTMLElement): SourceBase;
+    };
   };
   type: 'larr' | 'rarr' | 'uarr' | 'darr' | 'x' | 'plus' | '';
   stayclosed: boolean;

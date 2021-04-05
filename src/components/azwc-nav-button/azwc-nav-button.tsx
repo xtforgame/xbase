@@ -2,6 +2,7 @@ import { Component, Element, Method, Event, EventEmitter, Prop, State, Host, h }
 import { ClickSource, OnOffSource } from './eb';
 import {
   EbEventSenderWrapper,
+  SourceBase,
 } from '../../ex-event-binder';
 
 @Component({
@@ -12,7 +13,7 @@ import {
 export class AzwcNavButton {
   static ClickSource = ClickSource;
   static OnOffSource = OnOffSource;
-  static EventMap = {
+  static SenderEventMap : { [s : string]: { new(sender: EbEventSenderWrapper, component: any, elem: HTMLElement): SourceBase } } = {
     click: ClickSource,
     onoff: OnOffSource,
   };
@@ -32,8 +33,14 @@ export class AzwcNavButton {
 
   constructor() {
     this.senderWrapper = new EbEventSenderWrapper();
-    this.senderWrapper.addSource('click', new ClickSource(this.senderWrapper, this, null));
-    this.senderWrapper.addSource('onoff', new OnOffSource(this.senderWrapper, this, null));
+    this.senderWrapper.addSource('click', new ClickSource(this.senderWrapper, {
+      getComponent: () => this,
+      getElement: () => null,
+    }));
+    this.senderWrapper.addSource('onoff', new OnOffSource(this.senderWrapper, {
+      getComponent: () => this,
+      getElement: () => null,
+    }));
   }
 
   @Method()

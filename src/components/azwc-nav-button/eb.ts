@@ -1,31 +1,20 @@
 import {
   EbEventSenderWrapper,
   SourceBase,
+  SourceDestinationOptions,
 } from '../../ex-event-binder';
 
 export class ClickSource extends SourceBase {
-  component : any;
-  elem: HTMLElement;
   cb: Function;
 
-  constructor(sender: EbEventSenderWrapper, component: any, elem: HTMLElement) {
-    super(sender);
-    this.component = component;
-    this.elem = elem;
+  constructor(sender: EbEventSenderWrapper, options: SourceDestinationOptions) {
+    super(sender, options);
   }
 
   getRawValueType = () => 'null';
 
   getValue = <EventValue>(_: string) => {
     return (null as EventValue);
-  }
-
-  getComponent = () => {
-    return this.component;
-  }
-
-  getEventElement = () => {
-    return this.elem;
   }
 
   syncValue = <EventValue>(_: string, __: EventValue) => {
@@ -37,12 +26,12 @@ export class ClickSource extends SourceBase {
 
   addListener = (cb: (e : Event) => any) => {
     this.cb = cb;
-    this.component.host.addEventListener('customStateChange', this.callback);
+    this.getComponent().host.addEventListener('customStateChange', this.callback);
   }
 
   removeListener = (_: (e : Event) => any) => {
     this.cb = null;
-    this.component.host.removeEventListener('customStateChange', this.callback);
+    this.getComponent().host.removeEventListener('customStateChange', this.callback);
   }
 
   // ================
@@ -55,34 +44,21 @@ export class ClickSource extends SourceBase {
 }
 
 
-export class OnOffSource {
-  sender : EbEventSenderWrapper;
-  component : any;
-  elem: HTMLElement;
+export class OnOffSource extends SourceBase {
   cb: Function;
 
-  constructor(sender: EbEventSenderWrapper, component: any, elem: HTMLElement) {
-    this.sender = sender;
-    this.component = component;
-    this.elem = elem;
+  constructor(sender: EbEventSenderWrapper, options: SourceDestinationOptions) {
+    super(sender, options);
   }
 
   getRawValueType = () => 'boolean';
 
   getValue = <EventValue>(_: string) => {
-    return (<any>this.component.isOpen) as EventValue;
-  }
-
-  getComponent = () => {
-    return this.component;
-  }
-
-  getEventElement = () => {
-    return this.elem;
+    return (<any>this.getComponent().isOpen) as EventValue;
   }
 
   syncValue = <EventValue>(_: string, v: EventValue) => {
-    this.component.isOpen = v;
+    this.getComponent().isOpen = v;
   }
 
   getSender = <SenderType>(_: string) => {
@@ -91,12 +67,12 @@ export class OnOffSource {
 
   addListener = (cb: (e : Event) => any) => {
     this.cb = cb;
-    this.component.host.addEventListener('customStateChange', this.callback);
+    this.getComponent().host.addEventListener('customStateChange', this.callback);
   }
 
   removeListener = (_: (e : Event) => any) => {
     this.cb = null;
-    this.component.host.removeEventListener('customStateChange', this.callback);
+    this.getComponent().host.removeEventListener('customStateChange', this.callback);
   }
 
   // ================

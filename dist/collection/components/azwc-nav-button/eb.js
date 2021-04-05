@@ -1,16 +1,10 @@
 import { SourceBase, } from '../../ex-event-binder';
 export class ClickSource extends SourceBase {
-  constructor(sender, component, elem) {
-    super(sender);
+  constructor(sender, options) {
+    super(sender, options);
     this.getRawValueType = () => 'null';
     this.getValue = (_) => {
       return null;
-    };
-    this.getComponent = () => {
-      return this.component;
-    };
-    this.getEventElement = () => {
-      return this.elem;
     };
     this.syncValue = (_, __) => {
     };
@@ -19,11 +13,11 @@ export class ClickSource extends SourceBase {
     };
     this.addListener = (cb) => {
       this.cb = cb;
-      this.component.host.addEventListener('customStateChange', this.callback);
+      this.getComponent().host.addEventListener('customStateChange', this.callback);
     };
     this.removeListener = (_) => {
       this.cb = null;
-      this.component.host.removeEventListener('customStateChange', this.callback);
+      this.getComponent().host.removeEventListener('customStateChange', this.callback);
     };
     // ================
     this.callback = (e) => {
@@ -31,35 +25,28 @@ export class ClickSource extends SourceBase {
         this.cb(e);
       }
     };
-    this.component = component;
-    this.elem = elem;
   }
 }
-export class OnOffSource {
-  constructor(sender, component, elem) {
+export class OnOffSource extends SourceBase {
+  constructor(sender, options) {
+    super(sender, options);
     this.getRawValueType = () => 'boolean';
     this.getValue = (_) => {
-      return this.component.isOpen;
-    };
-    this.getComponent = () => {
-      return this.component;
-    };
-    this.getEventElement = () => {
-      return this.elem;
+      return this.getComponent().isOpen;
     };
     this.syncValue = (_, v) => {
-      this.component.isOpen = v;
+      this.getComponent().isOpen = v;
     };
     this.getSender = (_) => {
       return this.sender;
     };
     this.addListener = (cb) => {
       this.cb = cb;
-      this.component.host.addEventListener('customStateChange', this.callback);
+      this.getComponent().host.addEventListener('customStateChange', this.callback);
     };
     this.removeListener = (_) => {
       this.cb = null;
-      this.component.host.removeEventListener('customStateChange', this.callback);
+      this.getComponent().host.removeEventListener('customStateChange', this.callback);
     };
     // ================
     this.callback = (e) => {
@@ -67,8 +54,5 @@ export class OnOffSource {
         this.cb(e);
       }
     };
-    this.sender = sender;
-    this.component = component;
-    this.elem = elem;
   }
 }

@@ -38,30 +38,41 @@ class EbEventReceiverWrapper {
     delete this.destinations[id];
   }
 }
-// =======================
 class SourceBase {
-  constructor(sender) {
+  constructor(sender, options) {
+    this.getComponent = () => {
+      return this.options.getComponent();
+    };
+    this.getEventElement = () => {
+      return this.options.getElement();
+    };
     this.sender = sender;
+    this.options = options || {};
+    this.options.getComponent = this.options.getComponent || (() => null);
+    this.options.getElement = this.options.getElement || (() => null);
   }
 }
 class DestinationBase {
-  constructor(receiver) {
+  constructor(receiver, options) {
+    this.getComponent = () => {
+      return this.options.getComponent();
+    };
+    this.getEventElement = () => {
+      return this.options.getElement();
+    };
     this.receiver = receiver;
+    this.options = options || {};
+    this.options.getComponent = this.options.getComponent || (() => null);
+    this.options.getElement = this.options.getElement || (() => null);
   }
 }
 
 class FakeClickSource extends SourceBase {
-  constructor(sender, component, elem) {
-    super(sender);
+  constructor(sender, options) {
+    super(sender, options);
     this.getRawValueType = () => 'null';
     this.getValue = (_) => {
       return null;
-    };
-    this.getComponent = () => {
-      return this.component;
-    };
-    this.getEventElement = () => {
-      return this.elem;
     };
     this.syncValue = (_, __) => {
     };
@@ -72,13 +83,11 @@ class FakeClickSource extends SourceBase {
     };
     this.removeListener = (_) => {
     };
-    this.component = component;
-    this.elem = elem;
   }
 }
 class FakeNullDestination extends DestinationBase {
-  constructor(receiver, component, elem) {
-    super(receiver);
+  constructor(receiver, options) {
+    super(receiver, options);
     this.getRawValueType = () => 'null';
     this.getValue = (_) => {
       return this.value;
@@ -87,12 +96,6 @@ class FakeNullDestination extends DestinationBase {
       console.log('changeValue :', valueType, value);
       this.value = value;
     };
-    this.getComponent = () => {
-      return this.component;
-    };
-    this.getEventElement = () => {
-      return this.elem;
-    };
     this.watch = (_) => {
     };
     this.unwatch = (_) => {
@@ -100,8 +103,6 @@ class FakeNullDestination extends DestinationBase {
     this.getReceiver = (_) => {
       return this.receiver;
     };
-    this.component = component;
-    this.elem = elem;
     this.value = false;
   }
 }
@@ -208,17 +209,11 @@ const eventBinder = /*#__PURE__*/Object.freeze({
 });
 
 class ClickSource extends SourceBase {
-  constructor(sender, component, elem) {
-    super(sender);
+  constructor(sender, options) {
+    super(sender, options);
     this.getRawValueType = () => 'null';
     this.getValue = (_) => {
       return null;
-    };
-    this.getComponent = () => {
-      return this.component;
-    };
-    this.getEventElement = () => {
-      return this.elem;
     };
     this.syncValue = (_, __) => {
     };
@@ -227,11 +222,11 @@ class ClickSource extends SourceBase {
     };
     this.addListener = (cb) => {
       this.cb = cb;
-      this.component.host.addEventListener('customStateChange', this.callback);
+      this.getComponent().host.addEventListener('customStateChange', this.callback);
     };
     this.removeListener = (_) => {
       this.cb = null;
-      this.component.host.removeEventListener('customStateChange', this.callback);
+      this.getComponent().host.removeEventListener('customStateChange', this.callback);
     };
     // ================
     this.callback = (e) => {
@@ -239,35 +234,28 @@ class ClickSource extends SourceBase {
         this.cb(e);
       }
     };
-    this.component = component;
-    this.elem = elem;
   }
 }
-class OnOffSource {
-  constructor(sender, component, elem) {
+class OnOffSource extends SourceBase {
+  constructor(sender, options) {
+    super(sender, options);
     this.getRawValueType = () => 'boolean';
     this.getValue = (_) => {
-      return this.component.isOpen;
-    };
-    this.getComponent = () => {
-      return this.component;
-    };
-    this.getEventElement = () => {
-      return this.elem;
+      return this.getComponent().isOpen;
     };
     this.syncValue = (_, v) => {
-      this.component.isOpen = v;
+      this.getComponent().isOpen = v;
     };
     this.getSender = (_) => {
       return this.sender;
     };
     this.addListener = (cb) => {
       this.cb = cb;
-      this.component.host.addEventListener('customStateChange', this.callback);
+      this.getComponent().host.addEventListener('customStateChange', this.callback);
     };
     this.removeListener = (_) => {
       this.cb = null;
-      this.component.host.removeEventListener('customStateChange', this.callback);
+      this.getComponent().host.removeEventListener('customStateChange', this.callback);
     };
     // ================
     this.callback = (e) => {
@@ -275,9 +263,6 @@ class OnOffSource {
         this.cb(e);
       }
     };
-    this.sender = sender;
-    this.component = component;
-    this.elem = elem;
   }
 }
 
@@ -288,8 +273,14 @@ const AzwcNavButton = class extends HTMLElement {
     this.customStateChange = createEvent(this, "customStateChange", 7);
     this.isOpen = false;
     this.senderWrapper = new EbEventSenderWrapper();
-    this.senderWrapper.addSource('click', new ClickSource(this.senderWrapper, this, null));
-    this.senderWrapper.addSource('onoff', new OnOffSource(this.senderWrapper, this, null));
+    this.senderWrapper.addSource('click', new ClickSource(this.senderWrapper, {
+      getComponent: () => this,
+      getElement: () => null,
+    }));
+    this.senderWrapper.addSource('onoff', new OnOffSource(this.senderWrapper, {
+      getComponent: () => this,
+      getElement: () => null,
+    }));
   }
   async getInst() {
     return this;
@@ -313,7 +304,7 @@ const AzwcNavButton = class extends HTMLElement {
 };
 AzwcNavButton.ClickSource = ClickSource;
 AzwcNavButton.OnOffSource = OnOffSource;
-AzwcNavButton.EventMap = {
+AzwcNavButton.SenderEventMap = {
   click: ClickSource,
   onoff: OnOffSource,
 };
@@ -334,33 +325,27 @@ const AzwcAccordion = class extends HTMLElement {
 };
 
 class NullDestination extends DestinationBase {
-  constructor(receiver, component, elem) {
-    super(receiver);
+  constructor(receiver, options) {
+    super(receiver, options);
     this.getRawValueType = () => 'null';
     this.getValue = (_) => {
       return null;
     };
     this.changeValue = (_, __) => {
-      if (!this.component.isOpen) {
-        this.component.open();
+      if (!this.getComponent().isOpen) {
+        this.getComponent().open();
       }
       else {
-        this.component.close();
+        this.getComponent().close();
       }
-    };
-    this.getComponent = () => {
-      return this.component;
-    };
-    this.getEventElement = () => {
-      return this.elem;
     };
     this.watch = (cb) => {
       this.cb = cb;
-      this.component.host.addEventListener('customStateChange', this.callback);
+      this.getComponent().host.addEventListener('customStateChange', this.callback);
     };
     this.unwatch = (_) => {
       this.cb = null;
-      this.component.host.removeEventListener('customStateChange', this.callback);
+      this.getComponent().host.removeEventListener('customStateChange', this.callback);
     };
     this.getReceiver = (_) => {
       return this.receiver;
@@ -372,41 +357,33 @@ class NullDestination extends DestinationBase {
         this.cb(valueType, this.getValue(valueType));
       }
     };
-    this.component = component;
-    this.elem = elem;
   }
 }
 class BoolDestination extends DestinationBase {
-  constructor(receiver, component, elem) {
-    super(receiver);
+  constructor(receiver, options) {
+    super(receiver, options);
     this.getRawValueType = () => 'boolean';
     this.getValue = (_) => {
-      return this.component.isOpen;
+      return this.getComponent().isOpen;
     };
     this.changeValue = (_, value) => {
-      if (this.component.isOpen !== value) {
+      if (this.getComponent().isOpen !== value) {
         if (value) {
-          this.component.open();
+          this.getComponent().open();
         }
         else {
-          this.component.close();
+          this.getComponent().close();
         }
       }
-      // this.component.isOpen = <any>value;
-    };
-    this.getComponent = () => {
-      return this.component;
-    };
-    this.getEventElement = () => {
-      return this.elem;
+      // this.getComponent().isOpen = <any>value;
     };
     this.watch = (cb) => {
       this.cb = cb;
-      this.component.host.addEventListener('customStateChange', this.callback);
+      this.getComponent().host.addEventListener('customStateChange', this.callback);
     };
     this.unwatch = (_) => {
       this.cb = null;
-      this.component.host.removeEventListener('customStateChange', this.callback);
+      this.getComponent().host.removeEventListener('customStateChange', this.callback);
     };
     this.getReceiver = (_) => {
       return this.receiver;
@@ -418,8 +395,6 @@ class BoolDestination extends DestinationBase {
         this.cb(valueType, this.getValue(valueType));
       }
     };
-    this.component = component;
-    this.elem = elem;
   }
 }
 
@@ -430,8 +405,14 @@ const AzwcDialog = class extends HTMLElement {
     this.customStateChange = createEvent(this, "customStateChange", 7);
     this.isOpen = false;
     this.receiverWrapper = new EbEventReceiverWrapper();
-    this.receiverWrapper.addDestination('toggle-dialog', new NullDestination(this.receiverWrapper, this, null));
-    this.receiverWrapper.addDestination('dialog-state', new BoolDestination(this.receiverWrapper, this, null));
+    this.receiverWrapper.addDestination('toggle-dialog', new NullDestination(this.receiverWrapper, {
+      getComponent: () => this,
+      getElement: () => null,
+    }));
+    this.receiverWrapper.addDestination('dialog-state', new BoolDestination(this.receiverWrapper, {
+      getComponent: () => this,
+      getElement: () => null,
+    }));
   }
   async getInst() {
     return this;

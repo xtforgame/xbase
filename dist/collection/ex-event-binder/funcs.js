@@ -1,16 +1,10 @@
 import { SourceBase, DestinationBase, } from './core';
 export class FakeClickSource extends SourceBase {
-  constructor(sender, component, elem) {
-    super(sender);
+  constructor(sender, options) {
+    super(sender, options);
     this.getRawValueType = () => 'null';
     this.getValue = (_) => {
       return null;
-    };
-    this.getComponent = () => {
-      return this.component;
-    };
-    this.getEventElement = () => {
-      return this.elem;
     };
     this.syncValue = (_, __) => {
     };
@@ -21,13 +15,11 @@ export class FakeClickSource extends SourceBase {
     };
     this.removeListener = (_) => {
     };
-    this.component = component;
-    this.elem = elem;
   }
 }
 export class FakeNullDestination extends DestinationBase {
-  constructor(receiver, component, elem) {
-    super(receiver);
+  constructor(receiver, options) {
+    super(receiver, options);
     this.getRawValueType = () => 'null';
     this.getValue = (_) => {
       return this.value;
@@ -36,12 +28,6 @@ export class FakeNullDestination extends DestinationBase {
       console.log('changeValue :', valueType, value);
       this.value = value;
     };
-    this.getComponent = () => {
-      return this.component;
-    };
-    this.getEventElement = () => {
-      return this.elem;
-    };
     this.watch = (_) => {
     };
     this.unwatch = (_) => {
@@ -49,8 +35,6 @@ export class FakeNullDestination extends DestinationBase {
     this.getReceiver = (_) => {
       return this.receiver;
     };
-    this.component = component;
-    this.elem = elem;
     this.value = false;
   }
 }

@@ -112,18 +112,47 @@ export class EbEventReceiverWrapper {
 
 // =======================
 
+export type SourceDestinationOptions = {
+  getComponent?: () => any;
+  getElement?: () => any;
+}
+
 export class SourceBase {
   sender : EbEventSenderWrapper;
+  options: SourceDestinationOptions
 
-  constructor(sender: EbEventSenderWrapper) {
+  constructor(sender: EbEventSenderWrapper, options: SourceDestinationOptions) {
     this.sender = sender;
+    this.options = options || {};
+    this.options.getComponent = this.options.getComponent || (() => null);
+    this.options.getElement = this.options.getElement || (() => null);
+  }
+
+  getComponent = () => {
+    return this.options.getComponent!();
+  }
+
+  getEventElement = () => {
+    return this.options.getElement!();
   }
 }
 
 export class DestinationBase {
   receiver : EbEventReceiverWrapper;
+  options: SourceDestinationOptions
 
-  constructor(receiver: EbEventReceiverWrapper) {
+  constructor(receiver: EbEventReceiverWrapper, options: SourceDestinationOptions) {
     this.receiver = receiver;
+    this.options = options || {};
+    this.options.getComponent = this.options.getComponent || (() => null);
+    this.options.getElement = this.options.getElement || (() => null);
+  }
+
+  getComponent = () => {
+    return this.options.getComponent!();
+  }
+
+  getEventElement = () => {
+    return this.options.getElement!();
   }
 }

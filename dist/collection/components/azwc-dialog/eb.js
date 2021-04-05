@@ -1,32 +1,26 @@
 import { DestinationBase, } from '../../ex-event-binder';
 export class NullDestination extends DestinationBase {
-  constructor(receiver, component, elem) {
-    super(receiver);
+  constructor(receiver, options) {
+    super(receiver, options);
     this.getRawValueType = () => 'null';
     this.getValue = (_) => {
       return null;
     };
     this.changeValue = (_, __) => {
-      if (!this.component.isOpen) {
-        this.component.open();
+      if (!this.getComponent().isOpen) {
+        this.getComponent().open();
       }
       else {
-        this.component.close();
+        this.getComponent().close();
       }
-    };
-    this.getComponent = () => {
-      return this.component;
-    };
-    this.getEventElement = () => {
-      return this.elem;
     };
     this.watch = (cb) => {
       this.cb = cb;
-      this.component.host.addEventListener('customStateChange', this.callback);
+      this.getComponent().host.addEventListener('customStateChange', this.callback);
     };
     this.unwatch = (_) => {
       this.cb = null;
-      this.component.host.removeEventListener('customStateChange', this.callback);
+      this.getComponent().host.removeEventListener('customStateChange', this.callback);
     };
     this.getReceiver = (_) => {
       return this.receiver;
@@ -38,41 +32,33 @@ export class NullDestination extends DestinationBase {
         this.cb(valueType, this.getValue(valueType));
       }
     };
-    this.component = component;
-    this.elem = elem;
   }
 }
 export class BoolDestination extends DestinationBase {
-  constructor(receiver, component, elem) {
-    super(receiver);
+  constructor(receiver, options) {
+    super(receiver, options);
     this.getRawValueType = () => 'boolean';
     this.getValue = (_) => {
-      return this.component.isOpen;
+      return this.getComponent().isOpen;
     };
     this.changeValue = (_, value) => {
-      if (this.component.isOpen !== value) {
+      if (this.getComponent().isOpen !== value) {
         if (value) {
-          this.component.open();
+          this.getComponent().open();
         }
         else {
-          this.component.close();
+          this.getComponent().close();
         }
       }
-      // this.component.isOpen = <any>value;
-    };
-    this.getComponent = () => {
-      return this.component;
-    };
-    this.getEventElement = () => {
-      return this.elem;
+      // this.getComponent().isOpen = <any>value;
     };
     this.watch = (cb) => {
       this.cb = cb;
-      this.component.host.addEventListener('customStateChange', this.callback);
+      this.getComponent().host.addEventListener('customStateChange', this.callback);
     };
     this.unwatch = (_) => {
       this.cb = null;
-      this.component.host.removeEventListener('customStateChange', this.callback);
+      this.getComponent().host.removeEventListener('customStateChange', this.callback);
     };
     this.getReceiver = (_) => {
       return this.receiver;
@@ -84,7 +70,5 @@ export class BoolDestination extends DestinationBase {
         this.cb(valueType, this.getValue(valueType));
       }
     };
-    this.component = component;
-    this.elem = elem;
   }
 }

@@ -1,6 +1,6 @@
 import { r as registerInstance, h, H as Host, g as getElement } from './index-54a7a200.js';
-import { l as format } from './azwc-collapse-t1-f2b38e55.js';
-export { p as azwc_accordion, v as azwc_collapse_t1, q as azwc_dialog, r as azwc_file_manager, o as azwc_nav_button, s as azwc_spinner, t as azwc_spinner_mask, u as azwc_swiper } from './azwc-collapse-t1-f2b38e55.js';
+import { l as format } from './azwc-collapse-t1-a4f0f29f.js';
+export { p as azwc_accordion, v as azwc_collapse_t1, q as azwc_dialog, r as azwc_file_manager, o as azwc_nav_button, s as azwc_spinner, t as azwc_spinner_mask, u as azwc_swiper } from './azwc-collapse-t1-a4f0f29f.js';
 
 const MyComponent = class {
   constructor(hostRef) {

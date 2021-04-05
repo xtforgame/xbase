@@ -61,11 +61,21 @@ export declare class EbEventReceiverWrapper {
   addDestination(id: string, destination: EbEventDestination): void;
   removeDestination(id: string): void;
 }
+export declare type SourceDestinationOptions = {
+  getComponent?: () => any;
+  getElement?: () => any;
+};
 export declare class SourceBase {
   sender: EbEventSenderWrapper;
-  constructor(sender: EbEventSenderWrapper);
+  options: SourceDestinationOptions;
+  constructor(sender: EbEventSenderWrapper, options: SourceDestinationOptions);
+  getComponent: () => any;
+  getEventElement: () => any;
 }
 export declare class DestinationBase {
   receiver: EbEventReceiverWrapper;
-  constructor(receiver: EbEventReceiverWrapper);
+  options: SourceDestinationOptions;
+  constructor(receiver: EbEventReceiverWrapper, options: SourceDestinationOptions);
+  getComponent: () => any;
+  getEventElement: () => any;
 }

@@ -1,18 +1,12 @@
-import { S as SourceBase, D as DestinationBase, E as EbEventLink, a as EbEventSenderWrapper, b as EbEventReceiverWrapper, c as Swiper, V as Virtual, K as Keyboard, M as Mousewheel, N as Navigation, P as Pagination, d as Scrollbar, e as Parallax, Z as Zoom, L as Lazy, C as Controller, A as A11y, H as History, f as HashNavigation, g as Autoplay, h as EffectFade, i as EffectCube, j as EffectFlip, k as EffectCoverflow, T as Thumbs, l as format, m as createRamdomUniqueId, n as createRamdomUniqueIdForElement, o as AzwcNavButton, p as AzwcAccordion, q as AzwcDialog, r as AzwcFileManager, s as AzwcSpinner, t as AzwcSpinnerMask, u as AzwcSwiper, v as AzwcCollapseT1 } from './azwc-collapse-t1-f2b38e55.js';
+import { S as SourceBase, D as DestinationBase, E as EbEventLink, a as EbEventSenderWrapper, b as EbEventReceiverWrapper, c as Swiper, V as Virtual, K as Keyboard, M as Mousewheel, N as Navigation, P as Pagination, d as Scrollbar, e as Parallax, Z as Zoom, L as Lazy, C as Controller, A as A11y, H as History, f as HashNavigation, g as Autoplay, h as EffectFade, i as EffectCube, j as EffectFlip, k as EffectCoverflow, T as Thumbs, l as format, m as createRamdomUniqueId, n as createRamdomUniqueIdForElement, o as AzwcNavButton, p as AzwcAccordion, q as AzwcDialog, r as AzwcFileManager, s as AzwcSpinner, t as AzwcSpinnerMask, u as AzwcSwiper, v as AzwcCollapseT1 } from './azwc-collapse-t1-a4f0f29f.js';
 import { A as AzwcCanviDrawer } from './azwc-canvi-drawer-f7c49426.js';
 
 class FakeClickSource extends SourceBase {
-  constructor(sender, component, elem) {
-    super(sender);
+  constructor(sender, options) {
+    super(sender, options);
     this.getRawValueType = () => 'null';
     this.getValue = (_) => {
       return null;
-    };
-    this.getComponent = () => {
-      return this.component;
-    };
-    this.getEventElement = () => {
-      return this.elem;
     };
     this.syncValue = (_, __) => {
     };
@@ -23,13 +17,11 @@ class FakeClickSource extends SourceBase {
     };
     this.removeListener = (_) => {
     };
-    this.component = component;
-    this.elem = elem;
   }
 }
 class FakeNullDestination extends DestinationBase {
-  constructor(receiver, component, elem) {
-    super(receiver);
+  constructor(receiver, options) {
+    super(receiver, options);
     this.getRawValueType = () => 'null';
     this.getValue = (_) => {
       return this.value;
@@ -38,12 +30,6 @@ class FakeNullDestination extends DestinationBase {
       console.log('changeValue :', valueType, value);
       this.value = value;
     };
-    this.getComponent = () => {
-      return this.component;
-    };
-    this.getEventElement = () => {
-      return this.elem;
-    };
     this.watch = (_) => {
     };
     this.unwatch = (_) => {
@@ -51,8 +37,6 @@ class FakeNullDestination extends DestinationBase {
     this.getReceiver = (_) => {
       return this.receiver;
     };
-    this.component = component;
-    this.elem = elem;
     this.value = false;
   }
 }

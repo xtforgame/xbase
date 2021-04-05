@@ -49,8 +49,14 @@ export class AzwcDialog {
 
   constructor() {
     this.receiverWrapper = new EbEventReceiverWrapper();
-    this.receiverWrapper.addDestination('toggle-dialog', new NullDestination(this.receiverWrapper, this, null));
-    this.receiverWrapper.addDestination('dialog-state', new BoolDestination(this.receiverWrapper, this, null));
+    this.receiverWrapper.addDestination('toggle-dialog', new NullDestination(this.receiverWrapper, {
+      getComponent: () => this,
+      getElement: () => null,
+    }));
+    this.receiverWrapper.addDestination('dialog-state', new BoolDestination(this.receiverWrapper, {
+      getComponent: () => this,
+      getElement: () => null,
+    }));
   }
 
   componentDidLoad() {

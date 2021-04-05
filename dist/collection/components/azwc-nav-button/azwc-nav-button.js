@@ -5,8 +5,14 @@ export class AzwcNavButton {
   constructor() {
     this.isOpen = false;
     this.senderWrapper = new EbEventSenderWrapper();
-    this.senderWrapper.addSource('click', new ClickSource(this.senderWrapper, this, null));
-    this.senderWrapper.addSource('onoff', new OnOffSource(this.senderWrapper, this, null));
+    this.senderWrapper.addSource('click', new ClickSource(this.senderWrapper, {
+      getComponent: () => this,
+      getElement: () => null,
+    }));
+    this.senderWrapper.addSource('onoff', new OnOffSource(this.senderWrapper, {
+      getComponent: () => this,
+      getElement: () => null,
+    }));
   }
   async getInst() {
     return this;
@@ -106,7 +112,7 @@ export class AzwcNavButton {
 }
 AzwcNavButton.ClickSource = ClickSource;
 AzwcNavButton.OnOffSource = OnOffSource;
-AzwcNavButton.EventMap = {
+AzwcNavButton.SenderEventMap = {
   click: ClickSource,
   onoff: OnOffSource,
 };
