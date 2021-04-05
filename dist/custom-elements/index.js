@@ -10547,25 +10547,26 @@ class Canvi {
   }
 }
 
+const getExportData = () => ({
+  AzwcNavButton,
+  AzwcAccordion,
+  AzwcDialog,
+  AzwcFileManager,
+  AzwcSpinner,
+  AzwcSpinnerMask,
+  AzwcSwiper,
+  AzwcCollapseT1,
+  AzwcCanviDrawer,
+  thirdParty: {
+    swiperlib,
+    Swiper,
+    Canvi,
+  },
+  utils,
+  eventBinder,
+});
 async function appGlobalScript () {
-  const exportData = {
-    AzwcNavButton,
-    AzwcAccordion,
-    AzwcDialog,
-    AzwcFileManager,
-    AzwcSpinner,
-    AzwcSpinnerMask,
-    AzwcSwiper,
-    AzwcCollapseT1,
-    AzwcCanviDrawer,
-    thirdParty: {
-      swiperlib,
-      Swiper,
-      Canvi,
-    },
-    utils,
-    eventBinder,
-  };
+  const exportData = getExportData();
   window.__azwc_classes = exportData;
   window.__azwc_export = exportData;
   if (window.__on_azwc_init) {

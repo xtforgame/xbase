@@ -2,7 +2,7 @@
 
 const index = require('./index-cbad13bb.js');
 require('./azwc-collapse-t1-5d89ad20.js');
-const appGlobals = require('./app-globals-f0a952c2.js');
+const appGlobals = require('./app-globals-720e504d.js');
 require('./azwc-canvi-drawer-c9fe5477.js');
 
 /*

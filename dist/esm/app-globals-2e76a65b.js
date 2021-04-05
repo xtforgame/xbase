@@ -1,7 +1,5 @@
-'use strict';
-
-const azwcCollapseT1 = require('./azwc-collapse-t1-5d89ad20.js');
-const azwcCanviDrawer = require('./azwc-canvi-drawer-c9fe5477.js');
+import { E as EbEventLink, a as EbEventSenderWrapper, b as EbEventReceiverWrapper, S as Swiper, V as Virtual, K as Keyboard, M as Mousewheel, N as Navigation, P as Pagination, c as Scrollbar, d as Parallax, Z as Zoom, L as Lazy, C as Controller, A as A11y, H as History, e as HashNavigation, f as Autoplay, g as EffectFade, h as EffectCube, i as EffectFlip, j as EffectCoverflow, T as Thumbs, k as format, l as createRamdomUniqueId, m as createRamdomUniqueIdForElement, n as AzwcNavButton, o as AzwcAccordion, p as AzwcDialog, q as AzwcFileManager, r as AzwcSpinner, s as AzwcSpinnerMask, t as AzwcSwiper, u as AzwcCollapseT1 } from './azwc-collapse-t1-96faef5d.js';
+import { A as AzwcCanviDrawer } from './azwc-canvi-drawer-f7c49426.js';
 
 class FakeClickSource {
   constructor(sender, component, elem) {
@@ -143,7 +141,7 @@ class EbEventBinder {
       destination.changeValue(exEvent.valueType, exEvent.value);
       cb(exEvent);
     };
-    const link = new azwcCollapseT1.EbEventLink(senderId, sourceEventName, source, receiverId, destinationEventName, destination, valueType, callback, options);
+    const link = new EbEventLink(senderId, sourceEventName, source, receiverId, destinationEventName, destination, valueType, callback, options);
     this.addLinkCore(link);
   }
 }
@@ -153,9 +151,9 @@ const eventBinder = /*#__PURE__*/Object.freeze({
   EbEventBinder: EbEventBinder,
   FakeClickSource: FakeClickSource,
   FakeNullDestination: FakeNullDestination,
-  EbEventLink: azwcCollapseT1.EbEventLink,
-  EbEventSenderWrapper: azwcCollapseT1.EbEventSenderWrapper,
-  EbEventReceiverWrapper: azwcCollapseT1.EbEventReceiverWrapper
+  EbEventLink: EbEventLink,
+  EbEventSenderWrapper: EbEventSenderWrapper,
+  EbEventReceiverWrapper: EbEventReceiverWrapper
 });
 
 /**
@@ -172,34 +170,34 @@ const eventBinder = /*#__PURE__*/Object.freeze({
 
 const swiperlib = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  Swiper: azwcCollapseT1.Swiper,
-  'default': azwcCollapseT1.Swiper,
-  Virtual: azwcCollapseT1.Virtual,
-  Keyboard: azwcCollapseT1.Keyboard,
-  Mousewheel: azwcCollapseT1.Mousewheel,
-  Navigation: azwcCollapseT1.Navigation,
-  Pagination: azwcCollapseT1.Pagination,
-  Scrollbar: azwcCollapseT1.Scrollbar,
-  Parallax: azwcCollapseT1.Parallax,
-  Zoom: azwcCollapseT1.Zoom,
-  Lazy: azwcCollapseT1.Lazy,
-  Controller: azwcCollapseT1.Controller,
-  A11y: azwcCollapseT1.A11y,
-  History: azwcCollapseT1.History,
-  HashNavigation: azwcCollapseT1.HashNavigation,
-  Autoplay: azwcCollapseT1.Autoplay,
-  EffectFade: azwcCollapseT1.EffectFade,
-  EffectCube: azwcCollapseT1.EffectCube,
-  EffectFlip: azwcCollapseT1.EffectFlip,
-  EffectCoverflow: azwcCollapseT1.EffectCoverflow,
-  Thumbs: azwcCollapseT1.Thumbs
+  Swiper: Swiper,
+  'default': Swiper,
+  Virtual: Virtual,
+  Keyboard: Keyboard,
+  Mousewheel: Mousewheel,
+  Navigation: Navigation,
+  Pagination: Pagination,
+  Scrollbar: Scrollbar,
+  Parallax: Parallax,
+  Zoom: Zoom,
+  Lazy: Lazy,
+  Controller: Controller,
+  A11y: A11y,
+  History: History,
+  HashNavigation: HashNavigation,
+  Autoplay: Autoplay,
+  EffectFade: EffectFade,
+  EffectCube: EffectCube,
+  EffectFlip: EffectFlip,
+  EffectCoverflow: EffectCoverflow,
+  Thumbs: Thumbs
 });
 
 const utils = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  format: azwcCollapseT1.format,
-  createRamdomUniqueId: azwcCollapseT1.createRamdomUniqueId,
-  createRamdomUniqueIdForElement: azwcCollapseT1.createRamdomUniqueIdForElement
+  format: format,
+  createRamdomUniqueId: createRamdomUniqueId,
+  createRamdomUniqueIdForElement: createRamdomUniqueIdForElement
 });
 
 // https://github.com/conedevelopment/canvi
@@ -479,25 +477,26 @@ class Canvi {
   }
 }
 
+const getExportData = () => ({
+  AzwcNavButton,
+  AzwcAccordion,
+  AzwcDialog,
+  AzwcFileManager,
+  AzwcSpinner,
+  AzwcSpinnerMask,
+  AzwcSwiper,
+  AzwcCollapseT1,
+  AzwcCanviDrawer,
+  thirdParty: {
+    swiperlib,
+    Swiper,
+    Canvi,
+  },
+  utils,
+  eventBinder,
+});
 async function appGlobalScript () {
-  const exportData = {
-    AzwcNavButton: azwcCollapseT1.AzwcNavButton,
-    AzwcAccordion: azwcCollapseT1.AzwcAccordion,
-    AzwcDialog: azwcCollapseT1.AzwcDialog,
-    AzwcFileManager: azwcCollapseT1.AzwcFileManager,
-    AzwcSpinner: azwcCollapseT1.AzwcSpinner,
-    AzwcSpinnerMask: azwcCollapseT1.AzwcSpinnerMask,
-    AzwcSwiper: azwcCollapseT1.AzwcSwiper,
-    AzwcCollapseT1: azwcCollapseT1.AzwcCollapseT1,
-    AzwcCanviDrawer: azwcCanviDrawer.AzwcCanviDrawer,
-    thirdParty: {
-      swiperlib,
-      Swiper: azwcCollapseT1.Swiper,
-      Canvi,
-    },
-    utils,
-    eventBinder,
-  };
+  const exportData = getExportData();
   window.__azwc_classes = exportData;
   window.__azwc_export = exportData;
   if (window.__on_azwc_init) {
@@ -507,4 +506,4 @@ async function appGlobalScript () {
 
 const globalScripts = appGlobalScript;
 
-exports.globalScripts = globalScripts;
+export { globalScripts as g };

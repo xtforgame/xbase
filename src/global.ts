@@ -13,25 +13,29 @@ import Canvi from './components/azwc-canvi-drawer/Canvi';
 import * as utils from './utils';
 import * as eventBinder from './ex-event-binder';
 
+export const getExportData = () => ({
+  AzwcNavButton,
+  AzwcAccordion,
+  AzwcDialog,
+  AzwcFileManager,
+  AzwcSpinner,
+  AzwcSpinnerMask,
+  AzwcSwiper,
+  AzwcCollapseT1,
+  AzwcCanviDrawer,
+  thirdParty: {
+    swiperlib,
+    Swiper,
+    Canvi,
+  },
+  utils,
+  eventBinder,
+});
+
+export const exportData = getExportData();
+
 export default async function () {
-  const exportData = {
-    AzwcNavButton,
-    AzwcAccordion,
-    AzwcDialog,
-    AzwcFileManager,
-    AzwcSpinner,
-    AzwcSpinnerMask,
-    AzwcSwiper,
-    AzwcCollapseT1,
-    AzwcCanviDrawer,
-    thirdParty: {
-      swiperlib,
-      Swiper,
-      Canvi,
-    },
-    utils,
-    eventBinder,
-  };
+  const exportData = getExportData();
   (<any>window).__azwc_classes = exportData;
   (<any>window).__azwc_export = exportData;
   if ((<any>window).__on_azwc_init) {

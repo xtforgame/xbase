@@ -1,6 +1,6 @@
 import { p as promiseResolve, b as bootstrapLazy } from './index-54a7a200.js';
 import './azwc-collapse-t1-96faef5d.js';
-import { g as globalScripts } from './app-globals-af72bda6.js';
+import { g as globalScripts } from './app-globals-2e76a65b.js';
 import './azwc-canvi-drawer-f7c49426.js';
 
 /*
