@@ -463,7 +463,7 @@ class Canvi {
   }
 }
 
-const getExportData = () => ({
+const Components = {
   AzwcNavButton,
   AzwcAccordion,
   AzwcDialog,
@@ -473,14 +473,13 @@ const getExportData = () => ({
   AzwcSwiper,
   AzwcCollapseT1,
   AzwcCanviDrawer,
-  thirdParty: {
+};
+const getExportData = () => (Object.assign(Object.assign({ Components }, Components), { thirdParty: {
     swiperlib,
     Swiper,
     Canvi,
-  },
-  utils,
-  eventBinder,
-});
+  }, utils,
+  eventBinder }));
 const exportData = getExportData();
 async function appGlobalScript () {
   const exportData = getExportData();

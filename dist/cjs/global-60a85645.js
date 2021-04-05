@@ -465,7 +465,7 @@ class Canvi {
   }
 }
 
-const getExportData = () => ({
+const Components = {
   AzwcNavButton: azwcCollapseT1.AzwcNavButton,
   AzwcAccordion: azwcCollapseT1.AzwcAccordion,
   AzwcDialog: azwcCollapseT1.AzwcDialog,
@@ -475,14 +475,13 @@ const getExportData = () => ({
   AzwcSwiper: azwcCollapseT1.AzwcSwiper,
   AzwcCollapseT1: azwcCollapseT1.AzwcCollapseT1,
   AzwcCanviDrawer: azwcCanviDrawer.AzwcCanviDrawer,
-  thirdParty: {
+};
+const getExportData = () => (Object.assign(Object.assign({ Components }, Components), { thirdParty: {
     swiperlib,
     Swiper: azwcCollapseT1.Swiper,
     Canvi,
-  },
-  utils,
-  eventBinder,
-});
+  }, utils,
+  eventBinder }));
 const exportData = getExportData();
 async function appGlobalScript () {
   const exportData = getExportData();

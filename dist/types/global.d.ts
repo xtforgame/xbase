@@ -11,6 +11,13 @@ import { AzwcCanviDrawer } from './components/azwc-canvi-drawer/azwc-canvi-drawe
 import * as utils from './utils';
 import * as eventBinder from './ex-event-binder';
 export declare const getExportData: () => {
+  thirdParty: {
+    swiperlib: typeof swiperlib;
+    Swiper: typeof swiperlib.Swiper;
+    Canvi: any;
+  };
+  utils: typeof utils;
+  eventBinder: typeof eventBinder;
   AzwcNavButton: typeof AzwcNavButton;
   AzwcAccordion: typeof AzwcAccordion;
   AzwcDialog: typeof AzwcDialog;
@@ -20,15 +27,26 @@ export declare const getExportData: () => {
   AzwcSwiper: typeof AzwcSwiper;
   AzwcCollapseT1: typeof AzwcCollapseT1;
   AzwcCanviDrawer: typeof AzwcCanviDrawer;
-  thirdParty: {
-    swiperlib: typeof swiperlib;
-    Swiper: typeof swiperlib.Swiper;
-    Canvi: any;
+  Components: {
+    AzwcNavButton: typeof AzwcNavButton;
+    AzwcAccordion: typeof AzwcAccordion;
+    AzwcDialog: typeof AzwcDialog;
+    AzwcFileManager: typeof AzwcFileManager;
+    AzwcSpinner: typeof AzwcSpinner;
+    AzwcSpinnerMask: typeof AzwcSpinnerMask;
+    AzwcSwiper: typeof AzwcSwiper;
+    AzwcCollapseT1: typeof AzwcCollapseT1;
+    AzwcCanviDrawer: typeof AzwcCanviDrawer;
   };
-  utils: typeof utils;
-  eventBinder: typeof eventBinder;
 };
 export declare const exportData: {
+  thirdParty: {
+    swiperlib: typeof swiperlib;
+    Swiper: typeof swiperlib.Swiper;
+    Canvi: any;
+  };
+  utils: typeof utils;
+  eventBinder: typeof eventBinder;
   AzwcNavButton: typeof AzwcNavButton;
   AzwcAccordion: typeof AzwcAccordion;
   AzwcDialog: typeof AzwcDialog;
@@ -38,12 +56,16 @@ export declare const exportData: {
   AzwcSwiper: typeof AzwcSwiper;
   AzwcCollapseT1: typeof AzwcCollapseT1;
   AzwcCanviDrawer: typeof AzwcCanviDrawer;
-  thirdParty: {
-    swiperlib: typeof swiperlib;
-    Swiper: typeof swiperlib.Swiper;
-    Canvi: any;
+  Components: {
+    AzwcNavButton: typeof AzwcNavButton;
+    AzwcAccordion: typeof AzwcAccordion;
+    AzwcDialog: typeof AzwcDialog;
+    AzwcFileManager: typeof AzwcFileManager;
+    AzwcSpinner: typeof AzwcSpinner;
+    AzwcSpinnerMask: typeof AzwcSpinnerMask;
+    AzwcSwiper: typeof AzwcSwiper;
+    AzwcCollapseT1: typeof AzwcCollapseT1;
+    AzwcCanviDrawer: typeof AzwcCanviDrawer;
   };
-  utils: typeof utils;
-  eventBinder: typeof eventBinder;
 };
 export default function (): Promise<void>;

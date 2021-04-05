@@ -12,7 +12,7 @@ import { AzwcCanviDrawer } from './components/azwc-canvi-drawer/azwc-canvi-drawe
 import Canvi from './components/azwc-canvi-drawer/Canvi';
 import * as utils from './utils';
 import * as eventBinder from './ex-event-binder';
-export const getExportData = () => ({
+const Components = {
   AzwcNavButton,
   AzwcAccordion,
   AzwcDialog,
@@ -22,14 +22,13 @@ export const getExportData = () => ({
   AzwcSwiper,
   AzwcCollapseT1,
   AzwcCanviDrawer,
-  thirdParty: {
+};
+export const getExportData = () => (Object.assign(Object.assign({ Components }, Components), { thirdParty: {
     swiperlib,
     Swiper,
     Canvi,
-  },
-  utils,
-  eventBinder,
-});
+  }, utils,
+  eventBinder }));
 export const exportData = getExportData();
 export default async function () {
   const exportData = getExportData();

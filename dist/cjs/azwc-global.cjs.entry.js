@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-cbad13bb.js');
 require('./azwc-collapse-t1-32739bb6.js');
-const global = require('./global-d6685f58.js');
+const global = require('./global-60a85645.js');
 require('./azwc-canvi-drawer-c9fe5477.js');
 
 const AzwcGlobal = class {
