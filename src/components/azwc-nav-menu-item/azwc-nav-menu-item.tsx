@@ -1,4 +1,4 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, Prop, h } from '@stencil/core';
 
 @Component({
   tag: 'azwc-nav-menu-item',
@@ -7,11 +7,15 @@ import { Component, Host, h } from '@stencil/core';
 })
 export class AzwcNavMenuItem {
 
+  @Prop({ attribute: 'show-on' }) showOn: 'left-side' | '';
   render() {
     return (
       <Host>
         <li>
-          <slot></slot>
+          <div><slot name="label"></slot></div>
+          <azwc-nav-menu show-on={this.showOn}>
+            <slot></slot>
+          </azwc-nav-menu>
         </li>
       </Host>
     );

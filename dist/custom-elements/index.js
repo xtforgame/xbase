@@ -319,7 +319,7 @@ const AzwcNavMenu = class extends HTMLElement {
     this.__registerHost();
   }
   render() {
-    return (h(Host, null, h("ul", null, h("slot", null))));
+    return (h(Host, { "show-on": this.showOn }, h("ul", null, h("slot", null))));
   }
 };
 
@@ -329,7 +329,7 @@ const AzwcNavMenuItem = class extends HTMLElement {
     this.__registerHost();
   }
   render() {
-    return (h(Host, null, h("li", null, h("slot", null))));
+    return (h(Host, null, h("li", null, h("div", null, h("slot", { name: "label" })), h("azwc-nav-menu", { "show-on": this.showOn }, h("slot", null)))));
   }
 };
 
@@ -10688,8 +10688,8 @@ const AzwcDialog$1 = /*@__PURE__*/proxyCustomElement(AzwcDialog, [4,"azwc-dialog
 const AzwcFileManager$1 = /*@__PURE__*/proxyCustomElement(AzwcFileManager, [4,"azwc-file-manager",{"basePath":[1,"base-path"],"loading":[32],"currentFileList":[32],"currentPaths":[32],"fileApi":[32]}]);
 const AzwcGlobal$1 = /*@__PURE__*/proxyCustomElement(AzwcGlobal, [0,"azwc-global"]);
 const AzwcNavButton$1 = /*@__PURE__*/proxyCustomElement(AzwcNavButton, [0,"azwc-nav-button",{"type":[1],"stayclosed":[4],"isOpen":[32]}]);
-const AzwcNavMenu$1 = /*@__PURE__*/proxyCustomElement(AzwcNavMenu, [4,"azwc-nav-menu"]);
-const AzwcNavMenuItem$1 = /*@__PURE__*/proxyCustomElement(AzwcNavMenuItem, [4,"azwc-nav-menu-item"]);
+const AzwcNavMenu$1 = /*@__PURE__*/proxyCustomElement(AzwcNavMenu, [4,"azwc-nav-menu",{"type":[1],"showOn":[1,"show-on"]}]);
+const AzwcNavMenuItem$1 = /*@__PURE__*/proxyCustomElement(AzwcNavMenuItem, [4,"azwc-nav-menu-item",{"showOn":[1,"show-on"]}]);
 const AzwcSpinner$1 = /*@__PURE__*/proxyCustomElement(AzwcSpinner, [0,"azwc-spinner",{"size":[1],"containerSize":[1,"container-size"],"strokeWidth":[1,"stroke-width"]}]);
 const AzwcSpinnerMask$1 = /*@__PURE__*/proxyCustomElement(AzwcSpinnerMask, [0,"azwc-spinner-mask",{"enabled":[1],"size":[1],"strokeWidth":[1,"stroke-width"]}]);
 const AzwcSwiper$1 = /*@__PURE__*/proxyCustomElement(AzwcSwiper, [4,"azwc-swiper",{"loop":[4],"speed":[2]}]);

@@ -175,7 +175,7 @@ const AzwcNavMenu = class {
     registerInstance(this, hostRef);
   }
   render() {
-    return (h(Host, null, h("ul", null, h("slot", null))));
+    return (h(Host, { "show-on": this.showOn }, h("ul", null, h("slot", null))));
   }
 };
 
@@ -184,7 +184,7 @@ const AzwcNavMenuItem = class {
     registerInstance(this, hostRef);
   }
   render() {
-    return (h(Host, null, h("li", null, h("slot", null))));
+    return (h(Host, null, h("li", null, h("div", null, h("slot", { name: "label" })), h("azwc-nav-menu", { "show-on": this.showOn }, h("slot", null)))));
   }
 };
 

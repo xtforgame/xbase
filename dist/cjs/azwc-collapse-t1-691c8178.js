@@ -177,7 +177,7 @@ const AzwcNavMenu = class {
     index$1.registerInstance(this, hostRef);
   }
   render() {
-    return (index$1.h(index$1.Host, null, index$1.h("ul", null, index$1.h("slot", null))));
+    return (index$1.h(index$1.Host, { "show-on": this.showOn }, index$1.h("ul", null, index$1.h("slot", null))));
   }
 };
 
@@ -186,7 +186,7 @@ const AzwcNavMenuItem = class {
     index$1.registerInstance(this, hostRef);
   }
   render() {
-    return (index$1.h(index$1.Host, null, index$1.h("li", null, index$1.h("slot", null))));
+    return (index$1.h(index$1.Host, null, index$1.h("li", null, index$1.h("div", null, index$1.h("slot", { name: "label" })), index$1.h("azwc-nav-menu", { "show-on": this.showOn }, index$1.h("slot", null)))));
   }
 };
 

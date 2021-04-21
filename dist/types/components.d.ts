@@ -32,8 +32,11 @@ export namespace Components {
         "type": 'larr' | 'rarr' | 'uarr' | 'darr' | 'x' | 'plus' | '';
     }
     interface AzwcNavMenu {
+        "showOn": 'left-side' | '';
+        "type": 'left-side' | '';
     }
     interface AzwcNavMenuItem {
+        "showOn": 'left-side' | '';
     }
     interface AzwcSpinner {
         "containerSize": string;
@@ -187,8 +190,11 @@ declare namespace LocalJSX {
         "type"?: 'larr' | 'rarr' | 'uarr' | 'darr' | 'x' | 'plus' | '';
     }
     interface AzwcNavMenu {
+        "showOn"?: 'left-side' | '';
+        "type"?: 'left-side' | '';
     }
     interface AzwcNavMenuItem {
+        "showOn"?: 'left-side' | '';
     }
     interface AzwcSpinner {
         "containerSize"?: string;
