@@ -329,7 +329,7 @@ const AzwcNavMenuItem = class extends HTMLElement {
     this.__registerHost();
   }
   render() {
-    return (h(Host, null, h("li", null, h("div", null, h("slot", { name: "label" })), h("azwc-nav-menu", { "show-on": this.showOn }, h("slot", null)))));
+    return (h(Host, null, h("li", null, h("azwc-nav-menu-label", null, h("slot", { name: "label" })), h("azwc-nav-menu", { "show-on": this.showOn }, h("slot", null)))));
   }
 };
 

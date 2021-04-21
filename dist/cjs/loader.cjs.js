@@ -3,10 +3,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-cbad13bb.js');
-require('./azwc-collapse-t1-691c8178.js');
-require('./global-b39d4a64.js');
+require('./azwc-collapse-t1-62045bf5.js');
+require('./global-75b12d1c.js');
 require('./azwc-canvi-drawer-c9fe5477.js');
-const appGlobals = require('./app-globals-2e358e89.js');
+const appGlobals = require('./app-globals-605e2be3.js');
 
 /*
  Stencil Client Patch Esm v2.4.0 | MIT Licensed | https://stenciljs.com

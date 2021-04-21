@@ -3,7 +3,7 @@ export class AzwcNavMenuItem {
   render() {
     return (h(Host, null,
       h("li", null,
-        h("div", null,
+        h("azwc-nav-menu-label", null,
           h("slot", { name: "label" })),
         h("azwc-nav-menu", { "show-on": this.showOn },
           h("slot", null)))));

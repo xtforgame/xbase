@@ -12,7 +12,7 @@ export class AzwcNavMenuItem {
     return (
       <Host>
         <li>
-          <div><slot name="label"></slot></div>
+          <azwc-nav-menu-label><slot name="label"></slot></azwc-nav-menu-label>
           <azwc-nav-menu show-on={this.showOn}>
             <slot></slot>
           </azwc-nav-menu>

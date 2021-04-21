@@ -3,7 +3,7 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-cbad13bb.js');
-const azwcCollapseT1 = require('./azwc-collapse-t1-691c8178.js');
+const azwcCollapseT1 = require('./azwc-collapse-t1-62045bf5.js');
 
 const MyComponent = class {
   constructor(hostRef) {

@@ -169,7 +169,7 @@ azwc-nav-menu {
 [type=root] > ul,
 [type=root] > ul ul,
 [type=root] > ul li,
-[type=root] > ul a {
+[type=root] > ul azwc-nav-menu-label {
   margin: 0;
   padding: 0;
   line-height: normal;
@@ -183,7 +183,7 @@ azwc-nav-menu {
   position: absolute;
   top: 100%;
   left: -9999px;
-  z-index: 999;
+  z-index: var(--azwc-nav-menu-z-index-1, 999);
   transition: opacity 0.3s;
 }
 
@@ -191,7 +191,7 @@ azwc-nav-menu {
 [type=root] > ul azwc-nav-menu-item[data-dev-open] > li > azwc-nav-menu:not([show-on=left-side]) > ul {
   left: 0;
   opacity: 1;
-  z-index: 1000;
+  z-index: var(--azwc-nav-menu-z-index-2, 1000);
 }
 
 [type=root] > ul li:hover > azwc-nav-menu[show-on=left-side] > ul,
@@ -199,7 +199,7 @@ azwc-nav-menu {
   left: auto;
   right: 0;
   opacity: 1;
-  z-index: 1000;
+  z-index: var(--azwc-nav-menu-z-index-2, 1000);
 }
 
 [type=root] > ul ul li:hover > azwc-nav-menu:not([show-on=left-side]) > ul,
@@ -228,68 +228,87 @@ azwc-nav-menu {
 
 /* sub width */
 [type=root] > ul ul {
-  min-width: 12em;
+  min-width: var(--azwc-nav-menu-item-min-width, 12em);
+  box-shadow: var(--azwc-nav-menu-box-shadow, 2px 2px 2px rgba(0, 0, 0, 0.25));
 }
 
 /* root */
-[type=root] > ul a {
-  padding: 0 10px;
-  color: #5BC0DE;
+[type=root] > ul azwc-nav-menu-label {
+  padding: var(--azwc-nav-menu-root-item-padding, 0 10px);
+}
+
+/* root: active */
+[type=root] > ul li .nav-active {
+  background-color: var(--azwc-nav-menu-root-item-active-bg-color, rgba(0, 0, 0, 0.05));
+}
+
+/* root: hover/persistence */
+[type=root] > ul li:hover azwc-nav-menu-label {
+  background: var(--azwc-nav-menu-lv2-item-bg-color, #555);
+}
+
+/* 2 */
+[type=root] > ul li li azwc-nav-menu-label,
+[type=root] > ul li:hover li azwc-nav-menu-label {
+  padding: var(--azwc-nav-menu-item-padding, 8px 10px);
+  background: var(--azwc-nav-menu-lv2-item-bg-color, #555);
+}
+
+/* 2: hover/persistence */
+[type=root] > ul li:hover li azwc-nav-menu-label:hover,
+[type=root] > ul li:hover li:hover azwc-nav-menu-label {
+  background: var(--azwc-nav-menu-lv3-item-bg-color, #444);
+}
+
+/* 3 */
+[type=root] > ul li:hover li:hover li azwc-nav-menu-label {
+  background: var(--azwc-nav-menu-lv3-item-bg-color, #444);
+}
+
+/* 3: hover/persistence */
+[type=root] > ul li:hover li:hover li azwc-nav-menu-label:hover,
+[type=root] > ul li:hover li:hover li:hover azwc-nav-menu-label {
+  background: var(--azwc-nav-menu-lv4-item-bg-color, #333);
+}
+
+/* 4 */
+[type=root] > ul li:hover li:hover li:hover li azwc-nav-menu-label {
+  background: var(--azwc-nav-menu-lv4-item-bg-color, #333);
+}
+
+/* 4: hover */
+[type=root] > ul li:hover li:hover li:hover li azwc-nav-menu-label:hover {
+  background: var(--azwc-nav-menu-lv4-item-hover-bg-color, #222);
+}
+
+/* ============== */
+[type=root] > ul li azwc-nav-menu-label > * {
+  color: var(--azwc-nav-menu-root-item-color, #5BC0DE);
   font-weight: normal;
   font-size: 16px;
   line-height: 40px;
   text-decoration: none;
 }
 
-/* root: active */
-[type=root] > ul li .nav-active {
-  background-color: rgba(0, 0, 0, 0.05);
+[type=root] > ul li:hover azwc-nav-menu-label > * {
+  color: var(--azwc-nav-menu-root-item-hover-color, #FFF);
 }
 
-/* root: hover/persistence */
-[type=root] > ul li:hover a {
-  background: #555;
-  color: #FFF;
-}
-
-/* 2 */
-[type=root] > ul li li a,
-[type=root] > ul li:hover li a {
-  padding: 8px 10px;
-  background: #555;
-  color: #FFF;
+[type=root] > ul li li azwc-nav-menu-label > * {
+  color: var(--azwc-nav-menu-item-color, #FFF);
   font-size: 12px;
   line-height: normal;
 }
 
-/* 2: hover/persistence */
-[type=root] > ul li:hover li a:hover,
-[type=root] > ul li:hover li:hover a {
-  background: #444;
-}
-
-/* 3 */
-[type=root] > ul li:hover li:hover li a {
-  background: #444;
-}
-
-/* 3: hover/persistence */
-[type=root] > ul li:hover li:hover li a:hover,
-[type=root] > ul li:hover li:hover li:hover a {
-  background: #333;
-}
-
-/* 4 */
-[type=root] > ul li:hover li:hover li:hover li a {
-  background: #333;
-}
-
-/* 4: hover */
-[type=root] > ul li:hover li:hover li:hover li a:hover {
-  background: #222;
+[type=root] > ul li:hover li azwc-nav-menu-label > * {
+  color: var(--azwc-nav-menu-item-hover-color, #FFF);
 }
 
 azwc-nav-menu-item {
+  display: block;
+}
+
+azwc-nav-menu-label {
   display: block;
 }
 
