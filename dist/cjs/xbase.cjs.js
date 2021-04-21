@@ -1,10 +1,10 @@
 'use strict';
 
 const index = require('./index-cbad13bb.js');
-require('./azwc-collapse-t1-bc96a81e.js');
-require('./global-607a37ad.js');
+require('./azwc-collapse-t1-b54e5a48.js');
+require('./global-96ef69d2.js');
 require('./azwc-canvi-drawer-c9fe5477.js');
-const appGlobals = require('./app-globals-dc48a3e7.js');
+const appGlobals = require('./app-globals-767c614e.js');
 
 /*
  Stencil Client Patch Browser v2.4.0 | MIT Licensed | https://stenciljs.com

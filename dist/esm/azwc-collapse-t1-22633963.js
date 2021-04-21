@@ -10072,7 +10072,7 @@ const AzwcCollapseT1 = class {
   render() {
     this.titleId = this.titleId || this.collapseid || createRamdomUniqueIdForElement();
     const checked = this.active;
-    return (h(Host, null, h("input", { checked: checked, name: "collapse", type: "checkbox", id: this.titleId, class: "azac-title-input" }), h("label", { htmlFor: this.titleId, class: "azac-title-box" }, h("slot", { name: "title" }), (!this.type || this.type === 'sign') && (h("div", { class: "azac-icon-sign" }, h("span", null), h("span", null))), this.type === 'arrow' && (h("div", { class: "azac-icon-arrow" }, h("span", null)))), h("div", { class: "azac-contents-box" }, h("div", { class: "azac-contents" }, h("slot", { name: "contents" }), h("slot", null)))));
+    return (h(Host, null, h("input", { checked: checked, name: "collapse", type: "checkbox", id: this.titleId, class: "azac-title-input" }), h("label", { htmlFor: this.titleId, class: "azac-title-box" }, h("slot", { name: "title" }), (!this.type || this.type === 'sign') && (h("div", { class: "azac-icon-sign" }, h("span", null), h("span", null))), this.type === 'arrow' && (h("div", { class: "azac-icon-arrow" }, h("span", null))), this.type === 'angle-bracket' && (h("div", { class: "az-angle-bracket" }, h("span", null), h("span", null)))), h("div", { class: "azac-contents-box" }, h("div", { class: "azac-contents" }, h("slot", { name: "contents" }), h("slot", null)))));
   }
   get host() { return getElement(this); }
 };

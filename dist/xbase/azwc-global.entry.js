@@ -1,1 +1,1 @@
-import{r as a,h as r,H as s}from"./index-54a7a200.js";import"./azwc-collapse-t1-6d7e01ca.js";import{e as o}from"./global-50da02e1.js";import"./azwc-canvi-drawer-f7c49426.js";const c=class{constructor(r){a(this,r)}render(){return r(s,null)}};c.exports=o;export{c as azwc_global}
+import{r,h as a,H as s}from"./index-54a7a200.js";import"./azwc-collapse-t1-22633963.js";import{e as o}from"./global-cfc1b173.js";import"./azwc-canvi-drawer-f7c49426.js";const c=class{constructor(a){r(this,a)}render(){return a(s,null)}};c.exports=o;export{c as azwc_global}

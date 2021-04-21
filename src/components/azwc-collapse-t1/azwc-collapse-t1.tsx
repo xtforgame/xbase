@@ -13,7 +13,7 @@ export class AzwcCollapseT1 {
 
   @Prop() active: boolean;
 
-  @Prop() type: 'sign' | 'arrow' | '';
+  @Prop() type: 'sign' | 'arrow' | 'angle-bracket' | '';
 
   @Element() host: HTMLElement;
   componentDidLoad() {
@@ -47,6 +47,12 @@ export class AzwcCollapseT1 {
           )}
           {this.type === 'arrow' && (
             <div class="azac-icon-arrow">
+              <span></span>
+            </div>
+          )}
+          {this.type === 'angle-bracket' && (
+            <div class="az-angle-bracket">
+              <span></span>
               <span></span>
             </div>
           )}

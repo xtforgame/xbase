@@ -10074,7 +10074,7 @@ const AzwcCollapseT1 = class {
   render() {
     this.titleId = this.titleId || this.collapseid || createRamdomUniqueIdForElement();
     const checked = this.active;
-    return (index$1.h(index$1.Host, null, index$1.h("input", { checked: checked, name: "collapse", type: "checkbox", id: this.titleId, class: "azac-title-input" }), index$1.h("label", { htmlFor: this.titleId, class: "azac-title-box" }, index$1.h("slot", { name: "title" }), (!this.type || this.type === 'sign') && (index$1.h("div", { class: "azac-icon-sign" }, index$1.h("span", null), index$1.h("span", null))), this.type === 'arrow' && (index$1.h("div", { class: "azac-icon-arrow" }, index$1.h("span", null)))), index$1.h("div", { class: "azac-contents-box" }, index$1.h("div", { class: "azac-contents" }, index$1.h("slot", { name: "contents" }), index$1.h("slot", null)))));
+    return (index$1.h(index$1.Host, null, index$1.h("input", { checked: checked, name: "collapse", type: "checkbox", id: this.titleId, class: "azac-title-input" }), index$1.h("label", { htmlFor: this.titleId, class: "azac-title-box" }, index$1.h("slot", { name: "title" }), (!this.type || this.type === 'sign') && (index$1.h("div", { class: "azac-icon-sign" }, index$1.h("span", null), index$1.h("span", null))), this.type === 'arrow' && (index$1.h("div", { class: "azac-icon-arrow" }, index$1.h("span", null))), this.type === 'angle-bracket' && (index$1.h("div", { class: "az-angle-bracket" }, index$1.h("span", null), index$1.h("span", null)))), index$1.h("div", { class: "azac-contents-box" }, index$1.h("div", { class: "azac-contents" }, index$1.h("slot", { name: "contents" }), index$1.h("slot", null)))));
   }
   get host() { return index$1.getElement(this); }
 };

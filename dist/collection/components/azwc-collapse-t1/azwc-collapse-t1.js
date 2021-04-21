@@ -23,6 +23,9 @@ export class AzwcCollapseT1 {
           h("span", null),
           h("span", null))),
         this.type === 'arrow' && (h("div", { class: "azac-icon-arrow" },
+          h("span", null))),
+        this.type === 'angle-bracket' && (h("div", { class: "az-angle-bracket" },
+          h("span", null),
           h("span", null)))),
       h("div", { class: "azac-contents-box" },
         h("div", { class: "azac-contents" },
@@ -69,8 +72,8 @@ export class AzwcCollapseT1 {
       "type": "string",
       "mutable": false,
       "complexType": {
-        "original": "'sign' | 'arrow' | ''",
-        "resolved": "\"\" | \"arrow\" | \"sign\"",
+        "original": "'sign' | 'arrow' | 'angle-bracket' | ''",
+        "resolved": "\"\" | \"angle-bracket\" | \"arrow\" | \"sign\"",
         "references": {}
       },
       "required": false,
