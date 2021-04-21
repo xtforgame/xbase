@@ -234,7 +234,7 @@ azwc-nav-menu {
 
 /* root */
 [type=root] > ul azwc-nav-menu-label {
-  padding: var(--azwc-nav-menu-root-item-padding, 0 10px);
+  padding: var(--azwc-nav-menu-root-item-padding, 4px 10px);
 }
 
 /* root: active */
@@ -284,10 +284,6 @@ azwc-nav-menu {
 /* ============== */
 [type=root] > ul li azwc-nav-menu-label > * {
   color: var(--azwc-nav-menu-root-item-color, #5BC0DE);
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 40px;
-  text-decoration: none;
 }
 
 [type=root] > ul li:hover azwc-nav-menu-label > * {
@@ -296,8 +292,6 @@ azwc-nav-menu {
 
 [type=root] > ul li li azwc-nav-menu-label > * {
   color: var(--azwc-nav-menu-item-color, #FFF);
-  font-size: 12px;
-  line-height: normal;
 }
 
 [type=root] > ul li:hover li azwc-nav-menu-label > * {
