@@ -7,10 +7,11 @@
 
 ## Properties
 
-| Property     | Attribute    | Description | Type      | Default     |
-| ------------ | ------------ | ----------- | --------- | ----------- |
-| `active`     | `active`     |             | `boolean` | `undefined` |
-| `collapseid` | `collapseid` |             | `string`  | `undefined` |
+| Property     | Attribute    | Description | Type                      | Default     |
+| ------------ | ------------ | ----------- | ------------------------- | ----------- |
+| `active`     | `active`     |             | `boolean`                 | `undefined` |
+| `collapseid` | `collapseid` |             | `string`                  | `undefined` |
+| `type`       | `type`       |             | `"" \| "arrow" \| "sign"` | `undefined` |
 
 
 ----------------------------------------------

@@ -22,7 +22,7 @@ azwc-accordion {
 //     align-items: center;
 //     cursor: pointer;
 
-//     .azac-title, .azac-icons {
+//     .azac-title, .azac-icon-sign {
 //       pointer-events: none;
 //     }
 //   }
@@ -34,7 +34,7 @@ azwc-accordion {
 
 //     // icons transform active
 //     &.active {
-//       .azac-icons {
+//       .azac-icon-sign {
 //         span {
 //           &:first-of-type {
 //             transform: rotate(180deg);
@@ -51,7 +51,7 @@ azwc-accordion {
 //     }
 //   }
 
-//   .azac-icons {
+//   .azac-icon-sign {
 //     position: absolute;
 //     right: 12px;
 //     span {

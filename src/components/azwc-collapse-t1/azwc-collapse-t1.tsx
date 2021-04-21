@@ -13,6 +13,8 @@ export class AzwcCollapseT1 {
 
   @Prop() active: boolean;
 
+  @Prop() type: 'sign' | 'arrow' | '';
+
   @Element() host: HTMLElement;
   componentDidLoad() {
     // const titles = this.host.querySelectorAll('.azac-title-box');
@@ -37,10 +39,17 @@ export class AzwcCollapseT1 {
         </input>
         <label htmlFor={this.titleId} class="azac-title-box">
           <slot name="title"></slot>
-          <div class="azac-icons">
-            <span></span>
-            <span></span>
-          </div>
+          {(!this.type || this.type === 'sign') && (
+            <div class="azac-icon-sign">
+              <span></span>
+              <span></span>
+            </div>
+          )}
+          {this.type === 'arrow' && (
+            <div class="azac-icon-arrow">
+              <span></span>
+            </div>
+          )}
         </label>
         <div class="azac-contents-box">
           <div class="azac-contents">

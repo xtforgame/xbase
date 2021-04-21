@@ -186,23 +186,38 @@ azwc-collapse-t1 {
   align-items: center;
   cursor: pointer;
 }
-.azac-title-box .azac-title, .azac-title-box .azac-icons {
+.azac-title-box .azac-title, .azac-title-box .azac-icon-sign, .azac-title-box .azac-icon-arrow {
   pointer-events: none;
 }
 
-.azac-icons {
+.azac-icon-sign {
   position: absolute;
   right: calc(var(--azwc-collapse-t1-stroke-width, 2px) + var(--azwc-collapse-t1-stroke-length, 10px));
 }
-.azac-icons span {
+.azac-icon-sign span {
   display: block;
   width: calc(var(--azwc-collapse-t1-stroke-width, 2px) + var(--azwc-collapse-t1-stroke-length, 10px));
   height: var(--azwc-collapse-t1-stroke-width, 2px);
   background-color: #000;
   transition: transform 0.2s ease;
 }
-.azac-icons span:last-of-type {
+.azac-icon-sign span:last-of-type {
   transform: rotate(90deg) translateX(calc(-1 * var(--azwc-collapse-t1-stroke-width, 2px)));
+}
+
+.azac-icon-arrow {
+  position: absolute;
+  right: calc(var(--azwc-collapse-t1-stroke-width, 2px) + var(--azwc-collapse-t1-stroke-length, 10px));
+}
+.azac-icon-arrow span {
+  display: block;
+  position: relative;
+  width: var(--azwc-collapse-t1-stroke-length, 10px);
+  height: var(--azwc-collapse-t1-stroke-length, 10px);
+  border-right: var(--azwc-collapse-t1-stroke-width, 2px) solid black;
+  border-top: var(--azwc-collapse-t1-stroke-width, 2px) solid black;
+  transition: transform 0.2s ease;
+  transform: rotate(225deg);
 }
 
 .azac-contents-box {
@@ -214,11 +229,14 @@ azwc-collapse-t1 {
 azwc-collapse-t1 *, azwc-collapse-t1 *::before, azwc-collapse-t1 *::after {
   box-sizing: border-box;
 }
-azwc-collapse-t1 .azac-title-input:checked + .azac-title-box .azac-icons span:first-of-type {
+azwc-collapse-t1 .azac-title-input:checked + .azac-title-box .azac-icon-sign span:first-of-type {
   transform: rotate(180deg);
 }
-azwc-collapse-t1 .azac-title-input:checked + .azac-title-box .azac-icons span:last-of-type {
+azwc-collapse-t1 .azac-title-input:checked + .azac-title-box .azac-icon-sign span:last-of-type {
   transform: rotate(0) translateY(calc(-1 * var(--azwc-collapse-t1-stroke-width, 2px)));
+}
+azwc-collapse-t1 .azac-title-input:checked + .azac-title-box .azac-icon-arrow span {
+  transform: rotate(135deg);
 }
 azwc-collapse-t1 .azac-title-input:checked + .azac-title-box + .azac-contents-box {
   max-height: 1000px;

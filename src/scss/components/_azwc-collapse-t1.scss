@@ -1,3 +1,5 @@
+// https://stackoverflow.com/questions/27492191/how-to-make-a-chevron-arrow-using-css
+
 azwc-collapse-t1 {
   display: block;
   box-sizing: border-box;
@@ -28,12 +30,12 @@ azwc-collapse-t1 {
   align-items: center;
   cursor: pointer;
 
-  .azac-title, .azac-icons {
+  .azac-title, .azac-icon-sign, .azac-icon-arrow {
     pointer-events: none;
   }
 }
 
-.azac-icons {
+.azac-icon-sign {
   position: absolute;
   right: calc(var(--azwc-collapse-t1-stroke-width, 2px) + var(--azwc-collapse-t1-stroke-length, 10px));
   span {
@@ -45,6 +47,22 @@ azwc-collapse-t1 {
     &:last-of-type {
       transform: rotate(90deg) translateX(calc(-1 * var(--azwc-collapse-t1-stroke-width, 2px)));
     }
+  }
+}
+
+.azac-icon-arrow {
+  position: absolute;
+  right: calc(var(--azwc-collapse-t1-stroke-width, 2px) + var(--azwc-collapse-t1-stroke-length, 10px));
+  span {
+    display: block;
+    position: relative;
+    width: var(--azwc-collapse-t1-stroke-length, 10px);
+    height: var(--azwc-collapse-t1-stroke-length, 10px);
+    border-right: var(--azwc-collapse-t1-stroke-width, 2px) solid black;
+    border-top: var(--azwc-collapse-t1-stroke-width, 2px) solid black;
+    transition: transform 0.2s ease;
+    transform: rotate(225deg);
+    // margin-right: 0.5em;
   }
 }
 
@@ -67,7 +85,7 @@ azwc-collapse-t1 {
   }
 
   .azac-title-input:checked + .azac-title-box {
-    .azac-icons {
+    .azac-icon-sign {
       span {
         &:first-of-type {
           transform: rotate(180deg);
@@ -75,6 +93,11 @@ azwc-collapse-t1 {
         &:last-of-type {
           transform: rotate(0) translateY(calc(-1 * var(--azwc-collapse-t1-stroke-width, 2px)));
         }
+      }
+    }
+    .azac-icon-arrow {
+      span {
+        transform: rotate(135deg);
       }
     }
   }
@@ -87,7 +110,7 @@ azwc-collapse-t1 {
 
   // // icons transform active
   // &.active {
-  //   .azac-icons {
+  //   .azac-icon-sign {
   //     span {
   //       &:first-of-type {
   //         transform: rotate(180deg);

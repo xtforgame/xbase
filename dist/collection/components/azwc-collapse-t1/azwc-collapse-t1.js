@@ -19,9 +19,11 @@ export class AzwcCollapseT1 {
       h("input", { checked: checked, name: "collapse", type: "checkbox", id: this.titleId, class: "azac-title-input" }),
       h("label", { htmlFor: this.titleId, class: "azac-title-box" },
         h("slot", { name: "title" }),
-        h("div", { class: "azac-icons" },
+        (!this.type || this.type === 'sign') && (h("div", { class: "azac-icon-sign" },
           h("span", null),
           h("span", null))),
+        this.type === 'arrow' && (h("div", { class: "azac-icon-arrow" },
+          h("span", null)))),
       h("div", { class: "azac-contents-box" },
         h("div", { class: "azac-contents" },
           h("slot", { name: "contents" }),
@@ -61,6 +63,23 @@ export class AzwcCollapseT1 {
         "text": ""
       },
       "attribute": "active",
+      "reflect": false
+    },
+    "type": {
+      "type": "string",
+      "mutable": false,
+      "complexType": {
+        "original": "'sign' | 'arrow' | ''",
+        "resolved": "\"\" | \"arrow\" | \"sign\"",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": ""
+      },
+      "attribute": "type",
       "reflect": false
     }
   }; }
