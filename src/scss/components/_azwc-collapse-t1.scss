@@ -8,6 +8,7 @@ azwc-collapse-t1 {
 // :root {
 //   --azwc-collapse-t1-stroke-width: 2px;
 //   --azwc-collapse-t1-stroke-length: 10px;
+//   --azwc-collapse-t1-stroke-color: black;
 // }
 
 .azac-title-box, .azac-contents-box {
@@ -42,7 +43,7 @@ azwc-collapse-t1 {
     display: block;
     width: calc(var(--azwc-collapse-t1-stroke-width, 2px) + var(--azwc-collapse-t1-stroke-length, 10px));
     height: var(--azwc-collapse-t1-stroke-width, 2px);
-    background-color: #000;
+    background-color: var(--azwc-collapse-t1-stroke-color, black);
     transition: transform 0.2s ease;
     &:last-of-type {
       transform: rotate(90deg) translateX(calc(-1 * var(--azwc-collapse-t1-stroke-width, 2px)));
@@ -58,8 +59,8 @@ azwc-collapse-t1 {
     position: relative;
     width: var(--azwc-collapse-t1-stroke-length, 10px);
     height: var(--azwc-collapse-t1-stroke-length, 10px);
-    border-right: var(--azwc-collapse-t1-stroke-width, 2px) solid black;
-    border-top: var(--azwc-collapse-t1-stroke-width, 2px) solid black;
+    border-right: var(--azwc-collapse-t1-stroke-width, 2px) solid var(--azwc-collapse-t1-stroke-color, black);
+    border-top: var(--azwc-collapse-t1-stroke-width, 2px) solid var(--azwc-collapse-t1-stroke-color, black);
     transition: transform 0.2s ease;
     transform: rotate(225deg);
     // margin-right: 0.5em;
