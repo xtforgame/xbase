@@ -1,4 +1,6 @@
 import { AzwcNavButton } from './components/azwc-nav-button/azwc-nav-button';
+import { AzwcNavMenu } from './components/azwc-nav-menu/azwc-nav-menu';
+import { AzwcNavMenuItem } from './components/azwc-nav-menu-item/azwc-nav-menu-item';
 import { AzwcAccordion } from './components/azwc-accordion/azwc-accordion';
 import { AzwcDialog } from './components/azwc-dialog/azwc-dialog';
 import { AzwcFileManager } from './components/azwc-file-manager/azwc-file-manager';
@@ -15,6 +17,8 @@ import * as eventBinder from './ex-event-binder';
 
 const Components = {
   AzwcNavButton,
+  AzwcNavMenu,
+  AzwcNavMenuItem,
   AzwcAccordion,
   AzwcDialog,
   AzwcFileManager,

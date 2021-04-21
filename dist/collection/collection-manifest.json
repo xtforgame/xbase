@@ -1,6 +1,8 @@
 {
   "entries": [
     "./components/azwc-nav-button/azwc-nav-button.js",
+    "./components/azwc-nav-menu/azwc-nav-menu.js",
+    "./components/azwc-nav-menu-item/azwc-nav-menu-item.js",
     "./components/azwc-accordion/azwc-accordion.js",
     "./components/azwc-dialog/azwc-dialog.js",
     "./components/azwc-file-manager/azwc-file-manager.js",

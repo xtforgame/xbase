@@ -1,0 +1,139 @@
+azwc-nav-menu {
+  display: block;
+}
+
+// :root {
+//   --azwc-nav-menu-stroke-width: 2px;
+//   --azwc-nav-menu-stroke-length: 10px;
+//   --azwc-nav-menu-stroke-color: black;
+//   --azwc-nav-menu-angle-bracket-left-offset: 4px;
+//   --azwc-nav-menu-angle-bracket-size: 20px;
+//   --azwc-nav-menu-angle-bracket-angle: 90deg;
+// }
+
+/* nav */
+.azwc-nav-menu > ul,
+.azwc-nav-menu > ul ul,
+.azwc-nav-menu > ul li,
+.azwc-nav-menu > ul a {
+  margin: 0;
+  padding: 0;
+  line-height: normal;
+  list-style: none;
+  display: block;
+  position: relative;
+}
+.azwc-nav-menu > ul ul {
+  opacity: 0;
+  position: absolute;
+  top: 100%;
+  left: -9999px;
+  z-index: 999;
+  transition: opacity .3s;
+}
+.azwc-nav-menu > ul li:hover > azwc-nav-menu:not(.left-side) > ul,
+.azwc-nav-menu > ul azwc-nav-menu-item[dev-open] > li > azwc-nav-menu:not(.left-side) > ul {
+  left: 0;
+  opacity: 1;
+  z-index: 1000;
+}
+.azwc-nav-menu > ul li:hover > azwc-nav-menu.left-side > ul,
+.azwc-nav-menu > ul azwc-nav-menu-item[dev-open] > li > azwc-nav-menu.left-side > ul  {
+  left: auto;
+  right: 0;
+  opacity: 1;
+  z-index: 1000;
+}
+.azwc-nav-menu > ul ul li:hover > azwc-nav-menu:not(.left-side) > ul,
+.azwc-nav-menu > ul ul azwc-nav-menu-item[dev-open] > li > azwc-nav-menu:not(.left-side) > ul {
+  top: 0;
+  left: 100%;
+}
+.azwc-nav-menu > ul ul li:hover > azwc-nav-menu.left-side > ul,
+.azwc-nav-menu > ul ul azwc-nav-menu-item[dev-open] > li > azwc-nav-menu.left-side > ul {
+  top: 0;
+  left: 0;
+  right: auto;
+  transform: translateX(-100%);
+}
+.azwc-nav-menu > ul li {
+  cursor: default;
+  float: left;
+  white-space: nowrap;
+}
+.azwc-nav-menu > ul ul li {
+  float: none;
+}
+
+/* sub width */
+.azwc-nav-menu > ul ul {
+  min-width: 12em;
+  // box-shadow: 2px 2px 2px rgba(0,0,0,0.25);
+}
+
+// /* center */
+// .nav-center {
+//   float: right;
+//   right: 50%;
+// }
+// .nav-center > li {
+//   left: 50%;
+// }
+
+/* root */
+.azwc-nav-menu > ul a {
+  padding: 0 10px;
+  color: #5BC0DE;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 40px;
+  text-decoration: none;
+}
+
+/* root: active */
+.azwc-nav-menu > ul li .nav-active {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* root: hover/persistence */
+.azwc-nav-menu > ul li:hover a {
+  background: #555;
+  color: #FFF;
+}
+
+/* 2 */
+.azwc-nav-menu > ul li li a,
+.azwc-nav-menu > ul li:hover li a {
+  padding: 8px 10px;
+  background: #555;
+  color: #FFF;
+  font-size: 12px;
+  line-height: normal;
+}
+
+/* 2: hover/persistence */
+.azwc-nav-menu > ul li:hover li a:hover,
+.azwc-nav-menu > ul li:hover li:hover a {
+  background: #444;
+}
+
+/* 3 */
+.azwc-nav-menu > ul li:hover li:hover li a {
+  background: #444;
+}
+
+/* 3: hover/persistence */
+.azwc-nav-menu > ul li:hover li:hover li a:hover,
+.azwc-nav-menu > ul li:hover li:hover li:hover a {
+  background: #333;
+}
+
+/* 4 */
+.azwc-nav-menu > ul li:hover li:hover li:hover li a {
+  background: #333;
+}
+
+/* 4: hover */
+.azwc-nav-menu > ul li:hover li:hover li:hover li a:hover {
+  background: #222;
+}

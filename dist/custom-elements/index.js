@@ -313,6 +313,26 @@ AzwcNavButton.SourceEventInfoMap = {
   },
 };
 
+const AzwcNavMenu = class extends HTMLElement {
+  constructor() {
+    super();
+    this.__registerHost();
+  }
+  render() {
+    return (h(Host, null, h("ul", null, h("slot", null))));
+  }
+};
+
+const AzwcNavMenuItem = class extends HTMLElement {
+  constructor() {
+    super();
+    this.__registerHost();
+  }
+  render() {
+    return (h(Host, null, h("li", null, h("slot", null))));
+  }
+};
+
 const AzwcAccordion = class extends HTMLElement {
   constructor() {
     super();
@@ -10560,6 +10580,8 @@ class Canvi {
 
 const Components = {
   AzwcNavButton,
+  AzwcNavMenu,
+  AzwcNavMenuItem,
   AzwcAccordion,
   AzwcDialog,
   AzwcFileManager,
@@ -10666,6 +10688,8 @@ const AzwcDialog$1 = /*@__PURE__*/proxyCustomElement(AzwcDialog, [4,"azwc-dialog
 const AzwcFileManager$1 = /*@__PURE__*/proxyCustomElement(AzwcFileManager, [4,"azwc-file-manager",{"basePath":[1,"base-path"],"loading":[32],"currentFileList":[32],"currentPaths":[32],"fileApi":[32]}]);
 const AzwcGlobal$1 = /*@__PURE__*/proxyCustomElement(AzwcGlobal, [0,"azwc-global"]);
 const AzwcNavButton$1 = /*@__PURE__*/proxyCustomElement(AzwcNavButton, [0,"azwc-nav-button",{"type":[1],"stayclosed":[4],"isOpen":[32]}]);
+const AzwcNavMenu$1 = /*@__PURE__*/proxyCustomElement(AzwcNavMenu, [4,"azwc-nav-menu"]);
+const AzwcNavMenuItem$1 = /*@__PURE__*/proxyCustomElement(AzwcNavMenuItem, [4,"azwc-nav-menu-item"]);
 const AzwcSpinner$1 = /*@__PURE__*/proxyCustomElement(AzwcSpinner, [0,"azwc-spinner",{"size":[1],"containerSize":[1,"container-size"],"strokeWidth":[1,"stroke-width"]}]);
 const AzwcSpinnerMask$1 = /*@__PURE__*/proxyCustomElement(AzwcSpinnerMask, [0,"azwc-spinner-mask",{"enabled":[1],"size":[1],"strokeWidth":[1,"stroke-width"]}]);
 const AzwcSwiper$1 = /*@__PURE__*/proxyCustomElement(AzwcSwiper, [4,"azwc-swiper",{"loop":[4],"speed":[2]}]);
@@ -10680,6 +10704,8 @@ const defineCustomElements = (opts) => {
   AzwcFileManager$1,
   AzwcGlobal$1,
   AzwcNavButton$1,
+  AzwcNavMenu$1,
+  AzwcNavMenuItem$1,
   AzwcSpinner$1,
   AzwcSpinnerMask$1,
   AzwcSwiper$1,
@@ -10692,4 +10718,4 @@ const defineCustomElements = (opts) => {
   }
 };
 
-export { AzwcAccordion$1 as AzwcAccordion, AzwcCanviDrawer$1 as AzwcCanviDrawer, AzwcCollapseT1$1 as AzwcCollapseT1, AzwcDialog$1 as AzwcDialog, AzwcFileManager$1 as AzwcFileManager, AzwcGlobal$1 as AzwcGlobal, AzwcNavButton$1 as AzwcNavButton, AzwcSpinner$1 as AzwcSpinner, AzwcSpinnerMask$1 as AzwcSpinnerMask, AzwcSwiper$1 as AzwcSwiper, MyComponent$1 as MyComponent, defineCustomElements };
+export { AzwcAccordion$1 as AzwcAccordion, AzwcCanviDrawer$1 as AzwcCanviDrawer, AzwcCollapseT1$1 as AzwcCollapseT1, AzwcDialog$1 as AzwcDialog, AzwcFileManager$1 as AzwcFileManager, AzwcGlobal$1 as AzwcGlobal, AzwcNavButton$1 as AzwcNavButton, AzwcNavMenu$1 as AzwcNavMenu, AzwcNavMenuItem$1 as AzwcNavMenuItem, AzwcSpinner$1 as AzwcSpinner, AzwcSpinnerMask$1 as AzwcSpinnerMask, AzwcSwiper$1 as AzwcSwiper, MyComponent$1 as MyComponent, defineCustomElements };

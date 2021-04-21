@@ -1,4 +1,6 @@
 import { AzwcNavButton } from './components/azwc-nav-button/azwc-nav-button';
+import { AzwcNavMenu } from './components/azwc-nav-menu/azwc-nav-menu';
+import { AzwcNavMenuItem } from './components/azwc-nav-menu-item/azwc-nav-menu-item';
 import { AzwcAccordion } from './components/azwc-accordion/azwc-accordion';
 import { AzwcDialog } from './components/azwc-dialog/azwc-dialog';
 import { AzwcFileManager } from './components/azwc-file-manager/azwc-file-manager';
@@ -19,6 +21,8 @@ export declare const getExportData: () => {
   utils: typeof utils;
   eventBinder: typeof eventBinder;
   AzwcNavButton: typeof AzwcNavButton;
+  AzwcNavMenu: typeof AzwcNavMenu;
+  AzwcNavMenuItem: typeof AzwcNavMenuItem;
   AzwcAccordion: typeof AzwcAccordion;
   AzwcDialog: typeof AzwcDialog;
   AzwcFileManager: typeof AzwcFileManager;
@@ -29,6 +33,8 @@ export declare const getExportData: () => {
   AzwcCanviDrawer: typeof AzwcCanviDrawer;
   Components: {
     AzwcNavButton: typeof AzwcNavButton;
+    AzwcNavMenu: typeof AzwcNavMenu;
+    AzwcNavMenuItem: typeof AzwcNavMenuItem;
     AzwcAccordion: typeof AzwcAccordion;
     AzwcDialog: typeof AzwcDialog;
     AzwcFileManager: typeof AzwcFileManager;
@@ -48,6 +54,8 @@ export declare const exportData: {
   utils: typeof utils;
   eventBinder: typeof eventBinder;
   AzwcNavButton: typeof AzwcNavButton;
+  AzwcNavMenu: typeof AzwcNavMenu;
+  AzwcNavMenuItem: typeof AzwcNavMenuItem;
   AzwcAccordion: typeof AzwcAccordion;
   AzwcDialog: typeof AzwcDialog;
   AzwcFileManager: typeof AzwcFileManager;
@@ -58,6 +66,8 @@ export declare const exportData: {
   AzwcCanviDrawer: typeof AzwcCanviDrawer;
   Components: {
     AzwcNavButton: typeof AzwcNavButton;
+    AzwcNavMenu: typeof AzwcNavMenu;
+    AzwcNavMenuItem: typeof AzwcNavMenuItem;
     AzwcAccordion: typeof AzwcAccordion;
     AzwcDialog: typeof AzwcDialog;
     AzwcFileManager: typeof AzwcFileManager;

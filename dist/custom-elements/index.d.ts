@@ -44,6 +44,18 @@ export const AzwcNavButton: {
   new (): AzwcNavButton;
 };
 
+interface AzwcNavMenu extends Components.AzwcNavMenu, HTMLElement {}
+export const AzwcNavMenu: {
+  prototype: AzwcNavMenu;
+  new (): AzwcNavMenu;
+};
+
+interface AzwcNavMenuItem extends Components.AzwcNavMenuItem, HTMLElement {}
+export const AzwcNavMenuItem: {
+  prototype: AzwcNavMenuItem;
+  new (): AzwcNavMenuItem;
+};
+
 interface AzwcSpinner extends Components.AzwcSpinner, HTMLElement {}
 export const AzwcSpinner: {
   prototype: AzwcSpinner;

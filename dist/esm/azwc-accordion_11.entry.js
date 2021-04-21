@@ -1,13 +1,10 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-const index = require('./index-cbad13bb.js');
-const azwcCollapseT1 = require('./azwc-collapse-t1-b54e5a48.js');
+import { r as registerInstance, h, H as Host, g as getElement } from './index-54a7a200.js';
+import { l as format } from './azwc-collapse-t1-7ea85fc3.js';
+export { r as azwc_accordion, x as azwc_collapse_t1, s as azwc_dialog, t as azwc_file_manager, o as azwc_nav_button, p as azwc_nav_menu, q as azwc_nav_menu_item, u as azwc_spinner, v as azwc_spinner_mask, w as azwc_swiper } from './azwc-collapse-t1-7ea85fc3.js';
 
 const MyComponent = class {
   constructor(hostRef) {
-    index.registerInstance(this, hostRef);
+    registerInstance(this, hostRef);
     this.switchX = true;
     this.switchY = true;
   }
@@ -15,7 +12,7 @@ const MyComponent = class {
     console.log('ssss');
   }
   getText() {
-    return azwcCollapseT1.format(this.first, this.middle, this.last);
+    return format(this.first, this.middle, this.last);
   }
   async togglePadding() {
     // alert("xxxx");
@@ -52,17 +49,9 @@ const MyComponent = class {
     if (!this.switchY) {
       text = 'off :';
     }
-    return (index.h(index.Host, null, index.h("div", { part: "mc-container", class: "mc-container", style: { padding } }, index.h("button", null, "XXXXX"), index.h("slot", { name: "top" }), text, "Hello, World! I'm ", this.getText(), index.h("slot", { name: "body" }))));
+    return (h(Host, null, h("div", { part: "mc-container", class: "mc-container", style: { padding } }, h("button", null, "XXXXX"), h("slot", { name: "top" }), text, "Hello, World! I'm ", this.getText(), h("slot", { name: "body" }))));
   }
-  get host() { return index.getElement(this); }
+  get host() { return getElement(this); }
 };
 
-exports.azwc_accordion = azwcCollapseT1.AzwcAccordion;
-exports.azwc_collapse_t1 = azwcCollapseT1.AzwcCollapseT1;
-exports.azwc_dialog = azwcCollapseT1.AzwcDialog;
-exports.azwc_file_manager = azwcCollapseT1.AzwcFileManager;
-exports.azwc_nav_button = azwcCollapseT1.AzwcNavButton;
-exports.azwc_spinner = azwcCollapseT1.AzwcSpinner;
-exports.azwc_spinner_mask = azwcCollapseT1.AzwcSpinnerMask;
-exports.azwc_swiper = azwcCollapseT1.AzwcSwiper;
-exports.my_component = MyComponent;
+export { MyComponent as my_component };

@@ -31,6 +31,10 @@ export namespace Components {
         "stayclosed": boolean;
         "type": 'larr' | 'rarr' | 'uarr' | 'darr' | 'x' | 'plus' | '';
     }
+    interface AzwcNavMenu {
+    }
+    interface AzwcNavMenuItem {
+    }
     interface AzwcSpinner {
         "containerSize": string;
         "size": string;
@@ -106,6 +110,18 @@ declare global {
         prototype: HTMLAzwcNavButtonElement;
         new (): HTMLAzwcNavButtonElement;
     };
+    interface HTMLAzwcNavMenuElement extends Components.AzwcNavMenu, HTMLStencilElement {
+    }
+    var HTMLAzwcNavMenuElement: {
+        prototype: HTMLAzwcNavMenuElement;
+        new (): HTMLAzwcNavMenuElement;
+    };
+    interface HTMLAzwcNavMenuItemElement extends Components.AzwcNavMenuItem, HTMLStencilElement {
+    }
+    var HTMLAzwcNavMenuItemElement: {
+        prototype: HTMLAzwcNavMenuItemElement;
+        new (): HTMLAzwcNavMenuItemElement;
+    };
     interface HTMLAzwcSpinnerElement extends Components.AzwcSpinner, HTMLStencilElement {
     }
     var HTMLAzwcSpinnerElement: {
@@ -138,6 +154,8 @@ declare global {
         "azwc-file-manager": HTMLAzwcFileManagerElement;
         "azwc-global": HTMLAzwcGlobalElement;
         "azwc-nav-button": HTMLAzwcNavButtonElement;
+        "azwc-nav-menu": HTMLAzwcNavMenuElement;
+        "azwc-nav-menu-item": HTMLAzwcNavMenuItemElement;
         "azwc-spinner": HTMLAzwcSpinnerElement;
         "azwc-spinner-mask": HTMLAzwcSpinnerMaskElement;
         "azwc-swiper": HTMLAzwcSwiperElement;
@@ -167,6 +185,10 @@ declare namespace LocalJSX {
         "onCustomStateChange"?: (event: CustomEvent<any>) => void;
         "stayclosed"?: boolean;
         "type"?: 'larr' | 'rarr' | 'uarr' | 'darr' | 'x' | 'plus' | '';
+    }
+    interface AzwcNavMenu {
+    }
+    interface AzwcNavMenuItem {
     }
     interface AzwcSpinner {
         "containerSize"?: string;
@@ -205,6 +227,8 @@ declare namespace LocalJSX {
         "azwc-file-manager": AzwcFileManager;
         "azwc-global": AzwcGlobal;
         "azwc-nav-button": AzwcNavButton;
+        "azwc-nav-menu": AzwcNavMenu;
+        "azwc-nav-menu-item": AzwcNavMenuItem;
         "azwc-spinner": AzwcSpinner;
         "azwc-spinner-mask": AzwcSpinnerMask;
         "azwc-swiper": AzwcSwiper;
@@ -222,6 +246,8 @@ declare module "@stencil/core" {
             "azwc-file-manager": LocalJSX.AzwcFileManager & JSXBase.HTMLAttributes<HTMLAzwcFileManagerElement>;
             "azwc-global": LocalJSX.AzwcGlobal & JSXBase.HTMLAttributes<HTMLAzwcGlobalElement>;
             "azwc-nav-button": LocalJSX.AzwcNavButton & JSXBase.HTMLAttributes<HTMLAzwcNavButtonElement>;
+            "azwc-nav-menu": LocalJSX.AzwcNavMenu & JSXBase.HTMLAttributes<HTMLAzwcNavMenuElement>;
+            "azwc-nav-menu-item": LocalJSX.AzwcNavMenuItem & JSXBase.HTMLAttributes<HTMLAzwcNavMenuItemElement>;
             "azwc-spinner": LocalJSX.AzwcSpinner & JSXBase.HTMLAttributes<HTMLAzwcSpinnerElement>;
             "azwc-spinner-mask": LocalJSX.AzwcSpinnerMask & JSXBase.HTMLAttributes<HTMLAzwcSpinnerMaskElement>;
             "azwc-swiper": LocalJSX.AzwcSwiper & JSXBase.HTMLAttributes<HTMLAzwcSwiperElement>;
