@@ -5,6 +5,10 @@ azwc-collapse-t1 {
   box-sizing: border-box;
 }
 
+azwc-collapse-t1:not(.hydrated) {
+  visibility: hidden;
+}
+
 // :root {
 //   --azwc-collapse-t1-stroke-width: 2px;
 //   --azwc-collapse-t1-stroke-length: 10px;
@@ -13,6 +17,7 @@ azwc-collapse-t1 {
 //   --azwc-collapse-t1-angle-bracket-right-shift: 4px;
 //   --azwc-collapse-t1-angle-bracket-size: 20px;
 //   --azwc-collapse-t1-angle-bracket-angle: 90deg;
+//   --azwc-collapse-t1-angle-content-height: 1000px;
 // }
 
 .azac-title-box, .azac-contents-box {
@@ -140,7 +145,7 @@ azwc-collapse-t1 {
   }
 
   .azac-title-input:checked + .azac-title-box + .azac-contents-box {
-    max-height: 1000px;
+    max-height: var(--azwc-collapse-t1-angle-content-height, 1000px);
     transition: max-height 0.35s ease-in;
   }
 

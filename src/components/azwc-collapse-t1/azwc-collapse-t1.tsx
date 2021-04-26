@@ -15,6 +15,8 @@ export class AzwcCollapseT1 {
 
   @Prop() type: 'sign' | 'arrow' | 'angle-bracket' | '';
 
+  @Prop({ attribute: 'label-placement' }) labelPlacement: 'left' | 'right' = 'left';
+
   @Element() host: HTMLElement;
   componentDidLoad() {
     // const titles = this.host.querySelectorAll('.azac-title-box');
@@ -38,19 +40,36 @@ export class AzwcCollapseT1 {
         <input checked={checked} name="collapse" type="checkbox" id={this.titleId} class="azac-title-input">
         </input>
         <label htmlFor={this.titleId} class="azac-title-box">
-          <slot name="title"></slot>
-          {(!this.type || this.type === 'sign') && (
+          {this.labelPlacement === 'right' && (!this.type || this.type === 'sign') && (
             <div class="azac-icon-sign">
               <span></span>
               <span></span>
             </div>
           )}
-          {this.type === 'arrow' && (
+          {this.labelPlacement === 'right' && this.type === 'arrow' && (
             <div class="azac-icon-arrow">
               <span></span>
             </div>
           )}
-          {this.type === 'angle-bracket' && (
+          {this.labelPlacement === 'right' && this.type === 'angle-bracket' && (
+            <div class="az-angle-bracket">
+              <span></span>
+              <span></span>
+            </div>
+          )}
+          <slot name="title"></slot>
+          {this.labelPlacement !== 'right' && (!this.type || this.type === 'sign') && (
+            <div class="azac-icon-sign">
+              <span></span>
+              <span></span>
+            </div>
+          )}
+          {this.labelPlacement !== 'right' && this.type === 'arrow' && (
+            <div class="azac-icon-arrow">
+              <span></span>
+            </div>
+          )}
+          {this.labelPlacement !== 'right' && this.type === 'angle-bracket' && (
             <div class="az-angle-bracket">
               <span></span>
               <span></span>

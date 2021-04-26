@@ -16,10 +16,24 @@
     });
   }
 
-  windowSelf.customRunOnceFuncs = [];
-  windowSelf.azgjsRunOnceDone = false;
+  windowSelf.__azgjsRunOnceFuncs = [];
+  windowSelf.__azgjsRunOnceFuncMap = {};
+  windowSelf.azgjsRunOnce = (key, func) => {
+    if (!windowSelf.__azgjsRunOnceDone) {
+      if (windowSelf.__azgjsRunOnceFuncMap[key] == null) {
+        windowSelf.__azgjsRunOnceFuncMap[key] = func;
+        windowSelf.__azgjsRunOnceFuncs.push({ key, func });
+      }
+    } else if (windowSelf.waitAzwcLoaded) {
+      if (windowSelf.__azgjsRunOnceFuncMap[key] == null) {
+        windowSelf.__azgjsRunOnceFuncMap[key] = func;
+        windowSelf.waitAzwcLoaded(func);
+      }
+    }
+  };
+  windowSelf.__azgjsRunOnceDone = false;
   const azgjsRunOnceFunc = (azwc_export) => {
-    if (windowSelf.azgjsRunOnceDone) {
+    if (windowSelf.__azgjsRunOnceDone) {
       return;
     }
     // console.log('azwc_export :', azwc_export);
@@ -34,8 +48,8 @@
       // direction: 'vertical',
       mousewheel: true,
     }));
-    windowSelf.customRunOnceFuncs.forEach(f => f({ azwc_export }));
-    windowSelf.azgjsRunOnceDone = true;
+    windowSelf.__azgjsRunOnceFuncs.forEach(({ func }) => func({ azwc_export }));
+    windowSelf.__azgjsRunOnceDone = true;
   };
 
   windowSelf.waitAzwcLoaded = (cb) => {

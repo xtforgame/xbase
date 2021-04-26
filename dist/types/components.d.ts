@@ -13,6 +13,7 @@ export namespace Components {
     interface AzwcCollapseT1 {
         "active": boolean;
         "collapseid": string;
+        "labelPlacement": 'left' | 'right';
         "type": 'sign' | 'arrow' | 'angle-bracket' | '';
     }
     interface AzwcDialog {
@@ -173,6 +174,7 @@ declare namespace LocalJSX {
     interface AzwcCollapseT1 {
         "active"?: boolean;
         "collapseid"?: string;
+        "labelPlacement"?: 'left' | 'right';
         "type"?: 'sign' | 'arrow' | 'angle-bracket' | '';
     }
     interface AzwcDialog {

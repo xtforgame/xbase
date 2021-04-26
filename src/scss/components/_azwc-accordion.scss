@@ -2,6 +2,9 @@ azwc-accordion {
   display: block;
 }
 
+azwc-accordion:not(.hydrated) {
+  visibility: hidden;
+}
 // azwc-accordion {
 //   *, *::before, *::after {
 //     box-sizing: border-box;

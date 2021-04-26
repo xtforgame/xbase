@@ -2,6 +2,10 @@ azwc-dialog {
   display: block;
 }
 
+azwc-dialog:not(.hydrated) {
+  visibility: hidden;
+}
+
 /* The Modal (background) */
 .modal,
 azwc-dialog::part(modal) {

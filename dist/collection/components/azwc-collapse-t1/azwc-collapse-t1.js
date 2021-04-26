@@ -1,6 +1,9 @@
 import { Component, Element, Host, Prop, h } from '@stencil/core';
 import { createRamdomUniqueIdForElement } from '../../utils';
 export class AzwcCollapseT1 {
+  constructor() {
+    this.labelPlacement = 'left';
+  }
   componentDidLoad() {
     // const titles = this.host.querySelectorAll('.azac-title-box');
     // titles.forEach(t => {
@@ -18,13 +21,21 @@ export class AzwcCollapseT1 {
     return (h(Host, null,
       h("input", { checked: checked, name: "collapse", type: "checkbox", id: this.titleId, class: "azac-title-input" }),
       h("label", { htmlFor: this.titleId, class: "azac-title-box" },
-        h("slot", { name: "title" }),
-        (!this.type || this.type === 'sign') && (h("div", { class: "azac-icon-sign" },
+        this.labelPlacement === 'right' && (!this.type || this.type === 'sign') && (h("div", { class: "azac-icon-sign" },
           h("span", null),
           h("span", null))),
-        this.type === 'arrow' && (h("div", { class: "azac-icon-arrow" },
+        this.labelPlacement === 'right' && this.type === 'arrow' && (h("div", { class: "azac-icon-arrow" },
           h("span", null))),
-        this.type === 'angle-bracket' && (h("div", { class: "az-angle-bracket" },
+        this.labelPlacement === 'right' && this.type === 'angle-bracket' && (h("div", { class: "az-angle-bracket" },
+          h("span", null),
+          h("span", null))),
+        h("slot", { name: "title" }),
+        this.labelPlacement !== 'right' && (!this.type || this.type === 'sign') && (h("div", { class: "azac-icon-sign" },
+          h("span", null),
+          h("span", null))),
+        this.labelPlacement !== 'right' && this.type === 'arrow' && (h("div", { class: "azac-icon-arrow" },
+          h("span", null))),
+        this.labelPlacement !== 'right' && this.type === 'angle-bracket' && (h("div", { class: "az-angle-bracket" },
           h("span", null),
           h("span", null)))),
       h("div", { class: "azac-contents-box" },
@@ -84,6 +95,24 @@ export class AzwcCollapseT1 {
       },
       "attribute": "type",
       "reflect": false
+    },
+    "labelPlacement": {
+      "type": "string",
+      "mutable": false,
+      "complexType": {
+        "original": "'left' | 'right'",
+        "resolved": "\"left\" | \"right\"",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": ""
+      },
+      "attribute": "label-placement",
+      "reflect": false,
+      "defaultValue": "'left'"
     }
   }; }
   static get elementRef() { return "host"; }

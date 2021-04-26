@@ -4,3 +4,7 @@
 azwc-canvi-drawer {
   display: block;
 }
+
+azwc-canvi-drawer:not(.hydrated) {
+  visibility: hidden;
+}

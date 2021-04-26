@@ -9,3 +9,7 @@ azwc-spinner-mask {
   justify-content: center;
   align-items: center;
 }
+
+azwc-spinner-mask:not(.hydrated) {
+  visibility: hidden;
+}

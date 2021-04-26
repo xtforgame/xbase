@@ -1,6 +1,6 @@
 'use strict';
 
-const azwcCollapseT1 = require('./azwc-collapse-t1-62045bf5.js');
+const azwcCollapseT1 = require('./azwc-collapse-t1-46b6fbe7.js');
 const azwcCanviDrawer = require('./azwc-canvi-drawer-c9fe5477.js');
 
 class FakeClickSource extends azwcCollapseT1.SourceBase {

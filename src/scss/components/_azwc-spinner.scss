@@ -3,6 +3,10 @@ azwc-spinner {
   display: inline-flex;
 }
 
+azwc-spinner:not(.hydrated) {
+  visibility: hidden;
+}
+
 azwc-spinner .spinner {
   display: inline-block;
   width: 1em;

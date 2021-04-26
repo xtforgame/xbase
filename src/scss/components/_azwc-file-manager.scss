@@ -3,6 +3,10 @@ azwc-file-manager {
   position: relative;
 }
 
+azwc-file-manager:not(.hydrated) {
+  visibility: hidden;
+}
+
 .mc-container,
 azwc-file-manager::part(mc-container) {
   border-width: 1px;

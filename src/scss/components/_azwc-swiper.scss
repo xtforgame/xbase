@@ -5,6 +5,10 @@ azwc-swiper {
 	display: block;
 }
 
+azwc-swiper:not(.hydrated) {
+  visibility: hidden;
+}
+
 .swiper-container-vertical > slot-fb > .swiper-wrapper {
   flex-direction: column;
 }

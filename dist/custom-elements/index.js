@@ -10271,6 +10271,7 @@ const AzwcCollapseT1 = class extends HTMLElement {
   constructor() {
     super();
     this.__registerHost();
+    this.labelPlacement = 'left';
   }
   componentDidLoad() {
     // const titles = this.host.querySelectorAll('.azac-title-box');
@@ -10286,7 +10287,7 @@ const AzwcCollapseT1 = class extends HTMLElement {
   render() {
     this.titleId = this.titleId || this.collapseid || createRamdomUniqueIdForElement();
     const checked = this.active;
-    return (h(Host, null, h("input", { checked: checked, name: "collapse", type: "checkbox", id: this.titleId, class: "azac-title-input" }), h("label", { htmlFor: this.titleId, class: "azac-title-box" }, h("slot", { name: "title" }), (!this.type || this.type === 'sign') && (h("div", { class: "azac-icon-sign" }, h("span", null), h("span", null))), this.type === 'arrow' && (h("div", { class: "azac-icon-arrow" }, h("span", null))), this.type === 'angle-bracket' && (h("div", { class: "az-angle-bracket" }, h("span", null), h("span", null)))), h("div", { class: "azac-contents-box" }, h("div", { class: "azac-contents" }, h("slot", { name: "contents" }), h("slot", null)))));
+    return (h(Host, null, h("input", { checked: checked, name: "collapse", type: "checkbox", id: this.titleId, class: "azac-title-input" }), h("label", { htmlFor: this.titleId, class: "azac-title-box" }, this.labelPlacement === 'right' && (!this.type || this.type === 'sign') && (h("div", { class: "azac-icon-sign" }, h("span", null), h("span", null))), this.labelPlacement === 'right' && this.type === 'arrow' && (h("div", { class: "azac-icon-arrow" }, h("span", null))), this.labelPlacement === 'right' && this.type === 'angle-bracket' && (h("div", { class: "az-angle-bracket" }, h("span", null), h("span", null))), h("slot", { name: "title" }), this.labelPlacement !== 'right' && (!this.type || this.type === 'sign') && (h("div", { class: "azac-icon-sign" }, h("span", null), h("span", null))), this.labelPlacement !== 'right' && this.type === 'arrow' && (h("div", { class: "azac-icon-arrow" }, h("span", null))), this.labelPlacement !== 'right' && this.type === 'angle-bracket' && (h("div", { class: "az-angle-bracket" }, h("span", null), h("span", null)))), h("div", { class: "azac-contents-box" }, h("div", { class: "azac-contents" }, h("slot", { name: "contents" }), h("slot", null)))));
   }
   get host() { return this; }
 };
@@ -10683,7 +10684,7 @@ const MyComponent = class extends HTMLElement {
 globalScripts();
 const AzwcAccordion$1 = /*@__PURE__*/proxyCustomElement(AzwcAccordion, [4,"azwc-accordion"]);
 const AzwcCanviDrawer$1 = /*@__PURE__*/proxyCustomElement(AzwcCanviDrawer, [4,"azwc-canvi-drawer"]);
-const AzwcCollapseT1$1 = /*@__PURE__*/proxyCustomElement(AzwcCollapseT1, [4,"azwc-collapse-t1",{"collapseid":[1],"active":[4],"type":[1]}]);
+const AzwcCollapseT1$1 = /*@__PURE__*/proxyCustomElement(AzwcCollapseT1, [4,"azwc-collapse-t1",{"collapseid":[1],"active":[4],"type":[1],"labelPlacement":[1,"label-placement"]}]);
 const AzwcDialog$1 = /*@__PURE__*/proxyCustomElement(AzwcDialog, [4,"azwc-dialog",{"dialogid":[1],"isOpen":[32]}]);
 const AzwcFileManager$1 = /*@__PURE__*/proxyCustomElement(AzwcFileManager, [4,"azwc-file-manager",{"basePath":[1,"base-path"],"loading":[32],"currentFileList":[32],"currentPaths":[32],"fileApi":[32]}]);
 const AzwcGlobal$1 = /*@__PURE__*/proxyCustomElement(AzwcGlobal, [0,"azwc-global"]);

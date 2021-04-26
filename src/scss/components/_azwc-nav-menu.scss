@@ -2,6 +2,10 @@ azwc-nav-menu {
   display: block;
 }
 
+azwc-nav-menu:not(.hydrated) {
+  visibility: hidden;
+}
+
 // :root {
 //   --azwc-nav-menu-z-index-1: 999;
 //   --azwc-nav-menu-z-index-2: 1000;

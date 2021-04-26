@@ -1,16 +1,6 @@
 @charset "UTF-8";
-:root {
-  --azwc-nav-button-line-width: 2rem;
-  --azwc-nav-button-line-border-radius: calc(var(--azwc-nav-button-line-width) / 16);
-  --azwc-nav-button-border-radius: 50%;
-  --azwc-nav-button-duration: .5s;
-  --azwc-nav-button-toggled-size: 1;
-  --azwc-nav-button-toggled-btn-bg: #274380;
-  --azwc-nav-button-toggled-content-bg: #FFF;
-  --azwc-nav-button-size: calc(var(--azwc-nav-button-line-width) * 1.8);
-  --azwc-nav-button-line-height: calc(var(--azwc-nav-button-line-width) / 8);
-  --azwc-nav-button-padding-left: calc((var(--azwc-nav-button-size) - var(--azwc-nav-button-line-width)) / 2);
-  --azwc-nav-button-padding-top: calc((var(--azwc-nav-button-size) - var(--azwc-nav-button-line-height)) / 2);
+azwc-nav-button:not(.hydrated) {
+  visibility: hidden;
 }
 
 azwc-nav-button {
@@ -165,6 +155,10 @@ azwc-nav-menu {
   display: block;
 }
 
+azwc-nav-menu:not(.hydrated) {
+  visibility: hidden;
+}
+
 /* nav */
 [type=root] > ul,
 [type=root] > ul ul,
@@ -310,9 +304,17 @@ azwc-accordion {
   display: block;
 }
 
+azwc-accordion:not(.hydrated) {
+  visibility: hidden;
+}
+
 azwc-collapse-t1 {
   display: block;
   box-sizing: border-box;
+}
+
+azwc-collapse-t1:not(.hydrated) {
+  visibility: hidden;
 }
 
 .azac-title-box, .azac-contents {
@@ -410,7 +412,7 @@ azwc-collapse-t1 .azac-title-input:checked + .azac-title-box .az-angle-bracket {
   transform: rotate(-90deg);
 }
 azwc-collapse-t1 .azac-title-input:checked + .azac-title-box + .azac-contents-box {
-  max-height: 1000px;
+  max-height: var(--azwc-collapse-t1-angle-content-height, 1000px);
   transition: max-height 0.35s ease-in;
 }
 
@@ -673,8 +675,16 @@ azwc-canvi-drawer {
   display: block;
 }
 
+azwc-canvi-drawer:not(.hydrated) {
+  visibility: hidden;
+}
+
 azwc-dialog {
   display: block;
+}
+
+azwc-dialog:not(.hydrated) {
+  visibility: hidden;
 }
 
 /* The Modal (background) */
@@ -749,6 +759,10 @@ azwc-file-manager {
   position: relative;
 }
 
+azwc-file-manager:not(.hydrated) {
+  visibility: hidden;
+}
+
 .mc-container,
 azwc-file-manager::part(mc-container) {
   border-width: 1px;
@@ -757,6 +771,10 @@ azwc-file-manager::part(mc-container) {
 
 azwc-spinner {
   display: inline-flex;
+}
+
+azwc-spinner:not(.hydrated) {
+  visibility: hidden;
 }
 
 azwc-spinner .spinner {
@@ -789,6 +807,10 @@ azwc-spinner-mask {
   height: 100%;
   justify-content: center;
   align-items: center;
+}
+
+azwc-spinner-mask:not(.hydrated) {
+  visibility: hidden;
 }
 
 /**
@@ -1439,6 +1461,10 @@ button.swiper-pagination-bullet {
 
 azwc-swiper {
   display: block;
+}
+
+azwc-swiper:not(.hydrated) {
+  visibility: hidden;
 }
 
 .swiper-container-vertical > slot-fb > .swiper-wrapper {

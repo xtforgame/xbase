@@ -1,6 +1,6 @@
 'use strict';
 
-const global = require('./global-75b12d1c.js');
+const global = require('./global-2882229b.js');
 
 const globalScripts = global.appGlobalScript;
 
