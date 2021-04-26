@@ -14,6 +14,7 @@ import { AzwcCanviDrawer } from './components/azwc-canvi-drawer/azwc-canvi-drawe
 import Canvi from './components/azwc-canvi-drawer/Canvi';
 import * as utils from './utils';
 import * as eventBinder from './ex-event-binder';
+import versionInfo from './versionInfo';
 
 const Components = {
   AzwcNavButton,
@@ -39,6 +40,7 @@ export const getExportData = () => ({
   },
   utils,
   eventBinder,
+  versionInfo,
 });
 
 export const exportData = getExportData();

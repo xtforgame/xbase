@@ -20,6 +20,9 @@ export declare const getExportData: () => {
   };
   utils: typeof utils;
   eventBinder: typeof eventBinder;
+  versionInfo: {
+    version: string;
+  };
   AzwcNavButton: typeof AzwcNavButton;
   AzwcNavMenu: typeof AzwcNavMenu;
   AzwcNavMenuItem: typeof AzwcNavMenuItem;
@@ -53,6 +56,9 @@ export declare const exportData: {
   };
   utils: typeof utils;
   eventBinder: typeof eventBinder;
+  versionInfo: {
+    version: string;
+  };
   AzwcNavButton: typeof AzwcNavButton;
   AzwcNavMenu: typeof AzwcNavMenu;
   AzwcNavMenuItem: typeof AzwcNavMenuItem;

@@ -10579,6 +10579,10 @@ class Canvi {
   }
 }
 
+const versionInfo = {
+  version: 'v1.0.0',
+};
+
 const Components = {
   AzwcNavButton,
   AzwcNavMenu,
@@ -10597,7 +10601,8 @@ const getExportData = () => (Object.assign(Object.assign({ Components }, Compone
     Swiper,
     Canvi,
   }, utils,
-  eventBinder }));
+  eventBinder,
+  versionInfo }));
 const exportData = getExportData();
 async function appGlobalScript () {
   const exportData = getExportData();
