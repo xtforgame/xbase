@@ -688,7 +688,7 @@ azwc-dialog:not(.hydrated) {
 }
 
 /* The Modal (background) */
-.modal,
+azwc-dialog .modal,
 azwc-dialog::part(modal) {
   position: fixed;
   /* Stay in place */
@@ -710,7 +710,7 @@ azwc-dialog::part(modal) {
 }
 
 /* Modal Content/Box */
-.modal-content,
+azwc-dialog .modal-content,
 azwc-dialog::part(modal-content) {
   background-color: #fefefe;
   padding: 20px;
@@ -723,13 +723,13 @@ azwc-dialog::part(modal-content) {
   overflow-y: scroll;
 }
 
-.top-modal-content,
+azwc-dialog .top-modal-content,
 azwc-dialog::part(top-modal-content) {
   margin: 15% auto;
   /* 15% from the top and centered */
 }
 
-.centered-modal-content,
+azwc-dialog .centered-modal-content,
 azwc-dialog::part(centered-modal-content) {
   position: absolute;
   top: 50%;
@@ -738,7 +738,7 @@ azwc-dialog::part(centered-modal-content) {
 }
 
 /* The Close Button */
-.close,
+azwc-dialog .close,
 azwc-dialog::part(close) {
   color: #aaa;
   float: right;
@@ -746,8 +746,8 @@ azwc-dialog::part(close) {
   font-weight: bold;
 }
 
-.close:hover,
-.close:focus,
+azwc-dialog .close:hover,
+azwc-dialog .close:focus,
 azwc-dialog::part(close):hove azwc-dialog::part(close):focus {
   color: black;
   text-decoration: none;
