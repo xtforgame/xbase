@@ -1,0 +1,319 @@
+<!-- Breadcrumb -->
+<div class="ProductDetail-breadcrumb nav-bg-color">
+  <div class="block-inner">
+    <a class="Label" href="{{ products_url }}">{{ 'shopline_translations.themes.products.view_all' | translate }}</a>
+    {% if all_path %}
+      {% for path in all_path %}
+        / <a class="Label" href="{{ path['link'] }}">{{ path['name'] }}</a>
+      {% endfor %}
+    {% else %}
+      / <span class="Label Product-title" href="">{{ product.title }}</span>
+    {% endif %}
+  </div>
+</div>
+<!-- END Breadcrumb -->
+<style>
+  /* https://www.w3schools.com/howto/howto_js_tabs.asp */
+  /* Style the tab */
+  .aztab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+  }
+
+  /* Style the buttons that are used to open the tab content */
+  .aztab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+  }
+
+  /* Change background color of buttons on hover */
+  .aztab button:hover {
+    background-color: #ddd;
+  }
+
+  /* Create an active/current tablink class */
+  .aztab button.active {
+    background-color: #ccc;
+  }
+
+  /* Style the tab content */
+  .aztabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+  }
+</style>
+<div class="block-inner">
+  <div class="pd-box clearfix">
+    {% javascript_cloak %}
+      <div class="ProductDetail-product row">
+        <div class="ProductDetail-product-gallery col-xs-12 col-md-6">
+          <span class="loading-placeholder" style="width: 250px; height: 350px; margin: 0 auto; margin-bottom: 15px;"></span>
+          <div>
+            <span class="loading-placeholder pull-left" style="width: 72px; height: 72px; margin-right: 10px;"></span>
+            <span class="loading-placeholder pull-left" style="width: 72px; height: 72px; margin-right: 10px;"></span>
+            <span class="loading-placeholder pull-left" style="width: 72px; height: 72px;"></span>
+          </div>
+        </div>
+        <div class="ProductDetail-product-info col-xs-12 col-md-6">
+          <div class="box-default">
+            <div>{{ product.title }}</div>
+            <div>
+              <span class="loading-placeholder" style="width: 100px"></span>
+              <span class="loading-placeholder" style="width: 200px"></span>
+              <br/>
+              <span class="loading-placeholder" style="width: 310px"></span>
+              <span class="loading-placeholder" style="width: 150px"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% show_on_ready %}
+      <div class="ProductDetail-product row">
+        <div class="ProductDetail-product-gallery col-xs-12 col-md-6">
+          {% product_gallery item-size="72" item-margin="10" %}{% end_product_gallery %}
+          <div class="prod-mobile js-prod-mobile"></div>
+          {% if theme.settings.hide_share_buttons != true %}
+            {% share_buttons %}{% end_share_buttons %}
+          {% endif %}
+        </div>
+
+        <div class="ProductDetail-product-info js-product-info col-xs-12 col-md-6">
+          <div class="box-default">
+            <h1 class="Product-title">
+              {{ product.title }}
+            </h1>
+
+            {% if product.summary != blank  %}
+              <p class="Product-summary Product-summary-block">{{ product.summary }}</p>
+              <hr/>
+            {% endif %}
+
+            {% product_available_info %}{% end_product_available_info %}
+
+            {% if promotion_tags.size > 0 %}
+              <div class="promotion-wrap">
+                <input class="Util-cssToggle" type="checkbox" name="Promotion-tags-toggle" id="Promotion-tags-toggle" />
+                <div class="Product-promotions">
+                  {% for promotion_tag in promotion_tags %}
+                    <p class="Product-promotions-tag">
+                      {{ promotion_tag.content }}
+                    </p>
+                  {% endfor %}
+                </div>
+                {% if promotion_tags.size > 2 %}
+                  <label class="Util-cssToggleLabel" for="Promotion-tags-toggle">
+                    <span class="Toggle-expanded">{{ 'shopline_translations.themes.products.promotion_tags.actions.expand' | translate }}</span>
+                    <span class="Toggle-collapsed">{{ 'shopline_translations.themes.products.promotion_tags.actions.collapse' | translate }}</span>
+                  </label>
+                {% endif %}
+              </div>
+            {% endif %}
+
+            <div class="product-detail-actions">
+              {% product_detail_actions %}{% end_product_detail_actions %}
+            </div>
+            
+            <azwc-collapse-t1 id="iguti" label-placement="right" class="detail-coll">
+              <div slot="title"><span style="padding-left: 12px; font-size: 18px; vertical-align: middle; color: #ba9765; font-weight: 100;">門市自取</span>
+              </div>
+              <div slot="contents" class="ProductDetail-description-2">
+                <!-- <div class="ProductDetail-title primary-border-color-after">
+                  {{ 'shopline_translations.themes.products.description' | translate }}
+                </div> -->
+                {{ product.description }}
+                <!-- {% if product.description == empty %}
+                  <div class="no-des">{{ 'shopline_translations.themes.products.nodescription' | translate }}</div>
+                {% endif %} -->
+              </div>
+            </azwc-collapse-t1>
+            <azwc-collapse-t1 id="iguti" label-placement="right" class="detail-coll">
+              <div slot="title"><span style="padding-left: 12px; font-size: 18px; vertical-align: middle; color: #ba9765; font-weight: 100;">專車送達</span>
+              </div>
+              <div slot="contents" class="ProductDetail-description-2">
+                <!-- <div class="ProductDetail-title primary-border-color-after">
+                  {{ 'shopline_translations.themes.products.description' | translate }}
+                </div> -->
+                {{ product.description }}
+                <!-- {% if product.description == empty %}
+                  <div class="no-des">{{ 'shopline_translations.themes.products.nodescription' | translate }}</div>
+                {% endif %} -->
+              </div>
+            </azwc-collapse-t1>
+            <azwc-collapse-t1 id="iguti" label-placement="right" class="detail-coll">
+              <div slot="title"><span style="padding-left: 12px; font-size: 18px; vertical-align: middle; color: #ba9765; font-weight: 100;">冷藏宅配</span>
+              </div>
+              <div slot="contents" class="ProductDetail-description-2">
+                <!-- <div class="ProductDetail-title primary-border-color-after">
+                  {{ 'shopline_translations.themes.products.description' | translate }}
+                </div> -->
+                {{ product.description }}
+                <!-- {% if product.description == empty %}
+                  <div class="no-des">{{ 'shopline_translations.themes.products.nodescription' | translate }}</div>
+                {% endif %} -->
+              </div>
+            </azwc-collapse-t1>
+          </div>
+        </div>
+      </div>
+    {% end_javascript_cloak %}
+    <div class="az-desktop-only">
+      <div class="ProductDetail-additionalInfo row">
+        <div class="col-xs-12">
+          {% tabset %}
+            {% tab { 'header-text-key': 'themes.products.description', 'scroll-offset': 48 } %}
+              <div class="ProductDetail-description">
+                <!-- <div class="ProductDetail-title primary-border-color-after">
+                  {{ 'shopline_translations.themes.products.description' | translate }}
+                </div> -->
+                {{ product.description }}
+                <!-- {% if product.description == empty %}
+                  <div class="no-des">{{ 'shopline_translations.themes.products.nodescription' | translate }}</div>
+                {% endif %} -->
+              </div>
+              {% if product.additional_images.size > 0 %}
+              <div class="ProductDetail-gallery">
+                <div class="ProductDetail-title primary-border-color-after">
+                  {{ 'shopline_translations.themes.products.detail_media' | translate }}
+                </div>
+                <ul>
+                  {% for image in product.additional_images %}
+                    <li>
+                    {% assign image_src = image.src | img_url: '750x' %}
+                    {% image src: image_src, alt: image.alt %}
+                    {% end_image %}
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+              {% endif %}
+            {% endtab %}
+
+            {% tab { 'header-text-key': 'themes.products.payment_and_delivery', 'scroll-offset': 48 } %}
+              <div class="ProductDetail-title primary-border-color-after">
+                {{ 'shopline_translations.themes.products.payment_and_delivery' | translate }}
+              </div>
+              <div class="row">
+                <div class="Product-deliveryList col-sm-6 col-xs-12">
+                  <h3>{{ 'shopline_translations.themes.products.delivery_option' | translate }}</h3>
+                  <ul class="">
+                    {% for delivery in available_deliveries %}
+                      <li>{{ delivery.name }}</li>
+                    {% endfor %}
+                  </ul>
+                </div>
+                <div class="Product-paymentList col-sm-6 col-xs-12">
+                  <h3>{{ 'shopline_translations.themes.products.payment_option' | translate }}</h3>
+                  <ul>
+                    {% for payment in available_payments %}
+                      <li>{{ payment.name }}</li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              </div>
+            {% endtab %}
+
+            {% if shop.amazon_product_review_enabled or shop.product_review_enabled %}
+              {% tab { 'header-text-key': 'themes.products.customer_reviews', 'scroll-offset': 48 } %}
+                <div class="ProductDetail-title" id='product-review-section'>
+                  {{ 'shopline_translations.themes.products.customer_reviews' | translate }}
+                </div>
+                {% customer_review %}{% end_customer_review %}
+              {% endtab %}
+            {% endif %}
+          {% endtabset %}
+        </div>
+      </div>
+    </div>
+    {% if related_products.size > 0 %}
+      <div class="ProductDetail-relatedProducts">
+        <h3 class="ProductDetail-relatedProducts-title primary-border-color-after">{{ 'shopline_translations.themes.products.related_products' | translate }}</h3>
+        <div class="ProductDetail-relatedProducts-list">
+          {% for product in related_products %}
+            {% if theme.settings.enabled_quick_cart %}
+              {% quick_product_thumb %} {% end_quick_product_thumb %}
+            {% else %}
+              {% product_thumb %} {% end_product_thumb %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if shop.facebook_comment_enabled %}
+      <div class="ProductDetail-fbComments">
+        {% facebook_comment %}{% end_facebook_comment %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+<script>
+  const description = document.querySelector('.ProductDetail-description');
+  let fullText = '';
+  for (let index = 0; index < description.children.length; index++) {
+    const element = description.children[index];
+    // element.cloneNode();
+    const text = element.textContent;
+    fullText += text + '\n';
+    // element.remove();
+    // index--;
+  }
+  const parts = fullText.split('==結束');
+  parts.forEach((part) => {
+    const sectionParts = part.split('==開始');
+    const sectionType = (sectionParts[0] || '').trim();
+    const sectionContent = (sectionParts[1] || '').trim();
+    console.log('sectionType, sectionContent :', sectionType, sectionContent);
+  });
+
+  function openCity(evt, cityName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("aztabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("aztablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+
+  description.innerHTML = `<!-- Tab links -->
+<div class="aztab">
+  <button class="aztablinks active" onclick="openCity(event, 'London')">London</button>
+  <button class="aztablinks" onclick="openCity(event, 'Paris')">Paris</button>
+  <button class="aztablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+</div>
+
+<!-- Tab content -->
+<div id="London" class="aztabcontent">
+  <h3>London</h3>
+  <p>London is the capital city of England.</p>
+</div>
+
+<div id="Paris" class="aztabcontent">
+  <h3>Paris</h3>
+  <p>Paris is the capital of France.</p>
+</div>
+
+<div id="Tokyo" class="aztabcontent">
+  <h3>Tokyo</h3>
+  <p>Tokyo is the capital of Japan.</p>
+</div>`;
+</script>
