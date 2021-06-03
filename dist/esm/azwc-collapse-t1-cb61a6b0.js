@@ -10013,7 +10013,7 @@ const AzwcSwiper = class {
     return this.swiper;
   }
   render() {
-    return (h("div", { class: "swiper-container", ref: el => this.container = el }, h("div", { class: "swiper-wrapper", ref: el => this.wrapper = el }, h("slot", null)), h("slot", { name: "ui" }, h("div", { class: "swiper-button-next", ref: el => this.next = el }), h("div", { class: "swiper-button-prev", ref: el => this.prev = el }), h("div", { class: "swiper-pagination", ref: el => this.pagination = el }))));
+    return (h("div", { class: "swiper-container", ref: el => this.container = el }, h("div", { class: "swiper-wrapper", ref: el => this.wrapper = el }, h("slot", null)), h("slot", { name: "ui" }, h("div", { class: "swiper-button-next", ref: el => this.next = el }), h("div", { class: "swiper-button-prev", ref: el => this.prev = el }), h("div", { class: "swiper-pagination", ref: el => this.pagination = el })), h("slot", { name: "azwc-swiper-prev" }), h("slot", { name: "azwc-swiper-next" }), h("slot", { name: "azwc-swiper-pagination" })));
   }
   get host() { return getElement(this); }
 };
@@ -10024,15 +10024,15 @@ AzwcSwiper.getDefaultOptions = (inst) => {
     loop: inst.loop || false,
     speed: inst.speed || 300,
     navigation: {
-      nextEl: inst.next,
-      prevEl: inst.prev,
+      nextEl: inst.nextSelector || inst.next,
+      prevEl: inst.prevSelector || inst.prev,
     },
     autoplay: {
       delay: 2500,
       disableOnInteraction: true,
     },
     pagination: {
-      el: inst.pagination,
+      el: inst.paginationSelector || inst.pagination,
       clickable: true,
     },
     on: {

@@ -3,7 +3,34 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-cbad13bb.js');
-const azwcCollapseT1 = require('./azwc-collapse-t1-46b6fbe7.js');
+const azwcCollapseT1 = require('./azwc-collapse-t1-a34c94f9.js');
+
+const AzwcSwiperNext = class {
+  constructor(hostRef) {
+    index.registerInstance(this, hostRef);
+  }
+  render() {
+    return (index.h(index.Host, { class: "azwc-swiper-next" }, index.h("slot", null)));
+  }
+};
+
+const AzwcSwiperPagination = class {
+  constructor(hostRef) {
+    index.registerInstance(this, hostRef);
+  }
+  render() {
+    return (index.h(index.Host, { class: "swiper-pagination" }));
+  }
+};
+
+const AzwcSwiperPrev = class {
+  constructor(hostRef) {
+    index.registerInstance(this, hostRef);
+  }
+  render() {
+    return (index.h(index.Host, { class: "azwc-swiper-prev" }, index.h("slot", null)));
+  }
+};
 
 const MyComponent = class {
   constructor(hostRef) {
@@ -67,4 +94,7 @@ exports.azwc_nav_menu_item = azwcCollapseT1.AzwcNavMenuItem;
 exports.azwc_spinner = azwcCollapseT1.AzwcSpinner;
 exports.azwc_spinner_mask = azwcCollapseT1.AzwcSpinnerMask;
 exports.azwc_swiper = azwcCollapseT1.AzwcSwiper;
+exports.azwc_swiper_next = AzwcSwiperNext;
+exports.azwc_swiper_pagination = AzwcSwiperPagination;
+exports.azwc_swiper_prev = AzwcSwiperPrev;
 exports.my_component = MyComponent;

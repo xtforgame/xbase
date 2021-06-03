@@ -52,8 +52,17 @@ export namespace Components {
     interface AzwcSwiper {
         "getSwiper": () => Promise<any>;
         "loop": boolean;
+        "nextSelector": string;
+        "paginationSelector": string;
+        "prevSelector": string;
         "slideTo": (index: Number, speed?: Number) => Promise<void>;
         "speed": number;
+    }
+    interface AzwcSwiperNext {
+    }
+    interface AzwcSwiperPagination {
+    }
+    interface AzwcSwiperPrev {
     }
     interface MyComponent {
         /**
@@ -144,6 +153,24 @@ declare global {
         prototype: HTMLAzwcSwiperElement;
         new (): HTMLAzwcSwiperElement;
     };
+    interface HTMLAzwcSwiperNextElement extends Components.AzwcSwiperNext, HTMLStencilElement {
+    }
+    var HTMLAzwcSwiperNextElement: {
+        prototype: HTMLAzwcSwiperNextElement;
+        new (): HTMLAzwcSwiperNextElement;
+    };
+    interface HTMLAzwcSwiperPaginationElement extends Components.AzwcSwiperPagination, HTMLStencilElement {
+    }
+    var HTMLAzwcSwiperPaginationElement: {
+        prototype: HTMLAzwcSwiperPaginationElement;
+        new (): HTMLAzwcSwiperPaginationElement;
+    };
+    interface HTMLAzwcSwiperPrevElement extends Components.AzwcSwiperPrev, HTMLStencilElement {
+    }
+    var HTMLAzwcSwiperPrevElement: {
+        prototype: HTMLAzwcSwiperPrevElement;
+        new (): HTMLAzwcSwiperPrevElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -163,6 +190,9 @@ declare global {
         "azwc-spinner": HTMLAzwcSpinnerElement;
         "azwc-spinner-mask": HTMLAzwcSpinnerMaskElement;
         "azwc-swiper": HTMLAzwcSwiperElement;
+        "azwc-swiper-next": HTMLAzwcSwiperNextElement;
+        "azwc-swiper-pagination": HTMLAzwcSwiperPaginationElement;
+        "azwc-swiper-prev": HTMLAzwcSwiperPrevElement;
         "my-component": HTMLMyComponentElement;
     }
 }
@@ -210,8 +240,17 @@ declare namespace LocalJSX {
     }
     interface AzwcSwiper {
         "loop"?: boolean;
+        "nextSelector"?: string;
         "onSlideChanged"?: (event: CustomEvent<any>) => void;
+        "paginationSelector"?: string;
+        "prevSelector"?: string;
         "speed"?: number;
+    }
+    interface AzwcSwiperNext {
+    }
+    interface AzwcSwiperPagination {
+    }
+    interface AzwcSwiperPrev {
     }
     interface MyComponent {
         /**
@@ -240,6 +279,9 @@ declare namespace LocalJSX {
         "azwc-spinner": AzwcSpinner;
         "azwc-spinner-mask": AzwcSpinnerMask;
         "azwc-swiper": AzwcSwiper;
+        "azwc-swiper-next": AzwcSwiperNext;
+        "azwc-swiper-pagination": AzwcSwiperPagination;
+        "azwc-swiper-prev": AzwcSwiperPrev;
         "my-component": MyComponent;
     }
 }
@@ -259,6 +301,9 @@ declare module "@stencil/core" {
             "azwc-spinner": LocalJSX.AzwcSpinner & JSXBase.HTMLAttributes<HTMLAzwcSpinnerElement>;
             "azwc-spinner-mask": LocalJSX.AzwcSpinnerMask & JSXBase.HTMLAttributes<HTMLAzwcSpinnerMaskElement>;
             "azwc-swiper": LocalJSX.AzwcSwiper & JSXBase.HTMLAttributes<HTMLAzwcSwiperElement>;
+            "azwc-swiper-next": LocalJSX.AzwcSwiperNext & JSXBase.HTMLAttributes<HTMLAzwcSwiperNextElement>;
+            "azwc-swiper-pagination": LocalJSX.AzwcSwiperPagination & JSXBase.HTMLAttributes<HTMLAzwcSwiperPaginationElement>;
+            "azwc-swiper-prev": LocalJSX.AzwcSwiperPrev & JSXBase.HTMLAttributes<HTMLAzwcSwiperPrevElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }

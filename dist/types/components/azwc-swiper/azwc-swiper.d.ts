@@ -7,6 +7,9 @@ export declare class AzwcSwiper {
   slideChanged: EventEmitter;
   loop: boolean;
   speed: number;
+  nextSelector: string;
+  prevSelector: string;
+  paginationSelector: string;
   host: HTMLElement;
   container?: HTMLDivElement;
   wrapper?: HTMLDivElement;

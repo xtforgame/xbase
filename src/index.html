@@ -269,11 +269,18 @@
           id="swr"
           class="my-slider"
           loop="true"
-          speed="500">
+          speed="500"
+          prev-selector="#prev"
+          next-selector="#next"
+          pagination-selector="#xxx"
+        >
           <div class="swiper-slide my-slider__slide">Slide 1</div>
           <div class="swiper-slide my-slider__slide">Slide 2</div>
           <div class="swiper-slide my-slider__slide">Slide 3</div>
-          <!-- <div slot="ui"></div> -->
+          <div slot="ui"></div>
+          <azwc-swiper-prev id="prev" slot="azwc-swiper-prev">Xxxx</azwc-swiper-prev>
+          <azwc-swiper-next id="next" slot="azwc-swiper-next">Xxxx</azwc-swiper-next>
+          <azwc-swiper-pagination id="xxx" slot="azwc-swiper-pagination"></azwc-swiper-pagination>
         </azwc-swiper>
       </div>
     </section>
@@ -426,9 +433,9 @@
       AzwcSwiper.createSwiper = (inst) => {
         return new Swiper(inst.container, {
           ...AzwcSwiper.getDefaultOptions(inst),
-          effect: 'fade',
+          // effect: 'fade',
           // direction: 'vertical',
-          mousewheel: true,
+          // mousewheel: true,
         });
       }
 

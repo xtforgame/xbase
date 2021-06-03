@@ -7,10 +7,13 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type      | Default     |
-| -------- | --------- | ----------- | --------- | ----------- |
-| `loop`   | `loop`    |             | `boolean` | `undefined` |
-| `speed`  | `speed`   |             | `number`  | `undefined` |
+| Property             | Attribute             | Description | Type      | Default     |
+| -------------------- | --------------------- | ----------- | --------- | ----------- |
+| `loop`               | `loop`                |             | `boolean` | `undefined` |
+| `nextSelector`       | `next-selector`       |             | `string`  | `undefined` |
+| `paginationSelector` | `pagination-selector` |             | `string`  | `undefined` |
+| `prevSelector`       | `prev-selector`       |             | `string`  | `undefined` |
+| `speed`              | `speed`               |             | `number`  | `undefined` |
 
 
 ## Events

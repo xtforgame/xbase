@@ -74,6 +74,24 @@ export const AzwcSwiper: {
   new (): AzwcSwiper;
 };
 
+interface AzwcSwiperNext extends Components.AzwcSwiperNext, HTMLElement {}
+export const AzwcSwiperNext: {
+  prototype: AzwcSwiperNext;
+  new (): AzwcSwiperNext;
+};
+
+interface AzwcSwiperPagination extends Components.AzwcSwiperPagination, HTMLElement {}
+export const AzwcSwiperPagination: {
+  prototype: AzwcSwiperPagination;
+  new (): AzwcSwiperPagination;
+};
+
+interface AzwcSwiperPrev extends Components.AzwcSwiperPrev, HTMLElement {}
+export const AzwcSwiperPrev: {
+  prototype: AzwcSwiperPrev;
+  new (): AzwcSwiperPrev;
+};
+
 interface MyComponent extends Components.MyComponent, HTMLElement {}
 export const MyComponent: {
   prototype: MyComponent;

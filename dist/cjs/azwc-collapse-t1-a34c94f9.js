@@ -10015,7 +10015,7 @@ const AzwcSwiper = class {
     return this.swiper;
   }
   render() {
-    return (index$1.h("div", { class: "swiper-container", ref: el => this.container = el }, index$1.h("div", { class: "swiper-wrapper", ref: el => this.wrapper = el }, index$1.h("slot", null)), index$1.h("slot", { name: "ui" }, index$1.h("div", { class: "swiper-button-next", ref: el => this.next = el }), index$1.h("div", { class: "swiper-button-prev", ref: el => this.prev = el }), index$1.h("div", { class: "swiper-pagination", ref: el => this.pagination = el }))));
+    return (index$1.h("div", { class: "swiper-container", ref: el => this.container = el }, index$1.h("div", { class: "swiper-wrapper", ref: el => this.wrapper = el }, index$1.h("slot", null)), index$1.h("slot", { name: "ui" }, index$1.h("div", { class: "swiper-button-next", ref: el => this.next = el }), index$1.h("div", { class: "swiper-button-prev", ref: el => this.prev = el }), index$1.h("div", { class: "swiper-pagination", ref: el => this.pagination = el })), index$1.h("slot", { name: "azwc-swiper-prev" }), index$1.h("slot", { name: "azwc-swiper-next" }), index$1.h("slot", { name: "azwc-swiper-pagination" })));
   }
   get host() { return index$1.getElement(this); }
 };
@@ -10026,15 +10026,15 @@ AzwcSwiper.getDefaultOptions = (inst) => {
     loop: inst.loop || false,
     speed: inst.speed || 300,
     navigation: {
-      nextEl: inst.next,
-      prevEl: inst.prev,
+      nextEl: inst.nextSelector || inst.next,
+      prevEl: inst.prevSelector || inst.prev,
     },
     autoplay: {
       delay: 2500,
       disableOnInteraction: true,
     },
     pagination: {
-      el: inst.pagination,
+      el: inst.paginationSelector || inst.pagination,
       clickable: true,
     },
     on: {

@@ -12,6 +12,9 @@
     "./components/azwc-collapse-t1/azwc-collapse-t1.js",
     "./components/azwc-canvi-drawer/azwc-canvi-drawer.js",
     "./components/azwc-global/azwc-global.js",
+    "./components/azwc-swiper-next/azwc-swiper-next.js",
+    "./components/azwc-swiper-pagination/azwc-swiper-pagination.js",
+    "./components/azwc-swiper-prev/azwc-swiper-prev.js",
     "./components/my-component/my-component.js"
   ],
   "compiler": {

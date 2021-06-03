@@ -20,15 +20,15 @@ export class AzwcSwiper {
       loop: inst.loop || false,
       speed: inst.speed || 300,
       navigation: {
-        nextEl: inst.next,
-        prevEl: inst.prev,
+        nextEl: inst.nextSelector || inst.next,
+        prevEl: inst.prevSelector || inst.prev,
       },
       autoplay: {
         delay: 2500,
         disableOnInteraction: true,
       },
       pagination: {
-        el: inst.pagination,
+        el: inst.paginationSelector || inst.pagination,
         clickable: true,
       },
       on: {
@@ -67,6 +67,10 @@ export class AzwcSwiper {
   // slider-options
   @Prop() loop: boolean;
   @Prop() speed: number;
+
+  @Prop({ attribute: 'next-selector' }) nextSelector: string;
+  @Prop({ attribute: 'prev-selector' }) prevSelector: string;
+  @Prop({ attribute: 'pagination-selector' }) paginationSelector: string;
 
   @Element() host: HTMLElement;
 
@@ -125,6 +129,9 @@ export class AzwcSwiper {
           <div class="swiper-button-prev" ref={el => this.prev = el as HTMLDivElement}></div>
           <div class="swiper-pagination" ref={el => this.pagination = el as HTMLDivElement}></div>
         </slot>
+        <slot name="azwc-swiper-prev"></slot>
+        <slot name="azwc-swiper-next"></slot>
+        <slot name="azwc-swiper-pagination"></slot>
       </div>
     );
   }

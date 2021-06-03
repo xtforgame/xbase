@@ -1,6 +1,33 @@
 import { r as registerInstance, h, H as Host, g as getElement } from './index-54a7a200.js';
-import { l as format } from './azwc-collapse-t1-28d818e2.js';
-export { r as azwc_accordion, x as azwc_collapse_t1, s as azwc_dialog, t as azwc_file_manager, o as azwc_nav_button, p as azwc_nav_menu, q as azwc_nav_menu_item, u as azwc_spinner, v as azwc_spinner_mask, w as azwc_swiper } from './azwc-collapse-t1-28d818e2.js';
+import { l as format } from './azwc-collapse-t1-cb61a6b0.js';
+export { r as azwc_accordion, x as azwc_collapse_t1, s as azwc_dialog, t as azwc_file_manager, o as azwc_nav_button, p as azwc_nav_menu, q as azwc_nav_menu_item, u as azwc_spinner, v as azwc_spinner_mask, w as azwc_swiper } from './azwc-collapse-t1-cb61a6b0.js';
+
+const AzwcSwiperNext = class {
+  constructor(hostRef) {
+    registerInstance(this, hostRef);
+  }
+  render() {
+    return (h(Host, { class: "azwc-swiper-next" }, h("slot", null)));
+  }
+};
+
+const AzwcSwiperPagination = class {
+  constructor(hostRef) {
+    registerInstance(this, hostRef);
+  }
+  render() {
+    return (h(Host, { class: "swiper-pagination" }));
+  }
+};
+
+const AzwcSwiperPrev = class {
+  constructor(hostRef) {
+    registerInstance(this, hostRef);
+  }
+  render() {
+    return (h(Host, { class: "azwc-swiper-prev" }, h("slot", null)));
+  }
+};
 
 const MyComponent = class {
   constructor(hostRef) {
@@ -54,4 +81,4 @@ const MyComponent = class {
   get host() { return getElement(this); }
 };
 
-export { MyComponent as my_component };
+export { AzwcSwiperNext as azwc_swiper_next, AzwcSwiperPagination as azwc_swiper_pagination, AzwcSwiperPrev as azwc_swiper_prev, MyComponent as my_component };

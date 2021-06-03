@@ -31,7 +31,10 @@ export class AzwcSwiper {
       h("slot", { name: "ui" },
         h("div", { class: "swiper-button-next", ref: el => this.next = el }),
         h("div", { class: "swiper-button-prev", ref: el => this.prev = el }),
-        h("div", { class: "swiper-pagination", ref: el => this.pagination = el }))));
+        h("div", { class: "swiper-pagination", ref: el => this.pagination = el })),
+      h("slot", { name: "azwc-swiper-prev" }),
+      h("slot", { name: "azwc-swiper-next" }),
+      h("slot", { name: "azwc-swiper-pagination" })));
   }
   static get is() { return "azwc-swiper"; }
   static get properties() { return {
@@ -67,6 +70,57 @@ export class AzwcSwiper {
         "text": ""
       },
       "attribute": "speed",
+      "reflect": false
+    },
+    "nextSelector": {
+      "type": "string",
+      "mutable": false,
+      "complexType": {
+        "original": "string",
+        "resolved": "string",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": ""
+      },
+      "attribute": "next-selector",
+      "reflect": false
+    },
+    "prevSelector": {
+      "type": "string",
+      "mutable": false,
+      "complexType": {
+        "original": "string",
+        "resolved": "string",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": ""
+      },
+      "attribute": "prev-selector",
+      "reflect": false
+    },
+    "paginationSelector": {
+      "type": "string",
+      "mutable": false,
+      "complexType": {
+        "original": "string",
+        "resolved": "string",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": ""
+      },
+      "attribute": "pagination-selector",
       "reflect": false
     }
   }; }
@@ -138,15 +192,15 @@ AzwcSwiper.getDefaultOptions = (inst) => {
     loop: inst.loop || false,
     speed: inst.speed || 300,
     navigation: {
-      nextEl: inst.next,
-      prevEl: inst.prev,
+      nextEl: inst.nextSelector || inst.next,
+      prevEl: inst.prevSelector || inst.prev,
     },
     autoplay: {
       delay: 2500,
       disableOnInteraction: true,
     },
     pagination: {
-      el: inst.pagination,
+      el: inst.paginationSelector || inst.pagination,
       clickable: true,
     },
     on: {

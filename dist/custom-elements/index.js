@@ -10201,7 +10201,7 @@ const AzwcSwiper = class extends HTMLElement {
     return this.swiper;
   }
   render() {
-    return (h("div", { class: "swiper-container", ref: el => this.container = el }, h("div", { class: "swiper-wrapper", ref: el => this.wrapper = el }, h("slot", null)), h("slot", { name: "ui" }, h("div", { class: "swiper-button-next", ref: el => this.next = el }), h("div", { class: "swiper-button-prev", ref: el => this.prev = el }), h("div", { class: "swiper-pagination", ref: el => this.pagination = el }))));
+    return (h("div", { class: "swiper-container", ref: el => this.container = el }, h("div", { class: "swiper-wrapper", ref: el => this.wrapper = el }, h("slot", null)), h("slot", { name: "ui" }, h("div", { class: "swiper-button-next", ref: el => this.next = el }), h("div", { class: "swiper-button-prev", ref: el => this.prev = el }), h("div", { class: "swiper-pagination", ref: el => this.pagination = el })), h("slot", { name: "azwc-swiper-prev" }), h("slot", { name: "azwc-swiper-next" }), h("slot", { name: "azwc-swiper-pagination" })));
   }
   get host() { return this; }
 };
@@ -10212,15 +10212,15 @@ AzwcSwiper.getDefaultOptions = (inst) => {
     loop: inst.loop || false,
     speed: inst.speed || 300,
     navigation: {
-      nextEl: inst.next,
-      prevEl: inst.prev,
+      nextEl: inst.nextSelector || inst.next,
+      prevEl: inst.prevSelector || inst.prev,
     },
     autoplay: {
       delay: 2500,
       disableOnInteraction: true,
     },
     pagination: {
-      el: inst.pagination,
+      el: inst.paginationSelector || inst.pagination,
       clickable: true,
     },
     on: {
@@ -10633,6 +10633,36 @@ const AzwcGlobal = class extends HTMLElement {
 };
 AzwcGlobal.exports = exports;
 
+const AzwcSwiperNext = class extends HTMLElement {
+  constructor() {
+    super();
+    this.__registerHost();
+  }
+  render() {
+    return (h(Host, { class: "azwc-swiper-next" }, h("slot", null)));
+  }
+};
+
+const AzwcSwiperPagination = class extends HTMLElement {
+  constructor() {
+    super();
+    this.__registerHost();
+  }
+  render() {
+    return (h(Host, { class: "swiper-pagination" }));
+  }
+};
+
+const AzwcSwiperPrev = class extends HTMLElement {
+  constructor() {
+    super();
+    this.__registerHost();
+  }
+  render() {
+    return (h(Host, { class: "azwc-swiper-prev" }, h("slot", null)));
+  }
+};
+
 const MyComponent = class extends HTMLElement {
   constructor() {
     super();
@@ -10698,7 +10728,10 @@ const AzwcNavMenu$1 = /*@__PURE__*/proxyCustomElement(AzwcNavMenu, [4,"azwc-nav-
 const AzwcNavMenuItem$1 = /*@__PURE__*/proxyCustomElement(AzwcNavMenuItem, [4,"azwc-nav-menu-item",{"showOn":[1,"show-on"]}]);
 const AzwcSpinner$1 = /*@__PURE__*/proxyCustomElement(AzwcSpinner, [0,"azwc-spinner",{"size":[1],"containerSize":[1,"container-size"],"strokeWidth":[1,"stroke-width"]}]);
 const AzwcSpinnerMask$1 = /*@__PURE__*/proxyCustomElement(AzwcSpinnerMask, [0,"azwc-spinner-mask",{"enabled":[1],"size":[1],"strokeWidth":[1,"stroke-width"]}]);
-const AzwcSwiper$1 = /*@__PURE__*/proxyCustomElement(AzwcSwiper, [4,"azwc-swiper",{"loop":[4],"speed":[2]}]);
+const AzwcSwiper$1 = /*@__PURE__*/proxyCustomElement(AzwcSwiper, [4,"azwc-swiper",{"loop":[4],"speed":[2],"nextSelector":[1,"next-selector"],"prevSelector":[1,"prev-selector"],"paginationSelector":[1,"pagination-selector"]}]);
+const AzwcSwiperNext$1 = /*@__PURE__*/proxyCustomElement(AzwcSwiperNext, [4,"azwc-swiper-next"]);
+const AzwcSwiperPagination$1 = /*@__PURE__*/proxyCustomElement(AzwcSwiperPagination, [0,"azwc-swiper-pagination"]);
+const AzwcSwiperPrev$1 = /*@__PURE__*/proxyCustomElement(AzwcSwiperPrev, [4,"azwc-swiper-prev"]);
 const MyComponent$1 = /*@__PURE__*/proxyCustomElement(MyComponent, [4,"my-component",{"first":[1],"middle":[1],"last":[1],"switchX":[32],"switchY":[32]}]);
 const defineCustomElements = (opts) => {
   if (typeof customElements !== 'undefined') {
@@ -10715,6 +10748,9 @@ const defineCustomElements = (opts) => {
   AzwcSpinner$1,
   AzwcSpinnerMask$1,
   AzwcSwiper$1,
+  AzwcSwiperNext$1,
+  AzwcSwiperPagination$1,
+  AzwcSwiperPrev$1,
   MyComponent$1
     ].forEach(cmp => {
       if (!customElements.get(cmp.is)) {
@@ -10724,4 +10760,4 @@ const defineCustomElements = (opts) => {
   }
 };
 
-export { AzwcAccordion$1 as AzwcAccordion, AzwcCanviDrawer$1 as AzwcCanviDrawer, AzwcCollapseT1$1 as AzwcCollapseT1, AzwcDialog$1 as AzwcDialog, AzwcFileManager$1 as AzwcFileManager, AzwcGlobal$1 as AzwcGlobal, AzwcNavButton$1 as AzwcNavButton, AzwcNavMenu$1 as AzwcNavMenu, AzwcNavMenuItem$1 as AzwcNavMenuItem, AzwcSpinner$1 as AzwcSpinner, AzwcSpinnerMask$1 as AzwcSpinnerMask, AzwcSwiper$1 as AzwcSwiper, MyComponent$1 as MyComponent, defineCustomElements };
+export { AzwcAccordion$1 as AzwcAccordion, AzwcCanviDrawer$1 as AzwcCanviDrawer, AzwcCollapseT1$1 as AzwcCollapseT1, AzwcDialog$1 as AzwcDialog, AzwcFileManager$1 as AzwcFileManager, AzwcGlobal$1 as AzwcGlobal, AzwcNavButton$1 as AzwcNavButton, AzwcNavMenu$1 as AzwcNavMenu, AzwcNavMenuItem$1 as AzwcNavMenuItem, AzwcSpinner$1 as AzwcSpinner, AzwcSpinnerMask$1 as AzwcSpinnerMask, AzwcSwiper$1 as AzwcSwiper, AzwcSwiperNext$1 as AzwcSwiperNext, AzwcSwiperPagination$1 as AzwcSwiperPagination, AzwcSwiperPrev$1 as AzwcSwiperPrev, MyComponent$1 as MyComponent, defineCustomElements };

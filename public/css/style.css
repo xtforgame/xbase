@@ -1459,6 +1459,18 @@ button.swiper-pagination-bullet {
   backface-visibility: hidden;
 }
 
+azwc-swiper-prev {
+  display: block;
+}
+
+azwc-swiper-next {
+  display: block;
+}
+
+azwc-swiper-pagination {
+  display: block;
+}
+
 azwc-swiper {
   display: block;
 }
@@ -1545,6 +1557,24 @@ azwc-swiper:not(.hydrated) {
   z-index: 50;
   height: 5px;
   width: 98%;
+}
+
+.azwc-swiper-prev {
+  left: 10px;
+  right: auto;
+}
+
+.azwc-swiper-next {
+  right: 10px;
+  left: auto;
+}
+
+.azwc-swiper-prev, .azwc-swiper-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  cursor: pointer;
 }
 
 my-component {
