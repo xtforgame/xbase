@@ -1,487 +1,500 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
-    <title>Stencil Component Starter</title>
-    <link rel="stylesheet" href="/build/xbase.css">
-    <script type="module" src="/build/xbase.esm.js"></script>
-    <script nomodule src="/build/xbase.js"></script>
-    <style>
-      :root{
-        --azwc-nav-button-line-width: 1.5rem;
-        --azwc-nav-button-line-border-radius: calc(var(--azwc-nav-button-line-width) / 16);
-        --azwc-nav-button-border-radius: 50%;
-        --azwc-nav-button-duration: .5s;
-        --azwc-nav-button-toggled-size: 1;
-        --azwc-nav-button-toggled-btn-bg: #274380;
-        --azwc-nav-button-toggled-content-bg: #FFF;
 
-        --azwc-nav-button-size: calc(var(--azwc-nav-button-line-width) * 1.8);
-        --azwc-nav-button-line-height: calc(var(--azwc-nav-button-line-width) / 8);
-        --azwc-nav-button-padding-left: calc((var(--azwc-nav-button-size) - var(--azwc-nav-button-line-width)) / 2);
-        --azwc-nav-button-padding-top: calc((var(--azwc-nav-button-size) - var(--azwc-nav-button-line-height)) / 2);
-      }
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+  <title>Stencil Component Starter</title>
+  <link rel="stylesheet" href="/build/xbase.css">
+  <script type="module" src="/build/xbase.esm.js"></script>
+  <script nomodule src="/build/xbase.js"></script>
+  <style>
+    :root {
+      --azwc-nav-button-line-width: 1.5rem;
+      --azwc-nav-button-line-border-radius: calc(var(--azwc-nav-button-line-width) / 16);
+      --azwc-nav-button-border-radius: 50%;
+      --azwc-nav-button-duration: .5s;
+      --azwc-nav-button-toggled-size: 1;
+      --azwc-nav-button-toggled-btn-bg: #274380;
+      --azwc-nav-button-toggled-content-bg: #FFF;
 
-      :root {
-        --azwc-nav-menu-z-index-1: 999;
-        --azwc-nav-menu-z-index-2: 1000;
-        --azwc-nav-menu-item-min-width: 12em;
-        --azwc-nav-menu-root-item-padding: 4px 10px;
-        --azwc-nav-menu-item-padding: 8px 10px;
-        --azwc-nav-menu-box-shadow: 2px 2px 2px rgba(0,0,0,0.25);
+      --azwc-nav-button-size: calc(var(--azwc-nav-button-line-width) * 1.8);
+      --azwc-nav-button-line-height: calc(var(--azwc-nav-button-line-width) / 8);
+      --azwc-nav-button-padding-left: calc((var(--azwc-nav-button-size) - var(--azwc-nav-button-line-width)) / 2);
+      --azwc-nav-button-padding-top: calc((var(--azwc-nav-button-size) - var(--azwc-nav-button-line-height)) / 2);
+    }
 
-        --azwc-nav-menu-root-item-active-bg-color: rgba(0, 0, 0, 0.05);
-        --azwc-nav-menu-root-item-color: #FF0000;
-        --azwc-nav-menu-root-item-hover-color: #FFF;
-        --azwc-nav-menu-item-color: #FFF;
-        --azwc-nav-menu-item-hover-color: #FFF;
+    :root {
+      --azwc-nav-menu-z-index-1: 999;
+      --azwc-nav-menu-z-index-2: 1000;
+      --azwc-nav-menu-item-min-width: 12em;
+      --azwc-nav-menu-root-item-padding: 4px 10px;
+      --azwc-nav-menu-item-padding: 8px 10px;
+      --azwc-nav-menu-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
 
-        --azwc-nav-menu-lv2-item-bg-color: #FF3333;
-        --azwc-nav-menu-lv3-item-bg-color: #FF6666;
-        --azwc-nav-menu-lv4-item-bg-color: #FF9999;
-        --azwc-nav-menu-lv4-item-hover-bg-color: #FFBBBB;
-      }
+      --azwc-nav-menu-root-item-active-bg-color: rgba(0, 0, 0, 0.05);
+      --azwc-nav-menu-root-item-color: #FF0000;
+      --azwc-nav-menu-root-item-hover-color: #FFF;
+      --azwc-nav-menu-item-color: #FFF;
+      --azwc-nav-menu-item-hover-color: #FFF;
 
-      body {
-        margin: 0;
-      }
-      .my-slider__slide {
-        height: 300px;
-        background: #aaa;
-        background-image: url('https://picsum.photos/600/400?');
-        background-size: cover;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 30px;
-        font-weight: bold;
-      }
-      azwc-swiper {
-        height: 100%;
-        overflow-y: hidden;
-      }
-      .swiper-container {
-        height: 100%;
-        overflow-y: hidden;
-      }
-    </style>
-  </head>
-  <body>
-    <aside class="myCanvasNav canvi-navbar">
-      <div class="canvi-user-info">
-        <div class="canvi-user-info__image">
-          <img src="logo.jpg">
-        </div>
-        <div class="canvi-user-info__data">
-          <span class="canvi-user-info__title">Title</span>
-          <a href="#" class="canvi-user-info__meta">View site</a>
-          <div class="canvi-user-info__close"></div>
-        </div>
+      --azwc-nav-menu-lv2-item-bg-color: #FF3333;
+      --azwc-nav-menu-lv3-item-bg-color: #FF6666;
+      --azwc-nav-menu-lv4-item-bg-color: #FF9999;
+      --azwc-nav-menu-lv4-item-hover-bg-color: #FFBBBB;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    .my-slider__slide {
+      height: 300px;
+      background: #aaa;
+      background-image: url('https://picsum.photos/600/400?');
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    azwc-swiper {
+      height: 100%;
+      overflow-y: hidden;
+    }
+
+    .swiper-container {
+      height: 100%;
+      overflow-y: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <aside class="myCanvasNav canvi-navbar">
+    <div class="canvi-user-info">
+      <div class="canvi-user-info__image">
+        <img src="logo.jpg">
       </div>
+      <div class="canvi-user-info__data">
+        <span class="canvi-user-info__title">Title</span>
+        <a href="#" class="canvi-user-info__meta">View site</a>
+        <div class="canvi-user-info__close"></div>
+      </div>
+    </div>
 
-      <azwc-accordion>
-        <azwc-collapse-t1 active>
-          <div slot="title">collapse-title-1</div>
-          <p slot="contents">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam ducimus, illum vitae nam officia quidem iste maxime provident! Temporibus repellat nulla blanditiis at accusamus minima delectus aut doloribus officia deserunt.</p>
-        </azwc-collapse-t1>
-        <azwc-collapse-t1>
-          <div slot="title">collapse-title-2</div>
-          <p slot="contents">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam ducimus, illum vitae nam officia quidem iste maxime provident! Temporibus repellat nulla blanditiis at accusamus minima delectus aut doloribus officia deserunt.</p>
-        </azwc-collapse-t1>
-        <azwc-collapse-t1>
-          <div slot="title">collapse-title-3</div>
-          <p slot="contents">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam ducimus, illum vitae nam officia quidem iste maxime provident! Temporibus repellat nulla blanditiis at accusamus minima delectus aut doloribus officia deserunt.</p>
-        </azwc-collapse-t1>
-      </azwc-accordion>
-      <ul class="canvi-navigation">
-        <li>
-          <a href="#" class="canvi-navigation__item">
-            <span class="canvi-navigation__icon-wrapper" style="background: #00adff;">
-              <span class="canvi-navigation__icon icon-iconmonstr-code-2"></span>
-            </span>
-            <span class="canvi-navigation__text">Laravel</span>
-          </a>
-        </li>
-  
-        <li>
-          <a href="#" class="canvi-navigation__item">
-            <span class="canvi-navigation__icon-wrapper" style="background: #0082BF;">
-              <span class="canvi-navigation__icon icon-iconmonstr-code-5"></span>
-            </span>
-            <span class="canvi-navigation__text">CSS</span>
-          </a>
-        </li>
-  
-        <li>
-          <a href="#" class="canvi-navigation__item">
-            <span class="canvi-navigation__icon-wrapper" style="background: #00567F;">
-              <span class="canvi-navigation__icon icon-iconmonstr-code-9"></span>
-            </span>
-            <span class="canvi-navigation__text">HTML</span>
-          </a>
-        </li>
-  
-        <li>
-          <a href="#" class="canvi-navigation__item">
-            <span class="canvi-navigation__icon-wrapper" style="background: #002B40;">
-              <span class="canvi-navigation__icon icon-iconmonstr-code-11"></span>
-            </span>
-            <span class="canvi-navigation__text">JavaScript</span>
-          </a>
-        </li>
-  
-        <li>
-          <a href="#" class="canvi-navigation__item">
-            <span class="canvi-navigation__icon-wrapper" style="background: #009CE5;">
-              <span class="canvi-navigation__icon icon-iconmonstr-code-13"></span>
-            </span>
-            <span class="canvi-navigation__text">Vue.js</span>
-          </a>
-        </li>
-      </ul>
-    </aside>
-    <nav>
-      <azwc-nav-menu type="root">
-        <azwc-nav-menu-item><a slot="label" href="#">Nav Link</a></azwc-nav-menu-item>
+    <azwc-accordion>
+      <azwc-collapse-t1 active>
+        <div slot="title">collapse-title-1</div>
+        <p slot="contents">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam ducimus, illum vitae nam
+          officia quidem iste maxime provident! Temporibus repellat nulla blanditiis at accusamus minima delectus aut
+          doloribus officia deserunt.</p>
+      </azwc-collapse-t1>
+      <azwc-collapse-t1>
+        <div slot="title">collapse-title-2</div>
+        <p slot="contents">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam ducimus, illum vitae nam
+          officia quidem iste maxime provident! Temporibus repellat nulla blanditiis at accusamus minima delectus aut
+          doloribus officia deserunt.</p>
+      </azwc-collapse-t1>
+      <azwc-collapse-t1>
+        <div slot="title">collapse-title-3</div>
+        <p slot="contents">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam ducimus, illum vitae nam
+          officia quidem iste maxime provident! Temporibus repellat nulla blanditiis at accusamus minima delectus aut
+          doloribus officia deserunt.</p>
+      </azwc-collapse-t1>
+    </azwc-accordion>
+    <ul class="canvi-navigation">
+      <li>
+        <a href="#" class="canvi-navigation__item">
+          <span class="canvi-navigation__icon-wrapper" style="background: #00adff;">
+            <span class="canvi-navigation__icon icon-iconmonstr-code-2"></span>
+          </span>
+          <span class="canvi-navigation__text">Laravel</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="#" class="canvi-navigation__item">
+          <span class="canvi-navigation__icon-wrapper" style="background: #0082BF;">
+            <span class="canvi-navigation__icon icon-iconmonstr-code-5"></span>
+          </span>
+          <span class="canvi-navigation__text">CSS</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="#" class="canvi-navigation__item">
+          <span class="canvi-navigation__icon-wrapper" style="background: #00567F;">
+            <span class="canvi-navigation__icon icon-iconmonstr-code-9"></span>
+          </span>
+          <span class="canvi-navigation__text">HTML</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="#" class="canvi-navigation__item">
+          <span class="canvi-navigation__icon-wrapper" style="background: #002B40;">
+            <span class="canvi-navigation__icon icon-iconmonstr-code-11"></span>
+          </span>
+          <span class="canvi-navigation__text">JavaScript</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="#" class="canvi-navigation__item">
+          <span class="canvi-navigation__icon-wrapper" style="background: #009CE5;">
+            <span class="canvi-navigation__icon icon-iconmonstr-code-13"></span>
+          </span>
+          <span class="canvi-navigation__text">Vue.js</span>
+        </a>
+      </li>
+    </ul>
+  </aside>
+  <nav>
+    <azwc-nav-menu type="root">
+      <azwc-nav-menu-item><a slot="label" href="#">Nav Link</a></azwc-nav-menu-item>
+      <azwc-nav-menu-item data-dev-open>
+        <a slot="label" href="#" class="nav-active">Nav Link</a>
+        <azwc-nav-menu-item><a slot="label" href="#">Sub Nav Link Xxxxx Xxxxxxxxx</a></azwc-nav-menu-item>
         <azwc-nav-menu-item data-dev-open>
-          <a slot="label" href="#" class="nav-active">Nav Link</a>
-          <azwc-nav-menu-item><a slot="label" href="#">Sub Nav Link Xxxxx Xxxxxxxxx</a></azwc-nav-menu-item>
+          <a slot="label" href="#">Sub Nav Link Xxxxx Xxxxxxxxx</a>
           <azwc-nav-menu-item data-dev-open>
-            <a slot="label" href="#">Sub Nav Link Xxxxx Xxxxxxxxx</a>
-            <azwc-nav-menu-item data-dev-open>
-              <a slot="label" href="#">Sub Sub Nav Link Xxxxx Xxxxxxxxx</a>
-              <azwc-nav-menu-item><a slot="label" href="#">Sub Sub Nav Link Xxxxx Xxxxxxxxx</a></azwc-nav-menu-item>
-              <azwc-nav-menu-item><a slot="label" href="#">Sub Sub Nav Link Xxxxx Xxxxxxxxx</a></azwc-nav-menu-item>
-              <azwc-nav-menu-item><a slot="label" href="#">Sub Sub Nav Link Xxxxx Xxxxxxxxx</a></azwc-nav-menu-item>
-            </azwc-nav-menu-item>
+            <a slot="label" href="#">Sub Sub Nav Link Xxxxx Xxxxxxxxx</a>
+            <azwc-nav-menu-item><a slot="label" href="#">Sub Sub Nav Link Xxxxx Xxxxxxxxx</a></azwc-nav-menu-item>
             <azwc-nav-menu-item><a slot="label" href="#">Sub Sub Nav Link Xxxxx Xxxxxxxxx</a></azwc-nav-menu-item>
             <azwc-nav-menu-item><a slot="label" href="#">Sub Sub Nav Link Xxxxx Xxxxxxxxx</a></azwc-nav-menu-item>
           </azwc-nav-menu-item>
-          <azwc-nav-menu-item show-on="left-side">
-            <a slot="label" href="#">Sub Nav Link Xxxxx Xxxxxxxxx</a>
-            <azwc-nav-menu-item show-on="left-side">
-              <a slot="label" href="#">Sub Sub Nav Link Xxxxx Xxxxxxxxx</a>
-              <azwc-nav-menu-item><a slot="label" href="#">Sub Sub Nav Link Xxxxx Xxxxxxxxx</a></azwc-nav-menu-item>
-              <azwc-nav-menu-item><a slot="label" href="#">Sub Sub Nav Link Xxxxx Xxxxxxxxx</a></azwc-nav-menu-item>
-              <azwc-nav-menu-item><a slot="label" href="#">Sub Sub Nav Link Xxxxx Xxxxxxxxx</a></azwc-nav-menu-item>
-            </azwc-nav-menu-item>
-            <azwc-nav-menu-item><a slot="label" href="#">Sub Sub Nav Link Xxxxx Xxxxxxxxx</a></azwc-nav-menu-item>
-            <azwc-nav-menu-item><a slot="label" href="#">Sub Sub Nav Link Xxxxx Xxxxxxxxx</a></azwc-nav-menu-item>
-          </azwc-nav-menu-item>
-          <azwc-nav-menu-item><a slot="label" href="#">Sub Nav Link Xxxxx Xxxxxxxxx</a></azwc-nav-menu-item>
+          <azwc-nav-menu-item><a slot="label" href="#">Sub Sub Nav Link Xxxxx Xxxxxxxxx</a></azwc-nav-menu-item>
+          <azwc-nav-menu-item><a slot="label" href="#">Sub Sub Nav Link Xxxxx Xxxxxxxxx</a></azwc-nav-menu-item>
         </azwc-nav-menu-item>
         <azwc-nav-menu-item show-on="left-side">
-          <a slot="label" href="#">Nav Link</a>
-          <azwc-nav-menu-item><a slot="label" href="#">Sub Nav Link Xxxxx Xxxxxxxxx</a></azwc-nav-menu-item>
-          <azwc-nav-menu-item>
-            <a slot="label" href="#">Sub Nav Link Xxxxx Xxxxxxxxx</a>
-            <azwc-nav-menu-item><a slot="label" href="#">Sub Sub Nav Link Xxxxx Xxxxxxxxx</a></azwc-nav-menu-item>
-            <azwc-nav-menu-item><a slot="label" href="#">Sub Sub Nav Link Xxxxx Xxxxxxxxx</a></azwc-nav-menu-item>
-            <azwc-nav-menu-item><a slot="label" href="#">Sub Sub Nav Link Xxxxx Xxxxxxxxx</a></azwc-nav-menu-item>
-          </azwc-nav-menu-item>
+          <a slot="label" href="#">Sub Nav Link Xxxxx Xxxxxxxxx</a>
           <azwc-nav-menu-item show-on="left-side">
-            <a slot="label" href="#">Sub Nav Link Xxxxx Xxxxxxxxx</a>
+            <a slot="label" href="#">Sub Sub Nav Link Xxxxx Xxxxxxxxx</a>
             <azwc-nav-menu-item><a slot="label" href="#">Sub Sub Nav Link Xxxxx Xxxxxxxxx</a></azwc-nav-menu-item>
             <azwc-nav-menu-item><a slot="label" href="#">Sub Sub Nav Link Xxxxx Xxxxxxxxx</a></azwc-nav-menu-item>
             <azwc-nav-menu-item><a slot="label" href="#">Sub Sub Nav Link Xxxxx Xxxxxxxxx</a></azwc-nav-menu-item>
           </azwc-nav-menu-item>
-          <azwc-nav-menu-item><a slot="label" href="#">Sub Nav Link Xxxxx Xxxxxxxxx</a></azwc-nav-menu-item>
+          <azwc-nav-menu-item><a slot="label" href="#">Sub Sub Nav Link Xxxxx Xxxxxxxxx</a></azwc-nav-menu-item>
+          <azwc-nav-menu-item><a slot="label" href="#">Sub Sub Nav Link Xxxxx Xxxxxxxxx</a></azwc-nav-menu-item>
         </azwc-nav-menu-item>
-        <azwc-nav-menu-item><a slot="label" href="#">Nav Link</a></azwc-nav-menu-item>
-        <azwc-nav-menu-item><a slot="label" href="#">Nav Link</a></azwc-nav-menu-item>
-      </azwc-nav-menu>
-    </nav>
-    <section style="font-size: 10px;">
-      <azwc-nav-button id="btn1" type="larr" stayclosed></azwc-nav-button>
-      <azwc-nav-button id="btn2" type="rarr"></azwc-nav-button>
-      <azwc-nav-button type="uarr"></azwc-nav-button>
-      <azwc-nav-button type="darr"></azwc-nav-button>
-      <azwc-nav-button type="x"></azwc-nav-button>
-      <azwc-nav-button type="plus"></azwc-nav-button>
-      <azwc-nav-button type=""></azwc-nav-button>
-    </section>
-    <section>
-      <azwc-accordion>
-        <azwc-collapse-t1 active type="arrow">
-          <div slot="title">collapse-title-1</div>
-          <p slot="contents">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam ducimus, illum vitae nam officia quidem iste maxime provident! Temporibus repellat nulla blanditiis at accusamus minima delectus aut doloribus officia deserunt.</p>
-        </azwc-collapse-t1>
-        <azwc-collapse-t1 type="angle-bracket">
-          <div slot="title">collapse-title-2</div>
-          <p slot="contents">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam ducimus, illum vitae nam officia quidem iste maxime provident! Temporibus repellat nulla blanditiis at accusamus minima delectus aut doloribus officia deserunt.</p>
-        </azwc-collapse-t1>
-        <azwc-collapse-t1 type="sign">
-          <div slot="title">collapse-title-3</div>
-          <p slot="contents">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam ducimus, illum vitae nam officia quidem iste maxime provident! Temporibus repellat nulla blanditiis at accusamus minima delectus aut doloribus officia deserunt.</p>
-        </azwc-collapse-t1>
-      </azwc-accordion>
-    </section>
-    <section class="js-canvi-content">
-      <button class="js-canvi-open-button--left btn">Open Left Navbar</button>
-      <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
-      <button id="open-dialog-btn">Open Modal</button>
-      <azwc-dialog id="dialog1" dialogid="d1">
-        Content<br />
-        Content<br />
-        Content<br />
-        Content<br />
-        Content<br />
-        Content<br />
-        Content<br />
-        Content<br />
-        Content<br />
-        Content<br />
-        Content<br />
-        Content<br />
-        Content<br />
-        Content<br />
-        Content<br />
-        Content<br />
-        Content<br />
-        Content<br />
-        Content<br />
-        Content<br />
-        Content<br />
-        Content<br />
-        Content<br />
-        Content<br />
-        Content<br />
-        Content<br />
-        Content<br />
-        Content<br />
-        Content<br />
-        Content<br />
-        Content<br />
-        Content<br />
-      </azwc-dialog>
-      <azwc-file-manager>
-        Content
-      </azwc-file-manager>
-      <azwc-spinner></azwc-spinner>
-      <div style="width: 400px; height: 400px; position: relative; overflow-y: hidden;">
-        <azwc-spinner-mask enabled="true"></azwc-spinner-mask>
-        SVSVRSV
-        <button>WRVREV</button>
-      </div>
-      <div style="height: 300px; position: relative;">
-        <azwc-swiper
-          id="swr"
-          class="my-slider"
-          loop="true"
-          speed="500"
-          prev-selector="#prev"
-          next-selector="#next"
-          pagination-selector="#xxx"
-        >
-          <div class="swiper-slide my-slider__slide">Slide 1</div>
-          <div class="swiper-slide my-slider__slide">Slide 2</div>
-          <div class="swiper-slide my-slider__slide">Slide 3</div>
-          <div slot="ui"></div>
-          <azwc-swiper-prev id="prev" slot="azwc-swiper-prev">Xxxx</azwc-swiper-prev>
-          <azwc-swiper-next id="next" slot="azwc-swiper-next">Xxxx</azwc-swiper-next>
-          <azwc-swiper-pagination id="xxx" slot="azwc-swiper-pagination"></azwc-swiper-pagination>
-        </azwc-swiper>
-      </div>
-    </section>
-  </body>
-  <script>
-    function promiseWait(waitMillisec) {
-      return new Promise((resolve, reject) => {
-        setTimeout(resolve, waitMillisec);
+        <azwc-nav-menu-item><a slot="label" href="#">Sub Nav Link Xxxxx Xxxxxxxxx</a></azwc-nav-menu-item>
+      </azwc-nav-menu-item>
+      <azwc-nav-menu-item show-on="left-side">
+        <a slot="label" href="#">Nav Link</a>
+        <azwc-nav-menu-item><a slot="label" href="#">Sub Nav Link Xxxxx Xxxxxxxxx</a></azwc-nav-menu-item>
+        <azwc-nav-menu-item>
+          <a slot="label" href="#">Sub Nav Link Xxxxx Xxxxxxxxx</a>
+          <azwc-nav-menu-item><a slot="label" href="#">Sub Sub Nav Link Xxxxx Xxxxxxxxx</a></azwc-nav-menu-item>
+          <azwc-nav-menu-item><a slot="label" href="#">Sub Sub Nav Link Xxxxx Xxxxxxxxx</a></azwc-nav-menu-item>
+          <azwc-nav-menu-item><a slot="label" href="#">Sub Sub Nav Link Xxxxx Xxxxxxxxx</a></azwc-nav-menu-item>
+        </azwc-nav-menu-item>
+        <azwc-nav-menu-item show-on="left-side">
+          <a slot="label" href="#">Sub Nav Link Xxxxx Xxxxxxxxx</a>
+          <azwc-nav-menu-item><a slot="label" href="#">Sub Sub Nav Link Xxxxx Xxxxxxxxx</a></azwc-nav-menu-item>
+          <azwc-nav-menu-item><a slot="label" href="#">Sub Sub Nav Link Xxxxx Xxxxxxxxx</a></azwc-nav-menu-item>
+          <azwc-nav-menu-item><a slot="label" href="#">Sub Sub Nav Link Xxxxx Xxxxxxxxx</a></azwc-nav-menu-item>
+        </azwc-nav-menu-item>
+        <azwc-nav-menu-item><a slot="label" href="#">Sub Nav Link Xxxxx Xxxxxxxxx</a></azwc-nav-menu-item>
+      </azwc-nav-menu-item>
+      <azwc-nav-menu-item><a slot="label" href="#">Nav Link</a></azwc-nav-menu-item>
+      <azwc-nav-menu-item><a slot="label" href="#">Nav Link</a></azwc-nav-menu-item>
+    </azwc-nav-menu>
+  </nav>
+  <section style="font-size: 10px;">
+    <azwc-nav-button id="btn1" type="larr" stayclosed></azwc-nav-button>
+    <azwc-nav-button id="btn2" type="rarr"></azwc-nav-button>
+    <azwc-nav-button type="uarr"></azwc-nav-button>
+    <azwc-nav-button type="darr"></azwc-nav-button>
+    <azwc-nav-button type="x"></azwc-nav-button>
+    <azwc-nav-button type="plus"></azwc-nav-button>
+    <azwc-nav-button type=""></azwc-nav-button>
+  </section>
+  <section>
+    <azwc-accordion>
+      <azwc-collapse-t1 active type="arrow">
+        <div slot="title">collapse-title-1</div>
+        <p slot="contents">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam ducimus, illum vitae nam
+          officia quidem iste maxime provident! Temporibus repellat nulla blanditiis at accusamus minima delectus aut
+          doloribus officia deserunt.</p>
+      </azwc-collapse-t1>
+      <azwc-collapse-t1 type="angle-bracket">
+        <div slot="title">collapse-title-2</div>
+        <p slot="contents">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam ducimus, illum vitae nam
+          officia quidem iste maxime provident! Temporibus repellat nulla blanditiis at accusamus minima delectus aut
+          doloribus officia deserunt.</p>
+      </azwc-collapse-t1>
+      <azwc-collapse-t1 type="sign">
+        <div slot="title">collapse-title-3</div>
+        <p slot="contents">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam ducimus, illum vitae nam
+          officia quidem iste maxime provident! Temporibus repellat nulla blanditiis at accusamus minima delectus aut
+          doloribus officia deserunt.</p>
+      </azwc-collapse-t1>
+    </azwc-accordion>
+  </section>
+  <section class="js-canvi-content">
+    <button class="js-canvi-open-button--left btn">Open Left Navbar</button>
+    <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
+    <button id="open-dialog-btn">Open Modal</button>
+    <azwc-dialog id="dialog1" dialogid="d1">
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+    </azwc-dialog>
+    <azwc-file-manager>
+      Content
+    </azwc-file-manager>
+    <azwc-spinner></azwc-spinner>
+    <div style="width: 400px; height: 400px; position: relative; overflow-y: hidden;">
+      <azwc-spinner-mask enabled="true"></azwc-spinner-mask>
+      SVSVRSV
+      <button>WRVREV</button>
+    </div>
+    <div style="height: 300px; position: relative;">
+      <azwc-swiper id="swr" class="my-slider" loop="true" speed="500" prev-selector="#prev" next-selector="#next"
+        pagination-selector="#xxx">
+        <div class="swiper-slide my-slider__slide">Slide 1</div>
+        <div class="swiper-slide my-slider__slide">Slide 2</div>
+        <div class="swiper-slide my-slider__slide">Slide 3</div>
+        <div slot="ui"></div>
+        <azwc-swiper-prev id="prev" slot="azwc-swiper-prev">Xxxx</azwc-swiper-prev>
+        <azwc-swiper-next id="next" slot="azwc-swiper-next">Xxxx</azwc-swiper-next>
+        <azwc-swiper-pagination id="xxx" slot="azwc-swiper-pagination"></azwc-swiper-pagination>
+      </azwc-swiper>
+    </div>
+  </section>
+  <section>
+    <azwc-tabs></azwc-tabs>
+  </section>
+</body>
+<script>
+  function promiseWait(waitMillisec) {
+    return new Promise((resolve, reject) => {
+      setTimeout(resolve, waitMillisec);
+    });
+  }
+
+  var caches = {};
+  var createFileList = preFix => [
+    {
+      name: `${preFix}-1`,
+      relPath: `${preFix}-1`,
+      type: 'folder',
+    },
+    {
+      name: `${preFix}-2`,
+      relPath: `${preFix}-2`,
+      type: 'folder',
+    },
+    {
+      name: `${preFix}-3`,
+      relPath: `${preFix}-3`,
+      type: 'folder',
+    },
+    {
+      name: `${preFix}-4.js`,
+      relPath: `${preFix}-4.js`,
+      type: 'file',
+    },
+    {
+      name: `${preFix}-5.js`,
+      relPath: `${preFix}-5.js`,
+      type: 'file',
+    },
+    {
+      name: `${preFix}-6.js`,
+      relPath: `${preFix}-6.js`,
+      type: 'file',
+    },
+    {
+      name: `${preFix}-7.js`,
+      relPath: `${preFix}-7.js`,
+      type: 'file',
+    },
+    {
+      name: `${preFix}-8.js`,
+      relPath: `${preFix}-8.js`,
+      type: 'file',
+    },
+    {
+      name: `${preFix}-9.js`,
+      relPath: `${preFix}-9.js`,
+      type: 'file',
+    },
+    {
+      name: `${preFix}-10.js`,
+      relPath: `${preFix}-10.js`,
+      type: 'file',
+    },
+  ];
+
+  const canCreate = async ({
+    filename,
+    type,
+    params: {
+      options: {
+        paths,
+      },
+    },
+  }) => {
+    if (!filename) {
+      return 'Filename or folder name is empty!!'
+    }
+    const path = paths.join('/');
+    caches[path] = caches[path] || createFileList(preFix);
+    const found = caches[path].find(info => info.relPath === filename);
+    if (found && found.type === 'folder') {
+      return 'Folder with the same name exists!!'
+    }
+  };
+
+  const isFileExists = async ({
+    filename,
+    type,
+    params: {
+      options: {
+        paths,
+      },
+    },
+  }) => {
+    const path = paths.join('/');
+    caches[path] = caches[path] || createFileList(preFix);
+    const found = caches[path].find(info => info.relPath === filename);
+    if (found && found.type === 'file') {
+      return true;
+    }
+    return false;
+  };
+
+  const createFileOrFolder = async ({
+    filename,
+    params: {
+      options: {
+        paths,
+      },
+    },
+  }) => {
+    const path = paths.join('/');
+    caches[path] = caches[path] || createFileList(preFix);
+    const found = caches[path].find(info => info.relPath === filename);
+    if (!found) {
+      caches[path].push({
+        name: filename,
+        relPath: filename,
+        type: 'folder',
+      });
+    }
+  };
+
+  const getFileList = async (paths) => {
+    await promiseWait(1000);
+    const path = paths.join('/');
+    const preFix = paths.length ? paths[paths.length - 1] : 'save-data';
+    caches[path] = caches[path] || createFileList(preFix);
+    // console.log('preFix :', preFix);
+    // await promiseWait(500);
+    return caches[path];
+  };
+
+  var fileApi = {
+    canCreate,
+    isFileExists,
+    createFileOrFolder,
+    getFileList,
+  };
+</script>
+<script>
+  window.__on_azwc_init = (azwc_classes, options) => {
+    console.log('azwc_classes :', azwc_classes);
+    var AzwcSwiper = azwc_classes.AzwcSwiper;
+    var Swiper = azwc_classes.thirdParty.Swiper;
+    AzwcSwiper.componentDidLoad = (inst) => {
+      console.log('inst :', inst);
+      console.log('inst.host.id :', inst.host.id);
+    }
+    AzwcSwiper.createSwiper = (inst) => {
+      return new Swiper(inst.container, {
+        ...AzwcSwiper.getDefaultOptions(inst),
+        // effect: 'fade',
+        // direction: 'vertical',
+        // mousewheel: true,
       });
     }
 
-    var caches = {};
-    var createFileList = preFix => [
-      {
-        name: `${preFix}-1`,
-        relPath: `${preFix}-1`,
-        type: 'folder',
-      },
-      {
-        name: `${preFix}-2`,
-        relPath: `${preFix}-2`,
-        type: 'folder',
-      },
-      {
-        name: `${preFix}-3`,
-        relPath: `${preFix}-3`,
-        type: 'folder',
-      },
-      {
-        name: `${preFix}-4.js`,
-        relPath: `${preFix}-4.js`,
-        type: 'file',
-      },
-      {
-        name: `${preFix}-5.js`,
-        relPath: `${preFix}-5.js`,
-        type: 'file',
-      },
-      {
-        name: `${preFix}-6.js`,
-        relPath: `${preFix}-6.js`,
-        type: 'file',
-      },
-      {
-        name: `${preFix}-7.js`,
-        relPath: `${preFix}-7.js`,
-        type: 'file',
-      },
-      {
-        name: `${preFix}-8.js`,
-        relPath: `${preFix}-8.js`,
-        type: 'file',
-      },
-      {
-        name: `${preFix}-9.js`,
-        relPath: `${preFix}-9.js`,
-        type: 'file',
-      },
-      {
-        name: `${preFix}-10.js`,
-        relPath: `${preFix}-10.js`,
-        type: 'file',
-      },
-    ];
+    var AzwcDialog = azwc_classes.AzwcDialog;
+    var btn = document.querySelector('#open-dialog-btn');
+    btn.addEventListener("click", function () {
+      AzwcDialog.open('d1');
+    });
 
-    const canCreate = async ({
-      filename,
-      type,
-      params: {
-        options: {
-          paths,
-        },
-      },
-    }) => {
-      if (!filename) {
-        return 'Filename or folder name is empty!!'
-      }
-      const path = paths.join('/');
-      caches[path] = caches[path] || createFileList(preFix);
-      const found = caches[path].find(info => info.relPath === filename);
-      if (found && found.type === 'folder') {
-        return 'Folder with the same name exists!!'
-      }
-    };
+    var Canvi = azwc_classes.thirdParty.Canvi;
+    var t = new Canvi({
+      // content: ".js-canvi-content",
+      content: "body",
+      isDebug: !1,
+      navbar: ".myCanvasNav",
+      openButton: ".js-canvi-open-button--left",
+      position: "left",
+      pushContent: !1,
+      speed: "0.2s",
+      width: "100vw",
+      responsiveWidths: [{
+        breakpoint: "600px",
+        width: "280px"
+      }, {
+        breakpoint: "1280px",
+        width: "320px"
+      }, {
+        breakpoint: "1600px",
+        width: "380px"
+      }]
+    });
+    var canviCloseBtn = document.querySelector('.canvi-user-info__close');
+    canviCloseBtn.addEventListener("click", function () {
+      t.close();
+    });
 
-    const isFileExists = async ({
-      filename,
-      type,
-      params: {
-        options: {
-          paths,
-        },
-      },
-    }) => {
-      const path = paths.join('/');
-      caches[path] = caches[path] || createFileList(preFix);
-      const found = caches[path].find(info => info.relPath === filename);
-      if (found && found.type === 'file') {
-        return true;
-      }
-      return false;
-    };
+    var EbEventBinder = azwc_classes.eventBinder.EbEventBinder;
+    var EbEventReceiverWrapper = azwc_classes.eventBinder.EbEventReceiverWrapper;
+    var FakeNullDestination = azwc_classes.eventBinder.FakeNullDestination;
 
-    const createFileOrFolder = async ({
-      filename,
-      params: {
-        options: {
-          paths,
-        },
-      },
-    }) => {
-      const path = paths.join('/');
-      caches[path] = caches[path] || createFileList(preFix);
-      const found = caches[path].find(info => info.relPath === filename);
-      if (!found) {
-        caches[path].push({
-          name: filename,
-          relPath: filename,
-          type: 'folder',
-        });
-      }
-    };
+    var eventBinder = new EbEventBinder();
 
-    const getFileList = async (paths) => {
-      await promiseWait(1000);
-      const path = paths.join('/');
-      const preFix = paths.length ? paths[paths.length - 1] : 'save-data';
-      caches[path] = caches[path] || createFileList(preFix);
-      // console.log('preFix :', preFix);
-      // await promiseWait(500);
-      return caches[path];
-    };
-
-    var fileApi = {
-      canCreate,
-      isFileExists,
-      createFileOrFolder,
-      getFileList,
-    };
-  </script>
-  <script>
-    window.__on_azwc_init = (azwc_classes, options) => {
-      console.log('azwc_classes :', azwc_classes);
-      var AzwcSwiper = azwc_classes.AzwcSwiper;
-      var Swiper = azwc_classes.thirdParty.Swiper;
-      AzwcSwiper.componentDidLoad = (inst) => {
-        console.log('inst :', inst);
-        console.log('inst.host.id :', inst.host.id);
-      }
-      AzwcSwiper.createSwiper = (inst) => {
-        return new Swiper(inst.container, {
-          ...AzwcSwiper.getDefaultOptions(inst),
-          // effect: 'fade',
-          // direction: 'vertical',
-          // mousewheel: true,
-        });
-      }
-
-      var AzwcDialog = azwc_classes.AzwcDialog;
-      var btn = document.querySelector('#open-dialog-btn');
-      btn.addEventListener("click", function () {
-        AzwcDialog.open('d1');
-      });
-
-      var Canvi = azwc_classes.thirdParty.Canvi;
-      var t = new Canvi({
-        // content: ".js-canvi-content",
-        content: "body",
-        isDebug: !1,
-        navbar: ".myCanvasNav",
-        openButton: ".js-canvi-open-button--left",
-        position: "left",
-        pushContent: !1,
-        speed: "0.2s",
-        width: "100vw",
-        responsiveWidths: [{
-          breakpoint: "600px",
-          width: "280px"
-        }, {
-          breakpoint: "1280px",
-          width: "320px"
-        }, {
-          breakpoint: "1600px",
-          width: "380px"
-        }]
-      });
-      var canviCloseBtn = document.querySelector('.canvi-user-info__close');
-      canviCloseBtn.addEventListener("click", function () {
-        t.close();
-      });
-
-      var EbEventBinder = azwc_classes.eventBinder.EbEventBinder;
-      var EbEventReceiverWrapper = azwc_classes.eventBinder.EbEventReceiverWrapper;
-      var FakeNullDestination = azwc_classes.eventBinder.FakeNullDestination;
-
-      var eventBinder = new EbEventBinder();
-
-      Promise.all([
-        customElements.whenDefined('azwc-nav-button'),
-        customElements.whenDefined('azwc-dialog'),
-      ])
+    Promise.all([
+      customElements.whenDefined('azwc-nav-button'),
+      customElements.whenDefined('azwc-dialog'),
+    ])
       .then(() => {
         var anb1 = document.querySelector('#btn1');
         var anb2 = document.querySelector('#btn2');
@@ -491,81 +504,82 @@
           anb2.componentOnReady(),
           ad.componentOnReady(),
         ])
-        .then(() => Promise.all([
-          anb1.getInst(),
-          anb2.getInst(),
-          ad.getInst(),
-        ]))
-        .then(([anb1Inst, anb2Inst, adInst]) => {
-          // receiverWrapper = new EbEventReceiverWrapper();
-          // receiverWrapper.addDestination('dialog-state', new FakeNullDestination(this.receiverWrapper, {}));
-          // eventBinder.addReceiver('fake1', receiverWrapper);
-          
-          eventBinder.addSender('btn1', anb1Inst.senderWrapper);
-          eventBinder.addSender('btn2', anb2Inst.senderWrapper);
-          eventBinder.addReceiver('dialog1', adInst.receiverWrapper);
+          .then(() => Promise.all([
+            anb1.getInst(),
+            anb2.getInst(),
+            ad.getInst(),
+          ]))
+          .then(([anb1Inst, anb2Inst, adInst]) => {
+            // receiverWrapper = new EbEventReceiverWrapper();
+            // receiverWrapper.addDestination('dialog-state', new FakeNullDestination(this.receiverWrapper, {}));
+            // eventBinder.addReceiver('fake1', receiverWrapper);
 
-          eventBinder.addLink('btn1', 'click', 'dialog1', 'toggle-dialog', 'null', ({ target, valueType, value }) => {
-            console.log('btn1 value :', value);
-          }, {});
+            eventBinder.addSender('btn1', anb1Inst.senderWrapper);
+            eventBinder.addSender('btn2', anb2Inst.senderWrapper);
+            eventBinder.addReceiver('dialog1', adInst.receiverWrapper);
 
-          eventBinder.addLink('btn2', 'onoff', 'dialog1', 'dialog-state', 'boolean', ({ target, valueType, value }) => {
-            console.log('btn2 value :', value);
-          }, {});
-        });
+            eventBinder.addLink('btn1', 'click', 'dialog1', 'toggle-dialog', 'null', ({ target, valueType, value }) => {
+              console.log('btn1 value :', value);
+            }, {});
+
+            eventBinder.addLink('btn2', 'onoff', 'dialog1', 'dialog-state', 'boolean', ({ target, valueType, value }) => {
+              console.log('btn2 value :', value);
+            }, {});
+          });
       });
 
-      // var btn1 = document.querySelector('#btn1');
-      // btn1.addEventListener('customStateChange', function handleChange(e) {
-      //   console.log('btn1 Event Recieved:', e);
-      // });
-    }
-
-    // customElements.whenDefined('azwc-file-manager')
-    // .then((x) => {
-    //   console.log('x :', x);
-    //   var afm = document.querySelector('azwc-file-manager');
-    //   afm.componentOnReady()
-    //   .then(() => {
-    //     setTimeout(() => {
-    //       var ct = 1;
-    //       afm.setApi(fileApi);
-    //       // setInterval(() => {
-    //       //   if (ct) {
-    //       //     ct = 0;
-    //       //     afm.setAttribute('base-path', '/wwwww')
-    //       //   } else {
-    //       //     ct = 1;
-    //       //     afm.setAttribute('base-path', '/ooooo')
-    //       //   }
-    //       // }, 3000);
-    //     }, 3000);
-    //   });
-
-    //   var as = document.querySelector('azwc-swiper');
-    //   as.componentOnReady()
-    //   .then(() => {
-    //     setTimeout(() => {
-    //       as.slideTo(3);
-    //     }, 3000);
-    //   });
+    // var btn1 = document.querySelector('#btn1');
+    // btn1.addEventListener('customStateChange', function handleChange(e) {
+    //   console.log('btn1 Event Recieved:', e);
     // });
-    customElements.whenDefined('azwc-swiper')
+  }
+
+  // customElements.whenDefined('azwc-file-manager')
+  // .then((x) => {
+  //   console.log('x :', x);
+  //   var afm = document.querySelector('azwc-file-manager');
+  //   afm.componentOnReady()
+  //   .then(() => {
+  //     setTimeout(() => {
+  //       var ct = 1;
+  //       afm.setApi(fileApi);
+  //       // setInterval(() => {
+  //       //   if (ct) {
+  //       //     ct = 0;
+  //       //     afm.setAttribute('base-path', '/wwwww')
+  //       //   } else {
+  //       //     ct = 1;
+  //       //     afm.setAttribute('base-path', '/ooooo')
+  //       //   }
+  //       // }, 3000);
+  //     }, 3000);
+  //   });
+
+  //   var as = document.querySelector('azwc-swiper');
+  //   as.componentOnReady()
+  //   .then(() => {
+  //     setTimeout(() => {
+  //       as.slideTo(3);
+  //     }, 3000);
+  //   });
+  // });
+  customElements.whenDefined('azwc-swiper')
     .then((x) => {
       var as = document.querySelector('azwc-swiper');
       as.componentOnReady()
-      .then(() => {
-        setTimeout(() => {
-          // as.slideTo(3, 300);
-          as.getSwiper()
-          .then((swiper) => {
-            console.log('swiper.activeIndex :', swiper.activeIndex);
-          });
-        }, 3000);
-      });
+        .then(() => {
+          setTimeout(() => {
+            // as.slideTo(3, 300);
+            as.getSwiper()
+              .then((swiper) => {
+                console.log('swiper.activeIndex :', swiper.activeIndex);
+              });
+          }, 3000);
+        });
     });
     // document.addEventListener('customStateChange', function handleChange(e) {
     //   console.log('Event Recieved:', e);
     // });
-  </script>
+</script>
+
 </html>

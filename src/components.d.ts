@@ -64,6 +64,12 @@ export namespace Components {
     }
     interface AzwcSwiperPrev {
     }
+    interface AzwcTabContent {
+    }
+    interface AzwcTabLink {
+    }
+    interface AzwcTabs {
+    }
     interface MyComponent {
         /**
           * The first name
@@ -171,6 +177,24 @@ declare global {
         prototype: HTMLAzwcSwiperPrevElement;
         new (): HTMLAzwcSwiperPrevElement;
     };
+    interface HTMLAzwcTabContentElement extends Components.AzwcTabContent, HTMLStencilElement {
+    }
+    var HTMLAzwcTabContentElement: {
+        prototype: HTMLAzwcTabContentElement;
+        new (): HTMLAzwcTabContentElement;
+    };
+    interface HTMLAzwcTabLinkElement extends Components.AzwcTabLink, HTMLStencilElement {
+    }
+    var HTMLAzwcTabLinkElement: {
+        prototype: HTMLAzwcTabLinkElement;
+        new (): HTMLAzwcTabLinkElement;
+    };
+    interface HTMLAzwcTabsElement extends Components.AzwcTabs, HTMLStencilElement {
+    }
+    var HTMLAzwcTabsElement: {
+        prototype: HTMLAzwcTabsElement;
+        new (): HTMLAzwcTabsElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -193,6 +217,9 @@ declare global {
         "azwc-swiper-next": HTMLAzwcSwiperNextElement;
         "azwc-swiper-pagination": HTMLAzwcSwiperPaginationElement;
         "azwc-swiper-prev": HTMLAzwcSwiperPrevElement;
+        "azwc-tab-content": HTMLAzwcTabContentElement;
+        "azwc-tab-link": HTMLAzwcTabLinkElement;
+        "azwc-tabs": HTMLAzwcTabsElement;
         "my-component": HTMLMyComponentElement;
     }
 }
@@ -252,6 +279,12 @@ declare namespace LocalJSX {
     }
     interface AzwcSwiperPrev {
     }
+    interface AzwcTabContent {
+    }
+    interface AzwcTabLink {
+    }
+    interface AzwcTabs {
+    }
     interface MyComponent {
         /**
           * The first name
@@ -282,6 +315,9 @@ declare namespace LocalJSX {
         "azwc-swiper-next": AzwcSwiperNext;
         "azwc-swiper-pagination": AzwcSwiperPagination;
         "azwc-swiper-prev": AzwcSwiperPrev;
+        "azwc-tab-content": AzwcTabContent;
+        "azwc-tab-link": AzwcTabLink;
+        "azwc-tabs": AzwcTabs;
         "my-component": MyComponent;
     }
 }
@@ -304,6 +340,9 @@ declare module "@stencil/core" {
             "azwc-swiper-next": LocalJSX.AzwcSwiperNext & JSXBase.HTMLAttributes<HTMLAzwcSwiperNextElement>;
             "azwc-swiper-pagination": LocalJSX.AzwcSwiperPagination & JSXBase.HTMLAttributes<HTMLAzwcSwiperPaginationElement>;
             "azwc-swiper-prev": LocalJSX.AzwcSwiperPrev & JSXBase.HTMLAttributes<HTMLAzwcSwiperPrevElement>;
+            "azwc-tab-content": LocalJSX.AzwcTabContent & JSXBase.HTMLAttributes<HTMLAzwcTabContentElement>;
+            "azwc-tab-link": LocalJSX.AzwcTabLink & JSXBase.HTMLAttributes<HTMLAzwcTabLinkElement>;
+            "azwc-tabs": LocalJSX.AzwcTabs & JSXBase.HTMLAttributes<HTMLAzwcTabsElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }

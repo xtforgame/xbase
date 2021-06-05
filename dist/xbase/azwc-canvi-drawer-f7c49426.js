@@ -1,1 +1,0 @@
-import{r,h as s,H as t}from"./index-54a7a200.js";const n=class{constructor(s){r(this,s)}render(){return s(t,null,s("slot",null))}};export{n as A}

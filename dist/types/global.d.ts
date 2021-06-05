@@ -8,6 +8,12 @@ import { AzwcSpinner } from './components/azwc-spinner/azwc-spinner';
 import { AzwcSpinnerMask } from './components/azwc-spinner-mask/azwc-spinner-mask';
 import { AzwcSwiper } from './components/azwc-swiper/azwc-swiper';
 import { AzwcCollapseT1 } from './components/azwc-collapse-t1/azwc-collapse-t1';
+import { AzwcSwiperNext } from './components/azwc-swiper-next/azwc-swiper-next';
+import { AzwcSwiperPrev } from './components/azwc-swiper-prev/azwc-swiper-prev';
+import { AzwcSwiperPagination } from './components/azwc-swiper-pagination/azwc-swiper-pagination';
+import { AzwcTabs } from './components/azwc-tabs/azwc-tabs';
+import { AzwcTabLink } from './components/azwc-tab-link/azwc-tab-link';
+import { AzwcTabContent } from './components/azwc-tab-content/azwc-tab-content';
 import * as swiperlib from 'swiper';
 import { AzwcCanviDrawer } from './components/azwc-canvi-drawer/azwc-canvi-drawer';
 import * as utils from './utils';
@@ -34,6 +40,12 @@ export declare const getExportData: () => {
   AzwcSwiper: typeof AzwcSwiper;
   AzwcCollapseT1: typeof AzwcCollapseT1;
   AzwcCanviDrawer: typeof AzwcCanviDrawer;
+  AzwcSwiperNext: typeof AzwcSwiperNext;
+  AzwcSwiperPrev: typeof AzwcSwiperPrev;
+  AzwcSwiperPagination: typeof AzwcSwiperPagination;
+  AzwcTabs: typeof AzwcTabs;
+  AzwcTabLink: typeof AzwcTabLink;
+  AzwcTabContent: typeof AzwcTabContent;
   Components: {
     AzwcNavButton: typeof AzwcNavButton;
     AzwcNavMenu: typeof AzwcNavMenu;
@@ -46,6 +58,12 @@ export declare const getExportData: () => {
     AzwcSwiper: typeof AzwcSwiper;
     AzwcCollapseT1: typeof AzwcCollapseT1;
     AzwcCanviDrawer: typeof AzwcCanviDrawer;
+    AzwcSwiperNext: typeof AzwcSwiperNext;
+    AzwcSwiperPrev: typeof AzwcSwiperPrev;
+    AzwcSwiperPagination: typeof AzwcSwiperPagination;
+    AzwcTabs: typeof AzwcTabs;
+    AzwcTabLink: typeof AzwcTabLink;
+    AzwcTabContent: typeof AzwcTabContent;
   };
 };
 export declare const exportData: {
@@ -70,6 +88,12 @@ export declare const exportData: {
   AzwcSwiper: typeof AzwcSwiper;
   AzwcCollapseT1: typeof AzwcCollapseT1;
   AzwcCanviDrawer: typeof AzwcCanviDrawer;
+  AzwcSwiperNext: typeof AzwcSwiperNext;
+  AzwcSwiperPrev: typeof AzwcSwiperPrev;
+  AzwcSwiperPagination: typeof AzwcSwiperPagination;
+  AzwcTabs: typeof AzwcTabs;
+  AzwcTabLink: typeof AzwcTabLink;
+  AzwcTabContent: typeof AzwcTabContent;
   Components: {
     AzwcNavButton: typeof AzwcNavButton;
     AzwcNavMenu: typeof AzwcNavMenu;
@@ -82,6 +106,12 @@ export declare const exportData: {
     AzwcSwiper: typeof AzwcSwiper;
     AzwcCollapseT1: typeof AzwcCollapseT1;
     AzwcCanviDrawer: typeof AzwcCanviDrawer;
+    AzwcSwiperNext: typeof AzwcSwiperNext;
+    AzwcSwiperPrev: typeof AzwcSwiperPrev;
+    AzwcSwiperPagination: typeof AzwcSwiperPagination;
+    AzwcTabs: typeof AzwcTabs;
+    AzwcTabLink: typeof AzwcTabLink;
+    AzwcTabContent: typeof AzwcTabContent;
   };
 };
 export default function (): Promise<void>;

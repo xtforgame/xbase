@@ -92,6 +92,24 @@ export const AzwcSwiperPrev: {
   new (): AzwcSwiperPrev;
 };
 
+interface AzwcTabContent extends Components.AzwcTabContent, HTMLElement {}
+export const AzwcTabContent: {
+  prototype: AzwcTabContent;
+  new (): AzwcTabContent;
+};
+
+interface AzwcTabLink extends Components.AzwcTabLink, HTMLElement {}
+export const AzwcTabLink: {
+  prototype: AzwcTabLink;
+  new (): AzwcTabLink;
+};
+
+interface AzwcTabs extends Components.AzwcTabs, HTMLElement {}
+export const AzwcTabs: {
+  prototype: AzwcTabs;
+  new (): AzwcTabs;
+};
+
 interface MyComponent extends Components.MyComponent, HTMLElement {}
 export const MyComponent: {
   prototype: MyComponent;

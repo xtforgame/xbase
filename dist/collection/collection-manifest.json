@@ -10,11 +10,14 @@
     "./components/azwc-spinner-mask/azwc-spinner-mask.js",
     "./components/azwc-swiper/azwc-swiper.js",
     "./components/azwc-collapse-t1/azwc-collapse-t1.js",
+    "./components/azwc-swiper-next/azwc-swiper-next.js",
+    "./components/azwc-swiper-prev/azwc-swiper-prev.js",
+    "./components/azwc-swiper-pagination/azwc-swiper-pagination.js",
+    "./components/azwc-tabs/azwc-tabs.js",
+    "./components/azwc-tab-link/azwc-tab-link.js",
+    "./components/azwc-tab-content/azwc-tab-content.js",
     "./components/azwc-canvi-drawer/azwc-canvi-drawer.js",
     "./components/azwc-global/azwc-global.js",
-    "./components/azwc-swiper-next/azwc-swiper-next.js",
-    "./components/azwc-swiper-pagination/azwc-swiper-pagination.js",
-    "./components/azwc-swiper-prev/azwc-swiper-prev.js",
     "./components/my-component/my-component.js"
   ],
   "compiler": {

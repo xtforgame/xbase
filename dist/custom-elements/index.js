@@ -1,4 +1,4 @@
-import { createEvent, h, Host, proxyCustomElement } from '@stencil/core/internal/client';
+import { createEvent, h, Host, attachShadow, proxyCustomElement } from '@stencil/core/internal/client';
 export { setAssetPath, setPlatformOptions } from '@stencil/core/internal/client';
 
 class EbEventLink {
@@ -10292,6 +10292,86 @@ const AzwcCollapseT1 = class extends HTMLElement {
   get host() { return this; }
 };
 
+const AzwcSwiperNext = class extends HTMLElement {
+  constructor() {
+    super();
+    this.__registerHost();
+  }
+  render() {
+    return (h(Host, { class: "azwc-swiper-next" }, h("slot", null)));
+  }
+};
+
+const AzwcSwiperPrev = class extends HTMLElement {
+  constructor() {
+    super();
+    this.__registerHost();
+  }
+  render() {
+    return (h(Host, { class: "azwc-swiper-prev" }, h("slot", null)));
+  }
+};
+
+const AzwcSwiperPagination = class extends HTMLElement {
+  constructor() {
+    super();
+    this.__registerHost();
+  }
+  render() {
+    return (h(Host, { class: "swiper-pagination" }));
+  }
+};
+
+const AzwcTabs = class extends HTMLElement {
+  constructor() {
+    super();
+    this.__registerHost();
+  }
+  openCity(evt, cityName) {
+    // Declare all variables
+    var i, tabcontent, tablinks, tabcontents;
+    // Get all elements with class="aztabcontents" and remove the class "active"
+    tabcontents = document.getElementsByClassName("aztabcontent");
+    for (i = 0; i < tabcontents.length; i++) {
+      tabcontents[i].className = tabcontents[i].className.replace(" active", "");
+    }
+    // Get all elements with class="aztablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("aztablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    tabcontent = document.getElementById(cityName);
+    tabcontent.className += " active";
+    evt.currentTarget.className += " active";
+  }
+  render() {
+    return (h(Host, null, h("div", { class: "aztab" }, h("button", { class: "aztablinks active", onClick: (event) => { this.openCity(event, 'London'); } }, "London"), h("button", { class: "aztablinks", onClick: (event) => { this.openCity(event, 'Paris'); } }, "Paris"), h("button", { class: "aztablinks", onClick: (event) => { this.openCity(event, 'Tokyo'); } }, "Tokyo")), h("div", { id: "London", class: "aztabcontent active" }, h("h3", null, "London"), h("p", null, "London is the capital city of England.")), h("div", { id: "Paris", class: "aztabcontent" }, h("h3", null, "Paris"), h("p", null, "Paris is the capital of France.")), h("div", { id: "Tokyo", class: "aztabcontent" }, h("h3", null, "Tokyo"), h("p", null, "Tokyo is the capital of Japan."))));
+  }
+};
+
+const AzwcTabLink = class extends HTMLElement {
+  constructor() {
+    super();
+    this.__registerHost();
+    attachShadow(this);
+  }
+  render() {
+    return (h(Host, null, h("slot", null)));
+  }
+};
+
+const AzwcTabContent = class extends HTMLElement {
+  constructor() {
+    super();
+    this.__registerHost();
+    attachShadow(this);
+  }
+  render() {
+    return (h(Host, null, h("slot", null)));
+  }
+};
+
 const AzwcCanviDrawer = class extends HTMLElement {
   constructor() {
     super();
@@ -10595,6 +10675,12 @@ const Components = {
   AzwcSwiper,
   AzwcCollapseT1,
   AzwcCanviDrawer,
+  AzwcSwiperNext,
+  AzwcSwiperPrev,
+  AzwcSwiperPagination,
+  AzwcTabs,
+  AzwcTabLink,
+  AzwcTabContent,
 };
 const getExportData = () => (Object.assign(Object.assign({ Components }, Components), { thirdParty: {
     swiperlib,
@@ -10632,36 +10718,6 @@ const AzwcGlobal = class extends HTMLElement {
   }
 };
 AzwcGlobal.exports = exports;
-
-const AzwcSwiperNext = class extends HTMLElement {
-  constructor() {
-    super();
-    this.__registerHost();
-  }
-  render() {
-    return (h(Host, { class: "azwc-swiper-next" }, h("slot", null)));
-  }
-};
-
-const AzwcSwiperPagination = class extends HTMLElement {
-  constructor() {
-    super();
-    this.__registerHost();
-  }
-  render() {
-    return (h(Host, { class: "swiper-pagination" }));
-  }
-};
-
-const AzwcSwiperPrev = class extends HTMLElement {
-  constructor() {
-    super();
-    this.__registerHost();
-  }
-  render() {
-    return (h(Host, { class: "azwc-swiper-prev" }, h("slot", null)));
-  }
-};
 
 const MyComponent = class extends HTMLElement {
   constructor() {
@@ -10732,6 +10788,9 @@ const AzwcSwiper$1 = /*@__PURE__*/proxyCustomElement(AzwcSwiper, [4,"azwc-swiper
 const AzwcSwiperNext$1 = /*@__PURE__*/proxyCustomElement(AzwcSwiperNext, [4,"azwc-swiper-next"]);
 const AzwcSwiperPagination$1 = /*@__PURE__*/proxyCustomElement(AzwcSwiperPagination, [0,"azwc-swiper-pagination"]);
 const AzwcSwiperPrev$1 = /*@__PURE__*/proxyCustomElement(AzwcSwiperPrev, [4,"azwc-swiper-prev"]);
+const AzwcTabContent$1 = /*@__PURE__*/proxyCustomElement(AzwcTabContent, [1,"azwc-tab-content"]);
+const AzwcTabLink$1 = /*@__PURE__*/proxyCustomElement(AzwcTabLink, [1,"azwc-tab-link"]);
+const AzwcTabs$1 = /*@__PURE__*/proxyCustomElement(AzwcTabs, [0,"azwc-tabs"]);
 const MyComponent$1 = /*@__PURE__*/proxyCustomElement(MyComponent, [4,"my-component",{"first":[1],"middle":[1],"last":[1],"switchX":[32],"switchY":[32]}]);
 const defineCustomElements = (opts) => {
   if (typeof customElements !== 'undefined') {
@@ -10751,6 +10810,9 @@ const defineCustomElements = (opts) => {
   AzwcSwiperNext$1,
   AzwcSwiperPagination$1,
   AzwcSwiperPrev$1,
+  AzwcTabContent$1,
+  AzwcTabLink$1,
+  AzwcTabs$1,
   MyComponent$1
     ].forEach(cmp => {
       if (!customElements.get(cmp.is)) {
@@ -10760,4 +10822,4 @@ const defineCustomElements = (opts) => {
   }
 };
 
-export { AzwcAccordion$1 as AzwcAccordion, AzwcCanviDrawer$1 as AzwcCanviDrawer, AzwcCollapseT1$1 as AzwcCollapseT1, AzwcDialog$1 as AzwcDialog, AzwcFileManager$1 as AzwcFileManager, AzwcGlobal$1 as AzwcGlobal, AzwcNavButton$1 as AzwcNavButton, AzwcNavMenu$1 as AzwcNavMenu, AzwcNavMenuItem$1 as AzwcNavMenuItem, AzwcSpinner$1 as AzwcSpinner, AzwcSpinnerMask$1 as AzwcSpinnerMask, AzwcSwiper$1 as AzwcSwiper, AzwcSwiperNext$1 as AzwcSwiperNext, AzwcSwiperPagination$1 as AzwcSwiperPagination, AzwcSwiperPrev$1 as AzwcSwiperPrev, MyComponent$1 as MyComponent, defineCustomElements };
+export { AzwcAccordion$1 as AzwcAccordion, AzwcCanviDrawer$1 as AzwcCanviDrawer, AzwcCollapseT1$1 as AzwcCollapseT1, AzwcDialog$1 as AzwcDialog, AzwcFileManager$1 as AzwcFileManager, AzwcGlobal$1 as AzwcGlobal, AzwcNavButton$1 as AzwcNavButton, AzwcNavMenu$1 as AzwcNavMenu, AzwcNavMenuItem$1 as AzwcNavMenuItem, AzwcSpinner$1 as AzwcSpinner, AzwcSpinnerMask$1 as AzwcSpinnerMask, AzwcSwiper$1 as AzwcSwiper, AzwcSwiperNext$1 as AzwcSwiperNext, AzwcSwiperPagination$1 as AzwcSwiperPagination, AzwcSwiperPrev$1 as AzwcSwiperPrev, AzwcTabContent$1 as AzwcTabContent, AzwcTabLink$1 as AzwcTabLink, AzwcTabs$1 as AzwcTabs, MyComponent$1 as MyComponent, defineCustomElements };

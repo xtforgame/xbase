@@ -8,6 +8,14 @@ import { AzwcSpinner } from './components/azwc-spinner/azwc-spinner';
 import { AzwcSpinnerMask } from './components/azwc-spinner-mask/azwc-spinner-mask';
 import { AzwcSwiper } from './components/azwc-swiper/azwc-swiper';
 import { AzwcCollapseT1 } from './components/azwc-collapse-t1/azwc-collapse-t1';
+import { AzwcSwiperNext } from './components/azwc-swiper-next/azwc-swiper-next';
+import { AzwcSwiperPrev } from './components/azwc-swiper-prev/azwc-swiper-prev';
+import { AzwcSwiperPagination } from './components/azwc-swiper-pagination/azwc-swiper-pagination';
+import { AzwcTabs } from './components/azwc-tabs/azwc-tabs';
+import { AzwcTabLink } from './components/azwc-tab-link/azwc-tab-link';
+import { AzwcTabContent } from './components/azwc-tab-content/azwc-tab-content';
+
+
 import * as swiperlib from 'swiper';
 import Swiper from 'swiper';
 import { AzwcCanviDrawer } from './components/azwc-canvi-drawer/azwc-canvi-drawer';
@@ -28,6 +36,13 @@ const Components = {
   AzwcSwiper,
   AzwcCollapseT1,
   AzwcCanviDrawer,
+
+  AzwcSwiperNext,
+  AzwcSwiperPrev,
+  AzwcSwiperPagination,
+  AzwcTabs,
+  AzwcTabLink,
+  AzwcTabContent,
 };
 
 export const getExportData = () => ({

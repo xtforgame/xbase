@@ -1,7 +1,9 @@
-import { r as registerInstance, h, H as Host } from './index-54a7a200.js';
-import './azwc-collapse-t1-cb61a6b0.js';
-import { e as exports } from './global-b96c61e6.js';
-import './azwc-canvi-drawer-f7c49426.js';
+import { r as registerInstance, h, H as Host } from './index-d1628334.js';
+import './azwc-tabs-41650461.js';
+import { e as exports } from './global-b9d0fd26.js';
+import './azwc-tab-link-9a7a1b0d.js';
+import './azwc-tab-content-e37343de.js';
+import './azwc-canvi-drawer-dafb0ce8.js';
 
 const AzwcGlobal = class {
   constructor(hostRef) {
