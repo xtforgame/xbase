@@ -1,3 +1,5 @@
+// https://www.w3schools.com/howto/howto_js_tabs.asp
+
 import { Component, Host, h } from '@stencil/core';
 
 @Component({
