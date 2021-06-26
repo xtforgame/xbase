@@ -47,6 +47,7 @@
       // effect: 'fade',
       // direction: 'vertical',
       // mousewheel: true,
+      autoplay: false,
     }));
     windowSelf.__azgjsRunOnceFuncs.forEach(({ func }) => func({ azwc_export }));
     windowSelf.__azgjsRunOnceDone = true;

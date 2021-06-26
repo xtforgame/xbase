@@ -18,6 +18,7 @@ export class AzwcCollapseT1 {
   render() {
     this.titleId = this.titleId || this.collapseid || createRamdomUniqueIdForElement();
     const checked = this.active;
+    console.log('this.labelPlacement :', this.labelPlacement);
     return (h(Host, null,
       h("input", { checked: checked, name: "collapse", type: "checkbox", id: this.titleId, class: "azac-title-input" }),
       h("label", { htmlFor: this.titleId, class: "azac-title-box" },
@@ -29,13 +30,15 @@ export class AzwcCollapseT1 {
         this.labelPlacement === 'right' && this.type === 'angle-bracket' && (h("div", { class: "az-angle-bracket" },
           h("span", null),
           h("span", null))),
+        h("slot", { name: "left-icon" }),
         h("slot", { name: "title" }),
-        this.labelPlacement !== 'right' && (!this.type || this.type === 'sign') && (h("div", { class: "azac-icon-sign" },
+        h("slot", { name: "right-icon" }),
+        this.labelPlacement === 'left' && (!this.type || this.type === 'sign') && (h("div", { class: "azac-icon-sign" },
           h("span", null),
           h("span", null))),
-        this.labelPlacement !== 'right' && this.type === 'arrow' && (h("div", { class: "azac-icon-arrow" },
+        this.labelPlacement === 'left' && this.type === 'arrow' && (h("div", { class: "azac-icon-arrow" },
           h("span", null))),
-        this.labelPlacement !== 'right' && this.type === 'angle-bracket' && (h("div", { class: "az-angle-bracket" },
+        this.labelPlacement === 'left' && this.type === 'angle-bracket' && (h("div", { class: "az-angle-bracket" },
           h("span", null),
           h("span", null)))),
       h("div", { class: "azac-contents-box" },

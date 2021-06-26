@@ -1,6 +1,6 @@
 'use strict';
 
-const azwcTabs = require('./azwc-tabs-5891676f.js');
+const azwcTabs = require('./azwc-tabs-abcebfdb.js');
 const azwcTabLink = require('./azwc-tab-link-0856f701.js');
 const azwcTabContent = require('./azwc-tab-content-76c31820.js');
 const azwcCanviDrawer = require('./azwc-canvi-drawer-37d22825.js');

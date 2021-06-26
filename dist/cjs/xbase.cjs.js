@@ -1,12 +1,12 @@
 'use strict';
 
 const index = require('./index-f961ad80.js');
-require('./azwc-tabs-5891676f.js');
-require('./global-e22288d6.js');
+require('./azwc-tabs-abcebfdb.js');
+require('./global-5d470fe9.js');
 require('./azwc-tab-link-0856f701.js');
 require('./azwc-tab-content-76c31820.js');
 require('./azwc-canvi-drawer-37d22825.js');
-const appGlobals = require('./app-globals-0d310ea9.js');
+const appGlobals = require('./app-globals-aa709e32.js');
 
 /*
  Stencil Client Patch Browser v2.4.0 | MIT Licensed | https://stenciljs.com

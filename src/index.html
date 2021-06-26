@@ -69,6 +69,44 @@
       height: 100%;
       overflow-y: hidden;
     }
+
+    /* */
+    .azf-icon-sign {
+      box-sizing: border-box;
+      width: var(--azwc-collapse-t1-stroke-length, 10px);
+      height: var(--azwc-collapse-t1-stroke-length, 10px);
+      // background-color: blue;
+      position: relative;
+    }
+
+    .azf-icon-p {
+      box-sizing: border-box;
+      width: calc(var(--azwc-collapse-t1-stroke-length, 10px) / 2);
+      height: calc(var(--azwc-collapse-t1-stroke-length, 10px) / 5);
+      background-color: black;
+      position: absolute;
+      left: calc(var(--azwc-collapse-t1-stroke-length, 10px) / 2);
+      top: calc(var(--azwc-collapse-t1-stroke-length, 10px) / 5 * 2);
+      transform-origin: left center;
+      transition: .3s 0s;
+      transform: rotate(0deg);
+    }
+
+    .azac-title-input:checked + .azac-title-box .part-1 {
+      transform: rotate(-144deg);
+    }
+    .azac-title-input:checked + .azac-title-box .part-2 {
+      transform: rotate(-216deg);
+    }
+    .azac-title-input:checked + .azac-title-box .part-3 {
+      transform: rotate(-288deg);
+    }
+    .azac-title-input:checked + .azac-title-box .part-4 {
+      transform: rotate(-360deg);
+    }
+    .azac-title-input:checked + .azac-title-box .part-5 {
+      transform: rotate(-432deg);
+    }
   </style>
 </head>
 
@@ -228,6 +266,19 @@
       </azwc-collapse-t1>
       <azwc-collapse-t1 type="sign">
         <div slot="title">collapse-title-3</div>
+        <p slot="contents">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam ducimus, illum vitae nam
+          officia quidem iste maxime provident! Temporibus repellat nulla blanditiis at accusamus minima delectus aut
+          doloribus officia deserunt.</p>
+      </azwc-collapse-t1>
+      <azwc-collapse-t1 type="sign"  label-placement="x">
+        <div slot="left-icon" class="azf-icon-sign">
+          <span class="azf-icon-p part-1"></span>
+          <span class="azf-icon-p part-2"></span>
+          <span class="azf-icon-p part-3"></span>
+          <span class="azf-icon-p part-4"></span>
+          <span class="azf-icon-p part-5"></span>
+        </div>
+        <div slot="title">collapse-title-4</div>
         <p slot="contents">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam ducimus, illum vitae nam
           officia quidem iste maxime provident! Temporibus repellat nulla blanditiis at accusamus minima delectus aut
           doloribus officia deserunt.</p>

@@ -1,0 +1,1 @@
+import{a}from"./global-ce0a3735.js";const o=a;export{o as g}

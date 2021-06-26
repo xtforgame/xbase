@@ -1,10 +1,10 @@
 import { p as promiseResolve, b as bootstrapLazy } from './index-d1628334.js';
-import './azwc-tabs-41650461.js';
-import './global-b9d0fd26.js';
+import './azwc-tabs-3fd7bd59.js';
+import './global-ce0a3735.js';
 import './azwc-tab-link-9a7a1b0d.js';
 import './azwc-tab-content-e37343de.js';
 import './azwc-canvi-drawer-dafb0ce8.js';
-import { g as globalScripts } from './app-globals-1c2c4da8.js';
+import { g as globalScripts } from './app-globals-91ddb010.js';
 
 /*
  Stencil Client Patch Browser v2.4.0 | MIT Licensed | https://stenciljs.com

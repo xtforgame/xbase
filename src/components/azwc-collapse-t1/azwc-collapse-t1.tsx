@@ -35,6 +35,7 @@ export class AzwcCollapseT1 {
   render() {
     this.titleId = this.titleId || this.collapseid || createRamdomUniqueIdForElement();
     const checked = this.active;
+    console.log('this.labelPlacement :', this.labelPlacement);
     return (
       <Host>
         <input checked={checked} name="collapse" type="checkbox" id={this.titleId} class="azac-title-input">
@@ -57,19 +58,21 @@ export class AzwcCollapseT1 {
               <span></span>
             </div>
           )}
+          <slot name="left-icon"></slot>
           <slot name="title"></slot>
-          {this.labelPlacement !== 'right' && (!this.type || this.type === 'sign') && (
+          <slot name="right-icon"></slot>
+          {this.labelPlacement === 'left' && (!this.type || this.type === 'sign') && (
             <div class="azac-icon-sign">
               <span></span>
               <span></span>
             </div>
           )}
-          {this.labelPlacement !== 'right' && this.type === 'arrow' && (
+          {this.labelPlacement === 'left' && this.type === 'arrow' && (
             <div class="azac-icon-arrow">
               <span></span>
             </div>
           )}
-          {this.labelPlacement !== 'right' && this.type === 'angle-bracket' && (
+          {this.labelPlacement === 'left' && this.type === 'angle-bracket' && (
             <div class="az-angle-bracket">
               <span></span>
               <span></span>
