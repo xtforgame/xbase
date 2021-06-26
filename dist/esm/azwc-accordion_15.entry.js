@@ -1,6 +1,6 @@
 import { r as registerInstance, h, H as Host, g as getElement } from './index-d1628334.js';
-import { l as format } from './azwc-tabs-3fd7bd59.js';
-export { r as azwc_accordion, x as azwc_collapse_t1, s as azwc_dialog, t as azwc_file_manager, o as azwc_nav_button, p as azwc_nav_menu, q as azwc_nav_menu_item, u as azwc_spinner, v as azwc_spinner_mask, w as azwc_swiper, y as azwc_swiper_next, B as azwc_swiper_pagination, z as azwc_swiper_prev, F as azwc_tabs } from './azwc-tabs-3fd7bd59.js';
+import { l as format } from './azwc-tabs-317e62af.js';
+export { r as azwc_accordion, x as azwc_collapse_t1, s as azwc_dialog, t as azwc_file_manager, o as azwc_nav_button, p as azwc_nav_menu, q as azwc_nav_menu_item, u as azwc_spinner, v as azwc_spinner_mask, w as azwc_swiper, y as azwc_swiper_next, B as azwc_swiper_pagination, z as azwc_swiper_prev, F as azwc_tabs } from './azwc-tabs-317e62af.js';
 
 const MyComponent = class {
   constructor(hostRef) {

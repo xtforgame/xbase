@@ -195,10 +195,11 @@ AzwcSwiper.getDefaultOptions = (inst) => {
       nextEl: inst.nextSelector || inst.next,
       prevEl: inst.prevSelector || inst.prev,
     },
-    autoplay: {
-      delay: 7000,
-      disableOnInteraction: true,
-    },
+    // autoplay: {
+    //   delay: 7000,
+    //   disableOnInteraction: true,
+    // },
+    autoplay: false,
     pagination: {
       el: inst.paginationSelector || inst.pagination,
       clickable: true,

@@ -1,4 +1,4 @@
-import { a as appGlobalScript } from './global-ce0a3735.js';
+import { a as appGlobalScript } from './global-5bea3947.js';
 
 const globalScripts = appGlobalScript;
 

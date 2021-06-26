@@ -1,11 +1,9 @@
-'use strict';
+import { S as SourceBase, D as DestinationBase, E as EbEventLink, a as EbEventSenderWrapper, b as EbEventReceiverWrapper, c as Swiper, V as Virtual, K as Keyboard, M as Mousewheel, N as Navigation, P as Pagination, d as Scrollbar, e as Parallax, Z as Zoom, L as Lazy, C as Controller, A as A11y, H as History, f as HashNavigation, g as Autoplay, h as EffectFade, i as EffectCube, j as EffectFlip, k as EffectCoverflow, T as Thumbs, l as format, m as createRamdomUniqueId, n as createRamdomUniqueIdForElement, o as AzwcNavButton, p as AzwcNavMenu, q as AzwcNavMenuItem, r as AzwcAccordion, s as AzwcDialog, t as AzwcFileManager, u as AzwcSpinner, v as AzwcSpinnerMask, w as AzwcSwiper, x as AzwcCollapseT1, y as AzwcSwiperNext, z as AzwcSwiperPrev, B as AzwcSwiperPagination, F as AzwcTabs } from './azwc-tabs-317e62af.js';
+import { A as AzwcTabLink } from './azwc-tab-link-9a7a1b0d.js';
+import { A as AzwcTabContent } from './azwc-tab-content-e37343de.js';
+import { A as AzwcCanviDrawer } from './azwc-canvi-drawer-dafb0ce8.js';
 
-const azwcTabs = require('./azwc-tabs-abcebfdb.js');
-const azwcTabLink = require('./azwc-tab-link-0856f701.js');
-const azwcTabContent = require('./azwc-tab-content-76c31820.js');
-const azwcCanviDrawer = require('./azwc-canvi-drawer-37d22825.js');
-
-class FakeClickSource extends azwcTabs.SourceBase {
+class FakeClickSource extends SourceBase {
   constructor(sender, options) {
     super(sender, options);
     this.getRawValueType = () => 'null';
@@ -23,7 +21,7 @@ class FakeClickSource extends azwcTabs.SourceBase {
     };
   }
 }
-class FakeNullDestination extends azwcTabs.DestinationBase {
+class FakeNullDestination extends DestinationBase {
   constructor(receiver, options) {
     super(receiver, options);
     this.getRawValueType = () => 'null';
@@ -129,7 +127,7 @@ class EbEventBinder {
       destination.changeValue(exEvent.valueType, exEvent.value);
       cb(exEvent);
     };
-    const link = new azwcTabs.EbEventLink(senderId, sourceEventName, source, receiverId, destinationEventName, destination, valueType, callback, options);
+    const link = new EbEventLink(senderId, sourceEventName, source, receiverId, destinationEventName, destination, valueType, callback, options);
     this.addLinkCore(link);
   }
 }
@@ -139,11 +137,11 @@ const eventBinder = /*#__PURE__*/Object.freeze({
   EbEventBinder: EbEventBinder,
   FakeClickSource: FakeClickSource,
   FakeNullDestination: FakeNullDestination,
-  EbEventLink: azwcTabs.EbEventLink,
-  EbEventSenderWrapper: azwcTabs.EbEventSenderWrapper,
-  EbEventReceiverWrapper: azwcTabs.EbEventReceiverWrapper,
-  SourceBase: azwcTabs.SourceBase,
-  DestinationBase: azwcTabs.DestinationBase
+  EbEventLink: EbEventLink,
+  EbEventSenderWrapper: EbEventSenderWrapper,
+  EbEventReceiverWrapper: EbEventReceiverWrapper,
+  SourceBase: SourceBase,
+  DestinationBase: DestinationBase
 });
 
 /**
@@ -160,34 +158,34 @@ const eventBinder = /*#__PURE__*/Object.freeze({
 
 const swiperlib = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  Swiper: azwcTabs.Swiper,
-  'default': azwcTabs.Swiper,
-  Virtual: azwcTabs.Virtual,
-  Keyboard: azwcTabs.Keyboard,
-  Mousewheel: azwcTabs.Mousewheel,
-  Navigation: azwcTabs.Navigation,
-  Pagination: azwcTabs.Pagination,
-  Scrollbar: azwcTabs.Scrollbar,
-  Parallax: azwcTabs.Parallax,
-  Zoom: azwcTabs.Zoom,
-  Lazy: azwcTabs.Lazy,
-  Controller: azwcTabs.Controller,
-  A11y: azwcTabs.A11y,
-  History: azwcTabs.History,
-  HashNavigation: azwcTabs.HashNavigation,
-  Autoplay: azwcTabs.Autoplay,
-  EffectFade: azwcTabs.EffectFade,
-  EffectCube: azwcTabs.EffectCube,
-  EffectFlip: azwcTabs.EffectFlip,
-  EffectCoverflow: azwcTabs.EffectCoverflow,
-  Thumbs: azwcTabs.Thumbs
+  Swiper: Swiper,
+  'default': Swiper,
+  Virtual: Virtual,
+  Keyboard: Keyboard,
+  Mousewheel: Mousewheel,
+  Navigation: Navigation,
+  Pagination: Pagination,
+  Scrollbar: Scrollbar,
+  Parallax: Parallax,
+  Zoom: Zoom,
+  Lazy: Lazy,
+  Controller: Controller,
+  A11y: A11y,
+  History: History,
+  HashNavigation: HashNavigation,
+  Autoplay: Autoplay,
+  EffectFade: EffectFade,
+  EffectCube: EffectCube,
+  EffectFlip: EffectFlip,
+  EffectCoverflow: EffectCoverflow,
+  Thumbs: Thumbs
 });
 
 const utils = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  format: azwcTabs.format,
-  createRamdomUniqueId: azwcTabs.createRamdomUniqueId,
-  createRamdomUniqueIdForElement: azwcTabs.createRamdomUniqueIdForElement
+  format: format,
+  createRamdomUniqueId: createRamdomUniqueId,
+  createRamdomUniqueIdForElement: createRamdomUniqueIdForElement
 });
 
 // https://github.com/conedevelopment/canvi
@@ -472,27 +470,27 @@ const versionInfo = {
 };
 
 const Components = {
-  AzwcNavButton: azwcTabs.AzwcNavButton,
-  AzwcNavMenu: azwcTabs.AzwcNavMenu,
-  AzwcNavMenuItem: azwcTabs.AzwcNavMenuItem,
-  AzwcAccordion: azwcTabs.AzwcAccordion,
-  AzwcDialog: azwcTabs.AzwcDialog,
-  AzwcFileManager: azwcTabs.AzwcFileManager,
-  AzwcSpinner: azwcTabs.AzwcSpinner,
-  AzwcSpinnerMask: azwcTabs.AzwcSpinnerMask,
-  AzwcSwiper: azwcTabs.AzwcSwiper,
-  AzwcCollapseT1: azwcTabs.AzwcCollapseT1,
-  AzwcCanviDrawer: azwcCanviDrawer.AzwcCanviDrawer,
-  AzwcSwiperNext: azwcTabs.AzwcSwiperNext,
-  AzwcSwiperPrev: azwcTabs.AzwcSwiperPrev,
-  AzwcSwiperPagination: azwcTabs.AzwcSwiperPagination,
-  AzwcTabs: azwcTabs.AzwcTabs,
-  AzwcTabLink: azwcTabLink.AzwcTabLink,
-  AzwcTabContent: azwcTabContent.AzwcTabContent,
+  AzwcNavButton,
+  AzwcNavMenu,
+  AzwcNavMenuItem,
+  AzwcAccordion,
+  AzwcDialog,
+  AzwcFileManager,
+  AzwcSpinner,
+  AzwcSpinnerMask,
+  AzwcSwiper,
+  AzwcCollapseT1,
+  AzwcCanviDrawer,
+  AzwcSwiperNext,
+  AzwcSwiperPrev,
+  AzwcSwiperPagination,
+  AzwcTabs,
+  AzwcTabLink,
+  AzwcTabContent,
 };
 const getExportData = () => (Object.assign(Object.assign({ Components }, Components), { thirdParty: {
     swiperlib,
-    Swiper: azwcTabs.Swiper,
+    Swiper,
     Canvi,
   }, utils,
   eventBinder,
@@ -507,12 +505,11 @@ async function appGlobalScript () {
   }
 }
 
-const exports$1 = /*#__PURE__*/Object.freeze({
+const exports = /*#__PURE__*/Object.freeze({
   __proto__: null,
   getExportData: getExportData,
   exportData: exportData,
   'default': appGlobalScript
 });
 
-exports.appGlobalScript = appGlobalScript;
-exports.exports = exports$1;
+export { appGlobalScript as a, exports as e };
